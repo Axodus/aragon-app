@@ -1905,7 +1905,7 @@
       },
       "harmonyVoting": {
         "setupGovernance": {
-          "helpText": "Configure who can propose and which address can finalize results.",
+          "helpText": "No governance settings are required for this plugin. Proposals are open to accounts with at least 1 ONE, and results are finalized automatically by the oracle after the vote ends.",
           "oracle": {
             "label": "Oracle address",
             "placeholder": "0x…"
