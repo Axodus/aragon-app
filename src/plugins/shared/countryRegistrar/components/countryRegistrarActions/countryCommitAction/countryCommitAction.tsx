@@ -143,8 +143,8 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
                     config.publicResolver,
                     [resolverCall],
                     false,
-                    0,
-                    0,
+                    0n,
+                    0n,
                 ],
             })) as Hex;
 
