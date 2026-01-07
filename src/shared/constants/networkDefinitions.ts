@@ -39,6 +39,25 @@ export interface INetworkDefinitionAddresses {
     conditionFactory: Hex;
 }
 
+export interface ICountryIntegrationAddresses {
+    /**
+     * TLD label (e.g. "country").
+     */
+    tld: string;
+    /**
+     * 1.country RegistrarController.
+     */
+    registrarController: Hex;
+    /**
+     * ENS-like registry contract (DC).
+     */
+    registry: Hex;
+    /**
+     * Public resolver used for addr records.
+     */
+    publicResolver: Hex;
+}
+
 export interface INetworkDefinition extends Chain {
     /**
      * Name of the network.
@@ -65,6 +84,11 @@ export interface INetworkDefinition extends Chain {
      * Addresses for the network.
      */
     addresses: INetworkDefinitionAddresses;
+
+    /**
+     * Optional 1.country integration configuration.
+     */
+    country?: ICountryIntegrationAddresses;
     /**
      * Latest version of the OSx framework.
      */
@@ -342,6 +366,12 @@ export const networkDefinitions: Record<Network, INetworkDefinition> = {
         order: 11,
         protocolVersion: latestProtocolVersion,
         tenderlySupport: false,
+        country: {
+            tld: 'country',
+            registrarController: '0x76c6fE3aEe636f88d01De64931514e8CD64D94Fb',
+            registry: '0x547942748Cc8840FEc23daFdD01E6457379B446D',
+            publicResolver: '0x46E37034Ffc87a969d1a581748Acf6a94Bc7415D',
+        },
         addresses: {
             // NOTE: 'dao' should point to the base DAO implementation, not an instance proxy.
             // Keep current until the implementation address is confirmed for Harmony.
