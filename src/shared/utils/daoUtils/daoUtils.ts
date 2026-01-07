@@ -149,7 +149,7 @@ class DaoUtils {
     resolveDaoId = async (params: IDaoPageParams) => {
         const { addressOrEns, network } = params;
 
-        if (addressOrEns.endsWith('.eth')) {
+        if (addressOrEns.endsWith('.eth') || addressOrEns.endsWith('.country')) {
             const dao = await daoService.getDaoByEns({ urlParams: { network, ens: addressOrEns } });
 
             return `${network}-${dao.address}`;

@@ -153,8 +153,8 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
                 config.publicResolver,
                 [resolverCall],
                 false,
-                0n,
-                0n,
+                0,
+                0,
             ],
         });
 
