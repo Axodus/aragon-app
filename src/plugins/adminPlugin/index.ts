@@ -7,6 +7,7 @@ import { AdminMemberInfo } from './components/adminMemberInfo';
 import { AdminSettingsPanel } from './components/adminSettingsPanel';
 import { AdminVotingTerminal } from './components/adminVotingTerminal';
 import { adminPlugin } from './constants/adminPlugin';
+import { useAdminActions } from './hooks/useAdminActions';
 import { useAdminGovernanceSettings } from './hooks/useAdminGovernanceSettings';
 import { adminPluginUtils } from './utils/adminPluginUtils';
 import { adminProposalUtils } from './utils/adminProposalUtils';
@@ -33,6 +34,11 @@ export const initialiseAdminPlugin = () => {
             slotId: GovernanceSlotId.GOVERNANCE_BUILD_CREATE_PROPOSAL_DATA,
             pluginId: adminPlugin.id,
             function: adminTransactionUtils.buildCreateProposalData,
+        })
+        .registerSlotFunction({
+            slotId: GovernanceSlotId.GOVERNANCE_PLUGIN_ACTIONS,
+            pluginId: adminPlugin.id,
+            function: useAdminActions,
         })
         .registerSlotFunction({
             slotId: GovernanceSlotId.GOVERNANCE_PERMISSION_CHECK_PROPOSAL_CREATION,
