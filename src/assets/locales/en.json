@@ -2656,6 +2656,23 @@
         "readMore": "Read more",
         "summary": "Description"
       },
+      "daoSettings": {
+        "primaryName": {
+          "title": "Link .country Name",
+          "description": "Link an existing .country domain name to this DAO. The name must resolve on-chain to this DAO's address.",
+          "label": "Domain Name",
+          "placeholder": "mydao.country",
+          "helpText": "The domain must already exist and resolve to this DAO's address",
+          "submit": "Link Name",
+          "clear": "Clear Name",
+          "success": "Primary name linked successfully",
+          "cleared": "Primary name cleared successfully",
+          "error": "Failed to link primary name. Make sure the domain resolves to this DAO's address.",
+          "clearError": "Failed to clear primary name",
+          "invalidFormat": "Name must end with .country",
+          "validationError": "Validation failed"
+        }
+      },
       "daoSettingsPage": {
         "aside": {
           "versionInfoTitle": "Contracts"
