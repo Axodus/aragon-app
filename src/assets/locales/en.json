@@ -1,6 +1,41 @@
 {
   "app": {
     "actions": {
+      "countryRegistrar": {
+        "groupName": ".country",
+        "unsupportedNetwork": "This action is only available on supported networks.",
+        "commit": {
+          "title": "Commit .country",
+          "name": {
+            "label": "Name",
+            "placeholder": "e.g. mydao"
+          },
+          "secret": {
+            "label": "Secret",
+            "placeholder": "0x… (32 bytes)"
+          },
+          "duration": {
+            "label": "Duration (seconds)",
+            "placeholder": "31536000"
+          }
+        },
+        "register": {
+          "title": "Register .country",
+          "name": {
+            "label": "Name",
+            "placeholder": "e.g. mydao"
+          },
+          "secret": {
+            "label": "Secret",
+            "placeholder": "0x… (32 bytes)"
+          },
+          "duration": {
+            "label": "Duration (seconds)",
+            "placeholder": "31536000"
+          },
+          "estimatedCost": "Estimated cost: {{value}} ONE"
+        }
+      },
       "gaugeRegistrar": {
         "composer": {
           "contractName": "Gauge Registrar",

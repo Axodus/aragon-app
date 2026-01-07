@@ -12,7 +12,7 @@ import { InputNumber, InputText } from '@aragon/gov-ui-kit';
 import { useEffect, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { encodeFunctionData, formatEther, parseEther, type Hex } from 'viem';
-import { namehash } from 'viem/utils';
+import { namehash } from 'viem/ens';
 import type { ICountryIntegrationAddresses } from '@/shared/constants/networkDefinitions';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 
