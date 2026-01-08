@@ -1,4 +1,4 @@
-import { AragonAdminBackendService } from '../aragonAdminBackendService';
+import { AragonAdminBackendService } from '@/shared/api/aragonAdminBackendService/aragonAdminBackendService';
 import type { Network } from './domain';
 
 export interface ISetPrimaryNameParams {
