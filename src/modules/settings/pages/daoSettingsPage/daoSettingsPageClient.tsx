@@ -23,6 +23,7 @@ import type { ICreateProcessDetailsDialogParams } from '../../../createDao/dialo
 import { DaoHierarchy } from '../../components/daoHierarchy';
 import { DaoSettingsInfo } from '../../components/daoSettingsInfo';
 import { DaoVersionInfo } from '../../components/daoVersionInfo';
+import { DaoPrimaryNameCard } from '../../components/daoPrimaryNameCard';
 import { UpdateDaoContracts } from '../../components/updateDaoContracts';
 import { SettingsSlotId } from '../../constants/moduleSlots';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -205,6 +206,16 @@ export const DaoSettingsPageClient: React.FC<IDaoSettingsPageClientProps> = (pro
                 <Page.MainSection title={t('app.settings.daoSettingsPage.main.settingsInfoTitle')}>
                     {isSubDaoEnabled ? <DaoHierarchy dao={dao} currentDaoId={daoId} /> : <DaoSettingsInfo dao={dao} />}
                 </Page.MainSection>
+                {isRootModeEnabled && dao && (
+                    <Page.MainSection inset={false}>
+                        <DaoPrimaryNameCard
+                            dao={dao}
+                            onSuccess={() => {
+                                void queryClient.invalidateQueries({ queryKey: ['dao', daoId] });
+                            }}
+                        />
+                    </Page.MainSection>
+                )}
                 {hasSupportedPlugins && (
                     <Page.MainSection
                         id="governance"
