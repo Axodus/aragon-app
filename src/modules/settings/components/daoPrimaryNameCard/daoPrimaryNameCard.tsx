@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, InputText, AlertCard, type IAlertCardProps } from '@aragon/gov-ui-kit';
 import { useSetPrimaryName } from '@/shared/hooks/useSetPrimaryName';
 import { useTranslations } from '@/shared/components/translationsProvider';
@@ -18,6 +18,13 @@ export const DaoPrimaryNameCard: React.FC<IDaoPrimaryNameCardProps> = (props) =>
 
     const [primaryName, setPrimaryNameValue] = useState(dao.primaryName ?? '');
     const [alert, setAlert] = useState<{ message: string; variant: IAlertCardProps['variant'] } | null>(null);
+
+    useEffect(() => {
+        if (alert) {
+            const timer = setTimeout(() => setAlert(null), 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [alert]);
 
     const handleSubmit = () => {
         if (!primaryName || !primaryName.endsWith('.country')) {
@@ -80,7 +87,7 @@ export const DaoPrimaryNameCard: React.FC<IDaoPrimaryNameCardProps> = (props) =>
             </div>
 
             {alert && (
-                <AlertCard message={alert.message} variant={alert.variant} onClose={() => setAlert(null)} />
+                <AlertCard message={alert.message} variant={alert.variant} />
             )}
 
             <InputText
