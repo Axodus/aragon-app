@@ -10,6 +10,7 @@ export const generateDao = (dao?: Partial<IDao>): IDao => ({
     version: '1.3.0',
     ens: null,
     subdomain: null,
+    primaryName: null,
     avatar: null,
     plugins: [],
     isSupported: true,
@@ -18,4 +19,5 @@ export const generateDao = (dao?: Partial<IDao>): IDao => ({
     blockTimestamp: 0,
     transactionHash: '',
     ...dao,
+    primaryName: dao?.primaryName ?? null,
 });
