@@ -15,10 +15,11 @@ class DaoAdminService {
     private service = new AragonAdminBackendService();
 
     setPrimaryName = async (params: ISetPrimaryNameParams): Promise<ISetPrimaryNameResponse> => {
-        const result = await this.service.post<ISetPrimaryNameResponse, ISetPrimaryNameParams>({
-            url: '/dao/set-primary-name',
-            body: params,
-        });
+        const result = await this.service.request<ISetPrimaryNameResponse, unknown, unknown, ISetPrimaryNameParams>(
+            '/dao/set-primary-name',
+            { body: params },
+            { method: 'POST' },
+        );
 
         return result;
     };
