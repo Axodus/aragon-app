@@ -174,7 +174,7 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
                     args: [label, BigInt(duration)],
                 })) as { base: bigint; premium: bigint };
 
-                const total = (price.base ?? 0n) + (price.premium ?? 0n);
+                const total = (price.base ?? BigInt(0)) + (price.premium ?? BigInt(0));
                 setEstimatedCostWei(total);
                 setValue(`${actionFieldName}.value`, total.toString());
             } catch {
