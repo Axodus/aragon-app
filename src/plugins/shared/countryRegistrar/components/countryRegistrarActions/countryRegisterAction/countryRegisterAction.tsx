@@ -153,11 +153,8 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
                 config.publicResolver,
                 [resolverCall],
                 false,
-                0,
-                0,
-            ],
-        });
-
+                    BigInt(0),
+                    BigInt(0),
         setValue(`${actionFieldName}.to`, config.registrarController);
         setValue(`${actionFieldName}.data`, newData);
 
