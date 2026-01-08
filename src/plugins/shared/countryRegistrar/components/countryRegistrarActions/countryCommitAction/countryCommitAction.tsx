@@ -16,7 +16,7 @@ import { namehash } from 'viem/ens';
 import type { ICountryIntegrationAddresses } from '@/shared/constants/networkDefinitions';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 
-export interface ICountryCommitActionProps extends IProposalActionComponentProps<IProposalActionData<IProposalAction>> {}
+export interface ICountryCommitActionProps<TPlugin = any> extends IProposalActionComponentProps<IProposalActionData<IProposalAction, TPlugin>> {}
 
 interface ICountryCommitFormData {
     name?: string;
