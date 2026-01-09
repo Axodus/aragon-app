@@ -1,5 +1,6 @@
 import { generateDao, generatePaginatedResponse, generateReactQueryInfiniteResultSuccess } from '@/shared/testUtils';
 import { testLogger } from '@/test/utils';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import * as daoExplorerService from '../../api/daoExplorerService';
 import { DaoList, type IDaoListProps } from './daoList';
@@ -29,7 +30,18 @@ describe('<DaoList /> component', () => {
             ...props,
         };
 
-        return <DaoList {...completeProps} />;
+        const queryClient = new QueryClient({
+            defaultOptions: {
+                queries: { retry: false },
+                mutations: { retry: false },
+            },
+        });
+
+        return (
+            <QueryClientProvider client={queryClient}>
+                <DaoList {...completeProps} />
+            </QueryClientProvider>
+        );
     };
 
     it('renders a list of DAOs using the parameters set on the initialParams prop', () => {

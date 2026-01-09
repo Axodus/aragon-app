@@ -11,28 +11,28 @@ describe('<AragonLogo /> component', () => {
     it('renders the complete logo by default', () => {
         render(createTestComponent());
 
-        const logoWithText = screen.getByRole('img', { name: 'Aragon logo' });
+        const logoWithText = screen.getByRole('img', { name: 'Harmony logo' });
         expect(logoWithText).toBeInTheDocument();
 
-        const iconLogo = screen.queryByRole('img', { name: 'Aragon icon logo' });
+        const iconLogo = screen.queryByRole('img', { name: 'Harmony icon logo' });
         expect(iconLogo).not.toBeInTheDocument();
     });
 
     it('renders the icon only when iconOnly prop is true', () => {
         render(createTestComponent({ iconOnly: true }));
 
-        const iconLogo = screen.getByRole('img', { name: 'Aragon icon logo' });
+        const iconLogo = screen.getByRole('img', { name: 'Harmony icon logo' });
         expect(iconLogo).toBeInTheDocument();
 
-        const logoWithText = screen.queryByRole('img', { name: 'Aragon logo' });
+        const logoWithText = screen.queryByRole('img', { name: 'Harmony logo' });
         expect(logoWithText).not.toBeInTheDocument();
     });
 
     it('renders both logos when responsiveIconOnly is true', () => {
         render(createTestComponent({ responsiveIconOnly: true }));
 
-        const iconLogo = screen.getByRole('img', { name: 'Aragon icon logo' });
-        const logoWithText = screen.getByRole('img', { name: 'Aragon logo' });
+        const iconLogo = screen.getByRole('img', { name: 'Harmony icon logo' });
+        const logoWithText = screen.getByRole('img', { name: 'Harmony logo' });
 
         expect(iconLogo).toBeInTheDocument();
         expect(logoWithText).toBeInTheDocument();

@@ -1,5 +1,5 @@
 export const HarmonyLogoWithTextCommunityDao = () => (
-    <div className="inline-flex items-center h-full w-auto" aria-label="Harmony logo">
+    <div className="inline-flex items-center h-full w-auto" role="img" aria-label="Harmony logo">
         <svg
             viewBox="0 0 32 32"
             fill="none"

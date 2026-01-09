@@ -8,6 +8,7 @@ import { TextDecoder, TextEncoder } from 'util';
 // Some modules validate env at import time; tests should not fail just because backend URLs are not set.
 process.env.ARAGON_BACKEND_URL ??= 'http://localhost:3000';
 process.env.NEXT_PUBLIC_ARAGON_BACKEND_URL ??= process.env.ARAGON_BACKEND_URL;
+process.env.NEXT_SECRET_IPFS_JWT ??= 'test-ipfs-jwt';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { mockFetch, mockTranslations, testLogger, timeUtils } = require('./utils') as typeof import('./utils');

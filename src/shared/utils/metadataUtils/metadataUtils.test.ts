@@ -12,8 +12,8 @@ describe('metadata utils', () => {
         expect(result).toEqual({
             title,
             description,
-            openGraph: { title, description, siteName: 'Aragon', images: [image], type },
-            twitter: { card: 'summary', site: '@aragonproject', title, description, images: [image] },
+            openGraph: { title, description, siteName: 'Community DAO', images: [image], type },
+            twitter: { card: 'summary', site: '@governancecountry', title, description, images: [image] },
         });
     });
 });
