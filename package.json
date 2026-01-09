@@ -7,7 +7,11 @@
   "private": true,
   "license": "GPL-3.0",
   "scripts": {
-    "dev": "cross-env pnpm run setup local && next dev  --turbopack",
+    "dev": "cross-env pnpm run setup development && next dev  --turbopack",
+    "preview": "cross-env pnpm run setup preview && next dev --turbopack",
+    "local": "cross-env pnpm run setup local && next dev --turbopack",
+    "staging": "cross-env pnpm run setup staging && next dev --turbopack",
+    "prod": "cross-env pnpm run setup production && next dev --turbopack",
     "build": "NODE_OPTIONS=--max-old-space-size=6144 next build --no-lint",
     "build:analyze": "cross-env ANALYZE=true next build --no-lint",
     "start": "next start",
