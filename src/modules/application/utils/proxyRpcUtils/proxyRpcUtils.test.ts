@@ -76,6 +76,7 @@ describe('proxyRpc utils', () => {
     describe('constructor', () => {
         it('throws error when alchemy rpc key is not defined on non CI context', () => {
             testLogger.suppressErrors();
+            process.env.NEXT_PUBLIC_ENV = 'staging';
             // Enable at least one network that requires ALCHEMY.
             networkDefinitions[Network.ETHEREUM_MAINNET].disabled = false;
             delete process.env.NEXT_SECRET_RPC_KEY;
@@ -85,6 +86,7 @@ describe('proxyRpc utils', () => {
 
         it('throws error when ankr rpc key is not defined on non CI context', () => {
             testLogger.suppressErrors();
+            process.env.NEXT_PUBLIC_ENV = 'staging';
             // Enable a network that requires ANKR (CHILIZ is disabled by default).
             networkDefinitions[Network.CHILIZ_MAINNET].disabled = false;
             delete process.env.NEXT_SECRET_ANKR_RPC_KEY;
@@ -94,6 +96,7 @@ describe('proxyRpc utils', () => {
 
         it('throws error when drpc rpc key is not defined on non CI context', () => {
             testLogger.suppressErrors();
+            process.env.NEXT_PUBLIC_ENV = 'staging';
             // Enable a network that requires DRPC (KATANA is disabled by default).
             networkDefinitions[Network.KATANA_MAINNET].disabled = false;
             delete process.env.NEXT_SECRET_DRPC_RPC_KEY;
@@ -103,6 +106,7 @@ describe('proxyRpc utils', () => {
 
         it('throws error when peaq rpc key is not defined on non CI context', () => {
             testLogger.suppressErrors();
+            process.env.NEXT_PUBLIC_ENV = 'staging';
             // Enable a network that requires PEAQ (PEAQ is disabled by default).
             networkDefinitions[Network.PEAQ_MAINNET].disabled = false;
             delete process.env.NEXT_SECRET_PEAQ_RPC_KEY;
@@ -112,6 +116,7 @@ describe('proxyRpc utils', () => {
 
         it('throws error when multiple rpc keys are not defined on non CI context', () => {
             testLogger.suppressErrors();
+            process.env.NEXT_PUBLIC_ENV = 'staging';
             // Enable multiple networks so multiple providers are required.
             networkDefinitions[Network.ETHEREUM_MAINNET].disabled = false;
             networkDefinitions[Network.CHILIZ_MAINNET].disabled = false;
