@@ -7,13 +7,13 @@
   "private": true,
   "license": "GPL-3.0",
   "scripts": {
-    "dev": "cross-env pnpm run setup development && next dev  --turbopack",
-    "preview": "cross-env pnpm run setup preview && next dev --turbopack",
-    "local": "cross-env pnpm run setup local && next dev --turbopack",
-    "staging": "cross-env pnpm run setup staging && next dev --turbopack",
-    "prod": "cross-env pnpm run setup production && next dev --turbopack",
-    "build": "cross-env NODE_OPTIONS=--max-old-space-size=6144 pnpm run setup production && next build --no-lint",
-    "build:local": "cross-env NODE_OPTIONS=--max-old-space-size=6144 pnpm run setup local && next build --no-lint",
+    "dev": "next dev --turbopack",
+    "setup:development": "cross-env pnpm run setup development",
+    "setup:preview": "cross-env pnpm run setup preview",
+    "setup:local": "cross-env pnpm run setup local",
+    "setup:staging": "cross-env pnpm run setup staging",
+    "setup:production": "cross-env pnpm run setup production",
+    "build": "NODE_OPTIONS=--max-old-space-size=6144 && next build --no-lint",
     "build:analyze": "cross-env ANALYZE=true next build --no-lint",
     "start": "next start",
     "test": "jest",
@@ -24,7 +24,6 @@
     "prettify": "prettier . --check",
     "prettify:fix": "prettier . --write",
     "type-check": "tsc --noEmit",
-    "setup": "./scripts/setupEnv.sh",
     "prepare": "husky"
   },
   "dependencies": {
