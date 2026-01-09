@@ -128,13 +128,22 @@ const latestProtocolVersion: IContractVersionInfo = {
 };
 
 // Harmony chains (not provided by wagmi in this app)
+const parseOptionalIntEnv = (value: string | undefined): number | undefined => {
+    if (!value) return undefined;
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : undefined;
+};
+
+const harmonyMainnetChainId = parseOptionalIntEnv(process.env.NEXT_PUBLIC_HARMONY_CHAIN_ID) ?? 1666600000;
+const harmonyMainnetRpcUrl = process.env.NEXT_PUBLIC_HARMONY_RPC_URL ?? 'https://api.harmony.one';
+
 const harmonyChain: Chain = {
-    id: 1666600000,
+    id: harmonyMainnetChainId,
     name: 'Harmony',
     nativeCurrency: { name: 'Harmony', symbol: 'ONE', decimals: 18 },
     rpcUrls: {
-        default: { http: ['https://api.harmony.one'] },
-        public: { http: ['https://api.harmony.one'] },
+        default: { http: [harmonyMainnetRpcUrl] },
+        public: { http: [harmonyMainnetRpcUrl] },
     },
     blockExplorers: {
         default: { name: 'Harmony Explorer', url: 'https://explorer.harmony.one' },

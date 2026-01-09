@@ -70,6 +70,9 @@ export class ProxyRpcUtils {
     private requiredProvidersFromDefinitions = (): Set<RpcProvider> => {
         const required = new Set<RpcProvider>();
         for (const def of Object.values(networkDefinitions)) {
+            // Only require provider keys for networks that are enabled.
+            // Disabled networks are not selectable/usable and should not block builds.
+            if (def.disabled) continue;
             const cfg = def.privateRpcConfig;
             if (cfg) required.add(cfg.rpcProvider);
         }

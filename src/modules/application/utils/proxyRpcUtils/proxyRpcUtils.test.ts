@@ -13,6 +13,13 @@ import { type IRpcRequestOptions, ProxyRpcUtils } from './proxyRpcUtils';
 describe('proxyRpc utils', () => {
     const originalProcessEnv = process.env;
 
+    const originalDisabledFlags = {
+        [Network.ETHEREUM_MAINNET]: networkDefinitions[Network.ETHEREUM_MAINNET].disabled,
+        [Network.CHILIZ_MAINNET]: networkDefinitions[Network.CHILIZ_MAINNET].disabled,
+        [Network.KATANA_MAINNET]: networkDefinitions[Network.KATANA_MAINNET].disabled,
+        [Network.PEAQ_MAINNET]: networkDefinitions[Network.PEAQ_MAINNET].disabled,
+    };
+
     const fetchSpy = jest.spyOn(global, 'fetch');
     const nextResponseJsonSpy = jest.spyOn(NextResponse, 'json');
 
@@ -23,10 +30,22 @@ describe('proxyRpc utils', () => {
         process.env.NEXT_SECRET_DRPC_RPC_KEY = 'test-drpc-key';
         process.env.NEXT_SECRET_PEAQ_RPC_KEY = 'test-peaq-key';
         process.env.CI = 'false';
+
+        // Ensure tests start from the repo defaults
+        networkDefinitions[Network.ETHEREUM_MAINNET].disabled = originalDisabledFlags[Network.ETHEREUM_MAINNET];
+        networkDefinitions[Network.CHILIZ_MAINNET].disabled = originalDisabledFlags[Network.CHILIZ_MAINNET];
+        networkDefinitions[Network.KATANA_MAINNET].disabled = originalDisabledFlags[Network.KATANA_MAINNET];
+        networkDefinitions[Network.PEAQ_MAINNET].disabled = originalDisabledFlags[Network.PEAQ_MAINNET];
     });
 
     afterEach(() => {
         process.env = { ...originalProcessEnv };
+
+        networkDefinitions[Network.ETHEREUM_MAINNET].disabled = originalDisabledFlags[Network.ETHEREUM_MAINNET];
+        networkDefinitions[Network.CHILIZ_MAINNET].disabled = originalDisabledFlags[Network.CHILIZ_MAINNET];
+        networkDefinitions[Network.KATANA_MAINNET].disabled = originalDisabledFlags[Network.KATANA_MAINNET];
+        networkDefinitions[Network.PEAQ_MAINNET].disabled = originalDisabledFlags[Network.PEAQ_MAINNET];
+
         fetchSpy.mockReset();
         nextResponseJsonSpy.mockReset();
     });
@@ -57,6 +76,8 @@ describe('proxyRpc utils', () => {
     describe('constructor', () => {
         it('throws error when alchemy rpc key is not defined on non CI context', () => {
             testLogger.suppressErrors();
+            // Enable at least one network that requires ALCHEMY.
+            networkDefinitions[Network.ETHEREUM_MAINNET].disabled = false;
             delete process.env.NEXT_SECRET_RPC_KEY;
             process.env.CI = 'false';
             expect(() => new ProxyRpcUtils()).toThrow(/NEXT_SECRET_RPC_KEY/);
@@ -64,6 +85,8 @@ describe('proxyRpc utils', () => {
 
         it('throws error when ankr rpc key is not defined on non CI context', () => {
             testLogger.suppressErrors();
+            // Enable a network that requires ANKR (CHILIZ is disabled by default).
+            networkDefinitions[Network.CHILIZ_MAINNET].disabled = false;
             delete process.env.NEXT_SECRET_ANKR_RPC_KEY;
             process.env.CI = 'false';
             expect(() => new ProxyRpcUtils()).toThrow(/NEXT_SECRET_ANKR_RPC_KEY/);
@@ -71,6 +94,8 @@ describe('proxyRpc utils', () => {
 
         it('throws error when drpc rpc key is not defined on non CI context', () => {
             testLogger.suppressErrors();
+            // Enable a network that requires DRPC (KATANA is disabled by default).
+            networkDefinitions[Network.KATANA_MAINNET].disabled = false;
             delete process.env.NEXT_SECRET_DRPC_RPC_KEY;
             process.env.CI = 'false';
             expect(() => new ProxyRpcUtils()).toThrow(/NEXT_SECRET_DRPC_RPC_KEY/);
@@ -78,6 +103,8 @@ describe('proxyRpc utils', () => {
 
         it('throws error when peaq rpc key is not defined on non CI context', () => {
             testLogger.suppressErrors();
+            // Enable a network that requires PEAQ (PEAQ is disabled by default).
+            networkDefinitions[Network.PEAQ_MAINNET].disabled = false;
             delete process.env.NEXT_SECRET_PEAQ_RPC_KEY;
             process.env.CI = 'false';
             expect(() => new ProxyRpcUtils()).toThrow(/NEXT_SECRET_PEAQ_RPC_KEY/);
@@ -85,6 +112,9 @@ describe('proxyRpc utils', () => {
 
         it('throws error when multiple rpc keys are not defined on non CI context', () => {
             testLogger.suppressErrors();
+            // Enable multiple networks so multiple providers are required.
+            networkDefinitions[Network.ETHEREUM_MAINNET].disabled = false;
+            networkDefinitions[Network.CHILIZ_MAINNET].disabled = false;
             delete process.env.NEXT_SECRET_RPC_KEY;
             delete process.env.NEXT_SECRET_ANKR_RPC_KEY;
             process.env.CI = 'false';
