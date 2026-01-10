@@ -52,10 +52,10 @@ export interface ICountryIntegrationAddresses {
      * ENS-like registry contract (DC).
      */
     registry: Hex;
-            dao: '0x14B83cf98a6a311D8ff3c311D781ac392348316b',
-            daoFactory: '0xBbfff9D297762931ae7Dc37F0cc33a397bC50Ba0',
-            pluginSetupProcessor: '0x6300477942944d2501db08cD5b7e37DC6423E77C',
-            globalExecutor: '0xC5066174C2ED21acbdcAd9Bb4d3BdeeDdd56CE37',
+    /**
+     * Public resolver address used by the registrar controller.
+     */
+    publicResolver: Hex;
 }
 
 export interface INetworkDefinition extends Chain {
@@ -382,12 +382,11 @@ export const networkDefinitions: Record<Network, INetworkDefinition> = {
             publicResolver: '0x46E37034Ffc87a969d1a581748Acf6a94Bc7415D',
         },
         addresses: {
-            // NOTE: 'dao' should point to the base DAO implementation, not an instance proxy.
-            // Keep current until the implementation address is confirmed for Harmony.
-            dao: '0x26F52f32DEe79c1708bbe5beDEF7e09cA468178e',
-            daoFactory: '0x83EED0be2584230D9fD5974fF61FA97376D8bA52',
-            pluginSetupProcessor: '0xac1b0f953Ca517F4aB21Cc3E2cdb95b186DBF80D',
-            globalExecutor: '0x7CAC15E6025EA1FBCdcEe3CEad1a879a023e593A',
+            // NOTE: 'dao' must point to the base DAO implementation (DAOFactory.daoBase).
+            dao: '0x14B83cf98a6a311D8ff3c311D781ac392348316b',
+            daoFactory: '0xBbfff9D297762931ae7Dc37F0cc33a397bC50Ba0',
+            pluginSetupProcessor: '0x6300477942944d2501db08cD5b7e37DC6423E77C',
+            globalExecutor: '0xC5066174C2ED21acbdcAd9Bb4d3BdeeDdd56CE37',
             conditionFactory: '0x7992fbe76bD9B007AB165Af04Be09BC0F6C89aF6',
         },
     },
