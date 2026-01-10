@@ -13,7 +13,7 @@
     "setup:local": "cross-env pnpm run setup local",
     "setup:staging": "cross-env pnpm run setup staging",
     "setup:production": "cross-env pnpm run setup production",
-    "build": "NODE_OPTIONS=--max-old-space-size=6144 && next build --no-lint",
+    "build": "NODE_OPTIONS=--max-old-space-size=6144 next build --no-lint",
     "build:analyze": "cross-env ANALYZE=true next build --no-lint",
     "start": "next start",
     "test": "jest",
