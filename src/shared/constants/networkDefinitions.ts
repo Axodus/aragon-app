@@ -52,10 +52,10 @@ export interface ICountryIntegrationAddresses {
      * ENS-like registry contract (DC).
      */
     registry: Hex;
-    /**
-     * Public resolver used for addr records.
-     */
-    publicResolver: Hex;
+            dao: '0x14B83cf98a6a311D8ff3c311D781ac392348316b',
+            daoFactory: '0xBbfff9D297762931ae7Dc37F0cc33a397bC50Ba0',
+            pluginSetupProcessor: '0x6300477942944d2501db08cD5b7e37DC6423E77C',
+            globalExecutor: '0xC5066174C2ED21acbdcAd9Bb4d3BdeeDdd56CE37',
 }
 
 export interface INetworkDefinition extends Chain {
