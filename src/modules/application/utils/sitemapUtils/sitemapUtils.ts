@@ -13,11 +13,17 @@ class SitemapUtils {
     ];
 
     public generateSitemap = async (): Promise<MetadataRoute.Sitemap> => {
-        const daos = await daoExplorerService.getDaoList({ queryParams: { pageSize: 50 } });
+        let sitemap: MetadataRoute.Sitemap = [...this.staticPages];
 
-        const daoPages = daos.data.flatMap((dao) => this.buildDaoPages(dao));
+        try {
+            const daos = await daoExplorerService.getDaoList({ queryParams: { pageSize: 50 } });
+            const daoPages = daos.data.flatMap((dao) => this.buildDaoPages(dao));
+            sitemap = [...this.staticPages, ...daoPages];
+        } catch {
+            // Intencional: em builds/ambientes sem backend configurado, não deve falhar o build.
+        }
 
-        return this.prependBaseUrl([...this.staticPages, ...daoPages]);
+        return this.prependBaseUrl(sitemap);
     };
 
     private buildDaoPages = (dao: IDao): MetadataRoute.Sitemap => {
