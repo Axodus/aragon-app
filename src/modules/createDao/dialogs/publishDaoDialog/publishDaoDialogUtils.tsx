@@ -58,40 +58,32 @@ class PublishDaoDialogUtils {
                 `DAOFactory address not configured for network ${network}. Please set it in networkDefinitions.addresses.daoFactory.`,
             );
         }
-        // Nota: Se o Admin repo não estiver configurado/implantado, prosseguimos sem instalar plugin
+        if (!adminPluginRepo || adminPluginRepo.toLowerCase() === ZERO) {
+            throw new Error(
+                `Admin PluginRepo address not configured for network ${network}. ` +
+                    `Please set it in adminPlugin.repositoryAddresses and ensure the repo is deployed + registered in the PSP registry.`,
+            );
+        }
 
         const daoSettings = this.buildDaoSettingsParams(metadataCid, ens);
         const client = getPublicClient(network);
 
-        // Resolve plugin settings: tenta instalar Admin; se repo inválido/sem versão, envia vazio
-        let pluginSettings: readonly {
+        // Admin é obrigatório no fluxo de criação do DAO.
+        // Em Harmony, simulações podem falhar por instabilidade de RPC; neste caso fazemos bypass da simulação,
+        // mas ainda enviamos a criação com Admin (nunca criamos DAO sem Admin).
+        const pluginSettings: readonly {
             pluginSetupRef: { pluginSetupRepo: Hex; versionTag: { release: number; build: number } };
             data: Hex;
-        }[] = [] as const;
+        }[] = await this.buildRequiredAdminPluginSettings(
+            network,
+            adminPluginRepo as Hex,
+            connectedAddress,
+            daoFactory as Hex,
+            daoSettings,
+        );
 
-        if (adminPluginRepo && adminPluginRepo.toLowerCase() !== ZERO) {
-            const repoCode = await client.getCode({ address: adminPluginRepo as Hex });
-            const hasRepo = !!repoCode && repoCode !== '0x';
-            if (hasRepo) {
-                try {
-                    pluginSettings = await this.findValidAdminPluginSettings(
-                        network,
-                        adminPluginRepo as Hex,
-                        connectedAddress,
-                        daoFactory as Hex,
-                        daoSettings,
-                    );
-                } catch (err) {
-                    // fallback: prossegue sem instalar plugin
-                    console.warn('Admin plugin install skipped:', err);
-                    pluginSettings = [] as const;
-                }
-            }
-        }
-
-        // Simulação prévia para capturar motivo de revert antes de enviar
-        // Simula a criação de DAO (com ou sem plugin). No Harmony, se falhar, tenta sem plugin; se ainda falhar, 
-        // faz bypass da simulação e envia direto (RPC costuma ser volátil e não lidar bem com simulações).
+        // Simulação prévia para capturar motivo de revert antes de enviar.
+        // No Harmony, se falhar, faz bypass e envia mesmo (RPC costuma ser volátil e não lidar bem com simulações).
         try {
             await client.simulateContract({
                 abi: daoFactoryAbi,
@@ -103,20 +95,7 @@ class PublishDaoDialogUtils {
         } catch (err) {
             const isHarmony = network === 'harmony-mainnet';
             if (isHarmony) {
-                try {
-                    await client.simulateContract({
-                        abi: daoFactoryAbi,
-                        address: daoFactory as Hex,
-                        functionName: 'createDao',
-                        args: [daoSettings, []],
-                        account: connectedAddress as Hex,
-                    });
-                    // Se a simulação sem plugin passou, força a criação sem plugin
-                    pluginSettings = [] as const;
-                } catch (err2) {
-                    console.warn('Harmony simulate bypass: enviando sem simulação devido ao RPC/revert:', err2);
-                    // Bypass: mantém pluginSettings calculado (possivelmente vazio) e segue sem simular
-                }
+                console.warn('Harmony simulate bypass: enviando sem simulação devido ao RPC/revert:', err);
             } else {
                 throw err;
             }
@@ -207,6 +186,50 @@ class PublishDaoDialogUtils {
         if (!repoCode || repoCode === '0x') {
             throw new Error(
                 `O endereço do Admin PluginRepo (${adminPluginRepo}) não possui código na rede ${network}. Verifique se foi implantado via PluginRepoFactory e atualize o mapeamento/endereço.`,
+            );
+        }
+    }
+
+    private async buildRequiredAdminPluginSettings(
+        network: ICreateDaoFormData['network'],
+        adminPluginRepo: Hex,
+        connectedAddress: string,
+        daoFactory: Hex,
+        daoSettings: ReturnType<PublishDaoDialogUtils['buildDaoSettingsParams']>,
+    ) {
+        const isHarmony = network === 'harmony-mainnet';
+        try {
+            return await this.findValidAdminPluginSettings(
+                network,
+                adminPluginRepo,
+                connectedAddress,
+                daoFactory,
+                daoSettings,
+            );
+        } catch (err) {
+            if (!isHarmony) throw err;
+
+            const candidates = this.getAdminVersionCandidates(network);
+            const fallbackTag = candidates[0];
+            if (!fallbackTag) throw err;
+
+            await this.ensureRepoExists(network, adminPluginRepo);
+
+            const { globalExecutor } = networkDefinitions[network].addresses;
+            const target = (globalExecutor || daoFactory) as Hex;
+            const operation: 0 | 1 = globalExecutor ? 1 : 0;
+
+            console.warn(
+                `Admin plugin: falha ao simular em Harmony. Usando fallback ${fallbackTag.release}.${fallbackTag.build} sem simulação.`,
+                err,
+            );
+
+            return this.buildPluginSettingsParams(
+                adminPluginRepo,
+                connectedAddress,
+                fallbackTag,
+                target,
+                operation,
             );
         }
     }
