@@ -1,4 +1,4 @@
-import type { IDao, IDaoPlugin } from '@/shared/api/daoService';
+import { Network, type IDao, type IDaoPlugin } from '@/shared/api/daoService';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import type { IPluginInfo } from '@/shared/types';
 import {
@@ -168,6 +168,19 @@ class PluginTransactionUtils {
 
         const { pluginSetupProcessor } = networkDefinitions[dao.network].addresses;
 
+        // Harmony legacy DAOs: some have APPLY_INSTALLATION but not APPLY_UNINSTALLATION granted.
+        // When proposals are executed, `applyUninstallation` is typically called from the DAO context, so we
+        // temporarily grant APPLY_UNINSTALLATION to the DAO itself on the PSP.
+        const needsTemporaryApplyUninstallGrant = dao.network === Network.HARMONY_MAINNET;
+
+        const [grantApplyUninstallTx, revokeApplyUninstallTx] =
+            permissionTransactionUtils.buildGrantRevokePermissionTransactions({
+                where: pluginSetupProcessor,
+                who: dao.address as Hex,
+                what: permissionTransactionUtils.permissionIds.applyUninstallationPermission,
+                to: dao.address as Hex,
+            });
+
         // Temporarily grant the ROOT_PERMISSION to the plugin setup processor contract.
         const [grantRootTx, revokeRootTx] = permissionTransactionUtils.buildGrantRevokePermissionTransactions({
             where: dao.address as Hex,
@@ -175,6 +188,9 @@ class PluginTransactionUtils {
             what: permissionTransactionUtils.permissionIds.rootPermission,
             to: dao.address as Hex,
         });
+
+        const grantApplyUninstallWrapped = this.wrapAsDaoExecuteOnHarmony(dao, grantApplyUninstallTx);
+        const revokeApplyUninstallWrapped = this.wrapAsDaoExecuteOnHarmony(dao, revokeApplyUninstallTx);
 
         const grantRootWrapped = this.wrapAsDaoExecuteOnHarmony(dao, grantRootTx);
         const revokeRootWrapped = this.wrapAsDaoExecuteOnHarmony(dao, revokeRootTx);
@@ -192,7 +208,9 @@ class PluginTransactionUtils {
             value: BigInt(0),
         });
 
-        return [grantRootWrapped, uninstallAction, revokeRootWrapped];
+        return needsTemporaryApplyUninstallGrant
+            ? [grantApplyUninstallWrapped, grantRootWrapped, uninstallAction, revokeRootWrapped, revokeApplyUninstallWrapped]
+            : [grantRootWrapped, uninstallAction, revokeRootWrapped];
     };
 
     buildApplyPluginsUpdateActions = (params: IBuildApplyPluginsUpdateActionsParams): ITransactionRequest[] => {
