@@ -35,7 +35,7 @@ describe('adminTransaction utils', () => {
             expect(encodeFunctionDataSpy).toHaveBeenCalledWith({
                 abi: adminPluginAbi,
                 functionName: 'createProposal',
-                args: [metadata, actions, BigInt(0), BigInt(endDate), '0x'],
+                args: [metadata, actions, BigInt(0), BigInt(endDate), '0x0000000000000000000000000000000000000000000000000000000000000000'],
             });
             expect(result).toEqual(transactionData);
         });
