@@ -1404,9 +1404,9 @@
         },
         "description": "To publish your proposal, confirm the onchain transaction in your wallet.",
         "step": {
-          "GRANT_ADMIN_ROOT_FOR_PSP": {
+          "GRANT_PSP_ROOT_PERMISSION": {
             "errorLabel": "Unable to grant ROOT permission",
-            "label": "Grant ROOT permission to the Admin plugin"
+            "label": "Grant ROOT permission to the Plugin Setup Processor"
           },
           "PIN_METADATA": {
             "errorLabel": "Unable to pin data on IPFS",

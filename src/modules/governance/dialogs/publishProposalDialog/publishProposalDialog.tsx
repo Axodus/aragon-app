@@ -20,12 +20,12 @@ import { invariant, ProposalDataListItem, ProposalStatus } from '@aragon/gov-ui-
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { useReadContract, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
-import type { IPublishProposalDialogProps } from './publishProposalDialog.api';
+import type { IProposalCreateAction, IPublishProposalDialogProps } from './publishProposalDialog.api';
 import { publishProposalDialogUtils } from './publishProposalDialogUtils';
 import { decodeFunctionData, keccak256, toBytes, type Hex } from 'viem';
 
 export enum PublishProposalStep {
-    GRANT_ADMIN_ROOT_FOR_PSP = 'GRANT_ADMIN_ROOT_FOR_PSP',
+    GRANT_PSP_ROOT_PERMISSION = 'GRANT_PSP_ROOT_PERMISSION',
     PIN_METADATA = 'PIN_METADATA',
 }
 
@@ -55,7 +55,7 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
     const [grantRootTxHash, setGrantRootTxHash] = useState<Hex | undefined>(undefined);
     const { sendTransaction, status: grantRootSendStatus } = useSendTransaction({
         mutation: {
-            onSuccess: (hash) => setGrantRootTxHash(hash),
+            onSuccess: (hash: Hex) => setGrantRootTxHash(hash),
         },
     });
     const { status: grantRootWaitStatus, error: grantRootWaitError } = useWaitForTransactionReceipt({
@@ -73,13 +73,13 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         }
 
         const daoAddress = dao.address as Hex;
-        const pspAddress = networkDefinitions[dao.network].addresses.pluginSetupProcessor as Hex;
+        const pspAddress = networkDefinitions[dao.network as Network].addresses.pluginSetupProcessor as Hex;
 
         if (!daoAddress?.startsWith('0x') || !pspAddress?.startsWith('0x')) {
             return false;
         }
 
-        return proposal.actions.some((action) => {
+        return proposal.actions.some((action: IProposalCreateAction) => {
             if (action.to == null || action.data == null) {
                 return false;
             }
@@ -110,22 +110,34 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         plugin.interfaceType === PluginInterfaceType.ADMIN &&
         proposalNeedsPspRootGrant;
 
-    const { data: isAdminRootGranted } = useReadContract({
+    const pspAddress = useMemo(() => {
+        if (dao == null) {
+            return undefined;
+        }
+
+        return networkDefinitions[dao.network as Network].addresses.pluginSetupProcessor as Hex;
+    }, [dao]);
+
+    const { data: isPspRootGranted } = useReadContract({
         address: dao?.address as Hex,
         abi: permissionManagerAbi,
         functionName: 'isGranted',
-        args: [dao?.address as Hex, plugin.address as Hex, rootPermissionId, '0x'],
+        args: [dao?.address as Hex, pspAddress as Hex, rootPermissionId, '0x'],
         query: {
-            enabled: shouldHandleHarmonyAdminRootGrant && dao?.address?.startsWith('0x') && plugin.address != null,
+            enabled:
+                shouldHandleHarmonyAdminRootGrant &&
+                dao?.address?.startsWith('0x') &&
+                pspAddress != null &&
+                (pspAddress as string).startsWith('0x'),
         },
     });
 
-    const grantAdminRootStepState = useMemo(() => {
+    const grantPspRootStepState = useMemo(() => {
         if (!shouldHandleHarmonyAdminRootGrant) {
             return 'success' as const;
         }
 
-        if (isAdminRootGranted === true) {
+        if (isPspRootGranted === true) {
             return 'success' as const;
         }
 
@@ -138,7 +150,7 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         }
 
         return 'idle' as const;
-    }, [shouldHandleHarmonyAdminRootGrant, isAdminRootGranted, grantRootSendStatus, grantRootWaitStatus]);
+    }, [shouldHandleHarmonyAdminRootGrant, isPspRootGranted, grantRootSendStatus, grantRootWaitStatus]);
 
     const handlePinJson = useCallback(
         (params: ITransactionDialogActionParams) => {
@@ -148,26 +160,27 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         [pinJson, proposal],
     );
 
-    const handleGrantAdminRootForPsp = useCallback(
+    const handleGrantPspRootPermission = useCallback(
         (params: ITransactionDialogActionParams) => {
             invariant(dao != null, 'PublishProposalDialog: DAO must be loaded.');
+            invariant(pspAddress != null, 'PublishProposalDialog: PSP address must be loaded.');
 
             // Se já tem ROOT, segue o fluxo.
-            if (!shouldHandleHarmonyAdminRootGrant || isAdminRootGranted === true) {
+            if (!shouldHandleHarmonyAdminRootGrant || isPspRootGranted === true) {
                 stepper.nextStep();
                 return;
             }
 
             const transaction = permissionTransactionUtils.buildGrantPermissionTransaction({
                 where: dao.address as Hex,
-                who: plugin.address as Hex,
+                who: pspAddress,
                 what: permissionTransactionUtils.permissionIds.rootPermission,
                 to: dao.address as Hex,
             });
 
             sendTransaction(transaction, params);
         },
-        [dao, shouldHandleHarmonyAdminRootGrant, isAdminRootGranted, stepper, plugin.address, sendTransaction],
+        [dao, pspAddress, shouldHandleHarmonyAdminRootGrant, isPspRootGranted, stepper, sendTransaction],
     );
 
     useEffect(() => {
@@ -185,6 +198,57 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         }
     }, [shouldHandleHarmonyAdminRootGrant, grantRootWaitStatus, grantRootWaitError, stepper]);
 
+    useEffect(() => {
+        if (!shouldHandleHarmonyAdminRootGrant) {
+            return;
+        }
+
+        if (isPspRootGranted === true) {
+            stepper.nextStep();
+        }
+    }, [shouldHandleHarmonyAdminRootGrant, isPspRootGranted, stepper]);
+
+    const filterOutPspRootGrantRevokeActions = useCallback(
+        (actions: IProposalCreateAction[]) => {
+            if (dao == null || pspAddress == null) {
+                return actions;
+            }
+
+            const daoAddress = dao.address.toLowerCase();
+            const psp = (pspAddress as string).toLowerCase();
+            const root = rootPermissionId.toLowerCase();
+
+            return actions.filter((action) => {
+                if (action.to == null || action.data == null) {
+                    return true;
+                }
+
+                if ((action.to as string).toLowerCase() !== daoAddress) {
+                    return true;
+                }
+
+                try {
+                    const decoded = decodeFunctionData({ abi: permissionManagerAbi, data: action.data as Hex });
+                    if (decoded.functionName !== 'grant' && decoded.functionName !== 'revoke') {
+                        return true;
+                    }
+
+                    const [where, who, permissionId] = decoded.args as readonly [Hex, Hex, Hex];
+
+                    const isPspRootOp =
+                        where.toLowerCase() === daoAddress &&
+                        who.toLowerCase() === psp &&
+                        permissionId.toLowerCase() === root;
+
+                    return !isPspRootOp;
+                } catch {
+                    return true;
+                }
+            });
+        },
+        [dao, pspAddress, rootPermissionId],
+    );
+
     const handlePrepareTransaction = async () => {
         invariant(pinJsonData != null, 'PublishProposalDialog: metadata not pinned for prepare transaction step.');
         const { IpfsHash: metadataCid } = pinJsonData;
@@ -192,7 +256,12 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         const { actions } = proposal;
 
         const processedActions = await publishProposalDialogUtils.prepareActions({ actions, prepareActions });
-        const processedProposal = { ...proposal, actions: processedActions };
+
+        const filteredActions = shouldHandleHarmonyAdminRootGrant
+            ? filterOutPspRootGrantRevokeActions(processedActions)
+            : processedActions;
+
+        const processedProposal = { ...proposal, actions: filteredActions };
 
         return publishProposalDialogUtils.buildTransaction({
             proposal: processedProposal,
@@ -214,17 +283,17 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
             ...(shouldHandleHarmonyAdminRootGrant
                 ? [
                       {
-                          id: PublishProposalStep.GRANT_ADMIN_ROOT_FOR_PSP,
+                          id: PublishProposalStep.GRANT_PSP_ROOT_PERMISSION,
                           order: 0,
                           meta: {
                               label: t(
-                                  `app.governance.publishProposalDialog.step.${PublishProposalStep.GRANT_ADMIN_ROOT_FOR_PSP}.label`,
+                                  `app.governance.publishProposalDialog.step.${PublishProposalStep.GRANT_PSP_ROOT_PERMISSION}.label`,
                               ),
                               errorLabel: t(
-                                  `app.governance.publishProposalDialog.step.${PublishProposalStep.GRANT_ADMIN_ROOT_FOR_PSP}.errorLabel`,
+                                  `app.governance.publishProposalDialog.step.${PublishProposalStep.GRANT_PSP_ROOT_PERMISSION}.errorLabel`,
                               ),
-                              state: grantAdminRootStepState,
-                              action: handleGrantAdminRootForPsp,
+                              state: grantPspRootStepState,
+                              action: handleGrantPspRootPermission,
                               auto: true,
                           },
                       },
@@ -246,8 +315,8 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         ],
         [
             shouldHandleHarmonyAdminRootGrant,
-            grantAdminRootStepState,
-            handleGrantAdminRootForPsp,
+            grantPspRootStepState,
+            handleGrantPspRootPermission,
             status,
             handlePinJson,
             t,
