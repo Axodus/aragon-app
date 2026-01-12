@@ -9,7 +9,7 @@ class AdminTransactionUtils {
 
         // Some deployments reject proposals with endDate == 0.
         // Default to a valid end date (now + 7 days) while keeping startDate == 0.
-        const startDate = 0n;
+        const startDate = BigInt(0);
         const endDate = BigInt(createProposalUtils.createDefaultEndDate());
         const functionArgs = [metadata, actions, startDate, endDate, '0x'];
         const data = encodeFunctionData({
