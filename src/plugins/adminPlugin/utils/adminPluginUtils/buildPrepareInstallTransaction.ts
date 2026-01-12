@@ -11,7 +11,7 @@ import { buildAdminInstallData } from './buildInstallData';
 export function buildAdminPrepareInstallTransaction(
   params: IBuildPreparePluginInstallDataParams
 ): Hex {
-  const { dao, stageVotingPeriod } = params;
+  const { dao, stageVotingPeriod, body } = params;
 
   const repo = adminPlugin.repositoryAddresses[dao.network];
   // Use the published version on Harmony (release 1, build 1), otherwise the plugin default
@@ -23,8 +23,10 @@ export function buildAdminPrepareInstallTransaction(
   const isAdvanced = stageVotingPeriod != null;
   const { target, operation } = pluginTransactionUtils.getPluginTargetConfig(dao, isAdvanced);
 
-  // For minimal Admin, use the DAO as admin by default
-  const adminAddress = dao.address as Hex;
+  // Admin plugin delegates proposal execution to addresses with EXECUTE_PROPOSAL permission.
+  // During initial installation we want (at least) the configured first member to be able to execute proposals.
+  const configuredAdmin = body?.membership?.members?.[0]?.address as Hex | undefined;
+  const adminAddress = configuredAdmin ?? (dao.address as Hex);
   const data = buildAdminInstallData({ admin: adminAddress, target, operation: operation as 0 | 1 });
 
   return pluginTransactionUtils.buildPrepareInstallationData(repo as Hex, versionTag, data, dao.address as Hex);
