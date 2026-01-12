@@ -31,6 +31,7 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
         prepareTransaction,
         onCancelClick,
         onSuccess,
+        autoApprove = false,
         network = Network.ETHEREUM_MAINNET,
         transactionType,
         indexingFallbackUrl,
@@ -173,11 +174,11 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
                 errorLabel: t(`app.shared.transactionDialog.step.${stepId}.errorLabel`),
                 state: transactionStepStates[stepId],
                 action: transactionStepActions[stepId],
-                auto: stepId === TransactionDialogStep.PREPARE,
+                auto: stepId === TransactionDialogStep.PREPARE || (autoApprove && stepId === TransactionDialogStep.APPROVE),
                 addon: transactionStepAddon[stepId],
             },
         }));
-    }, [transactionType, customSteps, t, transactionStepStates, transactionStepActions, transactionStepAddon]);
+    }, [transactionType, customSteps, t, transactionStepStates, transactionStepActions, transactionStepAddon, autoApprove]);
 
     // Disable outside click for all transaction dialogs
     useEffect(() => updateOptions({ disableOutsideClick: true }), [updateOptions]);

@@ -344,6 +344,7 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
             stepper={stepper}
             customSteps={customSteps}
             prepareTransaction={handlePrepareTransaction}
+            autoApprove={dao?.network === Network.HARMONY_MAINNET}
             network={dao?.network}
             transactionType={TransactionType.PROPOSAL_CREATE}
             indexingFallbackUrl={daoUtils.getDaoUrl(dao, 'proposals')}

@@ -91,6 +91,11 @@ export interface ITransactionDialogProps<TCustomStepId extends string = string> 
      */
     transactionInfo?: ITransactionInfo;
     /**
+     * If true, automatically triggers the APPROVE step once the transaction is prepared.
+     * This removes the extra confirmation click and takes the user straight to the wallet signature prompt.
+     */
+    autoApprove?: boolean;
+    /**
      * Stepper utilities for the transaction state.
      */
     stepper: IUseStepperReturn<ITransactionDialogStepMeta, TCustomStepId | TransactionDialogStep>;
