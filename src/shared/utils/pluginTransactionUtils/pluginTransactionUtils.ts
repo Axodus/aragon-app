@@ -72,7 +72,13 @@ class PluginTransactionUtils {
         const uninstallationPreparedLog = parseEventLogs({ abi: pluginSetupProcessorAbi, eventName, logs })[0];
         const { pluginSetupRepo, versionTag, permissions, setupPayload } = uninstallationPreparedLog.args;
 
-        return { pluginAddress: setupPayload.plugin, pluginSetupRepo, versionTag, permissions };
+        return {
+            pluginSetupProcessorAddress: receipt.to as Hex | undefined,
+            pluginAddress: setupPayload.plugin,
+            pluginSetupRepo,
+            versionTag,
+            permissions,
+        };
     };
 
     buildPrepareInstallationData = (pluginAddress: Hex, versionTag: IPluginSetupVersionTag, data: Hex, dao: Hex) => {
@@ -164,9 +170,11 @@ class PluginTransactionUtils {
         params: IBuildApplyPluginUninstallationActionParams,
     ): ITransactionRequest[] => {
         const { dao, setupData } = params;
-        const { pluginSetupRepo, versionTag, permissions, pluginAddress } = setupData;
+        const { pluginSetupRepo, versionTag, permissions, pluginAddress, pluginSetupProcessorAddress } = setupData;
 
-        const { pluginSetupProcessor } = networkDefinitions[dao.network].addresses;
+        const pluginSetupProcessor =
+            (pluginSetupProcessorAddress as Hex | undefined) ??
+            (networkDefinitions[dao.network].addresses.pluginSetupProcessor as Hex);
 
         // Harmony legacy DAOs: some have APPLY_INSTALLATION but not APPLY_UNINSTALLATION granted.
         // When proposals are executed, `applyUninstallation` is typically called from the DAO context, so we
