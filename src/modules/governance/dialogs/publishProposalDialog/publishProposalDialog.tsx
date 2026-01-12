@@ -22,7 +22,7 @@ import { useAccount } from 'wagmi';
 import { useReadContract, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
 import type { IProposalCreateAction, IPublishProposalDialogProps } from './publishProposalDialog.api';
 import { publishProposalDialogUtils } from './publishProposalDialogUtils';
-import { decodeFunctionData, keccak256, toBytes, type Hex } from 'viem';
+import { decodeFunctionData, encodeFunctionData, keccak256, toBytes, type Hex, zeroHash } from 'viem';
 
 export enum PublishProposalStep {
     GRANT_PSP_ROOT_PERMISSION = 'GRANT_PSP_ROOT_PERMISSION',
@@ -105,7 +105,11 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         });
     }, [dao, proposal.actions, rootPermissionId]);
 
+    const shouldWrapActionsInDaoExecute =
+        dao?.network === Network.HARMONY_MAINNET && plugin.interfaceType === PluginInterfaceType.ADMIN;
+
     const shouldHandleHarmonyAdminRootGrant =
+        !shouldWrapActionsInDaoExecute &&
         dao?.network === Network.HARMONY_MAINNET &&
         plugin.interfaceType === PluginInterfaceType.ADMIN &&
         proposalNeedsPspRootGrant;
@@ -208,45 +212,33 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         }
     }, [shouldHandleHarmonyAdminRootGrant, isPspRootGranted, stepper]);
 
-    const filterOutPspRootGrantRevokeActions = useCallback(
-        (actions: IProposalCreateAction[]) => {
-            if (dao == null || pspAddress == null) {
-                return actions;
-            }
-
-            const daoAddress = dao.address.toLowerCase();
-            const psp = (pspAddress as string).toLowerCase();
-            const root = rootPermissionId.toLowerCase();
-
-            return actions.filter((action) => {
-                if (action.to == null || action.data == null) {
-                    return true;
-                }
-
-                if ((action.to as string).toLowerCase() !== daoAddress) {
-                    return true;
-                }
-
-                try {
-                    const decoded = decodeFunctionData({ abi: permissionManagerAbi, data: action.data as Hex });
-                    if (decoded.functionName !== 'grant' && decoded.functionName !== 'revoke') {
-                        return true;
-                    }
-
-                    const [where, who, permissionId] = decoded.args as readonly [Hex, Hex, Hex];
-
-                    const isPspRootOp =
-                        where.toLowerCase() === daoAddress &&
-                        who.toLowerCase() === psp &&
-                        permissionId.toLowerCase() === root;
-
-                    return !isPspRootOp;
-                } catch {
-                    return true;
-                }
-            });
-        },
-        [dao, pspAddress, rootPermissionId],
+    const daoExecuteAbi = useMemo(
+        () =>
+            [
+                {
+                    type: 'function',
+                    name: 'execute',
+                    stateMutability: 'nonpayable',
+                    inputs: [
+                        { name: '_callId', type: 'bytes32' },
+                        {
+                            name: '_actions',
+                            type: 'tuple[]',
+                            components: [
+                                { name: 'to', type: 'address' },
+                                { name: 'value', type: 'uint256' },
+                                { name: 'data', type: 'bytes' },
+                            ],
+                        },
+                        { name: '_allowFailureMap', type: 'uint256' },
+                    ],
+                    outputs: [
+                        { name: 'execResults', type: 'bytes[]' },
+                        { name: 'failureMap', type: 'uint256' },
+                    ],
+                },
+            ] as const,
+        [],
     );
 
     const handlePrepareTransaction = async () => {
@@ -257,11 +249,29 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
 
         const processedActions = await publishProposalDialogUtils.prepareActions({ actions, prepareActions });
 
-        const filteredActions = shouldHandleHarmonyAdminRootGrant
-            ? filterOutPspRootGrantRevokeActions(processedActions)
+        const wrappedActions = shouldWrapActionsInDaoExecute
+            ? ([
+                  {
+                      to: dao?.address as Hex,
+                      value: BigInt(0),
+                      data: encodeFunctionData({
+                          abi: daoExecuteAbi,
+                          functionName: 'execute',
+                          args: [
+                              zeroHash,
+                              processedActions.map((a) => ({
+                                  to: a.to as Hex,
+                                  value: typeof a.value === 'bigint' ? a.value : BigInt(a.value),
+                                  data: a.data as Hex,
+                              })),
+                              BigInt(0),
+                          ],
+                      }),
+                  },
+              ] satisfies IProposalCreateAction[])
             : processedActions;
 
-        const processedProposal = { ...proposal, actions: filteredActions };
+        const processedProposal = { ...proposal, actions: wrappedActions };
 
         return publishProposalDialogUtils.buildTransaction({
             proposal: processedProposal,
