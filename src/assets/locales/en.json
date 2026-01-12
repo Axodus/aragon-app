@@ -1332,7 +1332,7 @@
           "description": "Checking if user has the permission to execute the proposal."
         },
         "action": "OK",
-        "description": "You don’t meet the proposal execution requirements.",
+        "description": "You don’t have permission to execute proposals for this process. In most cases, this means your address is missing EXECUTE_PROPOSAL_PERMISSION on the governance plugin. Use a process that can still execute (e.g., Multisig) to grant EXECUTE_PROPOSAL_PERMISSION to your address or to ANY_ADDR.",
         "loading": "Checking execute permission",
         "title": "Not eligible to execute"
       },
@@ -1342,6 +1342,12 @@
           "success": "View proposal"
         },
         "description": "To execute the proposal, confirm the onchain transaction in your wallet.",
+        "step": {
+          "GRANT_EXECUTOR_ROOT_FOR_PSP": {
+            "errorLabel": "Unable to grant ROOT permission",
+            "label": "Grant ROOT permission to the executor"
+          }
+        },
         "title": "Execute proposal"
       },
       "layoutWizardCreateDao": {
