@@ -15,9 +15,10 @@
             "placeholder": "0x… (32 bytes)"
           },
           "duration": {
-            "label": "Duration (seconds)",
-            "placeholder": "31536000"
-          }
+            "label": "Duration (months)",
+            "placeholder": "1"
+          },
+          "fqdnHint": "Will register: {{value}}"
         },
         "register": {
           "title": "Register .country",
@@ -30,9 +31,10 @@
             "placeholder": "0x… (32 bytes)"
           },
           "duration": {
-            "label": "Duration (seconds)",
-            "placeholder": "31536000"
+            "label": "Duration (months)",
+            "placeholder": "1"
           },
+          "fqdnHint": "Will register: {{value}}",
           "estimatedCost": "Estimated cost: {{value}} ONE"
         }
       },

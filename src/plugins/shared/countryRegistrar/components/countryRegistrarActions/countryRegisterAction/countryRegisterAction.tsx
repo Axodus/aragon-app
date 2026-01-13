@@ -11,17 +11,17 @@ import type { IProposalActionComponentProps } from '@aragon/gov-ui-kit';
 import { InputNumber, InputText } from '@aragon/gov-ui-kit';
 import { useEffect, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { encodeFunctionData, formatEther, parseEther, type Hex } from 'viem';
+import { encodeFunctionData, formatEther, type Hex } from 'viem';
 import { namehash } from 'viem/ens';
 import type { ICountryIntegrationAddresses } from '@/shared/constants/networkDefinitions';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
+import { CountryRegistrarActionType } from '@/plugins/shared/countryRegistrar/types';
 
 export interface ICountryRegisterActionProps<TPlugin = any> extends IProposalActionComponentProps<IProposalActionData<IProposalAction, TPlugin>> {}
 
 interface ICountryRegisterFormData {
     name?: string;
-    secret?: string;
-    duration?: string;
+    months?: string;
 }
 
 const registerAbi = {
@@ -74,12 +74,26 @@ const setAddrAbi = {
     outputs: [],
 } as const;
 
-const parseDurationSeconds = (value?: string) => {
+const SECONDS_PER_MONTH = 30 * 24 * 60 * 60;
+
+const parseMonths = (value?: string) => {
     const parsed = Number(value ?? '');
-    if (!Number.isFinite(parsed) || parsed <= 0) {
+    if (!Number.isFinite(parsed)) {
         return 0;
     }
     return Math.floor(parsed);
+};
+
+const monthsToDurationSeconds = (months: number) => months * SECONDS_PER_MONTH;
+
+const isBytes32Hex = (value: unknown): value is Hex => /^0x[0-9a-fA-F]{64}$/.test(String(value ?? ''));
+
+const generateSecretBytes32 = (): Hex => {
+    const bytes = new Uint8Array(32);
+    crypto.getRandomValues(bytes);
+    return (`0x${Array.from(bytes)
+        .map((b) => b.toString(16).padStart(2, '0'))
+        .join('')}`) as Hex;
 };
 
 const getCountryConfig = (network: Network): ICountryIntegrationAddresses | undefined => networkDefinitions[network].country;
@@ -90,7 +104,7 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
     const { index, action } = props;
 
     const { t } = useTranslations();
-    const { setValue } = useFormContext();
+    const { setValue, getValues } = useFormContext();
 
     const actionFieldName = `actions.[${index.toString()}]`;
     useFormField<Record<string, IProposalActionData>, typeof actionFieldName>(actionFieldName);
@@ -102,24 +116,17 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
         trimOnBlur: true,
     });
 
-    const secretField = useFormField<ICountryRegisterFormData, 'secret'>('secret', {
-        label: t('app.actions.countryRegistrar.register.secret.label'),
-        rules: {
-            required: true,
-            validate: (value) => /^0x[0-9a-fA-F]{64}$/.test(value ?? ''),
-        },
-        fieldPrefix: actionFieldName,
-        trimOnBlur: true,
-    });
-
-    const durationField = useFormField<ICountryRegisterFormData, 'duration'>('duration', {
+    const monthsField = useFormField<ICountryRegisterFormData, 'months'>('months', {
         label: t('app.actions.countryRegistrar.register.duration.label'),
         rules: {
             required: true,
-            validate: (value) => parseDurationSeconds(value) > 0,
+            validate: (value?: string) => {
+                const months = parseMonths(value);
+                return months >= 1 && months <= 12;
+            },
         },
         fieldPrefix: actionFieldName,
-        defaultValue: '31536000',
+        defaultValue: '1',
         trimOnBlur: true,
     });
 
@@ -129,12 +136,38 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
 
     const [estimatedCostWei, setEstimatedCostWei] = useState<bigint | null>(null);
 
+    const resolveSharedSecret = () => {
+        const currentSecret = getValues(`${actionFieldName}.meta.secret`);
+        if (isBytes32Hex(currentSecret)) {
+            return currentSecret;
+        }
+
+        const allActions = (getValues('actions') ?? []) as Array<any>;
+        const commitIndex = allActions.findIndex((a) => a?.type === CountryRegistrarActionType.COMMIT);
+        const commitSecret = commitIndex >= 0 ? allActions[commitIndex]?.meta?.secret : undefined;
+
+        if (isBytes32Hex(commitSecret)) {
+            setValue(`${actionFieldName}.meta.secret`, commitSecret);
+            return commitSecret;
+        }
+
+        const generated = generateSecretBytes32();
+        setValue(`${actionFieldName}.meta.secret`, generated);
+
+        if (commitIndex >= 0) {
+            setValue(`actions.[${commitIndex.toString()}].meta.secret`, generated);
+        }
+
+        return generated;
+    };
+
     useEffect(() => {
         const label = normalizeLabel(nameField.value);
-        const duration = parseDurationSeconds(durationField.value);
-        const secret = secretField.value as Hex | undefined;
+        const months = parseMonths(monthsField.value);
+        const duration = monthsToDurationSeconds(months);
+        const secret = resolveSharedSecret();
 
-        if (!config || !label || !secret || duration <= 0) {
+        if (!config || !label || duration <= 0 || months < 1 || months > 12) {
             return;
         }
 
@@ -184,7 +217,7 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
         };
 
         void updatePrice();
-    }, [config, daoAddress, nameField.value, durationField.value, secretField.value, network, setValue, actionFieldName]);
+    }, [config, daoAddress, nameField.value, monthsField.value, network, setValue, actionFieldName]);
 
     if (!config) {
         return <p className="text-primary-400">{t('app.actions.countryRegistrar.unsupportedNetwork')}</p>;
@@ -197,14 +230,15 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
                 maxLength={63}
                 {...nameField}
             />
-            <InputText
-                placeholder={t('app.actions.countryRegistrar.register.secret.placeholder')}
-                {...secretField}
-            />
+            <p className="text-primary-400">
+                {t('app.actions.countryRegistrar.register.fqdnHint', { value: `${normalizeLabel(nameField.value)}.${config?.tld ?? 'country'}` })}
+            </p>
             <InputNumber
                 placeholder={t('app.actions.countryRegistrar.register.duration.placeholder')}
                 min={1}
-                {...durationField}
+                max={12}
+                step={1}
+                {...monthsField}
             />
             {estimatedCostWei != null ? (
                 <p className="text-primary-400">

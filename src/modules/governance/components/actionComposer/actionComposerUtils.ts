@@ -4,8 +4,11 @@ import type { TranslationFunction } from '@/shared/components/translationsProvid
 import { actionViewRegistry, type ActionViewCreateComponent } from '@/shared/utils/actionViewRegistry';
 import { ipfsUtils } from '@/shared/utils/ipfsUtils';
 import { pluginRegistryUtils } from '@/shared/utils/pluginRegistryUtils';
+import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { addressUtils, IconType } from '@aragon/gov-ui-kit';
 import { zeroAddress } from 'viem';
+import { defaultCountryCommitAction, defaultCountryRegisterAction } from '@/plugins/shared/countryRegistrar/utils/countryRegistrarActionDefinitions';
+import { CountryRegistrarActionType } from '@/plugins/shared/countryRegistrar/types';
 import {
     ProposalActionType,
     type IProposalAction,
@@ -37,11 +40,41 @@ class ActionComposerUtils {
     getDaoActions = ({ dao, permissions, t }: IGetDaoActionsParams) => {
         const pluginActions = this.getDaoPluginActions(dao);
         const permissionActions = this.getDaoPermissionActions({ permissions, t });
+        const countryActions = this.getDaoCountryRegistrarActions({ dao, t });
 
         return {
-            items: [...pluginActions.pluginItems, ...permissionActions.items],
+            // Put DAO-scoped actions early so they appear under the DAO group.
+            items: [...countryActions, ...pluginActions.pluginItems, ...permissionActions.items],
             groups: [...pluginActions.pluginGroups, ...permissionActions.groups],
         };
+    };
+
+    private getDaoCountryRegistrarActions = ({ dao, t }: Pick<IGetDaoActionsParams, 'dao' | 't'>) => {
+        if (!dao) {
+            return [];
+        }
+
+        const countryConfig = networkDefinitions[dao.network]?.country;
+        if (!countryConfig) {
+            return [];
+        }
+
+        return [
+            {
+                id: `${dao.address}-${CountryRegistrarActionType.COMMIT}`,
+                name: t('app.actions.countryRegistrar.commit.title'),
+                icon: IconType.SETTINGS,
+                groupId: dao.address,
+                defaultValue: defaultCountryCommitAction(),
+            },
+            {
+                id: `${dao.address}-${CountryRegistrarActionType.REGISTER}`,
+                name: t('app.actions.countryRegistrar.register.title'),
+                icon: IconType.SETTINGS,
+                groupId: dao.address,
+                defaultValue: defaultCountryRegisterAction(),
+            },
+        ];
     };
 
     getDaoPluginActions = (dao?: IDao) => {
