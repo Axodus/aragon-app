@@ -8,7 +8,7 @@ import type {
 
 class CmsService extends HttpService {
     constructor() {
-        super('https://raw.githubusercontent.com/axodus/app-cms-old');
+        super('https://raw.githubusercontent.com/axodus/app-cms');
     }
 
     private urls = {
