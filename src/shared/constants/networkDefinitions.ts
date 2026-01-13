@@ -58,6 +58,25 @@ export interface ICountryIntegrationAddresses {
     publicResolver: Hex;
 }
 
+export interface IHarmonyPluginAddresses {
+    /**
+     * Address of the HIP Voting Plugin Repository.
+     */
+    hipVotingPluginRepo: Hex;
+    /**
+     * Address of the Delegation Voting Plugin Repository.
+     */
+    delegationVotingPluginRepo: Hex;
+    /**
+     * Address of the Validator OptIn Registry.
+     */
+    validatorOptInRegistry: Hex;
+    /**
+     * Address of the HIP Plugin Allowlist (controls HIP access).
+     */
+    hipPluginAllowlist: Hex;
+}
+
 export interface INetworkDefinition extends Chain {
     /**
      * Name of the network.
@@ -89,6 +108,10 @@ export interface INetworkDefinition extends Chain {
      * Optional 1.country integration configuration.
      */
     country?: ICountryIntegrationAddresses;
+    /**
+     * Optional Harmony-specific plugin addresses.
+     */
+    harmonyPlugins?: IHarmonyPluginAddresses;
     /**
      * Latest version of the OSx framework.
      */
