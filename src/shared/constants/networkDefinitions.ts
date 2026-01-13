@@ -389,6 +389,12 @@ export const networkDefinitions: Record<Network, INetworkDefinition> = {
             globalExecutor: '0xC5066174C2ED21acbdcAd9Bb4d3BdeeDdd56CE37',
             conditionFactory: '0x7992fbe76bD9B007AB165Af04Be09BC0F6C89aF6',
         },
+        harmonyPlugins: {
+            hipVotingPluginRepo: '0xE51502ec20a59C6BE01809D19f06AC5e85eC3929',
+            delegationVotingPluginRepo: '0xf280B3798F53155F400FD96c555F7F554A977EE7',
+            validatorOptInRegistry: '0xDe981B8DB1ECa238F3FBAB41e93cf4903e23d52b',
+            hipPluginAllowlist: '0xb77F685442A72701df5c92E4EFCA70B6469F8Cc6',
+        },
     },
 
     // Testnets
