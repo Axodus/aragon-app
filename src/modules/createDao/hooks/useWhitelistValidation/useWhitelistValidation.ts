@@ -23,6 +23,12 @@ export const useWhitelistValidation = (params: IWhitelistValidationParams): IWhi
     const disabledPlugins: typeof plugins = [];
 
     for (const plugin of plugins) {
+        // If plugin requires allowlist, always disable it (manual authorization required)
+        if (plugin.requiresAllowlist) {
+            disabledPlugins.push(plugin);
+            continue;
+        }
+
         const list = data[plugin.id];
 
         const approved =

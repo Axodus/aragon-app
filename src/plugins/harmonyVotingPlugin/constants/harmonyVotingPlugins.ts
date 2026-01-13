@@ -21,13 +21,15 @@ export const harmonyHipVotingPlugin: IPluginInfo = {
         [Network.CHILIZ_MAINNET]: ZERO_ADDRESS,
         [Network.AVAX_MAINNET]: ZERO_ADDRESS,
         [Network.KATANA_MAINNET]: ZERO_ADDRESS,
-        [Network.HARMONY_MAINNET]: '0xB63fC0a5747a96F643B9f43156D8D041df48eC30',
+        [Network.HARMONY_MAINNET]: '0xE51502ec20a59C6BE01809D19f06AC5e85eC3929',
         [Network.HARMONY_TESTNET]: ZERO_ADDRESS,
     },
     setup: {
         nameKey: 'app.plugins.harmonyHipVoting.setup.name',
         descriptionKey: 'app.plugins.harmonyHipVoting.setup.description',
     },
+    // HIP plugin requires allowlist authorization
+    requiresAllowlist: true,
 };
 
 export const harmonyDelegationVotingPlugin: IPluginInfo = {
@@ -48,7 +50,7 @@ export const harmonyDelegationVotingPlugin: IPluginInfo = {
         [Network.CHILIZ_MAINNET]: ZERO_ADDRESS,
         [Network.AVAX_MAINNET]: ZERO_ADDRESS,
         [Network.KATANA_MAINNET]: ZERO_ADDRESS,
-        [Network.HARMONY_MAINNET]: '0xACcA531400E43aBF8d4DD778D4e63465d27b0D47',
+        [Network.HARMONY_MAINNET]: '0xf280B3798F53155F400FD96c555F7F554A977EE7',
         [Network.HARMONY_TESTNET]: ZERO_ADDRESS,
     },
     setup: {

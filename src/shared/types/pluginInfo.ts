@@ -30,4 +30,10 @@ export interface IPluginInfo extends IPlugin {
      * Plugin-specific pages shown on the DAO navigation, on the right to the existing nav links.
      */
     pageLinksRight?: (baseUrl: string, context: string) => INavigationLink[];
+    /**
+     * Indicates if the plugin requires manual allowlist authorization before it can be installed.
+     * When true, the plugin will be shown as disabled in the plugin selection dialog with a tag
+     * indicating that it requires authorization.
+     */
+    requiresAllowlist?: boolean;
 }
