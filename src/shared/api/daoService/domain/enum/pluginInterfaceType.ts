@@ -1,5 +1,6 @@
 export enum PluginInterfaceType {
     TOKEN_VOTING = 'tokenVoting',
+    NATIVE_TOKEN_VOTING = 'nativeTokenVoting',
     MULTISIG = 'multisig',
     ADMIN = 'admin',
     SPP = 'spp',
