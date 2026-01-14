@@ -8,6 +8,8 @@ export const nativeTokenVotingPlugin: IPluginInfo = {
     installVersion: {
         release: 1,
         build: 1,
+        releaseNotes: 'https://github.com/Axodus/AragonOSX',
+        description: 'Initial NativeTokenVoting deployment on Harmony.',
     },
     repositoryAddresses: {
         [Network.HARMONY_MAINNET]: '0xF6E6cDe03ed3a7D5A87453e899CEb4D1F4e49C9B',
