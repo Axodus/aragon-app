@@ -60,18 +60,56 @@ class PreparePluginUninstallationDialogUtils {
     buildPrepareUninstallationTransaction = async (dao: IDao, plugin: IDaoPlugin): Promise<ITransactionRequest> => {
         const pluginSetupProcessor = await this.resolvePluginSetupProcessorAddress(dao);
 
-        // Retrieve the plugin-specific helper addresses required to build the prepare-uninstallation transaction. The
-        // returned array must exactly match the helper addresses that were defined during installation preparation of
-        // the plugin.
+        // Retrieve the helper addresses from the backend, which are stored from the InstallationPrepared event.
+        // These helpers must exactly match the addresses used during plugin installation.
+        const helpers = await this.fetchInstallationHelpers(dao, plugin);
+        const prepareUninstallData = pluginTransactionUtils.buildPrepareUninstallData(dao, plugin, helpers, '0x');
+
+        return { data: prepareUninstallData, value: BigInt(0), to: pluginSetupProcessor };
+    };
+
+    /**
+     * Fetches the installation helpers for a plugin from the backend.
+     * Falls back to plugin-specific helper functions if backend endpoint fails.
+     */
+    private fetchInstallationHelpers = async (dao: IDao, plugin: IDaoPlugin): Promise<Hex[]> => {
+        try {
+            const response = await fetch(
+                `/api/v2/plugins/installation-helpers/${dao.network}/${plugin.address}`,
+            );
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch helpers: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const helpers = data.helpers as Hex[] | undefined;
+
+            // If backend returns helpers, use them
+            if (helpers && Array.isArray(helpers) && helpers.length > 0) {
+                return helpers;
+            }
+
+            // Otherwise, fall back to plugin-specific hardcoded helpers
+            return this.getFallbackHelpers(plugin);
+        } catch (error) {
+            console.error('Error fetching installation helpers from backend:', error);
+            // Fall back to plugin-specific hardcoded helpers
+            return this.getFallbackHelpers(plugin);
+        }
+    };
+
+    /**
+     * Fallback: retrieves hardcoded helpers from plugin registry.
+     * Used when backend endpoint is unavailable or returns empty data.
+     */
+    private getFallbackHelpers = (plugin: IDaoPlugin): Hex[] => {
         const getHelpersFunction = pluginRegistryUtils.getSlotFunction<IGetUninstallHelpersParams, Hex[]>({
             slotId: SettingsSlotId.SETTINGS_GET_UNINSTALL_HELPERS,
             pluginId: plugin.interfaceType,
         });
 
-        const helpers = getHelpersFunction?.({ plugin }) ?? [];
-        const prepareUninstallData = pluginTransactionUtils.buildPrepareUninstallData(dao, plugin, helpers, '0x');
-
-        return { data: prepareUninstallData, value: BigInt(0), to: pluginSetupProcessor };
+        return getHelpersFunction?.({ plugin }) ?? [];
     };
 
     prepareApplyUninstallationProposalMetadata = (uninstallPlugin: IDaoPlugin, proposalPlugin: IDaoPlugin) => {

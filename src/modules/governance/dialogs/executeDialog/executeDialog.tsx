@@ -79,9 +79,10 @@ export const ExecuteDialog: React.FC<IExecuteDialogProps> = (props) => {
         }
 
         const daoAddress = dao.address as Hex;
-        const pspAddress = networkDefinitions[dao.network].addresses.pluginSetupProcessor as Hex;
         const actions = proposalActionsResult?.rawActions ?? proposalActionsResult?.actions ?? [];
 
+        // Check if the proposal contains an action that grants ROOT permission to the plugin executor
+        // (not to the PSP - PSP grants are temporary and managed automatically by the prepareInstallation flow)
         return actions.some((action) => {
             try {
                 const decoded = decodeFunctionData({ abi: permissionManagerAbi, data: action.data as Hex });
@@ -92,14 +93,14 @@ export const ExecuteDialog: React.FC<IExecuteDialogProps> = (props) => {
                 const [where, who, permissionId] = decoded.args as readonly [Hex, Hex, Hex];
                 return (
                     where.toLowerCase() === daoAddress.toLowerCase() &&
-                    who.toLowerCase() === pspAddress.toLowerCase() &&
+                    who.toLowerCase() === pluginAddress.toLowerCase() &&
                     permissionId.toLowerCase() === rootPermissionId.toLowerCase()
                 );
             } catch {
                 return false;
             }
         });
-    }, [dao, isHarmony, proposalActionsResult, rootPermissionId]);
+    }, [dao, isHarmony, proposalActionsResult, rootPermissionId, pluginAddress]);
 
     const shouldGrantExecutorRoot = isHarmony && proposalNeedsPspRootGrant;
 
