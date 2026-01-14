@@ -87,6 +87,9 @@ export const ExploreDaosPageClient: React.FC<IExploreDaosPageClientProps> = (pro
                             <ExploreDaos initialParams={initialParams} />
                         </Suspense>
                     </ExploreSection>
+
+                    {/* Remove GEtting Started section}
+                    
                     <ExploreSection title={t('app.explore.exploreDaosPage.section.cta')}>
                         <div className="flex flex-col items-start gap-4 self-stretch md:flex-row md:gap-4 lg:gap-8">
                             <CtaCard
@@ -114,7 +117,9 @@ export const ExploreDaosPageClient: React.FC<IExploreDaosPageClientProps> = (pro
                                 actionHref="https://docs.aragon.org/"
                             />
                         </div>
-                    </ExploreSection>
+                    </ExploreSection>  
+                    
+                    // End of removal */}
                 </main>
             </Container>
         </>
