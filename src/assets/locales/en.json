@@ -1939,10 +1939,10 @@
       },
       "harmonyVoting": {
         "setupGovernance": {
-          "helpText": "No governance settings are required for this plugin. Proposals are open to accounts with at least 1 ONE, and results are finalized automatically by the oracle after the vote ends.",
+          "helpText": "Proposals are open to accounts with at least 100 ONE, and results are finalized automatically by the oracle after the vote ends.",
           "oracle": {
             "label": "Oracle address",
-            "placeholder": "0x…"
+            "placeholder": "0xA55d9ef16Af921b70Fed1421C1D298Ca5A3a18F1"
           },
           "proposer": {
             "label": "Proposer address",
@@ -1951,7 +1951,7 @@
           "title": "Governance"
         },
         "setupMembership": {
-          "helpText": "No membership settings are required for this plugin.",
+          "helpText": "No membership settings are required for this plugin. Votes will be computed by staked balance.",
           "title": "Membership"
         }
       },
@@ -2151,6 +2151,46 @@
           "pending": {
             "description": "Starts once the previous stage is advanced",
             "heading": "Timelock pending"
+          }
+        }
+      },
+      "nativeTokenVoting": {
+        "meta": {
+          "setup": {
+            "description": "Majority voting based on native token balance",
+            "name": "Native token voting"
+          }
+        },
+        "setupMembership": {
+          "description": "Membership is implicit: anyone with native token balance can participate.",
+          "title": "Membership"
+        },
+        "setupGovernance": {
+          "minDuration": {
+            "alertInfo": "Minimum duration: {{value}}",
+            "helpText": "Minimum time a proposal stays open for voting.",
+            "label": "Proposal duration"
+          },
+          "minParticipation": {
+            "helpText": "Minimum participation required (quorum).",
+            "label": "Minimum participation"
+          },
+          "minProposerVotingPower": {
+            "helpText": "Minimum native token balance required to create a proposal.",
+            "label": "Proposal creation threshold",
+            "placeholder": "0"
+          },
+          "supportThreshold": {
+            "alert": {
+              "majority": "Majority threshold",
+              "minority": "Minority threshold"
+            },
+            "helpText": "Minimum approval threshold required for a proposal to pass.",
+            "label": "Support threshold",
+            "tag": {
+              "no": "No",
+              "yes": "Yes"
+            }
           }
         }
       },

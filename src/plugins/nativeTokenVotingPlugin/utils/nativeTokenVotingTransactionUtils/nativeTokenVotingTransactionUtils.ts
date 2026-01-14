@@ -1,8 +1,7 @@
 import type { IBuildPreparePluginInstallDataParams } from '@/modules/createDao/types';
-import { Network } from '@/shared/api/daoService';
-import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { dateUtils } from '@/shared/utils/dateUtils';
 import { pluginTransactionUtils } from '@/shared/utils/pluginTransactionUtils';
+import type { ICompositeAddress } from '@aragon/gov-ui-kit';
 import { encodeAbiParameters, parseUnits, type Hex } from 'viem';
 import type { INativeTokenVotingSetupGovernanceForm } from '../../components/nativeTokenVotingSetupGovernance';
 import type { INativeTokenVotingSetupMembershipForm } from '../../components/nativeTokenVotingSetupMembership';
@@ -10,7 +9,11 @@ import { nativeTokenVotingPlugin } from '../../constants/nativeTokenVotingPlugin
 import { tokenSettingsUtils } from '../../../tokenPlugin/utils/tokenSettingsUtils';
 
 export interface IPrepareNativeTokenVotingInstallDataParams
-    extends IBuildPreparePluginInstallDataParams<INativeTokenVotingSetupGovernanceForm, never, INativeTokenVotingSetupMembershipForm> {}
+    extends IBuildPreparePluginInstallDataParams<
+        INativeTokenVotingSetupGovernanceForm,
+        ICompositeAddress,
+        INativeTokenVotingSetupMembershipForm
+    > {}
 
 export const buildPrepareNativeTokenVotingInstallData = (params: IPrepareNativeTokenVotingInstallDataParams): Hex => {
     const { body, dao, stageVotingPeriod } = params;
@@ -23,7 +26,9 @@ export const buildPrepareNativeTokenVotingInstallData = (params: IPrepareNativeT
     const stageVotingPeriodSeconds = stageVotingPeriod ? dateUtils.durationToSeconds(stageVotingPeriod) : undefined;
     const minDurationSeconds = stageVotingPeriodSeconds ?? body.governance.minDuration;
 
-    const nativeDecimals = networkDefinitions[dao.network].nativeCurrency.decimals;
+    // Native token (Harmony ONE) uses 18 decimals.
+    // If we add support beyond Harmony later, we can derive from wagmi Chain definitions.
+    const nativeDecimals = 18;
 
     const minProposerVotingPower = parseUnits(body.governance.minProposerVotingPower ?? '0', nativeDecimals);
 
@@ -52,9 +57,6 @@ export const buildPrepareNativeTokenVotingInstallData = (params: IPrepareNativeT
             },
         ],
     );
-
-    // Keep the same Harmony version tag behavior as other plugins if needed later
-    void Network;
 
     return pluginTransactionUtils.buildPrepareInstallationData(
         repositoryAddress,
