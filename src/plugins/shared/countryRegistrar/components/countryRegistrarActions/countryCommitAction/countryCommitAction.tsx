@@ -175,10 +175,10 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
                     BigInt(duration),
                     secret,
                     config.publicResolver,
-                    [resolverCall],
+                    [resolverCall] as readonly Hex[],
                     false,
                     0,
-                    0,
+                    BigInt(0),
                 ],
             ),
         ) as Hex;
