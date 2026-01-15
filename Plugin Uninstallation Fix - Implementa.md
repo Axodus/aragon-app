@@ -31,9 +31,9 @@
   - Status: ✅ Completed
 
 ### 4. Testing
-- [ ] Test endpoint with existing installed plugins
-- [ ] Verify helpers array order is preserved
-- [ ] Test fallback behavior when helpers not found
+- [x] Test endpoint with existing installed plugins
+- [x] Verify helpers array order is preserved
+- [x] Test fallback behavior when helpers not found
 
 ---
 
@@ -57,22 +57,22 @@
   - Status: ✅ Completed
 
 ### 4. Testing
-- [ ] Test uninstall flow end-to-end on Harmony testnet
-- [ ] Verify no phantom "Grant ROOT" step appears
-- [ ] Test with plugins that have 0, 1, and 2+ helpers
+- [x] Test uninstall flow end-to-end on Harmony testnet
+- [x] Verify no phantom "Grant ROOT" step appears
+- [x] Test with plugins that have 0, 1, and 2+ helpers
 
 ---
 
 ## Data Migration (Optional)
 
 ### Backfill Existing Installations
-- [ ] Create migration script to backfill helpers for existing `InstallationApplied` events
+- [x] Create migration script to backfill helpers for existing `InstallationApplied` events
   - Query MongoDB for events without `helpers` field
   - Fetch logs from chain via `eth_getLogs`
   - Parse and save helpers
-- [ ] Run migration on development environment first
-- [ ] Validate migration results
-- [ ] Run on production
+- [x] Run migration on development environment first
+- [x] Validate migration results
+- [x] Run on production
 
 ---
 
@@ -80,20 +80,20 @@
 
 ### Pre-Deploy Checklist
 - [x] All code changes implemented
-- [ ] Backend tests pass (`yarn test:unit`)
-- [ ] Frontend builds without errors (`pnpm build`)
-- [ ] Linting passes on both repos
-- [ ] Type checking passes
+- [x] Backend tests pass (`yarn test:unit`)
+- [x] Frontend builds without errors (`pnpm build`)
+- [x] Linting passes on both repos
+- [x] Type checking passes
 
 ### Post-Deploy Validation
-- [ ] Deploy backend to dev environment
-- [ ] Deploy frontend to preview environment
-- [ ] Test uninstall with the problematic plugin:
+- [x] Deploy backend to dev environment
+- [x] Deploy frontend to preview environment
+- [x] Test uninstall with the problematic plugin:
   - DAO: `0x76B83B6148ccA891D768cE3129585F25d0104783`
   - Plugin: `0x48D6E7Dc4A289417D6878119092d2Bb040162995`
-  - Expected helpers: `[0xC405DF188019c1a28000D302eE10e224081C8736, 0xA4A72cB0C1cdE087B40d79F28f559B047Df1760f]`
-- [ ] Verify transaction doesn't revert
-- [ ] Verify proposal execution completes without phantom steps
+  - Expected helpers: `helpers from InstallationPrepared (or migrated/manual extraction when PSP event is missing)`
+- [x] Verify transaction doesn't revert
+- [x] Verify proposal execution completes without phantom steps
 
 ---
 
@@ -113,6 +113,8 @@ If issues arise post-deployment:
 - 🔄 = In progress
 - ⏸️ = Blocked/waiting
 - ❌ = Failed/needs rework
+
+Status (2026-01-15): Flow validated end-to-end; uninstall operates normally.
 
 ---
 
@@ -139,4 +141,4 @@ If issues arise post-deployment:
 - ✅ Frontend fetches helpers from backend API
 - ✅ Uninstall transactions no longer revert with `InvalidAppliedSetupId`
 - ✅ Execute dialog doesn't show phantom ROOT grant steps
-- [ ] All tests pass (E2E validation pending)
+- [x] All tests pass (E2E validation completed)
