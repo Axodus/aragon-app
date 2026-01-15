@@ -112,8 +112,9 @@ export const ActionComposer: React.FC<IActionComposerProps> = (props) => {
         const { id, defaultValue, meta } = action;
 
         if (defaultValue != null) {
-            const actionId = crypto.randomUUID();
-            onAddAction([{ ...defaultValue, id: actionId, daoId, meta }]);
+            const values = Array.isArray(defaultValue) ? defaultValue : [defaultValue];
+            const actionsToAdd = values.map((value) => ({ ...value, id: crypto.randomUUID(), daoId, meta }));
+            onAddAction(actionsToAdd);
         } else if (id === ActionItemId.ADD_CONTRACT) {
             handleVerifySmartContract(inputValue);
         }
