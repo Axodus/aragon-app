@@ -77,9 +77,22 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
     const actionFieldName = `actions.[${index.toString()}]`;
     useFormField<Record<string, IProposalActionData>, typeof actionFieldName>(actionFieldName);
 
+    const getRegisterPairValues = () => {
+        const allActions = (getValues('actions') ?? []) as Array<any>;
+        const registerIndex = allActions.findIndex((a) => a?.type === CountryRegistrarActionType.REGISTER);
+
+        const name = registerIndex >= 0 ? allActions[registerIndex]?.name : undefined;
+        const months = registerIndex >= 0 ? allActions[registerIndex]?.months : undefined;
+
+        return { registerIndex, name, months };
+    };
+
+    const { registerIndex: pairedRegisterIndex } = getRegisterPairValues();
+    const hasRegisterPair = pairedRegisterIndex >= 0;
+
     const nameField = useFormField<ICountryCommitFormData, 'name'>('name', {
         label: t('app.actions.countryRegistrar.commit.name.label'),
-        rules: { required: true },
+        rules: { required: !hasRegisterPair },
         fieldPrefix: actionFieldName,
         trimOnBlur: true,
     });
@@ -87,8 +100,9 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
     const monthsField = useFormField<ICountryCommitFormData, 'months'>('months', {
         label: t('app.actions.countryRegistrar.commit.duration.label'),
         rules: {
-            required: true,
+            required: !hasRegisterPair,
             validate: (value?: string) => {
+                if (hasRegisterPair) return true;
                 const months = parseMonths(value);
                 return months >= 1 && months <= 12;
             },
@@ -101,16 +115,6 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
     const { network, address: daoAddress } = daoUtils.parseDaoId(action.daoId);
 
     const config = useMemo(() => getCountryConfig(network), [network]);
-
-    const getRegisterPairValues = () => {
-        const allActions = (getValues('actions') ?? []) as Array<any>;
-        const registerIndex = allActions.findIndex((a) => a?.type === CountryRegistrarActionType.REGISTER);
-
-        const name = registerIndex >= 0 ? allActions[registerIndex]?.name : undefined;
-        const months = registerIndex >= 0 ? allActions[registerIndex]?.months : undefined;
-
-        return { registerIndex, name, months };
-    };
 
     const resolveSharedSecret = () => {
         const currentSecret = getValues(`${actionFieldName}.meta.secret`);
