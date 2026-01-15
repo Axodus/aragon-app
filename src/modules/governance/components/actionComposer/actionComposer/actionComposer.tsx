@@ -44,10 +44,22 @@ export interface IActionComposerProps extends Pick<IActionComposerInputProps, 'e
      * Granted permissions for DAO.
      */
     daoPermissions?: IDaoPermission[];
+    /**
+     * Interface type of the governance plugin controlling the proposal.
+     */
+    controllerInterfaceType?: string;
 }
 
 export const ActionComposer: React.FC<IActionComposerProps> = (props) => {
-    const { daoId, onAddAction, excludeActionTypes, hideWalletConnect = false, allowedActions, daoPermissions } = props;
+    const {
+        daoId,
+        onAddAction,
+        excludeActionTypes,
+        hideWalletConnect = false,
+        allowedActions,
+        daoPermissions,
+        controllerInterfaceType,
+    } = props;
 
     const daoUrlParams = { id: daoId };
     const { data: dao } = useDao({ urlParams: daoUrlParams });
@@ -55,7 +67,12 @@ export const ActionComposer: React.FC<IActionComposerProps> = (props) => {
     const { t } = useTranslations();
     const { open } = useDialogContext();
 
-    const { items, groups } = actionComposerUtils.getDaoActions({ dao, permissions: daoPermissions, t });
+    const { items, groups } = actionComposerUtils.getDaoActions({
+        dao,
+        permissions: daoPermissions,
+        t,
+        controllerInterfaceType,
+    });
 
     const autocompleteInputRef = useRef<HTMLInputElement | null>(null);
 

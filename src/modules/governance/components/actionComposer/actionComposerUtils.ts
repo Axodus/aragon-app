@@ -43,10 +43,10 @@ class ActionComposerUtils {
 
     private transferSelector = '0xa9059cbb';
 
-    getDaoActions = ({ dao, permissions, t }: IGetDaoActionsParams) => {
+    getDaoActions = ({ dao, permissions, t, controllerInterfaceType }: IGetDaoActionsParams) => {
         const pluginActions = this.getDaoPluginActions(dao);
         const permissionActions = this.getDaoPermissionActions({ permissions, t });
-        const countryActions = this.getDaoCountryRegistrarActions({ dao, t });
+        const countryActions = this.getDaoCountryRegistrarActions({ dao, t, controllerInterfaceType });
 
         return {
             // Put DAO-scoped actions early so they appear under the DAO group.
@@ -55,7 +55,11 @@ class ActionComposerUtils {
         };
     };
 
-    private getDaoCountryRegistrarActions = ({ dao, t }: Pick<IGetDaoActionsParams, 'dao' | 't'>) => {
+    private getDaoCountryRegistrarActions = ({
+        dao,
+        t,
+        controllerInterfaceType,
+    }: Pick<IGetDaoActionsParams, 'dao' | 't' | 'controllerInterfaceType'>) => {
         if (!dao) {
             return [];
         }
@@ -65,9 +69,9 @@ class ActionComposerUtils {
             return [];
         }
 
-        const hasAdminPlugin = dao.plugins?.some((plugin) => plugin.interfaceType === PluginInterfaceType.ADMIN);
+        const isAdminController = controllerInterfaceType === PluginInterfaceType.ADMIN;
 
-        const reserveActions = hasAdminPlugin
+        const reserveActions = isAdminController
             ? [
                   {
                       id: `${dao.address}-${CountryRegistrarActionType.COMMIT}`,
@@ -86,7 +90,7 @@ class ActionComposerUtils {
               ]
             : [];
 
-        // Reserve is only available for DAOs with Admin plugin (non-governance execution)
+        // Reserve is only available when the proposal controller is the Admin plugin
         return [
             ...reserveActions,
             {

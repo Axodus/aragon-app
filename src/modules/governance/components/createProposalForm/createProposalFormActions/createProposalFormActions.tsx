@@ -192,6 +192,7 @@ export const CreateProposalFormActions: React.FC<ICreateProposalFormActionsProps
                     onAddAction={handleAddAction}
                     allowedActions={allowedActions}
                     daoPermissions={daoPermissions}
+                    controllerInterfaceType={processPlugin?.interfaceType}
                 />
             ) : (
                 <p className="text-primary-400">{t('app.governance.createProposalForm.actions.loading')}</p>
