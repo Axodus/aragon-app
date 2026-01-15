@@ -2,11 +2,13 @@
 
 import type { Network } from '@/shared/api/daoService';
 import type { IDialogComponentProps } from '@/shared/components/dialogProvider';
+import { useDialogContext } from '@/shared/components/dialogProvider';
 import { useTranslations } from '@/shared/components/translationsProvider';
 import { useStepper } from '@/shared/hooks/useStepper';
+import { invariant } from '@/utils/invariant';
+import { Spinner } from '@aragon/gov-ui-kit';
 import { countryReservationUtils, type ICountryReservationData } from '@/shared/utils/countryReservationUtils';
 import { getPublicClient } from '@/shared/utils/networkUtils/publicClient';
-import { invariant, Spinner } from '@aragon/gov-ui-kit';
 import { useEffect, useState } from 'react';
 import { type Hex, type PublicClient } from 'viem';
 import { useAccount, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
@@ -47,7 +49,7 @@ interface ICommitmentState {
 }
 
 export const CountryReservationDialog: React.FC<ICountryReservationDialogProps> = (props) => {
-    const { location, onClose } = props;
+    const { location } = props;
     invariant(location.params != null, 'CountryReservationDialog: required parameters must be set.');
 
     const { name, network, registrarController, publicResolver, tld, onSuccess } = location.params;
@@ -57,6 +59,7 @@ export const CountryReservationDialog: React.FC<ICountryReservationDialogProps> 
 
     const publicClient = getPublicClient(network);
     const { t } = useTranslations();
+    const { close } = useDialogContext();
 
     const [commitmentState, setCommitmentState] = useState<ICommitmentState | null>(null);
     const [countdown, setCountdown] = useState<number>(60);
@@ -306,7 +309,7 @@ export const CountryReservationDialog: React.FC<ICountryReservationDialogProps> 
                         </p>
                         <p className="text-neutral-500">{t('app.governance.countryReservation.dialog.success.next')}</p>
                         <button
-                            onClick={onClose}
+                            onClick={close}
                             className="rounded-lg bg-primary-500 px-6 py-3 text-white hover:bg-primary-600"
                         >
                             {t('app.governance.countryReservation.dialog.success.button')}
