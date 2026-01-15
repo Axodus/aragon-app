@@ -14,7 +14,8 @@ import {
     defaultCountryRenewAction,
     defaultCountryTransferAction,
 } from '@/plugins/shared/countryRegistrar/utils/countryRegistrarActionDefinitions';
-import { CreateProposalForm, type ICreateProposalFormData } from '../../components/createProposalForm';
+import type { ICountryRenewAction, ICountryTransferAction } from '@/plugins/shared/countryRegistrar/types';
+import { CreateProposalForm, type ICreateProposalFormData, type IProposalActionData } from '../../components/createProposalForm';
 import { GovernanceDialogId } from '../../constants/governanceDialogId';
 import type {
     IPublishProposalDialogParams,
@@ -95,8 +96,21 @@ export const CreateProposalPageClient: React.FC<ICreateProposalPageClientProps> 
                 ],
             };
 
+            // Wrap actions with required metadata
+            const transferActionData: IProposalActionData<ICountryTransferAction> = {
+                ...transferAction,
+                daoId: dao.id,
+                meta: undefined,
+            };
+
+            const renewActionData: IProposalActionData<ICountryRenewAction> = {
+                ...renewAction,
+                daoId: dao.id,
+                meta: undefined,
+            };
+
             // Insert at beginning
-            finalActions = [transferAction, renewAction, ...finalActions];
+            finalActions = [transferActionData, renewActionData, ...finalActions];
         }
 
         const proposal = { ...values, actions: finalActions };
