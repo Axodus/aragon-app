@@ -321,7 +321,12 @@ class ActionComposerUtils {
     private getFunctionSelector = (item: IActionComposerInputItem) => {
         const { defaultValue, id, info } = item;
 
-        if (defaultValue?.inputData == null || id === ProposalActionType.TRANSFER) {
+        // Multi-action items (e.g. commit + register) don't map to a single selector.
+        if (Array.isArray(defaultValue) || id === ProposalActionType.TRANSFER) {
+            return undefined;
+        }
+
+        if (defaultValue?.inputData == null) {
             return undefined;
         }
 
