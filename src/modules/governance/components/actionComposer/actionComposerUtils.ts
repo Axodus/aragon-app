@@ -1,4 +1,5 @@
 import type { IDao, IDaoPlugin } from '@/shared/api/daoService';
+import { PluginInterfaceType } from '@/shared/api/daoService';
 import type { IAutocompleteInputGroup } from '@/shared/components/forms/autocompleteInput';
 import type { TranslationFunction } from '@/shared/components/translationsProvider';
 import { actionViewRegistry, type ActionViewCreateComponent } from '@/shared/utils/actionViewRegistry';
@@ -64,22 +65,30 @@ class ActionComposerUtils {
             return [];
         }
 
-        // Show all .country actions in the Action Composer
+        const hasAdminPlugin = dao.plugins?.some((plugin) => plugin.interfaceType === PluginInterfaceType.ADMIN);
+
+        const reserveActions = hasAdminPlugin
+            ? [
+                  {
+                      id: `${dao.address}-${CountryRegistrarActionType.COMMIT}`,
+                      name: t('app.actions.countryRegistrar.commit.title'),
+                      icon: IconType.SETTINGS,
+                      groupId: dao.address,
+                      defaultValue: defaultCountryCommitAction(),
+                  },
+                  {
+                      id: `${dao.address}-${CountryRegistrarActionType.REGISTER}`,
+                      name: t('app.actions.countryRegistrar.register.title'),
+                      icon: IconType.PLUS,
+                      groupId: dao.address,
+                      defaultValue: defaultCountryRegisterAction(),
+                  },
+              ]
+            : [];
+
+        // Reserve is only available for DAOs with Admin plugin (non-governance execution)
         return [
-            {
-                id: `${dao.address}-${CountryRegistrarActionType.COMMIT}`,
-                name: t('app.actions.countryRegistrar.commit.title'),
-                icon: IconType.SETTINGS,
-                groupId: dao.address,
-                defaultValue: defaultCountryCommitAction(),
-            },
-            {
-                id: `${dao.address}-${CountryRegistrarActionType.REGISTER}`,
-                name: t('app.actions.countryRegistrar.register.title'),
-                icon: IconType.PLUS,
-                groupId: dao.address,
-                defaultValue: defaultCountryRegisterAction(),
-            },
+            ...reserveActions,
             {
                 id: `${dao.address}-${CountryRegistrarActionType.RENEW}`,
                 name: t('app.actions.countryRegistrar.renew.title'),
