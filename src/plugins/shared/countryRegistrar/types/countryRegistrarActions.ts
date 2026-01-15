@@ -9,4 +9,8 @@ export interface ICountryRegisterAction extends Omit<IProposalAction, 'type'> {
     type: CountryRegistrarActionType.REGISTER;
 }
 
-export type ICountryRegistrarProposalAction = ICountryCommitAction | ICountryRegisterAction;
+export interface ICountryTransferAction extends Omit<IProposalAction, 'type'> {
+    type: CountryRegistrarActionType.TRANSFER;
+}
+
+export type ICountryRegistrarProposalAction = ICountryCommitAction | ICountryRegisterAction | ICountryTransferAction;

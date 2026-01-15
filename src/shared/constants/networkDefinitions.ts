@@ -56,6 +56,16 @@ export interface ICountryIntegrationAddresses {
      * Public resolver address used by the registrar controller.
      */
     publicResolver: Hex;
+
+    /**
+     * BaseRegistrar (ERC-721) for second-level .country names.
+     */
+    baseRegistrar?: Hex;
+
+    /**
+     * Optional TLD name wrapper (if deployed/used by the integration).
+     */
+    tldNameWrapper?: Hex;
 }
 
 export interface IHarmonyPluginAddresses {
@@ -403,6 +413,8 @@ export const networkDefinitions: Record<Network, INetworkDefinition> = {
             registrarController: '0x76c6fE3aEe636f88d01De64931514e8CD64D94Fb',
             registry: '0x547942748Cc8840FEc23daFdD01E6457379B446D',
             publicResolver: '0x46E37034Ffc87a969d1a581748Acf6a94Bc7415D',
+            baseRegistrar: '0x4D64B78eAf6129FaC30aB51E6D2D679993Ea9dDD',
+            tldNameWrapper: '0x4Cd2563118e57B19179d8DC033f2B0C5B5D69ff5',
         },
         addresses: {
             // NOTE: 'dao' must point to the base DAO implementation (DAOFactory.daoBase).

@@ -4,8 +4,13 @@ import type { TranslationFunction } from '@/shared/components/translationsProvid
 import { addressUtils, IconType } from '@aragon/gov-ui-kit';
 import { CountryCommitAction } from '../components/countryRegistrarActions/countryCommitAction';
 import { CountryRegisterAction } from '../components/countryRegistrarActions/countryRegisterAction';
+import { CountryTransferAction } from '../components/countryRegistrarActions/countryTransferAction';
 import { CountryRegistrarActionType } from '../types';
-import { defaultCountryCommitAction, defaultCountryRegisterAction } from './countryRegistrarActionDefinitions';
+import {
+    defaultCountryCommitAction,
+    defaultCountryRegisterAction,
+    defaultCountryTransferAction,
+} from './countryRegistrarActionDefinitions';
 
 export interface IGetCountryRegistrarActionsProps {
     plugin: IDaoPlugin;
@@ -29,23 +34,24 @@ class CountryRegistrarActionUtils {
             ],
             items: [
                 {
-                    id: `${plugin.address}-${CountryRegistrarActionType.COMMIT}`,
-                    name: t('app.actions.countryRegistrar.commit.title'),
-                    icon: IconType.SETTINGS,
-                    groupId,
-                    defaultValue: defaultCountryCommitAction(),
-                },
-                {
                     id: `${plugin.address}-${CountryRegistrarActionType.REGISTER}`,
                     name: t('app.actions.countryRegistrar.register.title'),
                     icon: IconType.SETTINGS,
                     groupId,
-                    defaultValue: defaultCountryRegisterAction(),
+                    defaultValue: [defaultCountryCommitAction(), defaultCountryRegisterAction()],
+                },
+                {
+                    id: `${plugin.address}-${CountryRegistrarActionType.TRANSFER}`,
+                    name: t('app.actions.countryRegistrar.transfer.title'),
+                    icon: IconType.SETTINGS,
+                    groupId,
+                    defaultValue: defaultCountryTransferAction(),
                 },
             ],
             components: {
                 [CountryRegistrarActionType.COMMIT]: CountryCommitAction,
                 [CountryRegistrarActionType.REGISTER]: CountryRegisterAction,
+                [CountryRegistrarActionType.TRANSFER]: CountryTransferAction,
             },
         };
     };

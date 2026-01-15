@@ -1,4 +1,9 @@
-import { CountryRegistrarActionType, type ICountryCommitAction, type ICountryRegisterAction } from '../types';
+import {
+    CountryRegistrarActionType,
+    type ICountryCommitAction,
+    type ICountryRegisterAction,
+    type ICountryTransferAction,
+} from '../types';
 
 export const defaultCountryCommitAction = (): ICountryCommitAction => ({
     type: CountryRegistrarActionType.COMMIT,
@@ -29,6 +34,19 @@ export const defaultCountryRegisterAction = (): ICountryRegisterAction => ({
     inputData: {
         function: 'register',
         contract: 'RegistrarController',
+        parameters: [],
+    },
+});
+
+export const defaultCountryTransferAction = (): ICountryTransferAction => ({
+    type: CountryRegistrarActionType.TRANSFER,
+    from: '',
+    to: '',
+    data: '',
+    value: '0',
+    inputData: {
+        function: 'transferFrom',
+        contract: 'BaseRegistrar',
         parameters: [],
     },
 });

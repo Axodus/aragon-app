@@ -7,7 +7,11 @@ import { pluginRegistryUtils } from '@/shared/utils/pluginRegistryUtils';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { addressUtils, IconType } from '@aragon/gov-ui-kit';
 import { zeroAddress } from 'viem';
-import { defaultCountryCommitAction, defaultCountryRegisterAction } from '@/plugins/shared/countryRegistrar/utils/countryRegistrarActionDefinitions';
+import {
+    defaultCountryCommitAction,
+    defaultCountryRegisterAction,
+    defaultCountryTransferAction,
+} from '@/plugins/shared/countryRegistrar/utils/countryRegistrarActionDefinitions';
 import { CountryRegistrarActionType } from '@/plugins/shared/countryRegistrar/types';
 import {
     ProposalActionType,
@@ -61,18 +65,18 @@ class ActionComposerUtils {
 
         return [
             {
-                id: `${dao.address}-${CountryRegistrarActionType.COMMIT}`,
-                name: t('app.actions.countryRegistrar.commit.title'),
-                icon: IconType.SETTINGS,
-                groupId: dao.address,
-                defaultValue: defaultCountryCommitAction(),
-            },
-            {
                 id: `${dao.address}-${CountryRegistrarActionType.REGISTER}`,
                 name: t('app.actions.countryRegistrar.register.title'),
                 icon: IconType.SETTINGS,
                 groupId: dao.address,
-                defaultValue: defaultCountryRegisterAction(),
+                defaultValue: [defaultCountryCommitAction(), defaultCountryRegisterAction()],
+            },
+            {
+                id: `${dao.address}-${CountryRegistrarActionType.TRANSFER}`,
+                name: t('app.actions.countryRegistrar.transfer.title'),
+                icon: IconType.SETTINGS,
+                groupId: dao.address,
+                defaultValue: defaultCountryTransferAction(),
             },
         ];
     };
@@ -213,9 +217,16 @@ class ActionComposerUtils {
         const allItems = [...allNonGroupItems, ...finalCustomItems, ...finalNativeItems];
 
         if (excludeActionTypes?.length) {
-            return allItems.filter(
-                ({ defaultValue }) => defaultValue?.type == null || !excludeActionTypes.includes(defaultValue.type),
-            );
+            const shouldExclude = (defaultValue?: IProposalAction | IProposalAction[]) => {
+                if (defaultValue == null) {
+                    return false;
+                }
+
+                const values = Array.isArray(defaultValue) ? defaultValue : [defaultValue];
+                return values.some((v) => v?.type != null && excludeActionTypes.includes(v.type));
+            };
+
+            return allItems.filter(({ defaultValue }) => !shouldExclude(defaultValue));
         }
 
         return allItems;

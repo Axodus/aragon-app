@@ -15,6 +15,7 @@ import { UpdateDaoMetadataAction } from './proposalActions/updateDaoMetadataActi
 import { UpdatePluginMetadataAction } from './proposalActions/updatePluginMetadataAction';
 import { CountryCommitAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryCommitAction';
 import { CountryRegisterAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryRegisterAction';
+import { CountryTransferAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryTransferAction';
 import { CountryRegistrarActionType } from '@/plugins/shared/countryRegistrar/types';
 
 export interface ICreateProposalFormActionsProps {
@@ -35,6 +36,7 @@ const coreCustomActionComponents: Record<string, ProposalActionComponent<IPropos
     [ProposalActionType.METADATA_PLUGIN_UPDATE]: UpdatePluginMetadataAction,
     [CountryRegistrarActionType.COMMIT]: CountryCommitAction,
     [CountryRegistrarActionType.REGISTER]: CountryRegisterAction,
+    [CountryRegistrarActionType.TRANSFER]: CountryTransferAction,
 };
 
 export const CreateProposalFormActions: React.FC<ICreateProposalFormActionsProps> = (props) => {

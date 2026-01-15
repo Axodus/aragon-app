@@ -63,6 +63,14 @@ const rentPriceAbi = {
     ],
 } as const;
 
+const availableAbi = {
+    type: 'function',
+    name: 'available',
+    stateMutability: 'view',
+    inputs: [{ name: 'name', internalType: 'string', type: 'string' }],
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+} as const;
+
 const setAddrAbi = {
     type: 'function',
     name: 'setAddr',
@@ -135,6 +143,7 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
     const config = useMemo(() => getCountryConfig(network), [network]);
 
     const [estimatedCostWei, setEstimatedCostWei] = useState<bigint | null>(null);
+    const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
 
     const resolveSharedSecret = () => {
         const currentSecret = getValues(`${actionFieldName}.meta.secret`);
@@ -200,6 +209,15 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
         const client = getPublicClient(network);
         const updatePrice = async () => {
             try {
+                const available = (await client.readContract({
+                    abi: [availableAbi],
+                    address: config.registrarController,
+                    functionName: 'available',
+                    args: [label],
+                })) as boolean;
+
+                setIsAvailable(available);
+
                 const price = (await client.readContract({
                     abi: [rentPriceAbi],
                     address: config.registrarController,
@@ -212,6 +230,7 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
                 setValue(`${actionFieldName}.value`, total.toString());
             } catch {
                 setEstimatedCostWei(null);
+                setIsAvailable(null);
                 // Não mexe no value se a leitura falhar (RPC instável)
             }
         };
@@ -243,6 +262,13 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
             {estimatedCostWei != null ? (
                 <p className="text-primary-400">
                     {t('app.actions.countryRegistrar.register.estimatedCost', { value: formatEther(estimatedCostWei) })}
+                </p>
+            ) : null}
+            {isAvailable != null ? (
+                <p className="text-primary-400">
+                    {isAvailable
+                        ? t('app.actions.countryRegistrar.register.available')
+                        : t('app.actions.countryRegistrar.register.unavailable')}
                 </p>
             ) : null}
         </div>

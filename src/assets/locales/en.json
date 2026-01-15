@@ -6,6 +6,7 @@
         "unsupportedNetwork": "This action is only available on supported networks.",
         "commit": {
           "title": "Commit .country",
+          "autoHint": "This commit step is auto-generated from the register action.",
           "name": {
             "label": "Name",
             "placeholder": "e.g. mydao"
@@ -35,7 +36,22 @@
             "placeholder": "1"
           },
           "fqdnHint": "Will register: {{value}}",
-          "estimatedCost": "Estimated cost: {{value}} ONE"
+          "estimatedCost": "Estimated cost: {{value}} ONE",
+          "available": "Name is available",
+          "unavailable": "Name is already registered"
+        },
+        "transfer": {
+          "title": "Transfer .country to DAO",
+          "name": {
+            "label": "Name",
+            "placeholder": "e.g. mydao"
+          },
+          "from": {
+            "label": "Current owner",
+            "placeholder": "0x…"
+          },
+          "fqdnHint": "Will transfer: {{value}}",
+          "approvalHint": "Note: the current owner must approve the DAO address on the BaseRegistrar before execution."
         }
       },
       "gaugeRegistrar": {

@@ -121,15 +121,24 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
 
     const config = useMemo(() => getCountryConfig(network), [network]);
 
+    const getRegisterPairValues = () => {
+        const allActions = (getValues('actions') ?? []) as Array<any>;
+        const registerIndex = allActions.findIndex((a) => a?.type === CountryRegistrarActionType.REGISTER);
+
+        const name = registerIndex >= 0 ? allActions[registerIndex]?.name : undefined;
+        const months = registerIndex >= 0 ? allActions[registerIndex]?.months : undefined;
+
+        return { registerIndex, name, months };
+    };
+
     const resolveSharedSecret = () => {
         const currentSecret = getValues(`${actionFieldName}.meta.secret`);
         if (isBytes32Hex(currentSecret)) {
             return currentSecret;
         }
 
-        const allActions = (getValues('actions') ?? []) as Array<any>;
-        const registerIndex = allActions.findIndex((a) => a?.type === CountryRegistrarActionType.REGISTER);
-        const registerSecret = registerIndex >= 0 ? allActions[registerIndex]?.meta?.secret : undefined;
+        const { registerIndex } = getRegisterPairValues();
+        const registerSecret = registerIndex >= 0 ? getValues(`actions.[${registerIndex.toString()}].meta.secret`) : undefined;
 
         if (isBytes32Hex(registerSecret)) {
             setValue(`${actionFieldName}.meta.secret`, registerSecret);
@@ -147,8 +156,20 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
     };
 
     useEffect(() => {
-        const label = normalizeLabel(nameField.value);
-        const months = parseMonths(monthsField.value);
+        const { registerIndex, name: pairedName, months: pairedMonths } = getRegisterPairValues();
+
+        // If there's a Register action in the proposal, mirror its inputs to avoid commitment/register mismatch.
+        if (registerIndex >= 0) {
+            if (pairedName != null && pairedName !== nameField.value) {
+                setValue(`${actionFieldName}.name`, pairedName);
+            }
+            if (pairedMonths != null && pairedMonths !== monthsField.value) {
+                setValue(`${actionFieldName}.months`, pairedMonths);
+            }
+        }
+
+        const label = normalizeLabel(pairedName ?? nameField.value);
+        const months = parseMonths(pairedMonths ?? monthsField.value);
         const duration = monthsToDurationSeconds(months);
         const secret = resolveSharedSecret();
 
@@ -201,23 +222,34 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
         return <p className="text-primary-400">{t('app.actions.countryRegistrar.unsupportedNetwork')}</p>;
     }
 
+    const { registerIndex } = getRegisterPairValues();
+    const hasRegisterAction = registerIndex >= 0;
+
     return (
         <div className="flex w-full flex-col gap-6">
-            <InputText
-                placeholder={t('app.actions.countryRegistrar.commit.name.placeholder')}
-                maxLength={63}
-                {...nameField}
-            />
-            <p className="text-primary-400">
-                {t('app.actions.countryRegistrar.commit.fqdnHint', { value: `${normalizeLabel(nameField.value)}.${config?.tld ?? 'country'}` })}
-            </p>
-            <InputNumber
-                placeholder={t('app.actions.countryRegistrar.commit.duration.placeholder')}
-                min={1}
-                max={12}
-                step={1}
-                {...monthsField}
-            />
+            {hasRegisterAction ? (
+                <p className="text-primary-400">{t('app.actions.countryRegistrar.commit.autoHint')}</p>
+            ) : (
+                <>
+                    <InputText
+                        placeholder={t('app.actions.countryRegistrar.commit.name.placeholder')}
+                        maxLength={63}
+                        {...nameField}
+                    />
+                    <p className="text-primary-400">
+                        {t('app.actions.countryRegistrar.commit.fqdnHint', {
+                            value: `${normalizeLabel(nameField.value)}.${config?.tld ?? 'country'}`,
+                        })}
+                    </p>
+                    <InputNumber
+                        placeholder={t('app.actions.countryRegistrar.commit.duration.placeholder')}
+                        min={1}
+                        max={12}
+                        step={1}
+                        {...monthsField}
+                    />
+                </>
+            )}
         </div>
     );
 };
