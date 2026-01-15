@@ -6,12 +6,11 @@ import { Network } from '@/shared/api/daoService';
 import { useTranslations } from '@/shared/components/translationsProvider';
 import { useFormField } from '@/shared/hooks/useFormField';
 import { daoUtils } from '@/shared/utils/daoUtils';
-import { getPublicClient } from '@/shared/utils/networkUtils/publicClient';
 import type { IProposalActionComponentProps } from '@aragon/gov-ui-kit';
 import { InputNumber, InputText } from '@aragon/gov-ui-kit';
 import { useEffect, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { encodeFunctionData, type Hex } from 'viem';
+import { encodeAbiParameters, encodeFunctionData, keccak256, parseAbiParameters, type Hex } from 'viem';
 import { namehash } from 'viem/ens';
 import type { ICountryIntegrationAddresses } from '@/shared/constants/networkDefinitions';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
@@ -30,24 +29,6 @@ const commitAbi = {
     stateMutability: 'nonpayable',
     inputs: [{ name: 'commitment', internalType: 'bytes32', type: 'bytes32' }],
     outputs: [],
-} as const;
-
-const makeCommitmentAbi = {
-    type: 'function',
-    name: 'makeCommitment',
-    stateMutability: 'pure',
-    inputs: [
-        { name: 'name', internalType: 'string', type: 'string' },
-        { name: 'owner', internalType: 'address', type: 'address' },
-        { name: 'duration', internalType: 'uint256', type: 'uint256' },
-        { name: 'secret', internalType: 'bytes32', type: 'bytes32' },
-        { name: 'resolver', internalType: 'address', type: 'address' },
-        { name: 'data', internalType: 'bytes[]', type: 'bytes[]' },
-        { name: 'reverseRecord', internalType: 'bool', type: 'bool' },
-        { name: 'fuses', internalType: 'uint32', type: 'uint32' },
-        { name: 'wrapperExpiry', internalType: 'uint64', type: 'uint64' },
-    ],
-    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
 } as const;
 
 const setAddrAbi = {
@@ -182,14 +163,13 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
 
         const resolverCall = encodeFunctionData({ abi: [setAddrAbi], args: [node, daoAddress as Hex] });
 
-        const client = getPublicClient(network);
-
-        const update = async () => {
-            const commitment = (await client.readContract({
-                abi: [makeCommitmentAbi],
-                address: config.registrarController,
-                functionName: 'makeCommitment',
-                args: [
+        // `makeCommitment` is `pure`, so we compute it locally to avoid RPC instability.
+        const commitment = keccak256(
+            encodeAbiParameters(
+                parseAbiParameters(
+                    'string name, address owner, uint256 duration, bytes32 secret, address resolver, bytes[] data, bool reverseRecord, uint32 fuses, uint64 wrapperExpiry',
+                ),
+                [
                     label,
                     daoAddress as Hex,
                     BigInt(duration),
@@ -197,25 +177,23 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
                     config.publicResolver,
                     [resolverCall],
                     false,
-                    0 as any,
-                    0 as any,
+                    0n,
+                    0n,
                 ],
-            })) as Hex;
+            ),
+        ) as Hex;
 
-            const newData = encodeFunctionData({ abi: [commitAbi], args: [commitment] });
+        const newData = encodeFunctionData({ abi: [commitAbi], args: [commitment] });
 
-            setValue(`${actionFieldName}.to`, config.registrarController);
-            setValue(`${actionFieldName}.value`, '0');
-            setValue(`${actionFieldName}.data`, newData);
+        setValue(`${actionFieldName}.to`, config.registrarController);
+        setValue(`${actionFieldName}.value`, '0');
+        setValue(`${actionFieldName}.data`, newData);
 
-            setValue(`${actionFieldName}.inputData.function`, 'commit');
-            setValue(`${actionFieldName}.inputData.contract`, 'RegistrarController');
-            setValue(`${actionFieldName}.inputData.parameters[0].name`, 'commitment');
-            setValue(`${actionFieldName}.inputData.parameters[0].type`, 'bytes32');
-            setValue(`${actionFieldName}.inputData.parameters[0].value`, commitment);
-        };
-
-        void update();
+        setValue(`${actionFieldName}.inputData.function`, 'commit');
+        setValue(`${actionFieldName}.inputData.contract`, 'RegistrarController');
+        setValue(`${actionFieldName}.inputData.parameters[0].name`, 'commitment');
+        setValue(`${actionFieldName}.inputData.parameters[0].type`, 'bytes32');
+        setValue(`${actionFieldName}.inputData.parameters[0].value`, commitment);
     }, [config, daoAddress, nameField.value, monthsField.value, network, setValue, actionFieldName]);
 
     if (!config) {
