@@ -95,8 +95,6 @@ class ActionComposerUtils {
                 defaultValue: defaultCountryTransferAction(),
             },
         ];
-            },
-        ];
     };
 
     getDaoPluginActions = (dao?: IDao) => {
