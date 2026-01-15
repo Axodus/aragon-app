@@ -8,10 +8,8 @@ import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { addressUtils, IconType } from '@aragon/gov-ui-kit';
 import { zeroAddress } from 'viem';
 import {
-    defaultCountryCommitAction,
-    defaultCountryRegisterAction,
-    defaultCountryTransferAction,
     defaultCountryRenewAction,
+    defaultCountryTransferAction,
 } from '@/plugins/shared/countryRegistrar/utils/countryRegistrarActionDefinitions';
 import { CountryRegistrarActionType } from '@/plugins/shared/countryRegistrar/types';
 import {
@@ -64,14 +62,9 @@ class ActionComposerUtils {
             return [];
         }
 
+        // Only show Renew and Transfer in action composer
+        // Reserve is handled in the pre-wizard flow
         return [
-            {
-                id: `${dao.address}-${CountryRegistrarActionType.REGISTER}`,
-                name: t('app.actions.countryRegistrar.reserve.title'),
-                icon: IconType.SETTINGS,
-                groupId: dao.address,
-                defaultValue: [defaultCountryCommitAction(), defaultCountryRegisterAction()],
-            },
             {
                 id: `${dao.address}-${CountryRegistrarActionType.RENEW}`,
                 name: t('app.actions.countryRegistrar.renew.title'),

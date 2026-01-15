@@ -8,6 +8,7 @@ import { SimulateActionsDialog } from '../dialogs/simulateActionsDialog';
 import { VerifySmartContractDialog } from '../dialogs/verifySmartContractDialog';
 import { VoteDialog } from '../dialogs/voteDialog';
 import { WalletConnectActionDialog } from '../dialogs/walletConnectActionDialog';
+import { CountryReservationDialog } from '../dialogs/countryReservationDialog';
 import { GovernanceDialogId } from './governanceDialogId';
 
 export const governanceDialogsDefinitions: Record<GovernanceDialogId, IDialogComponentDefinitions> = {
@@ -26,4 +27,5 @@ export const governanceDialogsDefinitions: Record<GovernanceDialogId, IDialogCom
     },
     [GovernanceDialogId.WALLET_CONNECT_ACTION]: { Component: WalletConnectActionDialog },
     [GovernanceDialogId.SIMULATE_ACTIONS]: { Component: SimulateActionsDialog, size: 'lg' },
+    [GovernanceDialogId.COUNTRY_RESERVATION]: { Component: CountryReservationDialog, size: 'md' },
 };
