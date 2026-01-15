@@ -308,7 +308,7 @@ export const CountryReservationDialog: React.FC<ICountryReservationDialogProps> 
                         </p>
                         <p className="text-neutral-500">{t('app.governance.countryReservation.dialog.success.next')}</p>
                         <button
-                            onClick={close}
+                            onClick={() => close()}
                             className="rounded-lg bg-primary-500 px-6 py-3 text-white hover:bg-primary-600"
                         >
                             {t('app.governance.countryReservation.dialog.success.button')}
