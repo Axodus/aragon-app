@@ -326,7 +326,7 @@ class ActionComposerUtils {
             return undefined;
         }
 
-        if (defaultValue?.inputData == null) {
+        if (defaultValue == null) {
             return undefined;
         }
 
