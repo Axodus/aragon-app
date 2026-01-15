@@ -8,6 +8,8 @@ import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { addressUtils, IconType } from '@aragon/gov-ui-kit';
 import { zeroAddress } from 'viem';
 import {
+    defaultCountryCommitAction,
+    defaultCountryRegisterAction,
     defaultCountryRenewAction,
     defaultCountryTransferAction,
 } from '@/plugins/shared/countryRegistrar/utils/countryRegistrarActionDefinitions';
@@ -62,22 +64,37 @@ class ActionComposerUtils {
             return [];
         }
 
-        // Only show Renew and Transfer in action composer
-        // Reserve is handled in the pre-wizard flow
+        // Show all .country actions in the Action Composer
         return [
+            {
+                id: `${dao.address}-${CountryRegistrarActionType.COMMIT}`,
+                name: t('app.actions.countryRegistrar.commit.title'),
+                icon: IconType.LOCK,
+                groupId: dao.address,
+                defaultValue: defaultCountryCommitAction(),
+            },
+            {
+                id: `${dao.address}-${CountryRegistrarActionType.REGISTER}`,
+                name: t('app.actions.countryRegistrar.register.title'),
+                icon: IconType.ADD,
+                groupId: dao.address,
+                defaultValue: defaultCountryRegisterAction(),
+            },
             {
                 id: `${dao.address}-${CountryRegistrarActionType.RENEW}`,
                 name: t('app.actions.countryRegistrar.renew.title'),
-                icon: IconType.SETTINGS,
+                icon: IconType.RELOAD,
                 groupId: dao.address,
                 defaultValue: defaultCountryRenewAction(),
             },
             {
                 id: `${dao.address}-${CountryRegistrarActionType.TRANSFER}`,
                 name: t('app.actions.countryRegistrar.transfer.title'),
-                icon: IconType.SETTINGS,
+                icon: IconType.BLOCKCHAIN_BLOCKCHAIN,
                 groupId: dao.address,
                 defaultValue: defaultCountryTransferAction(),
+            },
+        ];
             },
         ];
     };
