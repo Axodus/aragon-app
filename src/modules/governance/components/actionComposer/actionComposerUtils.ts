@@ -11,6 +11,7 @@ import {
     defaultCountryCommitAction,
     defaultCountryRegisterAction,
     defaultCountryTransferAction,
+    defaultCountryRenewAction,
 } from '@/plugins/shared/countryRegistrar/utils/countryRegistrarActionDefinitions';
 import { CountryRegistrarActionType } from '@/plugins/shared/countryRegistrar/types';
 import {
@@ -66,10 +67,17 @@ class ActionComposerUtils {
         return [
             {
                 id: `${dao.address}-${CountryRegistrarActionType.REGISTER}`,
-                name: t('app.actions.countryRegistrar.register.title'),
+                name: t('app.actions.countryRegistrar.reserve.title'),
                 icon: IconType.SETTINGS,
                 groupId: dao.address,
                 defaultValue: [defaultCountryCommitAction(), defaultCountryRegisterAction()],
+            },
+            {
+                id: `${dao.address}-${CountryRegistrarActionType.RENEW}`,
+                name: t('app.actions.countryRegistrar.renew.title'),
+                icon: IconType.SETTINGS,
+                groupId: dao.address,
+                defaultValue: defaultCountryRenewAction(),
             },
             {
                 id: `${dao.address}-${CountryRegistrarActionType.TRANSFER}`,

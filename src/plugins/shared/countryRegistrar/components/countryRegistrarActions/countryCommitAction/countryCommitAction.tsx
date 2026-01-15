@@ -154,7 +154,8 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
         }
 
         const label = normalizeLabel(pairedName ?? nameField.value);
-        const months = parseMonths(pairedMonths ?? monthsField.value);
+        // Se pareado com register (reserve), usa 1 mês fixo
+        const months = hasRegisterPair ? 1 : parseMonths(pairedMonths ?? monthsField.value);
         const duration = monthsToDurationSeconds(months);
         const secret = resolveSharedSecret();
 

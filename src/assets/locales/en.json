@@ -21,6 +21,22 @@
           },
           "fqdnHint": "Will register: {{value}}"
         },
+        "reserve": {
+          "title": "Reserve .country name (1 month)",
+          "name": {
+            "label": "Name",
+            "placeholder": "e.g. mydao"
+          },
+          "secret": {
+            "label": "Secret",
+            "placeholder": "0x… (32 bytes)"
+          },
+          "fqdnHint": "Will reserve: {{value}}",
+          "reserveHint": "This action reserves the name for 1 month to secure it for the DAO.",
+          "estimatedCost": "Estimated cost: {{value}} ONE",
+          "available": "Name is available",
+          "unavailable": "Name is already registered"
+        },
         "register": {
           "title": "Register .country",
           "name": {
@@ -36,9 +52,24 @@
             "placeholder": "1"
           },
           "fqdnHint": "Will register: {{value}}",
+          "reserveHint": "This action reserves the name for 1 month to secure it for the DAO.",
           "estimatedCost": "Estimated cost: {{value}} ONE",
           "available": "Name is available",
           "unavailable": "Name is already registered"
+        },
+        "renew": {
+          "title": "Renew .country name",
+          "name": {
+            "label": "Name",
+            "placeholder": "e.g. mydao"
+          },
+          "duration": {
+            "label": "Duration (months)",
+            "placeholder": "12"
+          },
+          "fqdnHint": "Will renew: {{value}}",
+          "renewHint": "Extend registration period for {{value}} more months.",
+          "estimatedCost": "Estimated cost: {{value}} ONE"
         },
         "transfer": {
           "title": "Transfer .country to DAO",

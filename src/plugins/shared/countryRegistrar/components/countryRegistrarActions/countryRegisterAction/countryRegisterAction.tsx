@@ -124,19 +124,8 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
         trimOnBlur: true,
     });
 
-    const monthsField = useFormField<ICountryRegisterFormData, 'months'>('months', {
-        label: t('app.actions.countryRegistrar.register.duration.label'),
-        rules: {
-            required: true,
-            validate: (value?: string) => {
-                const months = parseMonths(value);
-                return months >= 1 && months <= 12;
-            },
-        },
-        fieldPrefix: actionFieldName,
-        defaultValue: '1',
-        trimOnBlur: true,
-    });
+    // Fixed to 1 month for initial reservation
+    const fixedMonths = 1;
 
     const { network, address: daoAddress } = daoUtils.parseDaoId(action.daoId);
 
@@ -172,7 +161,7 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
 
     useEffect(() => {
         const label = normalizeLabel(nameField.value);
-        const months = parseMonths(monthsField.value);
+        const months = fixedMonths;
         const duration = monthsToDurationSeconds(months);
         const secret = resolveSharedSecret();
 
@@ -236,7 +225,7 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
         };
 
         void updatePrice();
-    }, [config, daoAddress, nameField.value, monthsField.value, network, setValue, actionFieldName]);
+    }, [config, daoAddress, nameField.value, network, setValue, actionFieldName]);
 
     if (!config) {
         return <p className="text-primary-400">{t('app.actions.countryRegistrar.unsupportedNetwork')}</p>;
@@ -252,13 +241,9 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
             <p className="text-primary-400">
                 {t('app.actions.countryRegistrar.register.fqdnHint', { value: `${normalizeLabel(nameField.value)}.${config?.tld ?? 'country'}` })}
             </p>
-            <InputNumber
-                placeholder={t('app.actions.countryRegistrar.register.duration.placeholder')}
-                min={1}
-                max={12}
-                step={1}
-                {...monthsField}
-            />
+            <p className="text-primary-400">
+                {t('app.actions.countryRegistrar.register.reserveHint')}
+            </p>
             {estimatedCostWei != null ? (
                 <p className="text-primary-400">
                     {t('app.actions.countryRegistrar.register.estimatedCost', { value: formatEther(estimatedCostWei) })}

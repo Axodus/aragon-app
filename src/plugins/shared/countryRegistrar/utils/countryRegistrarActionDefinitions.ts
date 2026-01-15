@@ -2,6 +2,7 @@ import {
     CountryRegistrarActionType,
     type ICountryCommitAction,
     type ICountryRegisterAction,
+    type ICountryRenewAction,
     type ICountryTransferAction,
 } from '../types';
 
@@ -33,6 +34,19 @@ export const defaultCountryRegisterAction = (): ICountryRegisterAction => ({
     value: '0',
     inputData: {
         function: 'register',
+        contract: 'RegistrarController',
+        parameters: [],
+    },
+});
+
+export const defaultCountryRenewAction = (): ICountryRenewAction => ({
+    type: CountryRegistrarActionType.RENEW,
+    from: '',
+    to: '',
+    data: '',
+    value: '0',
+    inputData: {
+        function: 'renew',
         contract: 'RegistrarController',
         parameters: [],
     },

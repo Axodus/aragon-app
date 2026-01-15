@@ -16,6 +16,7 @@ import { UpdatePluginMetadataAction } from './proposalActions/updatePluginMetada
 import { CountryCommitAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryCommitAction';
 import { CountryRegisterAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryRegisterAction';
 import { CountryTransferAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryTransferAction';
+import { CountryRenewAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryRenewAction';
 import { CountryRegistrarActionType } from '@/plugins/shared/countryRegistrar/types';
 
 export interface ICreateProposalFormActionsProps {
@@ -37,6 +38,7 @@ const coreCustomActionComponents: Record<string, ProposalActionComponent<IPropos
     [CountryRegistrarActionType.COMMIT]: CountryCommitAction,
     [CountryRegistrarActionType.REGISTER]: CountryRegisterAction,
     [CountryRegistrarActionType.TRANSFER]: CountryTransferAction,
+    [CountryRegistrarActionType.RENEW]: CountryRenewAction,
 };
 
 export const CreateProposalFormActions: React.FC<ICreateProposalFormActionsProps> = (props) => {
