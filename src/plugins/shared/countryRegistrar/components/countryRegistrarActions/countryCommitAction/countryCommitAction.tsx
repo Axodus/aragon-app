@@ -177,8 +177,8 @@ export const CountryCommitAction: React.FC<ICountryCommitActionProps> = (props) 
                     config.publicResolver,
                     [resolverCall],
                     false,
-                    0n,
-                    0n,
+                    0,
+                    0,
                 ],
             ),
         ) as Hex;

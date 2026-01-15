@@ -1970,7 +1970,7 @@
       },
       "harmonyVoting": {
         "setupGovernance": {
-          "helpText": "Proposals are open to accounts with at least 100 ONE, and results are finalized automatically by the oracle after the vote ends.",
+          "helpText": "Proposals are open to accounts with at least 100 ONEs Staked, and results are finalized automatically by the oracle after the vote ends.",
           "oracle": {
             "label": "Oracle address",
             "placeholder": "0xA55d9ef16Af921b70Fed1421C1D298Ca5A3a18F1"
