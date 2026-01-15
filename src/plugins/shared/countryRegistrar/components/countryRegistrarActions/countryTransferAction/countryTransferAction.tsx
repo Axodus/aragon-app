@@ -53,8 +53,11 @@ export const CountryTransferAction: React.FC<ICountryTransferActionProps> = (pro
     useFormField<Record<string, IProposalActionData>, typeof actionFieldName>(actionFieldName);
 
     // Check if params are pre-filled from reservation flow
-    const prefilledFrom = action.inputData?.parameters?.find((p: any) => p.name === 'from')?.value;
-    const prefilledName = action.inputData?.parameters?.find((p: any) => p.name === 'name')?.value;
+    const rawPrefilledFrom = action.inputData?.parameters?.find((p: any) => p.name === 'from')?.value;
+    const rawPrefilledName = action.inputData?.parameters?.find((p: any) => p.name === 'name')?.value;
+
+    const prefilledFrom = typeof rawPrefilledFrom === 'string' ? rawPrefilledFrom : '';
+    const prefilledName = typeof rawPrefilledName === 'string' ? rawPrefilledName : '';
     const isPreFilled = Boolean(prefilledFrom || prefilledName);
 
     const nameField = useFormField<ICountryTransferFormData, 'name'>('name', {
