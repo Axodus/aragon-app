@@ -87,7 +87,8 @@ export const CreateProposalPageClient: React.FC<ICreateProposalPageClientProps> 
 
             const renewAction = defaultCountryRenewAction();
             renewAction.inputData = {
-                ...renewAction.inputData,
+                function: renewAction.inputData.function,
+                contract: renewAction.inputData.contract,
                 parameters: [
                     { name: 'name', type: 'string', value: reservationData.name },
                     { name: 'duration', type: 'uint256', value: (12 * 30 * 24 * 60 * 60).toString() }, // 12 months
