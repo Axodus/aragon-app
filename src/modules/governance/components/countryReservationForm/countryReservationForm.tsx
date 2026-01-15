@@ -4,10 +4,11 @@ import type { Network } from '@/shared/api/daoService';
 import { useDialogContext } from '@/shared/components/dialogProvider';
 import { useTranslations } from '@/shared/components/translationsProvider';
 import { countryReservationUtils, type ICountryReservationData } from '@/shared/utils/countryReservationUtils';
+import { getPublicClient } from '@/shared/utils/networkUtils/publicClient';
 import { Button, InputText, Spinner } from '@aragon/gov-ui-kit';
 import { useEffect, useState } from 'react';
 import { formatEther, type Hex, type PublicClient } from 'viem';
-import { useAccount, usePublicClient, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
+import { useAccount, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
 import { CountryReservationDialog } from '../../dialogs/countryReservationDialog';
 
 export interface ICountryReservationFormProps {
@@ -75,7 +76,7 @@ export const CountryReservationForm: React.FC<ICountryReservationFormProps> = (p
         props;
 
     const { address } = useAccount();
-    const publicClient = usePublicClient({ chainId: network });
+    const publicClient = getPublicClient(network);
     const { open } = useDialogContext();
     const { t } = useTranslations();
 
@@ -95,7 +96,7 @@ export const CountryReservationForm: React.FC<ICountryReservationFormProps> = (p
 
     useEffect(() => {
         const checkOwnership = async () => {
-            if (!name || !address || !publicClient) return;
+            if (!name || !address) return;
 
             const validation = countryReservationUtils.validateNameFormat(name);
             if (!validation.valid) return;
@@ -119,8 +120,6 @@ export const CountryReservationForm: React.FC<ICountryReservationFormProps> = (p
     }, [name, address, publicClient, baseRegistrar]);
 
     const handleCheckAvailability = async () => {
-        if (!publicClient) return;
-
         const validation = countryReservationUtils.validateNameFormat(name);
         if (!validation.valid) {
             setValidationError(validation.error ?? 'Invalid name');

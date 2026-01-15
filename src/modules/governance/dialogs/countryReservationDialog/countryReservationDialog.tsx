@@ -5,10 +5,11 @@ import type { IDialogComponentProps } from '@/shared/components/dialogProvider';
 import { useTranslations } from '@/shared/components/translationsProvider';
 import { useStepper } from '@/shared/hooks/useStepper';
 import { countryReservationUtils, type ICountryReservationData } from '@/shared/utils/countryReservationUtils';
+import { getPublicClient } from '@/shared/utils/networkUtils/publicClient';
 import { invariant, Spinner } from '@aragon/gov-ui-kit';
 import { useEffect, useState } from 'react';
 import { type Hex, type PublicClient } from 'viem';
-import { useAccount, usePublicClient, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
+import { useAccount, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
 
 export enum CountryReservationStep {
     COMMIT_PREPARE = 'COMMIT_PREPARE',
@@ -54,7 +55,7 @@ export const CountryReservationDialog: React.FC<ICountryReservationDialogProps> 
     const { address } = useAccount();
     invariant(address != null, 'CountryReservationDialog: user must be connected.');
 
-    const publicClient = usePublicClient({ chainId: network });
+    const publicClient = getPublicClient(network);
     const { t } = useTranslations();
 
     const [commitmentState, setCommitmentState] = useState<ICommitmentState | null>(null);
@@ -157,7 +158,7 @@ export const CountryReservationDialog: React.FC<ICountryReservationDialogProps> 
 
     // Handle register transaction
     const handleRegister = async () => {
-        if (!commitmentState || !publicClient) return;
+        if (!commitmentState) return;
 
         try {
             const duration = countryReservationUtils.getDefaultDuration();
