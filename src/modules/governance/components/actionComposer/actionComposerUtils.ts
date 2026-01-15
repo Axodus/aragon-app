@@ -69,14 +69,14 @@ class ActionComposerUtils {
             {
                 id: `${dao.address}-${CountryRegistrarActionType.COMMIT}`,
                 name: t('app.actions.countryRegistrar.commit.title'),
-                icon: IconType.LOCK,
+                icon: IconType.SETTINGS,
                 groupId: dao.address,
                 defaultValue: defaultCountryCommitAction(),
             },
             {
                 id: `${dao.address}-${CountryRegistrarActionType.REGISTER}`,
                 name: t('app.actions.countryRegistrar.register.title'),
-                icon: IconType.ADD,
+                icon: IconType.PLUS,
                 groupId: dao.address,
                 defaultValue: defaultCountryRegisterAction(),
             },
@@ -90,7 +90,7 @@ class ActionComposerUtils {
             {
                 id: `${dao.address}-${CountryRegistrarActionType.TRANSFER}`,
                 name: t('app.actions.countryRegistrar.transfer.title'),
-                icon: IconType.BLOCKCHAIN_BLOCKCHAIN,
+                icon: IconType.BLOCKCHAIN_SMARTCONTRACT,
                 groupId: dao.address,
                 defaultValue: defaultCountryTransferAction(),
             },
