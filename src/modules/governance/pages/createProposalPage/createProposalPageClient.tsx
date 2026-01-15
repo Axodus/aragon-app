@@ -9,6 +9,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { useDao } from '@/shared/api/daoService';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import type { ICountryReservationData } from '@/shared/utils/countryReservationUtils';
+import type { Hex } from 'viem';
 import { CountryReservationForm } from '../../components/countryReservationForm';
 import {
     defaultCountryRenewAction,
@@ -133,7 +134,7 @@ export const CreateProposalPageClient: React.FC<ICreateProposalPageClientProps> 
             <Page.Main fullWidth={true}>
                 <div className="mx-auto max-w-3xl py-8">
                     <CountryReservationForm
-                        daoAddress={dao.address}
+                        daoAddress={dao.address as Hex}
                         network={dao.network}
                         registrarController={countryConfig.registrarController}
                         publicResolver={countryConfig.publicResolver}
