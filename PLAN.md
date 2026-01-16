@@ -9,6 +9,8 @@
 - [x] Surface prepare error details in the transaction dialog.
 - [x] Normalize Harmony repo addresses to lowercase to avoid checksum errors.
 - [x] Display Harmony Delegation short code (TDEL) in body info.
+- [x] Add Harmony proposal settings (dates + snapshot block).
+- [x] Register Harmony proposal/vote builders.
 - [ ] Verify prepare installation succeeds with delegation validator address.
 - [ ] Summarize changes for UI testing.
 
@@ -31,3 +33,4 @@
 - Prepare step surfaces the underlying error message when it fails.
 - Harmony repo/allowlist/registry addresses do not trigger checksum errors.
 - Harmony Delegation body subtitle shows TDEL instead of raw subdomain.
+- Harmony proposals can be created with snapshot block input.

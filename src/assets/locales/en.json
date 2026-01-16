@@ -2063,6 +2063,20 @@
         }
       },
       "harmonyVoting": {
+        "createProposalSettingsForm": {
+          "endTime": {
+            "helpText": "Choose when voting ends. The snapshot block must be finalized after this time.",
+            "label": "Voting end time"
+          },
+          "snapshotBlock": {
+            "helpText": "Block number used to compute validator/delegator weights. Use a block at or after the vote ends.",
+            "label": "Snapshot block"
+          },
+          "startTime": {
+            "helpText": "Choose when voting starts.",
+            "label": "Voting start time"
+          }
+        },
         "setupGovernance": {
           "helpText": "Proposals are open to accounts with at least 100 ONEs Staked, and results are finalized automatically by the oracle after the vote ends.",
           "oracle": {
