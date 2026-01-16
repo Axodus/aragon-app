@@ -10,7 +10,7 @@ import { getPublicClient } from '@/shared/utils/networkUtils/publicClient';
 import type { IProposalActionComponentProps } from '@aragon/gov-ui-kit';
 import { InputNumber, InputText } from '@aragon/gov-ui-kit';
 import { useEffect, useMemo, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { encodeFunctionData, formatEther, type Hex } from 'viem';
 import { namehash } from 'viem/ens';
 import type { ICountryIntegrationAddresses } from '@/shared/constants/networkDefinitions';
@@ -112,7 +112,7 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
     const { index, action } = props;
 
     const { t } = useTranslations();
-    const { setValue, getValues } = useFormContext();
+    const { setValue, getValues, control } = useFormContext();
 
     const actionFieldName = `actions.[${index.toString()}]`;
     useFormField<Record<string, IProposalActionData>, typeof actionFieldName>(actionFieldName);
@@ -158,6 +158,12 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
 
         return generated;
     };
+
+    const watchedActions = useWatch({ control, name: 'actions' }) as Array<any> | undefined;
+    const hasCommitAction = useMemo(
+        () => (watchedActions ?? []).some((a) => a?.type === CountryRegistrarActionType.COMMIT),
+        [watchedActions],
+    );
 
     useEffect(() => {
         const label = normalizeLabel(nameField.value);
@@ -244,6 +250,11 @@ export const CountryRegisterAction: React.FC<ICountryRegisterActionProps> = (pro
             <p className="text-primary-400">
                 {t('app.actions.countryRegistrar.register.reserveHint')}
             </p>
+            {hasCommitAction ? (
+                <p className="text-critical-500">
+                    {t('app.actions.countryRegistrar.register.commitWarning')}
+                </p>
+            ) : null}
             {estimatedCostWei != null ? (
                 <p className="text-primary-400">
                     {t('app.actions.countryRegistrar.register.estimatedCost', { value: formatEther(estimatedCostWei) })}

@@ -6,7 +6,7 @@
         "unsupportedNetwork": "This action is only available on supported networks.",
         "commit": {
           "title": "Commit .country",
-          "autoHint": "This commit step is auto-generated from the register action.",
+          "autoHint": "Commit and register must be executed in separate proposals and at least 60 seconds apart. Use Commit first, then Register.",
           "name": {
             "label": "Name",
             "placeholder": "e.g. mydao"
@@ -53,6 +53,7 @@
           },
           "fqdnHint": "Will register: {{value}}",
           "reserveHint": "This action reserves the name for 1 month to secure it for the DAO.",
+          "commitWarning": "Do not include Commit and Register in the same proposal. Execute Commit first, wait 60s, then create a separate Register proposal.",
           "estimatedCost": "Estimated cost: {{value}} ONE",
           "available": "Name is available",
           "unavailable": "Name is already registered"
