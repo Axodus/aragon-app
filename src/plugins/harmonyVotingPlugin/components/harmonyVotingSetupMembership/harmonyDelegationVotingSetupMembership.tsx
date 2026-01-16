@@ -24,7 +24,7 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
         label: t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.label'),
         rules: {
             required: true,
-            validate: (value: string) => addressUtils.isAddress(value),
+            validate: (value?: string) => (value ? addressUtils.isAddress(value) : false),
         },
         fieldPrefix: formPrefix,
         sanitizeOnBlur: false,
