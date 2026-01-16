@@ -2,7 +2,7 @@ import type { IBuildPreparePluginInstallDataParams } from '@/modules/createDao/t
 import { PluginInterfaceType } from '@/shared/api/daoService';
 import { pluginTransactionUtils } from '@/shared/utils/pluginTransactionUtils';
 import { addressUtils, type ICompositeAddress } from '@aragon/gov-ui-kit';
-import { encodeAbiParameters, encodeFunctionData, type Hex } from 'viem';
+import { encodeAbiParameters, encodeFunctionData, keccak256, type Hex } from 'viem';
 import type { IPluginInfo } from '@/shared/types';
 import type { IHarmonyVotingSetupGovernanceForm } from '../components/harmonyVotingSetupGovernance';
 import type { IHarmonyVotingSetupMembershipForm } from '../components/harmonyVotingSetupMembership';
@@ -92,10 +92,12 @@ export const buildCreateHarmonyVotingProposalData = (
         throw new Error('Snapshot block is required for Harmony voting proposals.');
     }
 
+    const metadataHash = keccak256(metadata);
+
     return encodeFunctionData({
         abi: harmonyVotingAbi,
         functionName: 'createProposal',
-        args: [metadata, BigInt(startDate), BigInt(endDate), BigInt(snapshotBlock)],
+        args: [metadataHash, BigInt(startDate), BigInt(endDate), BigInt(snapshotBlock)],
     });
 };
 
