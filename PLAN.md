@@ -6,6 +6,7 @@
 - [x] Encode validator address into installation params for Delegation only.
 - [x] Provide basic validation and helper text for the input.
 - [x] Ensure validator address syncs into form state on input change.
+- [x] Surface prepare error details in the transaction dialog.
 - [ ] Verify prepare installation succeeds with delegation validator address.
 - [ ] Summarize changes for UI testing.
 
@@ -25,3 +26,4 @@
 - Delegation installation params include the validator address.
 - HIP setup remains unchanged.
 - Prepare installation succeeds without needing to explicitly accept the input.
+- Prepare step surfaces the underlying error message when it fails.
