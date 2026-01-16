@@ -8,6 +8,7 @@
 - [x] Ensure validator address syncs into form state on input change.
 - [x] Surface prepare error details in the transaction dialog.
 - [x] Normalize Harmony repo addresses to lowercase to avoid checksum errors.
+- [x] Display Harmony Delegation short code (TDEL) in body info.
 - [ ] Verify prepare installation succeeds with delegation validator address.
 - [ ] Summarize changes for UI testing.
 
@@ -29,3 +30,4 @@
 - Prepare installation succeeds without needing to explicitly accept the input.
 - Prepare step surfaces the underlying error message when it fails.
 - Harmony repo/allowlist/registry addresses do not trigger checksum errors.
+- Harmony Delegation body subtitle shows TDEL instead of raw subdomain.

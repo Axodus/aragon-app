@@ -98,7 +98,13 @@ class DaoUtils {
      * @returns The parsed subdomain in Title Case.
      */
     parsePluginSubdomain = (subdomain: string): string => {
-        const parts = subdomain.split('-');
+        const normalized = subdomain.toLowerCase();
+
+        if (normalized === 'harmonydelegationvoting') {
+            return 'TDEL';
+        }
+
+        const parts = subdomain.includes('-') ? subdomain.split('-') : subdomain.split(/(?=[A-Z])/);
 
         return parts.map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
     };
