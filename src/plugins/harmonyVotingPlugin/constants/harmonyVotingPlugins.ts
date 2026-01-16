@@ -21,7 +21,7 @@ export const harmonyHipVotingPlugin: IPluginInfo = {
         [Network.CHILIZ_MAINNET]: ZERO_ADDRESS,
         [Network.AVAX_MAINNET]: ZERO_ADDRESS,
         [Network.KATANA_MAINNET]: ZERO_ADDRESS,
-        [Network.HARMONY_MAINNET]: '0x377Fa6d56066b81a7233043302B7e1569591253E',
+        [Network.HARMONY_MAINNET]: '0xE6E54ac81EFB41fdf0D559eeae51DbFB3C750088',
         [Network.HARMONY_TESTNET]: ZERO_ADDRESS,
     },
     setup: {
@@ -50,7 +50,7 @@ export const harmonyDelegationVotingPlugin: IPluginInfo = {
         [Network.CHILIZ_MAINNET]: ZERO_ADDRESS,
         [Network.AVAX_MAINNET]: ZERO_ADDRESS,
         [Network.KATANA_MAINNET]: ZERO_ADDRESS,
-        [Network.HARMONY_MAINNET]: '0x908a794F6e59872cB9b5Da0465a667833eEBdcFD',
+        [Network.HARMONY_MAINNET]: '0x4ac3dAfD88DeFd9a000076365e28B3dE3A862700',
         [Network.HARMONY_TESTNET]: ZERO_ADDRESS,
     },
     setup: {

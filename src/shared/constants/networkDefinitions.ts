@@ -425,10 +425,10 @@ export const networkDefinitions: Record<Network, INetworkDefinition> = {
             conditionFactory: '0x7992fbe76bD9B007AB165Af04Be09BC0F6C89aF6',
         },
         harmonyPlugins: {
-            hipVotingPluginRepo: '0x377Fa6d56066b81a7233043302B7e1569591253E',
-            delegationVotingPluginRepo: '0x908a794F6e59872cB9b5Da0465a667833eEBdcFD',
-            validatorOptInRegistry: '0x1E1F6128f1e611c6bD9696a758aF9310017C993B',
-            hipPluginAllowlist: '0x3653c14Ca7bef3E7B02ca04E65f6fc174D48c5C0',
+            hipVotingPluginRepo: '0xE6E54ac81EFB41fdf0D559eeae51DbFB3C750088',
+            delegationVotingPluginRepo: '0x4ac3dAfD88DeFd9a000076365e28B3dE3A862700',
+            validatorOptInRegistry: '0x9ec4D1ea72ADA189Ae81328CB80c3276C5dCbe5d',
+            hipPluginAllowlist: '0x8D151e5021F495e23FbBC3180b4EeA1a6B251Fd0',
         },
     },
 
