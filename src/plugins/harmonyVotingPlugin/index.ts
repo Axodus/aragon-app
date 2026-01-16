@@ -1,7 +1,7 @@
 import { CreateDaoSlotId } from '@/modules/createDao/constants/moduleSlots';
 import { pluginRegistryUtils } from '@/shared/utils/pluginRegistryUtils';
 import { HarmonyVotingSetupGovernance } from './components/harmonyVotingSetupGovernance';
-import { HarmonyVotingSetupMembership } from './components/harmonyVotingSetupMembership';
+import { HarmonyDelegationVotingSetupMembership, HarmonyVotingSetupMembership } from './components/harmonyVotingSetupMembership';
 import { harmonyDelegationVotingPlugin, harmonyHipVotingPlugin } from './constants/harmonyVotingPlugins';
 import { buildPrepareHarmonyVotingInstallData } from './utils/harmonyVotingTransactionUtils';
 
@@ -30,7 +30,7 @@ export const initialiseHarmonyVotingPlugin = () => {
         .registerSlotComponent({
             slotId: CreateDaoSlotId.CREATE_DAO_SETUP_MEMBERSHIP,
             pluginId: harmonyDelegationVotingPlugin.id,
-            component: HarmonyVotingSetupMembership,
+            component: HarmonyDelegationVotingSetupMembership,
         })
         .registerSlotComponent({
             slotId: CreateDaoSlotId.CREATE_DAO_SETUP_GOVERNANCE,

@@ -2053,6 +2053,13 @@
         "setup": {
           "description": "Off-chain delegated voting power with on-chain finalization",
           "name": "Harmony delegation voting"
+        },
+        "setupMembership": {
+          "validatorAddress": {
+            "label": "Validator address",
+            "placeholder": "0x…",
+            "helpText": "Provide the validator address whose delegators can vote."
+          }
         }
       },
       "harmonyVoting": {
