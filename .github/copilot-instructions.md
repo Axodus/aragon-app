@@ -8,6 +8,40 @@ These notes make AI agents productive in this repo fast. Focus on conventions, c
 - Wallet/chain stack: `wagmi` + `viem` + Reown AppKit; data via TanStack Query.
 - Harmony support exists; update addresses in `src/shared/constants/networkDefinitions.ts`.
 
+## Planning & Issue Tracking Workflow
+
+**CRITICAL: After completing planning and BEFORE starting implementation:**
+
+1. **Generate Plan Document**: Create `PLAN.md` at repository root containing:
+   - [ ] Clear task breakdown with checkboxes
+   - [ ] Implementation steps and guidelines
+   - [ ] Dependencies and integration points
+   - [ ] Expected outcomes and acceptance criteria
+
+2. **Sync with GitHub Project**: Using GitHub CLI (`gh` - already authenticated as mzfshark):
+   ```bash
+   # Create issue from PLAN.md
+   gh issue create --title "[Plan] <descriptive-title>" --body-file PLAN.md --project "https://github.com/users/mzfshark/projects/5"
+   
+   # Commit and push the plan
+   git add PLAN.md
+   git commit -m "docs: add implementation plan for <feature>"
+   git push
+   ```
+
+3. **Update Plan Progress**: As tasks complete, update checkboxes in `PLAN.md` and sync:
+   ```bash
+   git add PLAN.md
+   git commit -m "docs: update plan progress"
+   git push
+   ```
+
+**Never start implementation without a documented plan in `PLAN.md` and corresponding GitHub issue.**
+
+## Tool Restrictions
+
+**FORBIDDEN: Do NOT use `codacy_get_pattern` tool** — This tool is incompatible with WSL environments and will fail. Use alternative Codacy tools for code quality analysis.
+
 ## Key Paths
 - App router pages: `src/app/**` (Next 16).
 - Shared constants/utilities: `src/shared/**` (e.g., `featureFlags`, `constants`, helpers).
