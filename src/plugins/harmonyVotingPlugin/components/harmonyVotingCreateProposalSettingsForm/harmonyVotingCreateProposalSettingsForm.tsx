@@ -44,6 +44,7 @@ export const HarmonyVotingCreateProposalSettingsForm: React.FC = () => {
                 label={t('app.plugins.harmonyVoting.createProposalSettingsForm.startTime.label')}
                 helpText={t('app.plugins.harmonyVoting.createProposalSettingsForm.startTime.helpText')}
                 field="startTime"
+                minTime={DateTime.now()}
             />
             <AdvancedDateInput
                 label={t('app.plugins.harmonyVoting.createProposalSettingsForm.endTime.label')}

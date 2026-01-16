@@ -11,6 +11,7 @@
 - [x] Display Harmony Delegation short code (TDEL) in body info.
 - [x] Add Harmony proposal settings (dates + snapshot block).
 - [x] Register Harmony proposal/vote builders.
+- [x] Use processKey as proposal prefix when defined.
 - [ ] Verify prepare installation succeeds with delegation validator address.
 - [ ] Summarize changes for UI testing.
 
@@ -34,3 +35,4 @@
 - Harmony repo/allowlist/registry addresses do not trigger checksum errors.
 - Harmony Delegation body subtitle shows TDEL instead of raw subdomain.
 - Harmony proposals can be created with snapshot block input.
+- Proposal slug and process details use processKey when provided.
