@@ -9,12 +9,12 @@ import { useState } from 'react';
 import { useWatch } from 'react-hook-form';
 import type { IHarmonyVotingSetupMembershipForm, IHarmonyVotingSetupMembershipProps } from './harmonyVotingSetupMembership.api';
 
-export const HarmonyDelegationVotingSetupMembership: React.FC<IHarmonyVotingSetupMembershipProps> = (props) => {
+export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetupMembershipProps) => {
     const { formPrefix } = props;
     const { t } = useTranslations();
 
     const network = useWatch<{ network?: Network }>({ name: 'network' })?.network;
-    const chainId = network ? networkDefinitions[network]?.id : undefined;
+    const chainId = network ? networkDefinitions[network as Network].id : undefined;
 
     const {
         onChange: onValidatorChange,
@@ -22,10 +22,9 @@ export const HarmonyDelegationVotingSetupMembership: React.FC<IHarmonyVotingSetu
         ...validatorField
     } = useFormField<IHarmonyVotingSetupMembershipForm, 'validatorAddress'>('validatorAddress', {
         label: t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.label'),
-        helpText: t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText'),
         rules: {
             required: true,
-            validate: (value) => addressUtils.isAddress(value),
+            validate: (value: string) => addressUtils.isAddress(value),
         },
         fieldPrefix: formPrefix,
         sanitizeOnBlur: false,
@@ -41,6 +40,7 @@ export const HarmonyDelegationVotingSetupMembership: React.FC<IHarmonyVotingSetu
         <div className="flex w-full flex-col gap-3">
             <AddressInput
                 placeholder={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.placeholder')}
+                helpText={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText')}
                 value={addressInput}
                 onChange={setAddressInput}
                 onAccept={handleAddressAccept}

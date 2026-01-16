@@ -1,7 +1,7 @@
 import type { IBuildPreparePluginInstallDataParams } from '@/modules/createDao/types';
 import { PluginInterfaceType } from '@/shared/api/daoService';
 import { pluginTransactionUtils } from '@/shared/utils/pluginTransactionUtils';
-import { addressUtils } from '@aragon/gov-ui-kit';
+import { addressUtils, type ICompositeAddress } from '@aragon/gov-ui-kit';
 import { encodeAbiParameters, type Hex } from 'viem';
 import type { IPluginInfo } from '@/shared/types';
 import type { IHarmonyVotingSetupGovernanceForm } from '../components/harmonyVotingSetupGovernance';
@@ -9,7 +9,7 @@ import type { IHarmonyVotingSetupMembershipForm } from '../components/harmonyVot
 
 export type IPrepareHarmonyVotingInstallDataParams = IBuildPreparePluginInstallDataParams<
     IHarmonyVotingSetupGovernanceForm,
-    never,
+    ICompositeAddress,
     IHarmonyVotingSetupMembershipForm
 >;
 

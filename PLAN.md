@@ -1,10 +1,10 @@
 # Harmony Delegation Validator Address UI Plan
 
 ## Task Breakdown
-- [ ] Locate Harmony Delegation setup form and install data builder.
-- [ ] Add validator address input for Harmony Delegation setup.
-- [ ] Encode validator address into installation params for Delegation only.
-- [ ] Provide basic validation and helper text for the input.
+- [x] Locate Harmony Delegation setup form and install data builder.
+- [x] Add validator address input for Harmony Delegation setup.
+- [x] Encode validator address into installation params for Delegation only.
+- [x] Provide basic validation and helper text for the input.
 - [ ] Summarize changes for UI testing.
 
 ## Implementation Steps
