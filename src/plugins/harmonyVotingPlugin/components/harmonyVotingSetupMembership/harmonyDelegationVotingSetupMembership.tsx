@@ -32,6 +32,14 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
 
     const [addressInput, setAddressInput] = useState<string | undefined>(validatorAddress);
 
+    const handleAddressChange = (value?: string) => {
+        setAddressInput(value);
+        const nextValue = value ?? '';
+        if (nextValue.trim().length === 0 || addressUtils.isAddress(nextValue)) {
+            onValidatorChange(nextValue);
+        }
+    };
+
     const handleAddressAccept = (value?: IAddressInputResolvedValue) => {
         onValidatorChange(value?.address ?? '');
     };
@@ -42,7 +50,7 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
                 placeholder={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.placeholder')}
                 helpText={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText')}
                 value={addressInput}
-                onChange={setAddressInput}
+                onChange={handleAddressChange}
                 onAccept={handleAddressAccept}
                 chainId={chainId}
                 {...validatorField}
