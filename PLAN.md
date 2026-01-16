@@ -1,21 +1,24 @@
-# Harmony Plugins Frontend Update Plan
+# Harmony Delegation Validator Address UI Plan
 
 ## Task Breakdown
-- [x] Identify Harmony mainnet plugin address fields in network definitions.
-- [x] Update Harmony HIP and Delegation repo addresses plus allowlist/registry references.
-- [ ] Validate TypeScript types and format consistency.
+- [ ] Locate Harmony Delegation setup form and install data builder.
+- [ ] Add validator address input for Harmony Delegation setup.
+- [ ] Encode validator address into installation params for Delegation only.
+- [ ] Provide basic validation and helper text for the input.
 - [ ] Summarize changes for UI testing.
 
 ## Implementation Steps
-1. Update Harmony mainnet `harmonyPlugins` addresses in the network definitions.
-2. Ensure any dependent UI/network utilities still compile.
-3. Keep changes minimal and scoped to Harmony mainnet only.
+1. Add a dedicated membership component for Harmony Delegation with a validator address field.
+2. Extend the Harmony voting setup form to carry `validatorAddress` for Delegation only.
+3. Encode installation params with the validator address when the Delegation plugin is selected.
+4. Keep HIP setup unchanged (empty install params).
 
 ## Dependencies & Integration Points
-- Network definitions: `src/shared/constants/networkDefinitions.ts`.
-- Harmony plugin repos and allowlist/registry addresses from the deployment record.
+- Harmony voting setup UI: `src/plugins/harmonyVotingPlugin/components/**`.
+- Installation data builder: `src/plugins/harmonyVotingPlugin/utils/harmonyVotingTransactionUtils.ts`.
+- Create DAO slot registration: `src/plugins/harmonyVotingPlugin/index.ts`.
 
 ## Expected Outcomes & Acceptance Criteria
-- Harmony mainnet uses the new HIP/Delegation plugin repo addresses.
-- Harmony mainnet references the latest allowlist proxy and opt-in registry.
-- No unrelated network definitions are modified.
+- Harmony Delegation setup requires a validator address before continuing.
+- Delegation installation params include the validator address.
+- HIP setup remains unchanged.
