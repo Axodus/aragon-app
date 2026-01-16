@@ -7,6 +7,7 @@
 - [x] Provide basic validation and helper text for the input.
 - [x] Ensure validator address syncs into form state on input change.
 - [x] Surface prepare error details in the transaction dialog.
+- [x] Normalize Harmony repo addresses to lowercase to avoid checksum errors.
 - [ ] Verify prepare installation succeeds with delegation validator address.
 - [ ] Summarize changes for UI testing.
 
@@ -27,3 +28,4 @@
 - HIP setup remains unchanged.
 - Prepare installation succeeds without needing to explicitly accept the input.
 - Prepare step surfaces the underlying error message when it fails.
+- Harmony repo/allowlist/registry addresses do not trigger checksum errors.
