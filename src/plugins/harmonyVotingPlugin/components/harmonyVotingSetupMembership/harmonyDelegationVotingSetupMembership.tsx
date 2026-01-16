@@ -13,7 +13,7 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
     const { formPrefix } = props;
     const { t } = useTranslations();
 
-    const network = useWatch<Network>({ name: 'network' });
+    const network = useWatch<{ network?: Network }>({ name: 'network' });
     const chainId = network ? networkDefinitions[network as Network].id : undefined;
 
     const {
