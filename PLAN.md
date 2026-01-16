@@ -5,6 +5,8 @@
 - [x] Add validator address input for Harmony Delegation setup.
 - [x] Encode validator address into installation params for Delegation only.
 - [x] Provide basic validation and helper text for the input.
+- [x] Ensure validator address syncs into form state on input change.
+- [ ] Verify prepare installation succeeds with delegation validator address.
 - [ ] Summarize changes for UI testing.
 
 ## Implementation Steps
@@ -22,3 +24,4 @@
 - Harmony Delegation setup requires a validator address before continuing.
 - Delegation installation params include the validator address.
 - HIP setup remains unchanged.
+- Prepare installation succeeds without needing to explicitly accept the input.
