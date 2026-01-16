@@ -1,8 +1,8 @@
 # Harmony Plugins Frontend Update Plan
 
 ## Task Breakdown
-- [ ] Identify Harmony mainnet plugin address fields in network definitions.
-- [ ] Update Harmony HIP and Delegation repo addresses plus allowlist/registry references.
+- [x] Identify Harmony mainnet plugin address fields in network definitions.
+- [x] Update Harmony HIP and Delegation repo addresses plus allowlist/registry references.
 - [ ] Validate TypeScript types and format consistency.
 - [ ] Summarize changes for UI testing.
 
