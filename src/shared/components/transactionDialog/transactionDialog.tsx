@@ -4,7 +4,7 @@ import { useDialogContext } from '@/shared/components/dialogProvider';
 import { useDaoChain } from '@/shared/hooks/useDaoChain';
 import { ChainEntityType, Dialog, IconType } from '@aragon/gov-ui-kit';
 import { useMutation } from '@tanstack/react-query';
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useAccount, useSendTransaction, useSwitchChain, useWaitForTransactionReceipt } from 'wagmi';
 import {
     TransactionStatus,
@@ -57,11 +57,22 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
         [address],
     );
 
+    const [prepareErrorMessage, setPrepareErrorMessage] = useState<string | undefined>();
+
     const {
         mutate: prepareTransactionMutate,
         status: prepareTransactionStatus,
         data: transaction,
-    } = useMutation({ mutationFn: prepareTransaction, onSuccess: nextStep });
+    } = useMutation({
+        mutationFn: prepareTransaction,
+        onMutate: () => setPrepareErrorMessage(undefined),
+        onSuccess: nextStep,
+        onError: (error) => {
+            if (error instanceof Error && error.message.trim().length > 0) {
+                setPrepareErrorMessage(error.message);
+            }
+        },
+    });
 
     const {
         sendTransaction,
@@ -171,14 +182,26 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
             order: (customSteps?.length ?? 0) + index,
             meta: {
                 label: t(`app.shared.transactionDialog.step.${stepId}.label`),
-                errorLabel: t(`app.shared.transactionDialog.step.${stepId}.errorLabel`),
+                errorLabel:
+                    stepId === TransactionDialogStep.PREPARE && prepareErrorMessage
+                        ? prepareErrorMessage
+                        : t(`app.shared.transactionDialog.step.${stepId}.errorLabel`),
                 state: transactionStepStates[stepId],
                 action: transactionStepActions[stepId],
                 auto: stepId === TransactionDialogStep.PREPARE || (autoApprove && stepId === TransactionDialogStep.APPROVE),
                 addon: transactionStepAddon[stepId],
             },
         }));
-    }, [transactionType, customSteps, t, transactionStepStates, transactionStepActions, transactionStepAddon, autoApprove]);
+    }, [
+        transactionType,
+        customSteps,
+        t,
+        transactionStepStates,
+        transactionStepActions,
+        transactionStepAddon,
+        autoApprove,
+        prepareErrorMessage,
+    ]);
 
     // Disable outside click for all transaction dialogs
     useEffect(() => updateOptions({ disableOutsideClick: true }), [updateOptions]);
