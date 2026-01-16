@@ -5,7 +5,7 @@ import { useTranslations } from '@/shared/components/translationsProvider';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { useFormField } from '@/shared/hooks/useFormField';
 import { AddressInput, addressUtils, type IAddressInputResolvedValue } from '@aragon/gov-ui-kit';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useWatch } from 'react-hook-form';
 import type { IHarmonyVotingSetupMembershipForm, IHarmonyVotingSetupMembershipProps } from './harmonyVotingSetupMembership.api';
 
@@ -32,6 +32,10 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
 
     const [addressInput, setAddressInput] = useState<string | undefined>(validatorAddress);
 
+    useEffect(() => {
+        setAddressInput(validatorAddress);
+    }, [validatorAddress]);
+
     const handleAddressChange = (value?: string) => {
         setAddressInput(value);
         const nextValue = value ?? '';
@@ -47,13 +51,13 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
     return (
         <div className="flex w-full flex-col gap-3">
             <AddressInput
+                {...validatorField}
                 placeholder={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.placeholder')}
                 helpText={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText')}
                 value={addressInput}
                 onChange={handleAddressChange}
                 onAccept={handleAddressAccept}
                 chainId={chainId}
-                {...validatorField}
             />
         </div>
     );
