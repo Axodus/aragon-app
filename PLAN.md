@@ -36,3 +36,16 @@
 - Harmony Delegation body subtitle shows TDEL instead of raw subdomain.
 - Harmony proposals can be created with snapshot block input.
 - Proposal slug and process details use processKey when provided.
+
+## E2E Acceptance (New Requirements)
+- [ ] Proposals appear in UI even when metadata is unavailable (placeholder/fallback)
+- [ ] Graceful degradation when backend API is down (no hard crashes)
+- [ ] Uninstall UX shows clear warnings and post-uninstall state
+- [ ] Plugin removal properly cleans up UI state (no stale entries)
+- [ ] Error messages are user-friendly and actionable
+- [ ] Loading states clearly indicate backend operations in progress
+- [ ] Network switching properly reloads plugin configurations
+
+## Related Plans
+- [../AragonOSX/PLAN.md](../AragonOSX/PLAN.md) - E2E reliability epic
+- [../Aragon-app-backend/PLAN.md](../Aragon-app-backend/PLAN.md) - Backend indexing
