@@ -8,5 +8,7 @@ import { tokenActionUtils } from '../../utils/tokenActionUtils';
 export const useTokenActions = (plugin: IDaoPlugin<ITokenPluginSettings>) => {
     const { t } = useTranslations();
 
-    return tokenActionUtils.getTokenActions({ plugin, t });
+    const tokenActions = tokenActionUtils.getTokenActions({ plugin, t });
+
+    return tokenActions;
 };

@@ -82,6 +82,12 @@ export interface IPluginUpdateSetupData extends IPluginSetupData {
 
 export interface IPluginUninstallSetupData extends IPluginSetupData {
     /**
+     * Endereço do PluginSetupProcessor que emitiu o `UninstallationPrepared`.
+     *
+     * Importante para DAOs legados (ex.: Harmony) onde o PSP pode variar por deployment.
+     */
+    pluginSetupProcessorAddress?: Hex;
+    /**
      * The address of the plugin contract to be uninstalled.
      */
     pluginAddress: Hex;

@@ -8,5 +8,7 @@ import { multisigActionUtils } from '../../utils/multisigActionUtils';
 export const useMultisigActions = (plugin: IDaoPlugin<IMultisigPluginSettings>) => {
     const { t } = useTranslations();
 
-    return multisigActionUtils.getMultisigActions({ plugin, t });
+    const multisigActions = multisigActionUtils.getMultisigActions({ plugin, t });
+
+    return multisigActions;
 };

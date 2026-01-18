@@ -31,6 +31,7 @@ export const generatePluginUninstallSetupData = (
     data?: Partial<IPluginUninstallSetupData>,
 ): IPluginUninstallSetupData => ({
     ...generatePluginSetupData(),
+    pluginSetupProcessorAddress: undefined,
     pluginAddress: '0x',
     permissions: [],
     ...data,

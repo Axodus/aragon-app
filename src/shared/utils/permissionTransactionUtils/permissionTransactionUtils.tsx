@@ -30,6 +30,11 @@ class PermissionTransactionUtils {
         executePermission: 'EXECUTE_PERMISSION',
         upgradePluginPermission: 'UPGRADE_PLUGIN_PERMISSION',
         manageSelectorsPermission: 'MANAGE_SELECTORS_PERMISSION',
+
+        // PluginSetupProcessor permissions
+        applyInstallationPermission: 'APPLY_INSTALLATION_PERMISSION',
+        applyUpdatePermission: 'APPLY_UPDATE_PERMISSION',
+        applyUninstallationPermission: 'APPLY_UNINSTALLATION_PERMISSION',
     };
 
     buildGrantPermissionTransaction = (params: IUpdatePermissionParams): ITransactionRequest => {

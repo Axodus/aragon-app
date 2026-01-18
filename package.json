@@ -7,7 +7,13 @@
   "private": true,
   "license": "GPL-3.0",
   "scripts": {
-    "dev": "cross-env pnpm run setup local && next dev --turbopack",
+    "dev": "pnpm run setup local && next dev --turbopack",
+    "setup": "bash scripts/setupEnv.sh",
+    "setup:development": "cross-env pnpm run setup development",
+    "setup:preview": "cross-env pnpm run setup preview",
+    "setup:local": "cross-env pnpm run setup local",
+    "setup:staging": "cross-env pnpm run setup staging",
+    "setup:production": "cross-env pnpm run setup production",
     "build": "NODE_OPTIONS=--max-old-space-size=6144 next build --no-lint",
     "build:analyze": "cross-env ANALYZE=true next build --no-lint",
     "start": "next start",
@@ -19,7 +25,6 @@
     "prettify": "prettier . --check",
     "prettify:fix": "prettier . --write",
     "type-check": "tsc --noEmit",
-    "setup": "./scripts/setupEnv.sh",
     "prepare": "husky"
   },
   "dependencies": {
@@ -40,6 +45,7 @@
     "classnames": "^2.5.1",
     "deepmerge-ts": "^7.1.5",
     "framer-motion": "^12.23.22",
+    "import-in-the-middle": "^1.15.0",
     "isomorphic-dompurify": "2.30.1",
     "jsdom": "^27.1.0",
     "luxon": "^3.7.2",
@@ -50,6 +56,7 @@
     "react-hook-form": "^7.64.0",
     "react-use-measure": "^2.1.7",
     "recharts": "^3.2.1",
+    "require-in-the-middle": "^7.5.2",
     "server-only": "^0.0.1",
     "viem": "^2.38.0",
     "wagmi": "^2.18.1"
@@ -114,7 +121,7 @@
   "engines": {
     "node": ">=22.0.0"
   },
-  "packageManager": "pnpm@10.23.0+sha512.21c4e5698002ade97e4efe8b8b4a89a8de3c85a37919f957e7a0f30f38fbc5bbdd05980ffe29179b2fb6e6e691242e098d945d1601772cad0fef5fb6411e2a4b",
+  "packageManager": "pnpm@10.25.0",
   "pnpm": {
     "overrides": {
       "@reown/appkit": "^1.8.10",

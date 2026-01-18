@@ -10,7 +10,9 @@ class ProposalUtils {
 
         invariant(plugin != null, 'getProposalSlug: proposal plugin not found');
 
-        return `${plugin.slug}-${incrementalId.toString()}`.toUpperCase();
+        const prefix = plugin.processKey && plugin.processKey.trim() !== '' ? plugin.processKey : plugin.slug;
+
+        return `${prefix}-${incrementalId.toString()}`.toUpperCase();
     };
 }
 

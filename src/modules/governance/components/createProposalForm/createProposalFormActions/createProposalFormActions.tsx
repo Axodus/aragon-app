@@ -13,6 +13,11 @@ import type { ICreateProposalFormData, IProposalActionData } from '../createProp
 import { TransferAssetAction } from './proposalActions/transferAssetAction';
 import { UpdateDaoMetadataAction } from './proposalActions/updateDaoMetadataAction';
 import { UpdatePluginMetadataAction } from './proposalActions/updatePluginMetadataAction';
+import { CountryCommitAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryCommitAction';
+import { CountryRegisterAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryRegisterAction';
+import { CountryTransferAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryTransferAction';
+import { CountryRenewAction } from '@/plugins/shared/countryRegistrar/components/countryRegistrarActions/countryRenewAction';
+import { CountryRegistrarActionType } from '@/plugins/shared/countryRegistrar/types';
 
 export interface ICreateProposalFormActionsProps {
     /**
@@ -30,6 +35,10 @@ const coreCustomActionComponents: Record<string, ProposalActionComponent<IPropos
     [actionComposerUtils.transferActionLocked]: TransferAssetAction,
     [ProposalActionType.METADATA_UPDATE]: UpdateDaoMetadataAction,
     [ProposalActionType.METADATA_PLUGIN_UPDATE]: UpdatePluginMetadataAction,
+    [CountryRegistrarActionType.COMMIT]: CountryCommitAction,
+    [CountryRegistrarActionType.REGISTER]: CountryRegisterAction,
+    [CountryRegistrarActionType.TRANSFER]: CountryTransferAction,
+    [CountryRegistrarActionType.RENEW]: CountryRenewAction,
 };
 
 export const CreateProposalFormActions: React.FC<ICreateProposalFormActionsProps> = (props) => {
@@ -183,6 +192,7 @@ export const CreateProposalFormActions: React.FC<ICreateProposalFormActionsProps
                     onAddAction={handleAddAction}
                     allowedActions={allowedActions}
                     daoPermissions={daoPermissions}
+                    controllerInterfaceType={processPlugin?.interfaceType}
                 />
             ) : (
                 <p className="text-primary-400">{t('app.governance.createProposalForm.actions.loading')}</p>

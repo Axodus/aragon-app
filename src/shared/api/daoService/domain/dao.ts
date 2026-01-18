@@ -88,6 +88,10 @@ export interface IDao {
      */
     subdomain: string | null;
     /**
+     * Primary name of the DAO (.country domain).
+     */
+    primaryName: string | null;
+    /**
      * Avatar of the DAO or null when DAO has no avatar.
      */
     avatar: string | null;

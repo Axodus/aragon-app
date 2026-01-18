@@ -1,11 +1,20 @@
 import type { IDao, IDaoPlugin } from '@/shared/api/daoService';
+import { PluginInterfaceType } from '@/shared/api/daoService';
 import type { IAutocompleteInputGroup } from '@/shared/components/forms/autocompleteInput';
 import type { TranslationFunction } from '@/shared/components/translationsProvider';
 import { actionViewRegistry, type ActionViewCreateComponent } from '@/shared/utils/actionViewRegistry';
 import { ipfsUtils } from '@/shared/utils/ipfsUtils';
 import { pluginRegistryUtils } from '@/shared/utils/pluginRegistryUtils';
+import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { addressUtils, IconType } from '@aragon/gov-ui-kit';
 import { zeroAddress } from 'viem';
+import {
+    defaultCountryCommitAction,
+    defaultCountryRegisterAction,
+    defaultCountryRenewAction,
+    defaultCountryTransferAction,
+} from '@/plugins/shared/countryRegistrar/utils/countryRegistrarActionDefinitions';
+import { CountryRegistrarActionType } from '@/plugins/shared/countryRegistrar/types';
 import {
     ProposalActionType,
     type IProposalAction,
@@ -34,14 +43,71 @@ class ActionComposerUtils {
 
     private transferSelector = '0xa9059cbb';
 
-    getDaoActions = ({ dao, permissions, t }: IGetDaoActionsParams) => {
+    getDaoActions = ({ dao, permissions, t, controllerInterfaceType }: IGetDaoActionsParams) => {
         const pluginActions = this.getDaoPluginActions(dao);
         const permissionActions = this.getDaoPermissionActions({ permissions, t });
+        const countryActions = this.getDaoCountryRegistrarActions({ dao, t, controllerInterfaceType });
 
         return {
-            items: [...pluginActions.pluginItems, ...permissionActions.items],
+            // Put DAO-scoped actions early so they appear under the DAO group.
+            items: [...countryActions, ...pluginActions.pluginItems, ...permissionActions.items],
             groups: [...pluginActions.pluginGroups, ...permissionActions.groups],
         };
+    };
+
+    private getDaoCountryRegistrarActions = ({
+        dao,
+        t,
+        controllerInterfaceType,
+    }: Pick<IGetDaoActionsParams, 'dao' | 't' | 'controllerInterfaceType'>) => {
+        if (!dao) {
+            return [];
+        }
+
+        const countryConfig = networkDefinitions[dao.network]?.country;
+        if (!countryConfig) {
+            return [];
+        }
+
+        const isAdminController = controllerInterfaceType === PluginInterfaceType.ADMIN;
+
+        const reserveActions = isAdminController
+            ? [
+                  {
+                      id: `${dao.address}-${CountryRegistrarActionType.COMMIT}`,
+                      name: t('app.actions.countryRegistrar.commit.title'),
+                      icon: IconType.SETTINGS,
+                      groupId: dao.address,
+                      defaultValue: defaultCountryCommitAction(),
+                  },
+                  {
+                      id: `${dao.address}-${CountryRegistrarActionType.REGISTER}`,
+                      name: t('app.actions.countryRegistrar.register.title'),
+                      icon: IconType.PLUS,
+                      groupId: dao.address,
+                      defaultValue: defaultCountryRegisterAction(),
+                  },
+              ]
+            : [];
+
+        // Reserve is only available when the proposal controller is the Admin plugin
+        return [
+            ...reserveActions,
+            {
+                id: `${dao.address}-${CountryRegistrarActionType.RENEW}`,
+                name: t('app.actions.countryRegistrar.renew.title'),
+                icon: IconType.RELOAD,
+                groupId: dao.address,
+                defaultValue: defaultCountryRenewAction(),
+            },
+            {
+                id: `${dao.address}-${CountryRegistrarActionType.TRANSFER}`,
+                name: t('app.actions.countryRegistrar.transfer.title'),
+                icon: IconType.BLOCKCHAIN_SMARTCONTRACT,
+                groupId: dao.address,
+                defaultValue: defaultCountryTransferAction(),
+            },
+        ];
     };
 
     getDaoPluginActions = (dao?: IDao) => {
@@ -180,9 +246,16 @@ class ActionComposerUtils {
         const allItems = [...allNonGroupItems, ...finalCustomItems, ...finalNativeItems];
 
         if (excludeActionTypes?.length) {
-            return allItems.filter(
-                ({ defaultValue }) => defaultValue?.type == null || !excludeActionTypes.includes(defaultValue.type),
-            );
+            const shouldExclude = (defaultValue?: IProposalAction | IProposalAction[]) => {
+                if (defaultValue == null) {
+                    return false;
+                }
+
+                const values = Array.isArray(defaultValue) ? defaultValue : [defaultValue];
+                return values.some((v) => v?.type != null && excludeActionTypes.includes(v.type));
+            };
+
+            return allItems.filter(({ defaultValue }) => !shouldExclude(defaultValue));
         }
 
         return allItems;
@@ -277,7 +350,12 @@ class ActionComposerUtils {
     private getFunctionSelector = (item: IActionComposerInputItem) => {
         const { defaultValue, id, info } = item;
 
-        if (defaultValue?.inputData == null || id === ProposalActionType.TRANSFER) {
+        // Multi-action items (e.g. commit + register) don't map to a single selector.
+        if (Array.isArray(defaultValue) || id === ProposalActionType.TRANSFER) {
+            return undefined;
+        }
+
+        if (defaultValue == null) {
             return undefined;
         }
 

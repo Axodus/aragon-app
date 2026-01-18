@@ -5,12 +5,12 @@ describe('ipfs utils', () => {
         it('coverts a cid with the ipfs:// format into a src', () => {
             const cid = 'abc123';
             const processedCid = `ipfs://${cid}`;
-            expect(ipfsUtils.cidToSrc(processedCid)).toContain(`${ipfsUtils['ipfsGateway']}/ipfs/${cid}`);
+            expect(ipfsUtils.cidToSrc(processedCid)).toContain(`https://amethyst-blank-puma-863.mypinata.cloud/ipfs/${cid}`);
         });
 
         it('coverts a simple ipfs cid into a src', () => {
             const cid = 'qrt855';
-            expect(ipfsUtils.cidToSrc(cid)).toContain(`${ipfsUtils['ipfsGateway']}/ipfs/${cid}`);
+            expect(ipfsUtils.cidToSrc(cid)).toContain(`https://amethyst-blank-puma-863.mypinata.cloud/ipfs/${cid}`);
         });
 
         it('returns undefined when cid is null or undefined', () => {
@@ -55,17 +55,17 @@ describe('ipfs utils', () => {
 
     describe('srcToUri', () => {
         it('converts a valid IPFS gateway URL to an ipfs:// URI', () => {
-            const src = 'https://aragon-1.mypinata.cloud/ipfs/abc123';
+            const src = 'https://amethyst-blank-puma-863.mypinata.cloud/ipfs/abc123';
             expect(ipfsUtils.srcToUri(src)).toEqual('ipfs://abc123');
         });
 
         it('converts a valid IPFS gateway URL with query params to an ipfs:// URI', () => {
-            const src = 'https://aragon-1.mypinata.cloud/ipfs/abc123?img-width=80&img-height=80';
+            const src = 'https://amethyst-blank-puma-863.mypinata.cloud/ipfs/abc123?img-width=80&img-height=80';
             expect(ipfsUtils.srcToUri(src)).toEqual('ipfs://abc123');
         });
 
         it('returns undefined if the pathname is empty', () => {
-            const src = 'https://aragon-1.mypinata.cloud/ipfs/';
+            const src = 'https://amethyst-blank-puma-863.mypinata.cloud/ipfs/';
             expect(ipfsUtils.srcToUri(src)).toBeUndefined();
         });
     });

@@ -18,4 +18,5 @@ export const generateDao = (dao?: Partial<IDao>): IDao => ({
     blockTimestamp: 0,
     transactionHash: '',
     ...dao,
+    primaryName: dao?.primaryName ?? null,
 });

@@ -2,6 +2,7 @@ import { adminPlugin } from '@/plugins/adminPlugin/constants/adminPlugin';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { ipfsUtils } from '@/shared/utils/ipfsUtils';
 import { transactionUtils, type ITransactionRequest } from '@/shared/utils/transactionUtils';
+import { getPublicClient } from '@/shared/utils/networkUtils/publicClient';
 import {
     encodeAbiParameters,
     encodeFunctionData,
@@ -43,15 +44,62 @@ class PublishDaoDialogUtils {
         };
     };
 
-    buildTransaction = (params: IBuildTransactionParams): Promise<ITransactionRequest> => {
+    buildTransaction = async (params: IBuildTransactionParams): Promise<ITransactionRequest> => {
         const { values, metadataCid, connectedAddress } = params;
         const { network, ens } = values;
 
         const { daoFactory } = networkDefinitions[network].addresses;
         const adminPluginRepo = adminPlugin.repositoryAddresses[network];
 
+        // Basic safety checks to avoid sending failing transactions
+        const ZERO = '0x0000000000000000000000000000000000000000' as const;
+        if (!daoFactory || daoFactory.toLowerCase() === ZERO) {
+            throw new Error(
+                `DAOFactory address not configured for network ${network}. Please set it in networkDefinitions.addresses.daoFactory.`,
+            );
+        }
+        if (!adminPluginRepo || adminPluginRepo.toLowerCase() === ZERO) {
+            throw new Error(
+                `Admin PluginRepo address not configured for network ${network}. ` +
+                    `Please set it in adminPlugin.repositoryAddresses and ensure the repo is deployed + registered in the PSP registry.`,
+            );
+        }
+
         const daoSettings = this.buildDaoSettingsParams(metadataCid, ens);
-        const pluginSettings = this.buildPluginSettingsParams(adminPluginRepo, connectedAddress);
+        const client = getPublicClient(network);
+
+        // Admin é obrigatório no fluxo de criação do DAO.
+        // Em Harmony, simulações podem falhar por instabilidade de RPC; neste caso fazemos bypass da simulação,
+        // mas ainda enviamos a criação com Admin (nunca criamos DAO sem Admin).
+        const pluginSettings: readonly {
+            pluginSetupRef: { pluginSetupRepo: Hex; versionTag: { release: number; build: number } };
+            data: Hex;
+        }[] = await this.buildRequiredAdminPluginSettings(
+            network,
+            adminPluginRepo as Hex,
+            connectedAddress,
+            daoFactory as Hex,
+            daoSettings,
+        );
+
+        // Simulação prévia para capturar motivo de revert antes de enviar.
+        // No Harmony, se falhar, faz bypass e envia mesmo (RPC costuma ser volátil e não lidar bem com simulações).
+        try {
+            await client.simulateContract({
+                abi: daoFactoryAbi,
+                address: daoFactory as Hex,
+                functionName: 'createDao',
+                args: [daoSettings, pluginSettings],
+                account: connectedAddress as Hex,
+            });
+        } catch (err) {
+            const isHarmony = network === 'harmony-mainnet';
+            if (isHarmony) {
+                console.warn('Harmony simulate bypass: enviando sem simulação devido ao RPC/revert:', err);
+            } else {
+                throw err;
+            }
+        }
 
         const transactionData = encodeFunctionData({
             abi: daoFactoryAbi,
@@ -61,7 +109,7 @@ class PublishDaoDialogUtils {
 
         const transaction = { to: daoFactory, data: transactionData, value: BigInt(0) };
 
-        return Promise.resolve(transaction);
+        return transaction;
     };
 
     getDaoAddress = (receipt: TransactionReceipt) => {
@@ -90,21 +138,146 @@ class PublishDaoDialogUtils {
         return createDaoParams;
     };
 
-    private buildPluginSettingsParams = (adminPluginRepo: Hex, connectedAddress: string) => {
+    private buildPluginSettingsParams = (
+        adminPluginRepo: Hex,
+        connectedAddress: string,
+        versionTag: { release: number; build: number },
+        target: Hex,
+        operation: 0 | 1,
+    ) => {
         const pluginSettingsData = encodeAbiParameters(adminPluginSetupAbi, [
             connectedAddress as Hex,
-            { target: zeroAddress, operation: 0 },
+            { target, operation },
         ]);
 
         const pluginSettingsParams = {
             pluginSetupRef: {
-                pluginSetupRepo: adminPluginRepo,
-                versionTag: adminPlugin.installVersion,
+                pluginSetupRepo: adminPluginRepo as Hex,
+                versionTag,
             },
             data: pluginSettingsData,
-        };
+        } as const;
 
-        return [pluginSettingsParams];
+        return [pluginSettingsParams] as const;
+    };
+
+    private getAdminVersionCandidates = (network: ICreateDaoFormData['network']) => {
+        const isHarmony = network === 'harmony-mainnet';
+        return isHarmony
+            ? [
+                  { release: 1, build: 1 },
+                  { release: 1, build: 2 },
+                  { release: 1, build: 0 },
+              ]
+            : [
+                  { release: adminPlugin.installVersion.release, build: adminPlugin.installVersion.build },
+                  { release: 1, build: 2 },
+                  { release: 1, build: 1 },
+                  { release: 1, build: 0 },
+              ];
+    };
+
+    private async ensureRepoExists(
+        network: ICreateDaoFormData['network'],
+        adminPluginRepo: Hex,
+    ): Promise<void> {
+        const client = getPublicClient(network);
+        const repoCode = await client.getCode({ address: adminPluginRepo });
+        if (!repoCode || repoCode === '0x') {
+            throw new Error(
+                `O endereço do Admin PluginRepo (${adminPluginRepo}) não possui código na rede ${network}. Verifique se foi implantado via PluginRepoFactory e atualize o mapeamento/endereço.`,
+            );
+        }
+    }
+
+    private async buildRequiredAdminPluginSettings(
+        network: ICreateDaoFormData['network'],
+        adminPluginRepo: Hex,
+        connectedAddress: string,
+        daoFactory: Hex,
+        daoSettings: ReturnType<PublishDaoDialogUtils['buildDaoSettingsParams']>,
+    ) {
+        const isHarmony = network === 'harmony-mainnet';
+        try {
+            return await this.findValidAdminPluginSettings(
+                network,
+                adminPluginRepo,
+                connectedAddress,
+                daoFactory,
+                daoSettings,
+            );
+        } catch (err) {
+            if (!isHarmony) throw err;
+
+            const candidates = this.getAdminVersionCandidates(network);
+            const fallbackTag = candidates[0];
+            if (!fallbackTag) throw err;
+
+            await this.ensureRepoExists(network, adminPluginRepo);
+
+            const { globalExecutor } = networkDefinitions[network].addresses;
+            const target = (globalExecutor || daoFactory) as Hex;
+            const operation: 0 | 1 = globalExecutor ? 1 : 0;
+
+            console.warn(
+                `Admin plugin: falha ao simular em Harmony. Usando fallback ${fallbackTag.release}.${fallbackTag.build} sem simulação.`,
+                err,
+            );
+
+            return this.buildPluginSettingsParams(
+                adminPluginRepo,
+                connectedAddress,
+                fallbackTag,
+                target,
+                operation,
+            );
+        }
+    }
+
+    private findValidAdminPluginSettings = async (
+        network: ICreateDaoFormData['network'],
+        adminPluginRepo: Hex,
+        connectedAddress: string,
+        daoFactory: Hex,
+        daoSettings: ReturnType<PublishDaoDialogUtils['buildDaoSettingsParams']>,
+    ) => {
+        const candidates = this.getAdminVersionCandidates(network);
+        const errors: string[] = [];
+
+        await this.ensureRepoExists(network, adminPluginRepo);
+
+        // Define um target válido (não-zero) para a configuração do plugin
+        const { globalExecutor } = networkDefinitions[network].addresses;
+        const target = (globalExecutor || daoFactory) as Hex;
+        const operation: 0 | 1 = globalExecutor ? 1 : 0;
+
+        for (const tag of candidates) {
+            const pluginSettings = this.buildPluginSettingsParams(
+                adminPluginRepo,
+                connectedAddress,
+                tag,
+                target,
+                operation,
+            );
+            try {
+                await getPublicClient(network).simulateContract({
+                    abi: daoFactoryAbi,
+                    address: daoFactory,
+                    functionName: 'createDao',
+                    args: [daoSettings, pluginSettings],
+                    account: connectedAddress as Hex,
+                });
+                return pluginSettings;
+            } catch (err: unknown) {
+                errors.push(err instanceof Error ? err.message : String(err));
+            }
+        }
+
+        throw new Error(
+            `Não foi possível preparar a transação de criação do DAO. Tentativas de versão: ${candidates
+                .map((c) => `${c.release}.${c.build}`)
+                .join(', ')}. Erros: ${errors.join(' | ')}`,
+        );
     };
 }
 

@@ -6,5 +6,7 @@ import { sppActionUtils } from '../../utils/sppActionUtils';
 export const useSppActions = (plugin: IDaoPlugin<ISppPluginSettings>) => {
     const { t } = useTranslations();
 
-    return sppActionUtils.getSppActions({ plugin, t });
+    const sppActions = sppActionUtils.getSppActions({ plugin, t });
+
+    return sppActions;
 };

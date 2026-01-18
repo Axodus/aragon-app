@@ -1,4 +1,4 @@
-import { PluginInterfaceType, useDao } from '@/shared/api/daoService';
+import { Network, PluginInterfaceType, useDao } from '@/shared/api/daoService';
 import { usePinJson } from '@/shared/api/ipfsService/mutations';
 import { TransactionType } from '@/shared/api/transactionService';
 import { useBlockNavigationContext } from '@/shared/components/blockNavigationContext';
@@ -13,13 +13,19 @@ import {
 import { useTranslations } from '@/shared/components/translationsProvider';
 import { useStepper } from '@/shared/hooks/useStepper';
 import { daoUtils } from '@/shared/utils/daoUtils';
+import { networkDefinitions } from '@/shared/constants/networkDefinitions';
+import { permissionManagerAbi } from '@/shared/utils/permissionTransactionUtils/abi/permissionManagerAbi';
+import { permissionTransactionUtils } from '@/shared/utils/permissionTransactionUtils';
 import { invariant, ProposalDataListItem, ProposalStatus } from '@aragon/gov-ui-kit';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAccount } from 'wagmi';
-import type { IPublishProposalDialogProps } from './publishProposalDialog.api';
+import { useReadContract, useSendTransaction, useWaitForTransactionReceipt } from 'wagmi';
+import type { IProposalCreateAction, IPublishProposalDialogProps } from './publishProposalDialog.api';
 import { publishProposalDialogUtils } from './publishProposalDialogUtils';
+import { decodeFunctionData, encodeFunctionData, keccak256, toBytes, type Hex, zeroHash } from 'viem';
 
 export enum PublishProposalStep {
+    GRANT_PSP_ROOT_PERMISSION = 'GRANT_PSP_ROOT_PERMISSION',
     PIN_METADATA = 'PIN_METADATA',
 }
 
@@ -46,12 +52,193 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
 
     const { data: pinJsonData, status, mutate: pinJson } = usePinJson({ onSuccess: stepper.nextStep });
 
+    const [grantRootTxHash, setGrantRootTxHash] = useState<Hex | undefined>(undefined);
+    const { sendTransaction, status: grantRootSendStatus } = useSendTransaction({
+        mutation: {
+            onSuccess: (hash: Hex) => setGrantRootTxHash(hash),
+        },
+    });
+    const { status: grantRootWaitStatus, error: grantRootWaitError } = useWaitForTransactionReceipt({
+        hash: grantRootTxHash,
+    });
+
+    const rootPermissionId = useMemo(
+        () => keccak256(toBytes(permissionTransactionUtils.permissionIds.rootPermission)),
+        [],
+    );
+
+    const proposalNeedsPspRootGrant = useMemo(() => {
+        if (dao == null || dao.network !== Network.HARMONY_MAINNET) {
+            return false;
+        }
+
+        const daoAddress = dao.address as Hex;
+        const pspAddress = networkDefinitions[dao.network as Network].addresses.pluginSetupProcessor as Hex;
+
+        if (!daoAddress?.startsWith('0x') || !pspAddress?.startsWith('0x')) {
+            return false;
+        }
+
+        return proposal.actions.some((action: IProposalCreateAction) => {
+            if (action.to == null || action.data == null) {
+                return false;
+            }
+
+            // Ações de grant/revoke no DAO são a causa raiz do revert no Step 2 (Harmony)
+            // quando executadas por um Admin plugin que ainda não tem ROOT no DAO.
+            try {
+                const decoded = decodeFunctionData({ abi: permissionManagerAbi, data: action.data as Hex });
+
+                if (decoded.functionName !== 'grant') {
+                    return false;
+                }
+
+                const [where, who, permissionId] = decoded.args as readonly [Hex, Hex, Hex];
+                return (
+                    where.toLowerCase() === daoAddress.toLowerCase() &&
+                    who.toLowerCase() === pspAddress.toLowerCase() &&
+                    permissionId.toLowerCase() === rootPermissionId.toLowerCase()
+                );
+            } catch {
+                return false;
+            }
+        });
+    }, [dao, proposal.actions, rootPermissionId]);
+
+    const shouldWrapActionsInDaoExecute =
+        dao?.network === Network.HARMONY_MAINNET && plugin.interfaceType === PluginInterfaceType.ADMIN;
+
+    const shouldHandleHarmonyAdminRootGrant =
+        !shouldWrapActionsInDaoExecute &&
+        dao?.network === Network.HARMONY_MAINNET &&
+        plugin.interfaceType === PluginInterfaceType.ADMIN &&
+        proposalNeedsPspRootGrant;
+
+    const pspAddress = useMemo(() => {
+        if (dao == null) {
+            return undefined;
+        }
+
+        return networkDefinitions[dao.network as Network].addresses.pluginSetupProcessor as Hex;
+    }, [dao]);
+
+    const { data: isPspRootGranted } = useReadContract({
+        address: dao?.address as Hex,
+        abi: permissionManagerAbi,
+        functionName: 'isGranted',
+        args: [dao?.address as Hex, pspAddress as Hex, rootPermissionId, '0x'],
+        query: {
+            enabled:
+                shouldHandleHarmonyAdminRootGrant &&
+                dao?.address?.startsWith('0x') &&
+                pspAddress != null &&
+                (pspAddress as string).startsWith('0x'),
+        },
+    });
+
+    const grantPspRootStepState = useMemo(() => {
+        if (!shouldHandleHarmonyAdminRootGrant) {
+            return 'success' as const;
+        }
+
+        if (isPspRootGranted === true) {
+            return 'success' as const;
+        }
+
+        if (grantRootSendStatus === 'error' || grantRootWaitStatus === 'error') {
+            return 'error' as const;
+        }
+
+        if (grantRootSendStatus === 'pending' || grantRootWaitStatus === 'pending') {
+            return 'pending' as const;
+        }
+
+        return 'idle' as const;
+    }, [shouldHandleHarmonyAdminRootGrant, isPspRootGranted, grantRootSendStatus, grantRootWaitStatus]);
+
     const handlePinJson = useCallback(
         (params: ITransactionDialogActionParams) => {
             const proposalMetadata = publishProposalDialogUtils.prepareMetadata(proposal);
             pinJson({ body: proposalMetadata }, params);
         },
         [pinJson, proposal],
+    );
+
+    const handleGrantPspRootPermission = useCallback(
+        (params: ITransactionDialogActionParams) => {
+            invariant(dao != null, 'PublishProposalDialog: DAO must be loaded.');
+            invariant(pspAddress != null, 'PublishProposalDialog: PSP address must be loaded.');
+
+            // Se já tem ROOT, segue o fluxo.
+            if (!shouldHandleHarmonyAdminRootGrant || isPspRootGranted === true) {
+                stepper.nextStep();
+                return;
+            }
+
+            const transaction = permissionTransactionUtils.buildGrantPermissionTransaction({
+                where: dao.address as Hex,
+                who: pspAddress,
+                what: permissionTransactionUtils.permissionIds.rootPermission,
+                to: dao.address as Hex,
+            });
+
+            sendTransaction(transaction, params);
+        },
+        [dao, pspAddress, shouldHandleHarmonyAdminRootGrant, isPspRootGranted, stepper, sendTransaction],
+    );
+
+    useEffect(() => {
+        if (!shouldHandleHarmonyAdminRootGrant) {
+            return;
+        }
+
+        if (grantRootWaitError) {
+            // O TransactionDialog já faz monitoramento de erro por stepId; aqui só evitamos loop.
+            return;
+        }
+
+        if (grantRootWaitStatus === 'success') {
+            stepper.nextStep();
+        }
+    }, [shouldHandleHarmonyAdminRootGrant, grantRootWaitStatus, grantRootWaitError, stepper]);
+
+    useEffect(() => {
+        if (!shouldHandleHarmonyAdminRootGrant) {
+            return;
+        }
+
+        if (isPspRootGranted === true) {
+            stepper.nextStep();
+        }
+    }, [shouldHandleHarmonyAdminRootGrant, isPspRootGranted, stepper]);
+
+    const daoExecuteAbi = useMemo(
+        () =>
+            [
+                {
+                    type: 'function',
+                    name: 'execute',
+                    stateMutability: 'nonpayable',
+                    inputs: [
+                        { name: '_callId', type: 'bytes32' },
+                        {
+                            name: '_actions',
+                            type: 'tuple[]',
+                            components: [
+                                { name: 'to', type: 'address' },
+                                { name: 'value', type: 'uint256' },
+                                { name: 'data', type: 'bytes' },
+                            ],
+                        },
+                        { name: '_allowFailureMap', type: 'uint256' },
+                    ],
+                    outputs: [
+                        { name: 'execResults', type: 'bytes[]' },
+                        { name: 'failureMap', type: 'uint256' },
+                    ],
+                },
+            ] as const,
+        [],
     );
 
     const handlePrepareTransaction = async () => {
@@ -61,7 +248,30 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         const { actions } = proposal;
 
         const processedActions = await publishProposalDialogUtils.prepareActions({ actions, prepareActions });
-        const processedProposal = { ...proposal, actions: processedActions };
+
+        const wrappedActions = shouldWrapActionsInDaoExecute
+            ? ([
+                  {
+                      to: dao?.address as Hex,
+                      value: BigInt(0),
+                      data: encodeFunctionData({
+                          abi: daoExecuteAbi,
+                          functionName: 'execute',
+                          args: [
+                              zeroHash,
+                              processedActions.map((a) => ({
+                                  to: a.to as Hex,
+                                  value: typeof a.value === 'bigint' ? a.value : BigInt(a.value),
+                                  data: a.data as Hex,
+                              })),
+                              BigInt(0),
+                          ],
+                      }),
+                  },
+              ] satisfies IProposalCreateAction[])
+            : processedActions;
+
+        const processedProposal = { ...proposal, actions: wrappedActions };
 
         return publishProposalDialogUtils.buildTransaction({
             proposal: processedProposal,
@@ -80,9 +290,28 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
 
     const customSteps: Array<ITransactionDialogStep<PublishProposalStep>> = useMemo(
         () => [
+            ...(shouldHandleHarmonyAdminRootGrant
+                ? [
+                      {
+                          id: PublishProposalStep.GRANT_PSP_ROOT_PERMISSION,
+                          order: 0,
+                          meta: {
+                              label: t(
+                                  `app.governance.publishProposalDialog.step.${PublishProposalStep.GRANT_PSP_ROOT_PERMISSION}.label`,
+                              ),
+                              errorLabel: t(
+                                  `app.governance.publishProposalDialog.step.${PublishProposalStep.GRANT_PSP_ROOT_PERMISSION}.errorLabel`,
+                              ),
+                              state: grantPspRootStepState,
+                              action: handleGrantPspRootPermission,
+                              auto: true,
+                          },
+                      },
+                  ]
+                : []),
             {
                 id: PublishProposalStep.PIN_METADATA,
-                order: 0,
+                order: shouldHandleHarmonyAdminRootGrant ? 1 : 0,
                 meta: {
                     label: t(`app.governance.publishProposalDialog.step.${PublishProposalStep.PIN_METADATA}.label`),
                     errorLabel: t(
@@ -94,7 +323,14 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
                 },
             },
         ],
-        [status, handlePinJson, t],
+        [
+            shouldHandleHarmonyAdminRootGrant,
+            grantPspRootStepState,
+            handleGrantPspRootPermission,
+            status,
+            handlePinJson,
+            t,
+        ],
     );
 
     const namespace = translationNamespace ?? 'app.governance.publishProposalDialog';
@@ -108,6 +344,7 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
             stepper={stepper}
             customSteps={customSteps}
             prepareTransaction={handlePrepareTransaction}
+            autoApprove={dao?.network === Network.HARMONY_MAINNET}
             network={dao?.network}
             transactionType={TransactionType.PROPOSAL_CREATE}
             indexingFallbackUrl={daoUtils.getDaoUrl(dao, 'proposals')}

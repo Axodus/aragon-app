@@ -29,8 +29,8 @@ describe('adminTransaction utils', () => {
             const result = adminTransactionUtils.buildCreateProposalData({ metadata, actions, proposal, plugin });
             expect(encodeFunctionDataSpy).toHaveBeenCalledWith({
                 abi: adminPluginAbi,
-                functionName: 'createProposal',
-                args: [metadata, actions, BigInt(0), BigInt(0), ''],
+                functionName: 'executeProposal',
+                args: [metadata, actions, BigInt(0)],
             });
             expect(result).toEqual(transactionData);
         });

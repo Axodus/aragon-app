@@ -67,13 +67,22 @@ describe('proxyBackend utils', () => {
 
     describe('buildBackendUrl', () => {
         it('returns the URL of the backend service', () => {
-            const href = 'http://dev.aragon.app/api/backend/dao/0x1234?network=mainnet';
-            process.env.ARAGON_BACKEND_URL = 'https://test-backend.com';
+            const href = 'https://api.whostler.com/api/backend/dao/0x1234?network=harmony-mainnet';
+            process.env.ARAGON_BACKEND_URL = 'https://api.whostler.com';
             const testClass = new ProxyBackendUtils();
             const request = generateNextRequest({ nextUrl: { href } as NextURL });
             expect(testClass['buildBackendUrl'](request)).toEqual(
-                'https://test-backend.com/dao/0x1234?network=mainnet',
+                'https://api.whostler.com/dao/0x1234?network=harmony-mainnet',
             );
+        });
+
+        it('falls back to NEXT_PUBLIC_ARAGON_BACKEND_URL when ARAGON_BACKEND_URL is not set', () => {
+            const href = 'https://governance.country/api/backend/v2/daos?page=1&pageSize=10';
+            delete process.env.ARAGON_BACKEND_URL;
+            process.env.NEXT_PUBLIC_ARAGON_BACKEND_URL = 'https://api.whostler.com';
+            const testClass = new ProxyBackendUtils();
+            const request = generateNextRequest({ nextUrl: { href } as NextURL });
+            expect(testClass['buildBackendUrl'](request)).toEqual('https://api.whostler.com/v2/daos?page=1&pageSize=10');
         });
     });
 });

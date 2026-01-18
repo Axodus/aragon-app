@@ -89,8 +89,21 @@ export const PreparePluginUninstallationDialog: React.FC<IPreparePluginUninstall
     );
 
     useEffect(() => {
-        if (uninstallationPreparedEventLog && !hasProposalDialogBeenOpened.current) {
+        if (!uninstallationPreparedEventLog || hasProposalDialogBeenOpened.current) {
+            return;
+        }
+
+        // Quando a desinstalação já foi preparada (por outra sessão), precisamos garantir que o
+        // Apply aponte para o *mesmo* PSP que gerou o preparedSetupId (em Harmony isso pode variar).
+        void (async () => {
+            if (dao == null) {
+                return;
+            }
+
             const { pluginAddress, pluginSetupRepo, permissions, build, release } = uninstallationPreparedEventLog;
+            const pluginSetupProcessorAddress =
+                await preparePluginUninstallationDialogUtils.resolvePluginSetupProcessorAddress(dao);
+
             const setupData: IPluginUninstallSetupData = {
                 pluginSetupRepo,
                 pluginAddress,
@@ -99,10 +112,12 @@ export const PreparePluginUninstallationDialog: React.FC<IPreparePluginUninstall
                     build: Number(build),
                     release: Number(release),
                 },
+                pluginSetupProcessorAddress,
             };
+
             openProposalPublishDialog(setupData);
-        }
-    }, [openProposalPublishDialog, uninstallationPreparedEventLog]);
+        })();
+    }, [dao, openProposalPublishDialog, uninstallationPreparedEventLog]);
 
     if (uninstallationPreparedEventLog) {
         return null;

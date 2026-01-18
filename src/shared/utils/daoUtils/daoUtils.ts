@@ -98,7 +98,7 @@ class DaoUtils {
      * @returns The parsed subdomain in Title Case.
      */
     parsePluginSubdomain = (subdomain: string): string => {
-        const parts = subdomain.split('-');
+        const parts = subdomain.includes('-') ? subdomain.split('-') : subdomain.split(/(?=[A-Z])/);
 
         return parts.map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
     };
@@ -149,7 +149,7 @@ class DaoUtils {
     resolveDaoId = async (params: IDaoPageParams) => {
         const { addressOrEns, network } = params;
 
-        if (addressOrEns.endsWith('.eth')) {
+        if (addressOrEns.endsWith('.eth') || addressOrEns.endsWith('.country')) {
             const dao = await daoService.getDaoByEns({ urlParams: { network, ens: addressOrEns } });
 
             return `${network}-${dao.address}`;

@@ -11,7 +11,7 @@ export interface IActionComposerInputItem<TMeta = undefined> extends IAutocomple
     /**
      * Default value for the action.
      */
-    defaultValue?: IProposalAction;
+    defaultValue?: IProposalAction | IProposalAction[];
 }
 
 export interface IActionComposerInputProps<TMeta = undefined>

@@ -5,7 +5,9 @@ import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { daoUtils } from '@/shared/utils/daoUtils';
 import { dataListUtils } from '@/shared/utils/dataListUtils';
 import { ipfsUtils } from '@/shared/utils/ipfsUtils';
+import type { Network } from '@/shared/api/daoService';
 import {
+    Button,
     DaoDataListItem,
     DataListContainer,
     DataListFilter,
@@ -15,9 +17,13 @@ import {
     useDebouncedValue,
 } from '@aragon/gov-ui-kit';
 import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
     useDaoList,
     useDaoListByMemberAddress,
+    useArchivedDaoList,
+    daoExplorerAdminService,
+    DaoExplorerServiceKey,
     type IGetDaoListByMemberAddressParams,
     type IGetDaoListParams,
 } from '../../api/daoExplorerService';
@@ -27,6 +33,10 @@ export interface IDaoListProps {
      * Initial parameters to use for fetching the list of DAOs.
      */
     initialParams?: IGetDaoListParams;
+    /**
+     * Parameters to use for fetching the list of archived (hidden) DAOs. Overrides other params when set.
+     */
+    archivedParams?: IGetDaoListParams;
     /**
      * Parameters to use for fetching the list of DAOs for a given address. Overrides the initialParams when set.
      */
@@ -39,15 +49,20 @@ export interface IDaoListProps {
      * Show DAO search input.
      */
     showSearch?: boolean;
+
+    /**
+     * Enables root-only archive/unarchive actions in the list.
+     */
+    enableRootActions?: boolean;
 }
 
 export const DaoList: React.FC<IDaoListProps> = (props) => {
-    const { initialParams, memberParams, layoutClassNames, showSearch } = props;
+    const { initialParams, archivedParams, memberParams, layoutClassNames, showSearch, enableRootActions } = props;
     const { t } = useTranslations();
 
     invariant(
-        initialParams != null || memberParams != null,
-        'DaoList: either initialParams or memberParams must be provided',
+        archivedParams != null || initialParams != null || memberParams != null,
+        'DaoList: one of archivedParams, initialParams or memberParams must be provided',
     );
 
     const [searchValue, setSearchValue] = useState<string>();
@@ -55,7 +70,12 @@ export const DaoList: React.FC<IDaoListProps> = (props) => {
 
     const defaultResult = useDaoList(
         { ...initialParams, queryParams: { ...initialParams?.queryParams, search: searchValueDebounced } },
-        { enabled: initialParams != null && memberParams == null },
+        { enabled: initialParams != null && memberParams == null && archivedParams == null },
+    );
+
+    const archivedResult = useArchivedDaoList(
+        { ...archivedParams, queryParams: { ...archivedParams?.queryParams, search: searchValueDebounced } },
+        { enabled: archivedParams != null },
     );
 
     const memberResult = useDaoListByMemberAddress(
@@ -64,14 +84,17 @@ export const DaoList: React.FC<IDaoListProps> = (props) => {
     );
 
     const { data, fetchNextPage, status, fetchStatus, isFetchingNextPage } =
-        memberParams != null ? memberResult : defaultResult;
+        archivedParams != null ? archivedResult : memberParams != null ? memberResult : defaultResult;
 
     const daoList = data?.pages.flatMap((page) => page.data);
 
     const state = dataListUtils.queryToDataListState({ status, fetchStatus, isFetchingNextPage });
 
     const pageSize =
-        initialParams?.queryParams.pageSize ?? memberParams?.queryParams.pageSize ?? data?.pages[0]?.metadata?.pageSize;
+        archivedParams?.queryParams.pageSize ??
+        initialParams?.queryParams.pageSize ??
+        memberParams?.queryParams.pageSize ??
+        data?.pages[0]?.metadata?.pageSize;
 
     const itemsCount = data?.pages[0]?.metadata?.totalRecords;
 
@@ -84,6 +107,26 @@ export const DaoList: React.FC<IDaoListProps> = (props) => {
         heading: t('app.explore.daoList.errorState.heading'),
         description: t('app.explore.daoList.errorState.description'),
     };
+
+    const queryClient = useQueryClient();
+    const { mutate: setVisibilityStatus, isPending: isSettingVisibility } = useMutation({
+        mutationFn: (params: { daoAddress: string; network: Network; status: 'true' | 'false' }) =>
+            daoExplorerAdminService.setDaoVisibilityStatus({
+                urlParams: { daoAddress: params.daoAddress, network: params.network, status: params.status },
+                queryParams: {},
+            }),
+        onSuccess: async () => {
+            await Promise.all([
+                queryClient.invalidateQueries({ queryKey: [DaoExplorerServiceKey.DAO_LIST] }),
+                queryClient.invalidateQueries({ queryKey: [DaoExplorerServiceKey.ARCHIVED_DAO_LIST] }),
+                queryClient.invalidateQueries({ queryKey: [DaoExplorerServiceKey.DAO_LIST_BY_MEMBER_ADDRESS] }),
+            ]);
+        },
+    });
+
+    const showVisibilityAction =
+        enableRootActions === true && (archivedParams != null || (memberParams == null && initialParams != null));
+    const isArchivedList = archivedParams != null;
 
     return (
         <DataListRoot
@@ -107,16 +150,40 @@ export const DaoList: React.FC<IDaoListProps> = (props) => {
                 layoutClassName={layoutClassNames ?? 'grid grid-cols-1 lg:grid-cols-2'}
             >
                 {daoList?.map((dao) => (
-                    <DaoDataListItem.Structure
-                        key={dao.id}
-                        href={daoUtils.getDaoUrl(dao, 'dashboard')}
-                        ens={daoUtils.getDaoEns(dao)}
-                        address={dao.address}
-                        name={dao.name}
-                        description={dao.description}
-                        network={networkDefinitions[dao.network].name}
-                        logoSrc={ipfsUtils.cidToSrc(dao.avatar)}
-                    />
+                    <div key={dao.id} className="relative">
+                        <DaoDataListItem.Structure
+                            href={daoUtils.getDaoUrl(dao, 'dashboard')}
+                            ens={daoUtils.getDaoEns(dao)}
+                            address={dao.address}
+                            name={dao.name}
+                            description={dao.description}
+                            network={networkDefinitions[dao.network].name}
+                            logoSrc={ipfsUtils.cidToSrc(dao.avatar)}
+                        />
+                        {showVisibilityAction && (
+                            <div className="absolute right-3 top-3 z-10">
+                                <Button
+                                    variant="secondary"
+                                    size="sm"
+                                    disabled={isSettingVisibility}
+                                    onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+
+                                        setVisibilityStatus({
+                                            daoAddress: dao.address,
+                                            network: dao.network,
+                                            status: isArchivedList ? 'true' : 'false',
+                                        });
+                                    }}
+                                >
+                                    {isArchivedList
+                                        ? t('app.explore.daoList.actions.restore')
+                                        : t('app.explore.daoList.actions.archive')}
+                                </Button>
+                            </div>
+                        )}
+                    </div>
                 ))}
             </DataListContainer>
             <DataListPagination />

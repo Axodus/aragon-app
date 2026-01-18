@@ -1,5 +1,6 @@
 import { generateDao, generatePaginatedResponse, generateReactQueryInfiniteResultSuccess } from '@/shared/testUtils';
 import { testLogger } from '@/test/utils';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import * as daoExplorerService from '../../api/daoExplorerService';
 import { DaoList, type IDaoListProps } from './daoList';
@@ -7,17 +8,20 @@ import { DaoList, type IDaoListProps } from './daoList';
 describe('<DaoList /> component', () => {
     const useDaoListSpy = jest.spyOn(daoExplorerService, 'useDaoList');
     const useDaoListByMemberAddressSpy = jest.spyOn(daoExplorerService, 'useDaoListByMemberAddress');
+    const useArchivedDaoListSpy = jest.spyOn(daoExplorerService, 'useArchivedDaoList');
 
     beforeEach(() => {
         useDaoListSpy.mockReturnValue(generateReactQueryInfiniteResultSuccess({ data: { pages: [], pageParams: [] } }));
         useDaoListByMemberAddressSpy.mockReturnValue(
             generateReactQueryInfiniteResultSuccess({ data: { pages: [], pageParams: [] } }),
         );
+        useArchivedDaoListSpy.mockReturnValue(generateReactQueryInfiniteResultSuccess({ data: { pages: [], pageParams: [] } }));
     });
 
     afterEach(() => {
         useDaoListSpy.mockReset();
         useDaoListByMemberAddressSpy.mockReset();
+        useArchivedDaoListSpy.mockReset();
     });
 
     const createTestComponent = (props?: Partial<IDaoListProps>) => {
@@ -26,7 +30,18 @@ describe('<DaoList /> component', () => {
             ...props,
         };
 
-        return <DaoList {...completeProps} />;
+        const queryClient = new QueryClient({
+            defaultOptions: {
+                queries: { retry: false },
+                mutations: { retry: false },
+            },
+        });
+
+        return (
+            <QueryClientProvider client={queryClient}>
+                <DaoList {...completeProps} />
+            </QueryClientProvider>
+        );
     };
 
     it('renders a list of DAOs using the parameters set on the initialParams prop', () => {
@@ -44,6 +59,7 @@ describe('<DaoList /> component', () => {
             expect.anything(),
             expect.objectContaining({ enabled: false }),
         );
+        expect(useArchivedDaoListSpy).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ enabled: false }));
         expect(screen.getAllByRole('link')).toHaveLength(daos.length);
         expect(screen.getByText(daos[0].name)).toBeInTheDocument();
         expect(screen.getByText(daos[1].name)).toBeInTheDocument();
@@ -65,6 +81,7 @@ describe('<DaoList /> component', () => {
             expect.anything(),
             expect.objectContaining({ enabled: true }),
         );
+        expect(useArchivedDaoListSpy).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ enabled: false }));
         expect(screen.getAllByRole('link')).toHaveLength(daos.length);
         expect(screen.getByText(daos[0].name)).toBeInTheDocument();
         expect(screen.getByText(daos[1].name)).toBeInTheDocument();

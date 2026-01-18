@@ -27,6 +27,24 @@ describe('dao service', () => {
         expect(result).toEqual(dao);
     });
 
+    it('getDao normalizes missing optional fields from API', async () => {
+        const rawDao = generateDao() as unknown as Record<string, unknown>;
+        rawDao.links = null;
+        rawDao.metrics = null;
+        rawDao.blockTimestamp = null;
+        rawDao.transactionHash = null;
+
+        const params = { urlParams: { id: 'dao-test' } };
+
+        requestSpy.mockResolvedValue(rawDao as never);
+        const result = await daoService.getDao(params);
+
+        expect(result.links).toEqual([]);
+        expect(result.metrics).toEqual({ proposalsCreated: 0, members: 0, tvlUSD: '0' });
+        expect(result.blockTimestamp).toBe(0);
+        expect(result.transactionHash).toBe('');
+    });
+
     it('getDaoByEns fetches the specified DAO by ENS', async () => {
         const dao = generateDao();
         const params = { urlParams: { network: 'network-test' as Network, ens: 'ens-test' } };

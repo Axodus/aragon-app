@@ -1,4 +1,4 @@
-import type { IDao, IDaoPlugin } from '@/shared/api/daoService';
+import { Network, type IDao, type IDaoPlugin } from '@/shared/api/daoService';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import type { IPluginInfo } from '@/shared/types';
 import {
@@ -32,6 +32,14 @@ class PluginTransactionUtils {
         delegateCall: 1,
     };
 
+    private wrapAsDaoExecuteOnHarmony(dao: IDao, tx: ITransactionRequest): ITransactionRequest {
+        // Historicamente, a Harmony precisava de um wrapper que embrulhava certas chamadas em `DAO.execute()`.
+        // Porém, as transações montadas aqui viram *ações de proposta* e já são executadas via `DAO.execute()`.
+        // Embrulhar de novo causa `ReentrantCall()` (DAO.execute aninhado) durante a execução da proposta.
+        void dao;
+        return tx;
+    }
+
     getPluginInstallationSetupData = (receipt: TransactionReceipt): IPluginInstallationSetupData[] => {
         const { logs } = receipt;
         const eventName = 'InstallationPrepared';
@@ -64,7 +72,13 @@ class PluginTransactionUtils {
         const uninstallationPreparedLog = parseEventLogs({ abi: pluginSetupProcessorAbi, eventName, logs })[0];
         const { pluginSetupRepo, versionTag, permissions, setupPayload } = uninstallationPreparedLog.args;
 
-        return { pluginAddress: setupPayload.plugin, pluginSetupRepo, versionTag, permissions };
+        return {
+            pluginSetupProcessorAddress: receipt.to as Hex | undefined,
+            pluginAddress: setupPayload.plugin,
+            pluginSetupRepo,
+            versionTag,
+            permissions,
+        };
     };
 
     buildPrepareInstallationData = (pluginAddress: Hex, versionTag: IPluginSetupVersionTag, data: Hex, dao: Hex) => {
@@ -119,6 +133,9 @@ class PluginTransactionUtils {
             to: daoAddress,
         });
 
+        const grantRootWrapped = this.wrapAsDaoExecuteOnHarmony(dao, grantRootTx);
+        const revokeRootWrapped = this.wrapAsDaoExecuteOnHarmony(dao, revokeRootTx);
+
         // If executeConditionAddress is provided, we need to revoke the execute permission and grant it with the condition.
         // The first plugin in the setupData is either the SPP or the plugin for basic governance processes.
         const needsExecuteCondition = executeConditionAddress != null;
@@ -130,14 +147,22 @@ class PluginTransactionUtils {
               })
             : [];
 
-        const applyInstallationActions = setupData.map((data) => this.setupInstallationDataToAction(data, dao));
+        const executeWithConditionWrapped = executeWithConditionTransactions.map((tx) =>
+            this.wrapAsDaoExecuteOnHarmony(dao, tx),
+        );
+
+        const applyInstallationActions = setupData
+            .map((data) => this.setupInstallationDataToAction(data, dao))
+            .map((tx) => this.wrapAsDaoExecuteOnHarmony(dao, tx));
+
+        const extraActionsWrapped = actions.map((tx) => this.wrapAsDaoExecuteOnHarmony(dao, tx));
 
         return [
-            grantRootTx,
+            grantRootWrapped,
             ...applyInstallationActions,
-            ...actions,
-            revokeRootTx,
-            ...executeWithConditionTransactions,
+            ...extraActionsWrapped,
+            revokeRootWrapped,
+            ...executeWithConditionWrapped,
         ];
     };
 
@@ -145,9 +170,24 @@ class PluginTransactionUtils {
         params: IBuildApplyPluginUninstallationActionParams,
     ): ITransactionRequest[] => {
         const { dao, setupData } = params;
-        const { pluginSetupRepo, versionTag, permissions, pluginAddress } = setupData;
+        const { pluginSetupRepo, versionTag, permissions, pluginAddress, pluginSetupProcessorAddress } = setupData;
 
-        const { pluginSetupProcessor } = networkDefinitions[dao.network].addresses;
+        const pluginSetupProcessor =
+            (pluginSetupProcessorAddress as Hex | undefined) ??
+            (networkDefinitions[dao.network].addresses.pluginSetupProcessor as Hex);
+
+        // Harmony legacy DAOs: some have APPLY_INSTALLATION but not APPLY_UNINSTALLATION granted.
+        // When proposals are executed, `applyUninstallation` is typically called from the DAO context, so we
+        // temporarily grant APPLY_UNINSTALLATION to the DAO itself on the PSP.
+        const needsTemporaryApplyUninstallGrant = dao.network === Network.HARMONY_MAINNET;
+
+        const [grantApplyUninstallTx, revokeApplyUninstallTx] =
+            permissionTransactionUtils.buildGrantRevokePermissionTransactions({
+                where: pluginSetupProcessor,
+                who: dao.address as Hex,
+                what: permissionTransactionUtils.permissionIds.applyUninstallationPermission,
+                to: dao.address as Hex,
+            });
 
         // Temporarily grant the ROOT_PERMISSION to the plugin setup processor contract.
         const [grantRootTx, revokeRootTx] = permissionTransactionUtils.buildGrantRevokePermissionTransactions({
@@ -157,6 +197,12 @@ class PluginTransactionUtils {
             to: dao.address as Hex,
         });
 
+        const grantApplyUninstallWrapped = this.wrapAsDaoExecuteOnHarmony(dao, grantApplyUninstallTx);
+        const revokeApplyUninstallWrapped = this.wrapAsDaoExecuteOnHarmony(dao, revokeApplyUninstallTx);
+
+        const grantRootWrapped = this.wrapAsDaoExecuteOnHarmony(dao, grantRootTx);
+        const revokeRootWrapped = this.wrapAsDaoExecuteOnHarmony(dao, revokeRootTx);
+
         const pluginSetupRef = { versionTag, pluginSetupRepo };
         const uninstallData = encodeFunctionData({
             abi: pluginSetupProcessorAbi,
@@ -164,9 +210,15 @@ class PluginTransactionUtils {
             args: [dao.address as Hex, { plugin: pluginAddress, pluginSetupRef, permissions }],
         });
 
-        const uninstallAction = { to: pluginSetupProcessor, data: uninstallData, value: BigInt(0) };
+        const uninstallAction = this.wrapAsDaoExecuteOnHarmony(dao, {
+            to: pluginSetupProcessor,
+            data: uninstallData,
+            value: BigInt(0),
+        });
 
-        return [grantRootTx, uninstallAction, revokeRootTx];
+        return needsTemporaryApplyUninstallGrant
+            ? [grantApplyUninstallWrapped, grantRootWrapped, uninstallAction, revokeRootWrapped, revokeApplyUninstallWrapped]
+            : [grantRootWrapped, uninstallAction, revokeRootWrapped];
     };
 
     buildApplyPluginsUpdateActions = (params: IBuildApplyPluginsUpdateActionsParams): ITransactionRequest[] => {
@@ -188,8 +240,8 @@ class PluginTransactionUtils {
                 to: daoAddress,
             });
 
-            applyUpdateTransactions.unshift(grantRootTx);
-            applyUpdateTransactions.push(revokeRootTx);
+            applyUpdateTransactions.unshift(this.wrapAsDaoExecuteOnHarmony(dao, grantRootTx));
+            applyUpdateTransactions.push(this.wrapAsDaoExecuteOnHarmony(dao, revokeRootTx));
         }
 
         return applyUpdateTransactions;
@@ -207,9 +259,15 @@ class PluginTransactionUtils {
             to: daoAddress,
         });
 
-        const applyUpdateTransaction = this.setupUpdateDataToAction(dao, plugin, setupData);
+        const grantUpgradeWrapped = this.wrapAsDaoExecuteOnHarmony(dao, grantUpgradeTx);
+        const revokeUpgradeWrapped = this.wrapAsDaoExecuteOnHarmony(dao, revokeUpgradeTx);
 
-        return [grantUpgradeTx, applyUpdateTransaction, revokeUpgradeTx];
+        const applyUpdateTransaction = this.wrapAsDaoExecuteOnHarmony(
+            dao,
+            this.setupUpdateDataToAction(dao, plugin, setupData),
+        );
+
+        return [grantUpgradeWrapped, applyUpdateTransaction, revokeUpgradeWrapped];
     };
 
     private setupUpdateDataToAction = (dao: IDao, plugin: IDaoPlugin, setupData: IPluginUpdateSetupData) => {

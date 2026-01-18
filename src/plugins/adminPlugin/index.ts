@@ -1,4 +1,5 @@
 import { GovernanceSlotId } from '@/modules/governance/constants/moduleSlots';
+import { CreateDaoSlotId } from '@/modules/createDao/constants/moduleSlots';
 import { SettingsSlotId } from '@/modules/settings/constants/moduleSlots';
 import { useAdminPermissionCheckProposalCreation } from '@/plugins/adminPlugin/hooks/useAdminPermissionCheckProposalCreation';
 import { pluginRegistryUtils } from '@/shared/utils/pluginRegistryUtils';
@@ -6,10 +7,12 @@ import { AdminMemberInfo } from './components/adminMemberInfo';
 import { AdminSettingsPanel } from './components/adminSettingsPanel';
 import { AdminVotingTerminal } from './components/adminVotingTerminal';
 import { adminPlugin } from './constants/adminPlugin';
+import { useAdminActions } from './hooks/useAdminActions';
 import { useAdminGovernanceSettings } from './hooks/useAdminGovernanceSettings';
 import { adminPluginUtils } from './utils/adminPluginUtils';
 import { adminProposalUtils } from './utils/adminProposalUtils';
 import { adminTransactionUtils } from './utils/adminTransactionUtils';
+import { buildAdminPrepareInstallTransaction } from './utils/adminPluginUtils/buildPrepareInstallTransaction';
 
 export const initialiseAdminPlugin = () => {
     pluginRegistryUtils
@@ -33,6 +36,11 @@ export const initialiseAdminPlugin = () => {
             function: adminTransactionUtils.buildCreateProposalData,
         })
         .registerSlotFunction({
+            slotId: GovernanceSlotId.GOVERNANCE_PLUGIN_ACTIONS,
+            pluginId: adminPlugin.id,
+            function: useAdminActions,
+        })
+        .registerSlotFunction({
             slotId: GovernanceSlotId.GOVERNANCE_PERMISSION_CHECK_PROPOSAL_CREATION,
             pluginId: adminPlugin.id,
             function: useAdminPermissionCheckProposalCreation,
@@ -41,6 +49,13 @@ export const initialiseAdminPlugin = () => {
             slotId: GovernanceSlotId.GOVERNANCE_EXECUTE_CHECK_VERSION_SUPPORTED,
             pluginId: adminPlugin.id,
             function: adminPluginUtils.hasExecuteProposalPermissionModifier,
+        })
+
+        // Create DAO slots
+        .registerSlotFunction({
+            slotId: CreateDaoSlotId.CREATE_DAO_BUILD_PREPARE_PLUGIN_INSTALL_DATA,
+            pluginId: adminPlugin.id,
+            function: buildAdminPrepareInstallTransaction,
         })
 
         // Settings module slots

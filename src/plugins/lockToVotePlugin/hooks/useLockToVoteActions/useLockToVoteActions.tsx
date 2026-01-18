@@ -8,5 +8,7 @@ import { lockToVoteActionUtils } from '../../utils/lockToVoteActionUtils';
 export const useLockToVoteActions = (plugin: IDaoPlugin<ILockToVotePluginSettings>) => {
     const { t } = useTranslations();
 
-    return lockToVoteActionUtils.getLockToVoteActions({ plugin, t });
+    const lockToVoteActions = lockToVoteActionUtils.getLockToVoteActions({ plugin, t });
+
+    return lockToVoteActions;
 };

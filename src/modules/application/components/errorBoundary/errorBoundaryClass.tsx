@@ -1,6 +1,6 @@
 import { ErrorFeedback } from '@/shared/components/errorFeedback';
 import { monitoringUtils } from '@/shared/utils/monitoringUtils';
-import { Component, type ReactNode } from 'react';
+import { Component, type ErrorInfo, type ReactNode } from 'react';
 
 export interface IErrorBoundaryClassState {
     /**
@@ -38,12 +38,35 @@ export class ErrorBoundaryClass extends Component<IErrorBoundaryClassProps, IErr
     componentDidUpdate(prevProps: Readonly<IErrorBoundaryClassProps>): void {
         // Reset error state on route change
         if (this.props.pathname !== prevProps.pathname) {
-            this.setState({ hasError: false });
+            this.setState({ hasError: false, error: undefined });
         }
     }
 
-    componentDidCatch() {
-        monitoringUtils.logError(this.state.error);
+    componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+        const context = {
+            pathname: this.props.pathname,
+            componentStack: errorInfo.componentStack,
+        };
+
+        monitoringUtils.logError(error, { context });
+
+        const isProd = process.env.NODE_ENV === 'production';
+
+        // Em dev, sempre loga no console para facilitar diagnóstico.
+        // Em prod, só loga se explicitamente habilitado.
+        const shouldLogToConsole =
+            process.env.NODE_ENV !== 'production' || process.env.NEXT_PUBLIC_DEBUG_CLIENT_ERRORS === 'true';
+
+        if (shouldLogToConsole) {
+            // eslint-disable-next-line no-console
+            console.error('[ErrorBoundary] UI crash', { error, ...context });
+        }
+
+        // Em produção, loga no console apenas quando explicitamente habilitado.
+        if (process.env.NEXT_PUBLIC_DEBUG_CLIENT_ERRORS === 'true') {
+            // eslint-disable-next-line no-console
+            console.error('[ErrorBoundary] UI crash', { error, ...context });
+        }
     }
 
     render() {

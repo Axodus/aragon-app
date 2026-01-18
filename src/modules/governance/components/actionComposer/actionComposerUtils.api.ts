@@ -64,4 +64,8 @@ export interface IGetDaoActionsParams extends IGetActionBaseParams {
      * Permissions granted to DAO.
      */
     permissions?: Array<{ permissionId: string; whereAddress: string }>;
+    /**
+     * Interface type of the governance plugin controlling the proposal.
+     */
+    controllerInterfaceType?: string;
 }

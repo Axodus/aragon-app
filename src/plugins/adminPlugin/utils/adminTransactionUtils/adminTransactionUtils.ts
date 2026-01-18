@@ -6,10 +6,12 @@ class AdminTransactionUtils {
     buildCreateProposalData = (params: IBuildCreateProposalDataParams): Hex => {
         const { metadata, actions } = params;
 
-        const functionArgs = [metadata, actions, BigInt(0), BigInt(0), ''];
+        // Admin is a direct execution tool: executeProposal creates+executes in a single tx.
+        // Using executeProposal also keeps compatibility with older deployments that may not implement createProposal.
+        const functionArgs = [metadata, actions, BigInt(0)];
         const data = encodeFunctionData({
             abi: adminPluginAbi,
-            functionName: 'createProposal',
+            functionName: 'executeProposal',
             args: functionArgs,
         });
 

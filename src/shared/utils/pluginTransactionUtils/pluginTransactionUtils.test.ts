@@ -311,6 +311,32 @@ describe('pluginTransaction utils', () => {
             });
             expect(result).toEqual([grantRevokeActions[0], uninstallAction, grantRevokeActions[1]]);
         });
+
+        it('uses setupData.pluginSetupProcessorAddress when provided', () => {
+            const dao = generateDao({ address: '0x123', network: Network.ETHEREUM_MAINNET });
+            const customPsp = '0x9999999999999999999999999999999999999999';
+            const setupData = generatePluginUninstallSetupData({ pluginSetupProcessorAddress: customPsp });
+
+            const grantRevokeActions = [
+                { to: '0x', data: '0xgrant', value: BigInt(0) },
+                { to: '0x', data: '0xrevoke', value: BigInt(0) },
+            ] as const;
+            const uninstallActionData = '0xuninstall';
+            const uninstallAction = { to: customPsp, data: uninstallActionData, value: BigInt(0) };
+
+            encodeFunctionDataSpy.mockReturnValue(uninstallActionData);
+            grantRevokePermissionSpy.mockReturnValue([grantRevokeActions[0], grantRevokeActions[1]]);
+
+            const result = pluginTransactionUtils.buildApplyPluginUninstallationAction({ dao, setupData });
+
+            expect(grantRevokePermissionSpy).toHaveBeenCalledWith({
+                where: dao.address,
+                who: customPsp,
+                what: permissionTransactionUtils.permissionIds.rootPermission,
+                to: dao.address,
+            });
+            expect(result).toEqual([grantRevokeActions[0], uninstallAction, grantRevokeActions[1]]);
+        });
     });
 
     describe('setupUpdateDataToAction', () => {

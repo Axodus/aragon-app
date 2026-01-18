@@ -36,7 +36,7 @@ export const DaoProcessDetailsInfo: React.FC<IDaoProcessDetailsInfoProps> = (pro
         { term: t('app.settings.daoProcessDetailsInfo.pluginName'), definition: daoUtils.getPluginName(plugin) },
         {
             term: t('app.settings.daoProcessDetailsInfo.processKey'),
-            definition: plugin.slug.toUpperCase(),
+            definition: (plugin.processKey ?? plugin.slug).toUpperCase(),
         },
     ];
 

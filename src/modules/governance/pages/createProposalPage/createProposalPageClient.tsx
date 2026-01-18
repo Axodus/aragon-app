@@ -6,6 +6,7 @@ import { useTranslations } from '@/shared/components/translationsProvider';
 import { WizardPage } from '@/shared/components/wizards/wizardPage';
 import { useDaoPlugins } from '@/shared/hooks/useDaoPlugins';
 import { useCallback, useMemo, useState } from 'react';
+import { useDao } from '@/shared/api/daoService';
 import { CreateProposalForm, type ICreateProposalFormData } from '../../components/createProposalForm';
 import { GovernanceDialogId } from '../../constants/governanceDialogId';
 import type {
@@ -35,6 +36,7 @@ export const CreateProposalPageClient: React.FC<ICreateProposalPageClientProps> 
     const { open } = useDialogContext();
 
     const { meta: plugin } = useDaoPlugins({ daoId, pluginAddress })![0];
+    const { data: dao } = useDao({ urlParams: { id: daoId } });
 
     useProposalPermissionCheckGuard({ daoId, pluginAddress, redirectTab: 'proposals' });
 
@@ -49,9 +51,8 @@ export const CreateProposalPageClient: React.FC<ICreateProposalPageClientProps> 
     const contextValues = useMemo(() => ({ prepareActions, addPrepareAction }), [prepareActions, addPrepareAction]);
 
     const handleFormSubmit = (values: ICreateProposalFormData) => {
-        // We are always saving actions on the form so that user doesn't lose them if they navigate around the form.
-        const { actions, addActions } = values;
-        const proposal = { ...values, actions: addActions ? actions : [] };
+        const finalActions = values.addActions ? values.actions : [];
+        const proposal = { ...values, actions: finalActions };
         const params: IPublishProposalDialogParams = { proposal, daoId, plugin, prepareActions };
         open(GovernanceDialogId.PUBLISH_PROPOSAL, { params });
     };

@@ -110,6 +110,13 @@ const config = tsEslint.config(
     // Rules for test files
     {
         files: ['**/*.test.ts', '**/*.test.tsx'],
+        languageOptions: {
+            globals: {
+                ...globals.node,
+                ...globals.browser,
+                ...globals.jest,
+            },
+        },
         ...testingLibraryPlugin.configs['flat/react'],
         rules: {
             ...testingLibraryPlugin.configs['flat/react'].rules,
