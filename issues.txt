@@ -1,0 +1,8 @@
+8	OPEN	Summarize changes for UI testing.		2026-01-17T20:44:39Z
+7	OPEN	Provide basic validation and helper text for the input.		2026-01-17T20:44:33Z
+6	OPEN	Encode validator address into installation params for Delegation only.		2026-01-17T20:44:29Z
+5	OPEN	Add validator address input for Harmony Delegation setup.		2026-01-17T20:44:21Z
+4	OPEN	Locate Harmony Delegation setup form and install data builder.		2026-01-17T20:44:17Z
+3	OPEN	[Frontend] Harmony Voting UI Resilience & Metadata Fallback	enhancement, harmony, frontend, ui	2026-01-17T17:04:57Z
+2	OPEN	[Plan] add Harmony delegation validator address	enhancement	2026-01-17T20:44:39Z
+1	OPEN	[Plan] update Harmony plugin addresses (frontend)	enhancement	2026-01-16T16:21:28Z
