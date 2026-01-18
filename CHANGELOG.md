@@ -2,6 +2,7 @@
 
 ## 1.16.0
 
+
 ### Minor Changes
 
 - [#878](https://github.com/aragon/app/pull/878) [`a9bcbea`](https://github.com/aragon/app/commit/a9bcbeac7af13697500cea7150c68a93c3aaa4e9) Thanks [@tyhonchik](https://github.com/tyhonchik)! - Modules for SubDAO settings page
