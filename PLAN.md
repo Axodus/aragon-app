@@ -49,6 +49,14 @@ Related Plans
 - [ ] Verify prepare installation with delegation validator address [labels:type:qa, area:frontend] [status:TODO] [priority:high] [estimate:2h] [start:2026-01-20] [end:2026-01-20]
 - [ ] Summarize changes for UI testing (test notes) [labels:type:docs, area:testing] [status:TODO] [priority:low] [estimate:1h] [start:2026-01-20] [end:2026-01-20]
 
+## Cross-Repo: Admin Grant Task (Related)
+
+- [x] **Admin grant task completed on AragonOSX repo** [labels:type:maintenance, area:infra, cross-repo] [status:DONE] [priority:high] [estimate:4h] [start:2026-01-20] [end:2026-01-20]
+  - See: `../AragonOSX/PLAN_admin_grant_closeout.md`
+  - Outcome: Direct `DAO.grant(...)` workaround verified on Harmony; admin permission now active on DAO `0x4e48...`.
+  - Verification script available: `../AragonOSX/scripts/verify-grant.sh`
+  - Impact: No frontend changes required; backend/contracts/SDK can proceed with admin-gated features.
+
 ## Milestone: UI Resilience & Fallbacks
 
 - [ ] Ensure proposals render even without metadata (placeholder/fallback) [labels:type:feature, area:frontend, area:indexing] [status:TODO] [priority:high] [estimate:4h] [start:2026-01-22] [end:2026-01-22]
