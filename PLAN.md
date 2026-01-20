@@ -84,3 +84,6 @@ Related Plans
 - See `PLAN_subtasks.md` for detailed checklists, acceptance criteria and estimates for the top-priority items (prepare/install verification, metadata fallbacks, UI resilience, uninstall UX, E2E QA).
 
 Subtasks file: PLAN_subtasks.md
+
+-  See `uninstall-fix.md` for detailed plan on uninstall fix validation and rollback strategy.
+Subtasks file: uninstall-fix.md
