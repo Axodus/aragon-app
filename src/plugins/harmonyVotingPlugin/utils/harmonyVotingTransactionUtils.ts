@@ -116,9 +116,12 @@ const buildDelegationInstallData = (validatorAddress?: string): Hex => {
         throw new Error('Validator address is required for Harmony Delegation voting.');
     }
 
-    if (!addressUtils.isAddress(validatorAddress)) {
+    // Normalize address to lowercase to ensure consistent on-chain encoding
+    const normalized = validatorAddress.trim().toLowerCase();
+
+    if (!addressUtils.isAddress(normalized)) {
         throw new Error('Validator address must be a valid address.');
     }
 
-    return encodeAbiParameters([{ name: 'validatorAddress', type: 'address' }], [validatorAddress as Hex]);
+    return encodeAbiParameters([{ name: 'validatorAddress', type: 'address' }], [normalized as Hex]);
 };
