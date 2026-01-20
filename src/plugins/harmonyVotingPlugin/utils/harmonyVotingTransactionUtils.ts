@@ -48,16 +48,38 @@ const harmonyVotingAbi = [
     },
 ] as const;
 
-export const buildPrepareHarmonyVotingInstallData = (plugin: IPluginInfo, params: IPrepareHarmonyVotingInstallDataParams): Hex => {
-    const { dao, body } = params;
+export const buildPrepareHarmonyVotingInstallData = (
+    plugin: IPluginInfo,
+    params: IPrepareHarmonyVotingInstallDataParams,
+): Hex => {
+    const { dao, body, metadata, stageVotingPeriod } = params;
 
     const repositoryAddress = plugin.repositoryAddresses[dao.network];
 
-    // Oracle is fixed per network (backend automation).
-    const pluginSettingsData =
-        plugin.id === PluginInterfaceType.HARMONY_DELEGATION_VOTING
-            ? buildDelegationInstallData(body.membership?.validatorAddress)
-            : ('0x' as Hex);
+    // When the plugin is installed as a processor (basic governance) the
+    // `metadata` parameter contains the processor metadata (including the
+    // `processKey` provided by the UI). In that case we must forward the
+    // metadata hex directly to the plugin setup so the on-chain setup uses
+    // the supplied `processKey` instead of falling back to a plugin-default
+    // value (e.g. HARMONYDELEGATIONVOTING).
+    //
+    // For advanced governance (stageVotingPeriod set) the plugin is a
+    // sub-plugin and the setup expects its specific settings (validator
+    // address for delegation voting), so we keep the existing behaviour.
+    let pluginSettingsData: Hex = '0x' as Hex;
+
+    const isDelegation = plugin.id === PluginInterfaceType.HARMONY_DELEGATION_VOTING;
+
+    if (stageVotingPeriod == null) {
+        // Installed as processor (basic): forward metadata (CID hex) so the
+        // on-chain setup can read `processKey` and other processor fields.
+        if (metadata != null && metadata.length > 0) {
+            pluginSettingsData = metadata as Hex;
+        }
+    } else if (isDelegation) {
+        // Advanced governance / sub-plugin: pass validator address as before.
+        pluginSettingsData = buildDelegationInstallData(body.membership?.validatorAddress);
+    }
 
     return pluginTransactionUtils.buildPrepareInstallationData(
         repositoryAddress,
@@ -111,7 +133,7 @@ export const buildHarmonyVotingVoteData = (params: IBuildVoteDataParams): Hex =>
     });
 };
 
-const buildDelegationInstallData = (validatorAddress?: string): Hex => {
+export const buildDelegationInstallData = (validatorAddress?: string): Hex => {
     if (validatorAddress == null || validatorAddress.trim().length === 0) {
         throw new Error('Validator address is required for Harmony Delegation voting.');
     }

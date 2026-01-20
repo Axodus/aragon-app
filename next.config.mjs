@@ -1,8 +1,17 @@
-import BundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
 import packageInfo from './package.json' with { type: 'json' };
 
-const withBundleAnalyzer = BundleAnalyzer({ enabled: process.env.ANALYZE === 'true' });
+let BundleAnalyzer;
+try {
+    const pkg = (await import('@next/bundle-analyzer').catch(() => null)) || (await import('next/bundle-analyzer').catch(() => null));
+    BundleAnalyzer = pkg?.default ?? pkg;
+} catch (e) {
+    BundleAnalyzer = undefined;
+}
+
+const withBundleAnalyzer = typeof BundleAnalyzer === 'function'
+    ? BundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })
+    : ((config) => config);
 
 const webFunctionalities = [
     'accelerometer=()',
@@ -143,6 +152,9 @@ const nextConfig = {
                 port: '',
             },
         ],
+    },
+    experimental: {
+        turbopackFileSystemCacheForDev: true,
     },
     env: {
         version: packageInfo.version,
