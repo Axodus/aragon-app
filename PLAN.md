@@ -95,3 +95,7 @@ Subtasks file: PLAN_subtasks.md
 
 -  See `uninstall-fix.md` for detailed plan on uninstall fix validation and rollback strategy.
 Subtasks file: uninstall-fix.md
+
+## Issues prepared for creation
+
+I preparei uma lista de issues pronta para criar/atualizar no repositório. Ver `ISSUES_TO_CREATE.md` para títulos, descrições curtas, labels e comandos sugeridos (gh CLI). Use esse arquivo como fonte para criar PRs/issues individuais.
