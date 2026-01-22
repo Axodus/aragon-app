@@ -1,10 +1,10 @@
-# PLAN: aragon-app — HarmonyVoting Frontend UI & UX Production Release
+#  #PLAN-002 - HarmonyVoting Frontend UI & UX Production Release
 
 **Repository:** aragon-app (Axodus/aragon-app)  
-**Current Branch:** develop  
-**Default Branch:** develop  
-**Last Updated:** 2026-01-21  
-**Status:** Active
+**End Date Goal:** 2026-02-28  
+**Priority:** HIGH  
+**Estimative Hours:** 120h  
+**Status:** in progress
 
 ---
 
@@ -13,39 +13,12 @@
 Complete HarmonyVoting frontend implementation with resilient UI/UX, graceful degradation, plugin uninstall flows, and metadata fallback support. Integrated with contracts and backend APIs.
 
 ### Key Metrics
-- **Total Planned Work:** 120 hours
+
+- **Total Planned Work:** 120h
 - **Completion:** 45% (11 of 26 sprint items done)
 - **Active Features:** 4 (Setup Forms, Install Flows, UI Resilience, Uninstall UX)
 - **Open Bugs:** 3 (1 fixed, 1 in progress, 1 investigating)
-- **Timeline:** 6-week sprint, targeting 2026-02-28 release
-
----
-
-## Context & Vision
-
-### Goal
-
-Deliver production-ready HarmonyVoting frontend covering:
-- **Plugin setup & installation:** Forms with validator address input + validation
-- **Proposal governance UX:** Create/vote/execute flows with clear feedback
-- **Plugin uninstall:** Safe removal with warnings + post-uninstall state
-- **Resilient metadata:** Fallback sourcing with graceful degradation
-- **Native-token execution:** Clear fee/value semantics in UI
-
-### Scope
-
-- Harmony network support in app routing + network config
-- E2E flows: install → propose/vote → execute → uninstall → re-install
-- Backward compatible changes unless explicitly versioned
-
-### Acceptance Criteria
-
-- [x] Plugin setup form with validator address input + validation
-- [ ] Proposal creation/voting UI displays correctly (in progress)
-- [ ] Metadata fallback prevents broken proposal cards
-- [ ] Uninstall flow shows warnings + enables re-install
-- [ ] Native-token execution shows fees in review
-- [ ] Network switch reloads plugin configuration correctly
+- **Timeline:** 2026-01-21 → 2026-02-28
 
 ### Dependencies & Integration Points
 
@@ -69,181 +42,104 @@ Deliver production-ready HarmonyVoting frontend covering:
 
 ---
 
-## Milestone Breakdown
+## Subtasks (Linked)
 
-### ✅ Milestone 1: Plugin Setup & Forms (COMPLETED)
+### FEATURE-001: Plugin Setup & Forms
+[labels:type:feature, area:frontend] [status:DONE] [priority:HIGH] [estimate:20h] [start:2026-01-13] [end:2026-01-21]
 
-**Status:** 100% complete (2026-01-13 → 2026-01-21)
+- [x] Add validator address input to setup form [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-13] [end:2026-01-14]
+- [x] Encode validator address into installation params [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:3h] [start:2026-01-14] [end:2026-01-15]
+- [x] Normalize addresses to lowercase [labels:type:task, area:frontend] [status:DONE] [priority:MEDIUM] [estimate:2h] [start:2026-01-15] [end:2026-01-15]
+- [x] Add proposal settings (dates, snapshot block) [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:6h] [start:2026-01-16] [end:2026-01-18]
+- [x] Register proposal/vote builders [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:5h] [start:2026-01-18] [end:2026-01-21]
 
-- [x] Add validator address input to setup form
-- [x] Encode validator address into installation params
-- [x] Normalize addresses to lowercase
-- [x] Add proposal settings (dates, snapshot block)
-- [x] Register proposal/vote builders
+### FEATURE-002: Install & Prepare Flows
+[labels:type:feature, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:20h] [start:2026-01-20] [end:2026-02-04]
 
-**Outcome:** Plugin setup UI complete and ready for integration testing.
+- [x] Implement setup form + validator input [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-20] [end:2026-01-21]
+- [ ] Verify prepare installation with validator address [labels:type:task, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:6h] [start:2026-01-22] [end:2026-01-24]
+- [ ] Display prepare errors clearly to user [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-01-25] [end:2026-01-27]
+- [ ] Test form submission + state recovery [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h] [start:2026-01-28] [end:2026-02-04]
 
----
+### FEATURE-003: UI Resilience & Fallbacks
+[labels:type:feature, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:24h] [start:2026-01-22] [end:2026-02-11]
 
-### 🔄 Milestone 2: Install & Prepare Flows (50% COMPLETE)
+- [ ] Render proposals without metadata (placeholder fallback) [labels:type:feature, area:frontend, area:indexing] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-01-22] [end:2026-01-22]
+- [ ] Handle backend unavailability gracefully [labels:type:feature, area:frontend] [status:TODO] [priority:HIGH] [estimate:6h] [start:2026-01-22] [end:2026-01-23]
+- [ ] User-friendly and actionable error messages [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:3h] [start:2026-01-23] [end:2026-01-23]
+- [ ] Clear loading states for backend-driven operations [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:3h] [start:2026-01-23] [end:2026-01-23]
+- [ ] Network switch reloads plugin configuration correctly [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:3h] [start:2026-01-24] [end:2026-01-24]
+- [ ] Implement fallback metadata fetching [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:5h] [start:2026-02-05] [end:2026-02-11]
 
-**Status:** In Progress (2026-01-20 → 2026-02-04)  
-**Target:** Safe installation with clear error feedback
+### FEATURE-004: Plugin Uninstall UX
+[labels:type:feature, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:20h] [start:2026-02-05] [end:2026-02-18]
 
-- [x] Implement setup form + validator input
-- [ ] Verify prepare installation with validator address (in progress)
-- [ ] Display prepare errors clearly to user
-- [ ] Test form submission + state recovery
+- [ ] Uninstall confirmation dialog with clear warnings [labels:type:feature, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h] [start:2026-02-05] [end:2026-02-07]
+- [ ] Handle post-uninstall state (plugin removed message) [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-08] [end:2026-02-10]
+- [ ] Plugin removal cleans UI (no stale entries) [labels:type:task, area:frontend, area:indexing] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-11] [end:2026-02-14]
+- [ ] Enable re-install after uninstall [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:6h] [start:2026-02-15] [end:2026-02-18]
 
-**Effort:** 12h remaining
+### FEATURE-005: Native-Token Execution UX
+[labels:type:feature, area:frontend] [status:IN_PROGRESS] [priority:MEDIUM] [estimate:18h] [start:2026-01-28] [end:2026-02-16]
 
----
+- [ ] Display native-token value in execution review [labels:type:feature, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h] [start:2026-02-03] [end:2026-02-05]
+- [ ] Show fee breakdown for transactions [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-06] [end:2026-02-08]
+- [ ] Confirm receipt after execution [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-09] [end:2026-02-12]
+- [ ] Handle native-token rejection gracefully [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-13] [end:2026-02-16]
 
-### 🔄 Milestone 3: UI Resilience & Fallbacks (33% COMPLETE)
+### FEATURE-006: E2E Testing & Release
+[labels:type:feature, area:qa, area:testing] [status:TODO] [priority:CRITICAL] [estimate:28h] [start:2026-02-19] [end:2026-02-28]
 
-**Status:** In Progress (2026-01-22 → 2026-02-11)  
-**Target:** Graceful degradation when backend unavailable
+- [ ] E2E flow tests (Playwright/Cypress) [labels:type:test, area:frontend] [status:TODO] [priority:HIGH] [estimate:8h] [start:2026-02-19] [end:2026-02-21]
+- [ ] Cross-browser testing (Chrome, Firefox, Safari) [labels:type:qa, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-22] [end:2026-02-22]
+- [ ] Mobile responsiveness testing [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-23] [end:2026-02-23]
+- [ ] Accessibility audit (WCAG 2.1 AA) [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-24] [end:2026-02-24]
+- [ ] Performance benchmarks (UI latency, bundle size) [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-25] [end:2026-02-26]
+- [ ] Verify proposals appear in UI after creation [labels:type:qa, area:frontend, area:indexing] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-27] [end:2026-02-28]
 
-- [ ] Render proposals without metadata (placeholder fallback)
-- [ ] Handle backend unavailability gracefully
-- [ ] Implement fallback metadata fetching
-- [ ] Add user-friendly error messages
-- [ ] Clear loading states for async operations
+### TASK-001: Cross-Repo Admin Grant
+[labels:type:maintenance, area:infra, cross-repo] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-20] [end:2026-01-20]
 
-**Effort:** 18h remaining
+- [x] Admin grant completed on AragonOSX repo [labels:type:task, area:contracts] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-20] [end:2026-01-20]
 
----
+### TASK-002: ProjectV2 Schema & Sync
+[labels:type:task, area:planning] [status:TODO] [priority:LOW] [estimate:4h] [start:2026-01-19] [end:2026-01-19]
 
-### 🔄 Milestone 4: Plugin Uninstall UX (0% COMPLETE)
-
-**Status:** Pending (2026-02-05 → 2026-02-18)  
-**Target:** Safe uninstall with re-install support
-
-- [ ] Uninstall confirmation dialog with clear warnings
-- [ ] Handle post-uninstall state (plugin removed message)
-- [ ] Enable re-install after uninstall
-- [ ] Show any permission cleanup status
-
-**Effort:** 16h remaining
-
----
-
-### 🔄 Milestone 5: Native-Token Execution (25% COMPLETE)
-
-**Status:** In Progress (2026-01-28 → 2026-02-16)  
-**Target:** Display native-token fee/value semantics
-
-- [ ] Display native-token value in execution review
-- [ ] Show fee breakdown for transactions
-- [ ] Confirm receipt after execution
-- [ ] Handle native-token rejection gracefully
-
-**Effort:** 12h remaining
+- [ ] Verify .gitissue/metadata.config.json at repo root [labels:type:chore, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
+- [ ] Capture org project schema to tmp/<org>-project-schema.json [labels:type:task, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
+- [ ] Generate .gitissue/metadata.generated.json from PLAN.md [labels:type:task, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
+- [ ] Prepare gh issue create/edit commands for project sync [labels:type:docs, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
+- [ ] Document PARENT_ISSUE limitation workaround [labels:type:docs, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
 
 ---
 
-### ❌ Milestone 6: E2E Testing & Release (0% COMPLETE)
+## Milestones
 
-**Status:** Pending (2026-02-19 → 2026-02-28)  
-**Target:** Production release with full testing
-
-- [ ] E2E flow tests (Playwright/Cypress)
-- [ ] Cross-browser testing (Chrome, Firefox, Safari)
-- [ ] Mobile responsiveness testing
-- [ ] Accessibility audit (WCAG 2.1 AA)
-- [ ] Performance benchmarks (UI latency, bundle size)
-- [ ] Load testing (concurrent users)
-
-**Effort:** 24h remaining
+- **Milestone 1:** Plugin Setup & Forms — 2026-01-13 → 2026-01-21 — ✅ DONE
+- **Milestone 2:** Install & Prepare Flows — 2026-01-20 → 2026-02-04 — 🔄 50%
+- **Milestone 3:** UI Resilience & Fallbacks — 2026-01-22 → 2026-02-11 — 🔄 33%
+- **Milestone 4:** Plugin Uninstall UX — 2026-02-05 → 2026-02-18 — ⬜ 0%
+- **Milestone 5:** Native-Token Execution UX — 2026-01-28 → 2026-02-16 — 🔄 25%
+- **Milestone 6:** E2E Testing & Release — 2026-02-19 → 2026-02-28 — ⬜ 0%
+- **Production Go-Live:** 2026-02-28
 
 ---
 
-## Execution Checklist
+## Notes
 
-### Weekly Planning
+### Related Documents
 
-Each Monday (9:00 UTC):
-- [ ] Review sprint progress vs. baseline
-- [ ] Identify blockers and risks (backend API availability)
-- [ ] Adjust feature priorities if needed
-- [ ] Update SPRINT.md with progress snapshot
+- [uninstall-fix.md](uninstall-fix.md) — Uninstall fix validation and rollback strategy
+- [PLAN_subtasks.md](PLAN_subtasks.md) — Detailed checklists for top-priority items
+- [ISSUES_TO_CREATE.md](ISSUES_TO_CREATE.md) — Ready-to-create issues with gh CLI commands
 
-### Sign-Off Path
+### Cross-Repo Plans
 
-**Feature Completion:**
-1. Developer: Create PR with tests + accessibility checks
-2. Reviewer: Code review + approve
-3. QA: Test on staging + network switch scenarios
-4. PM: Update SPRINT.md + mark DONE
-
-**Release Gate (Feb 28):**
-1. All 6 milestones at 100%
-2. All bugs FIXED or VERIFIED
-3. E2E tests passing on testnet
-4. Accessibility audit complete
-5. Bundle size optimized
+- [AragonOSX PLAN](../../../AragonOSX/docs/plans/PLAN.md) — Contracts and master E2E coordination
+- [Aragon-app-backend PLAN](../../../Aragon-app-backend/docs/plans/PLAN.md) — Backend indexing
 
 ---
 
-## File Structure & References
-
-| File | Purpose | Update Frequency |
-|------|---------|------------------|
-| PLAN.md | Master milestones | Weekly |
-| SPRINT.md | Feature status + effort | Daily |
-| FEATURE.md | Feature backlog | Per feature |
-| TASK.md | Task inventory | Weekly |
-| BUG.md | Issue tracking | As discovered |
-| EPIC.md | Large initiatives | Per epic |
-| HOTFIX.md | Emergency procedures | As needed |
-
-## Cross-Repo: Admin Grant Task (Related)
-
-- [x] **Admin grant task completed on AragonOSX repo** [labels:type:maintenance, area:infra, cross-repo] [status:DONE] [priority:high] [estimate:4h] [start:2026-01-20] [end:2026-01-20]
-  - See: `../AragonOSX/PLAN_admin_grant_closeout.md`
-  - Outcome: Direct `DAO.grant(...)` workaround verified on Harmony; admin permission now active on DAO `0x4e48...`.
-  - Verification script available: `../AragonOSX/scripts/verify-grant.sh`
-  - Impact: No frontend changes required; backend/contracts/SDK can proceed with admin-gated features.
-
-## Milestone: UI Resilience & Fallbacks
-
-- [ ] Ensure proposals render even without metadata (placeholder/fallback) [labels:type:feature, area:frontend, area:indexing] [status:TODO] [priority:high] [estimate:4h] [start:2026-01-22] [end:2026-01-22]
-- [ ] Graceful degradation when backend is unavailable (no crashes) [labels:type:feature, area:frontend] [status:TODO] [priority:high] [estimate:6h] [start:2026-01-22] [end:2026-01-23]
-- [ ] User-friendly and actionable error messages [labels:type:task, area:frontend] [status:TODO] [priority:medium] [estimate:3h] [start:2026-01-23] [end:2026-01-23]
-- [ ] Clear loading states for backend-driven operations [labels:type:task, area:frontend] [status:TODO] [priority:medium] [estimate:3h] [start:2026-01-23] [end:2026-01-23]
-- [ ] Network switch reloads plugin configuration correctly [labels:type:task, area:frontend] [status:TODO] [priority:medium] [estimate:3h] [start:2026-01-24] [end:2026-01-24]
-
-## Milestone: Uninstall UX & Post-Uninstall State
-
-- [ ] Uninstall UX with clear warnings and post-uninstall state [labels:type:feature, area:frontend] [status:TODO] [priority:medium] [estimate:8h] [start:2026-01-28] [end:2026-01-28]
-- [ ] Plugin removal cleans UI (no stale entries) [labels:type:task, area:frontend, area:indexing] [status:TODO] [priority:high] [estimate:4h] [start:2026-01-29] [end:2026-01-29]
-
-## Milestone: Native-Token UX
-
-- [ ] Show correct fee/value semantics in review and execution [labels:type:feature, area:frontend] [status:TODO] [priority:medium] [estimate:6h] [start:2026-02-03] [end:2026-02-03]
-
-## Milestone: E2E & Release Readiness
-
-- [ ] Verify proposals appear in UI after creation (monitoring) [labels:type:qa, area:frontend, area:indexing] [status:TODO] [priority:high] [estimate:4h] [start:2026-01-27] [end:2026-01-27]
-- [ ] Harmony E2E checklist (App) [labels:type:qa, area:testing] [status:TODO] [priority:high] [estimate:4h] [start:2026-02-04] [end:2026-02-04]
-
-## Milestone: ProjectV2 Schema & Sync
-
-- [ ] Verify .gitissue/metadata.config.json at repo root [labels:type:chore, area:planning] [status:TODO] [priority:low] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
-- [ ] Capture org project schema to tmp/<org>-project-schema.json [labels:type:task, area:planning] [status:TODO] [priority:low] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
-- [ ] Generate .gitissue/metadata.generated.json from PLAN.md [labels:type:task, area:planning] [status:TODO] [priority:low] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
-- [ ] Prepare gh issue create/edit commands for project sync (request approval before running) [labels:type:docs, area:planning] [status:TODO] [priority:low] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
-- [ ] Document workaround for PARENT_ISSUE field limitation in GitHub ProjectV2 (manual UI linking or UI automation) [labels:type:docs, area:planning] [status:TODO] [priority:low] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
-
-## Subtasks for Sprint Execution
-
-- See `PLAN_subtasks.md` for detailed checklists, acceptance criteria and estimates for the top-priority items (prepare/install verification, metadata fallbacks, UI resilience, uninstall UX, E2E QA).
-
-Subtasks file: PLAN_subtasks.md
-
--  See `uninstall-fix.md` for detailed plan on uninstall fix validation and rollback strategy.
-Subtasks file: uninstall-fix.md
-
-## Issues prepared for creation
-
-I preparei uma lista de issues pronta para criar/atualizar no repositório. Ver `ISSUES_TO_CREATE.md` para títulos, descrições curtas, labels e comandos sugeridos (gh CLI). Use esse arquivo como fonte para criar PRs/issues individuais.
+**Version:** 2.0  
+**Last Updated:** 2026-01-21  
+**Template:** [PLAN.md](https://gist.github.com/mzfshark/2ab8856d6c0efc0dfa9d1f98d2a23fdf)

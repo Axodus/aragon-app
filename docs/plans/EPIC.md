@@ -1,50 +1,73 @@
-# EPIC: Large Initiatives & Cross-Team Efforts — aragon-app
+#  #EPIC-002 - HarmonyVoting Frontend UI & UX Production Release
 
 **Repository:** aragon-app (Axodus/aragon-app)  
-**Active Epics:** 1 (HarmonyVoting Frontend E2E)  
-**Last Updated:** 2026-01-21
+**End Date Goal:** 2026-02-28  
+**Priority:** HIGH  
+**Estimative Hours:** 120h  
+**Status:** in progress
 
 ---
 
-## Overview
+## Executive Summary
 
-This document tracks large, multi-phase initiatives that span multiple features, teams, or repositories. For active sprint features, see [SPRINT.md](SPRINT.md).
+Deliver production-ready HarmonyVoting frontend with resilient UI/UX, graceful degradation, plugin uninstall flows, native-token semantics.
+
+**Vision:** Enable users to safely manage HarmonyVoting plugins — setup, propose, vote, execute, uninstall without confusion or errors.
+
+**Timeline:** 6-week sprint (2026-01-21 → 2026-02-28)
 
 ---
 
-## EPIC-001: HarmonyVoting Frontend E2E Production Release
+## Subtasks (Linked)
 
-**Status:** 🔄 IN_PROGRESS (Sprint 1 of 1)  
-**Timeline:** 2026-01-21 to 2026-02-28  
-**Priority:** CRITICAL  
-**Effort:** 120 hours total  
-**Completion:** 45% (11 of 26 items done)
+### EPIC-002: HarmonyVoting Frontend E2E Production Release
+[labels:type:epic, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:120h] [start:2026-01-13] [end:2026-02-28]
 
-### Vision
+**Phase 1 (2026-01-13 → 2026-01-21) — Setup & Forms:**
+- [x] Plugin setup form with validator address (20h, DONE) [labels:type:feature, area:frontend] [status:DONE] [priority:HIGH] [estimate:20h]
 
-Deliver production-ready HarmonyVoting frontend with:
-- Reliable plugin setup forms with validator address input
-- Safe plugin lifecycle (install → propose → vote → execute → uninstall)
-- Resilient UI with graceful degradation when backend unavailable
-- Native-token execution semantics clearly displayed
-- Full E2E testing and accessibility compliance
+**Phase 2 (2026-01-20 → 2026-02-04) — Install & Prepare:**
+- [x] Implement setup form (4h, DONE) [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:4h]
+- [ ] Verify prepare installation (6h, IN_PROGRESS) [labels:type:task, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:6h]
+- [ ] Display prepare errors (4h) [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h]
 
-### Acceptance Criteria
+**Phase 3 (2026-01-22 → 2026-02-11) — UI Resilience:**
+- [ ] Render proposals without metadata (4h) [labels:type:feature, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h]
+- [ ] Handle backend unavailability (6h) [labels:type:feature, area:frontend] [status:TODO] [priority:HIGH] [estimate:6h]
+- [ ] Metadata fallback fetching (5h) [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:5h]
 
-- [x] Plugin setup form with validator address input + validation (100% done)
-- [x] Proposal/vote builder registration + processKey support (100% done)
-- [ ] Install/prepare flows with error handling (50% done)
-- [ ] Metadata fallback prevents broken proposal cards (33% done)
-- [ ] UI gracefully handles backend unavailability (0% done)
-- [ ] Plugin uninstall flow with warnings (0% done)
-- [ ] Native-token value/fee display in execution (25% done)
-- [ ] Network switch reloads plugin config correctly (0% done)
-- [ ] E2E tests passing (install → vote → execute → uninstall) (0% done)
-- [ ] WCAG 2.1 AA accessibility compliance (0% done)
+**Phase 4 (2026-02-05 → 2026-02-18) — Uninstall & Native-Token:**
+- [ ] Uninstall confirmation dialog (6h) [labels:type:feature, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h]
+- [ ] Post-uninstall state (4h) [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h]
+- [ ] Native-token value/fee display (6h) [labels:type:feature, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h]
 
-**Completion Status:** 7 of 10 criteria met (70%)
+**Phase 5 (2026-02-19 → 2026-02-28) — E2E Testing & Release:**
+- [ ] E2E flow tests (8h) [labels:type:test, area:frontend] [status:TODO] [priority:HIGH] [estimate:8h]
+- [ ] Cross-browser testing (4h) [labels:type:qa, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h]
+- [ ] Accessibility audit (4h) [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h]
 
-### Deliverables
+---
+
+## Acceptance Criteria
+
+- [x] Plugin setup form with validator address (DONE)
+- [ ] Install/prepare flows with error handling
+- [ ] Metadata fallback prevents broken cards
+- [ ] UI gracefully handles backend unavailability
+- [ ] Plugin uninstall flow with warnings
+- [ ] Native-token fee/value display
+- [ ] E2E tests passing
+- [ ] WCAG 2.1 AA accessibility
+
+---
+
+**Version:** 2.0  
+**Last Updated:** 2026-01-22  
+**Template:** [EPIC.md](https://gist.github.com/mzfshark/2ab8856d6c0efc0dfa9d1f98d2a23fdf)
+
+---
+
+## Deliverables
 
 **FEATURE-001:** Plugin Setup & Forms
 - Validator address input component

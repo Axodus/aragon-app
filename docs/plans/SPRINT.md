@@ -1,23 +1,9 @@
-# Sprint 1: HarmonyVoting Frontend UI & UX Production Release
+#  #SPRINT-002 - HarmonyVoting Frontend UI & UX Production Release
 
 **Repository:** aragon-app (Axodus/aragon-app)  
-**Branch:** develop  
-**Sprint Goal:** Deliver production-ready HarmonyVoting UI/UX with graceful degradation, clear uninstall warnings, and metadata fallback handling.
-
-**Sprint Start:** 2026-01-21  
-**Sprint End:** 2026-02-28  
-**Current Date:** 2026-01-21  
-**Status:** Active (Week 1 of 6)
-
----
-
-## Summary
-
-| Status | Count | Hours |
-|--------|-------|-------|
-| ✅ DONE | 11 | ~45% complete |
-| 🔄 TODO | 15 | ~75h remaining |
-| **Total** | **26** | **~120h** |
+**Sprint Duration:** 6 weeks (2026-01-21 → 2026-02-28)  
+**Priority Focus:** Plugin Setup & Install Flows → UI Resilience → E2E Testing  
+**Total Capacity:** 120h
 
 ---
 
