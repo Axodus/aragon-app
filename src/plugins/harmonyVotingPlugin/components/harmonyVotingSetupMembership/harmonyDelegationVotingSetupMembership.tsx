@@ -40,12 +40,12 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
         setAddressInput(value);
         const nextValue = value ?? '';
         if (nextValue.trim().length === 0 || addressUtils.isAddress(nextValue)) {
-            onValidatorChange(nextValue);
+            onValidatorChange(nextValue.toLowerCase());
         }
     };
 
     const handleAddressAccept = (value?: IAddressInputResolvedValue) => {
-        onValidatorChange(value?.address ?? '');
+        onValidatorChange((value?.address ?? '').toLowerCase());
     };
 
     return (
