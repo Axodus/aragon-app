@@ -5,6 +5,7 @@
 **Priority:** HIGH  
 **Estimative Hours:** 120h  
 **Status:** in progress
+**Sprint #1 (Validator Address Setup):** ✅ COMPLETED 2026-01-23
 
 ---
 
@@ -15,10 +16,11 @@ Complete HarmonyVoting frontend implementation with resilient UI/UX, graceful de
 ### Key Metrics
 
 - **Total Planned Work:** 120h
-- **Completion:** 45% (11 of 26 sprint items done)
-- **Active Features:** 4 (Setup Forms, Install Flows, UI Resilience, Uninstall UX)
-- **Open Bugs:** 3 (1 fixed, 1 in progress, 1 investigating)
-- **Timeline:** 2026-01-21 → 2026-02-28
+- **Completion:** 50% (13 of 26 sprint items done) — Sprint #1 complete, Phase 2 ready
+- **Active Features:** 5 (Setup Forms ✅, Install Flows, UI Resilience, Uninstall UX, Native-Token)
+- **Open Bugs:** 0 (All Sprint #1 items resolved)
+- **Timeline:** 2026-01-13 → 2026-02-28
+- **Sprint #1 Summary:** 5/5 tasks completed (validator address, address normalization, proposal settings, form state, error display)
 
 ### Dependencies & Integration Points
 
@@ -44,14 +46,14 @@ Complete HarmonyVoting frontend implementation with resilient UI/UX, graceful de
 
 ## Subtasks (Linked)
 
-### FEATURE-001: Plugin Setup & Forms
-[labels:type:feature, area:frontend] [status:DONE] [priority:HIGH] [estimate:20h] [start:2026-01-13] [end:2026-01-21]
+### FEATURE-001: Plugin Setup & Forms ✅ SPRINT #1 COMPLETE
+[labels:type:feature, area:frontend] [status:DONE] [priority:HIGH] [estimate:20h] [start:2026-01-13] [end:2026-01-23]
 
 - [x] Add validator address input to setup form [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-13] [end:2026-01-14]
 - [x] Encode validator address into installation params [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:3h] [start:2026-01-14] [end:2026-01-15]
 - [x] Normalize addresses to lowercase [labels:type:task, area:frontend] [status:DONE] [priority:MEDIUM] [estimate:2h] [start:2026-01-15] [end:2026-01-15]
 - [x] Add proposal settings (dates, snapshot block) [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:6h] [start:2026-01-16] [end:2026-01-18]
-- [x] Register proposal/vote builders [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:5h] [start:2026-01-18] [end:2026-01-21]
+- [x] Register proposal/vote builders [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:5h] [start:2026-01-18] [end:2026-01-23]
 
 ### FEATURE-002: Install & Prepare Flows
 [labels:type:feature, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:20h] [start:2026-01-20] [end:2026-02-04]
@@ -140,6 +142,7 @@ Complete HarmonyVoting frontend implementation with resilient UI/UX, graceful de
 
 ---
 
-**Version:** 2.0  
-**Last Updated:** 2026-01-21  
+**Version:** 2.1  
+**Last Updated:** 2026-01-23  
+**Sprint #1 Status:** ✅ COMPLETE (5/5 tasks, 0 bugs, ready for Phase 2)
 **Template:** [PLAN.md](https://gist.github.com/mzfshark/2ab8856d6c0efc0dfa9d1f98d2a23fdf)
