@@ -70,15 +70,15 @@ export const buildPrepareHarmonyVotingInstallData = (
 
     const isDelegation = plugin.id === PluginInterfaceType.HARMONY_DELEGATION_VOTING;
 
-    if (stageVotingPeriod == null) {
+    if (isDelegation) {
+        // Delegation voting always requires a validator address in install params.
+        pluginSettingsData = buildDelegationInstallData(body.membership?.validatorAddress);
+    } else if (stageVotingPeriod == null) {
         // Installed as processor (basic): forward metadata (CID hex) so the
         // on-chain setup can read `processKey` and other processor fields.
         if (metadata != null && metadata.length > 0) {
             pluginSettingsData = metadata as Hex;
         }
-    } else if (isDelegation) {
-        // Advanced governance / sub-plugin: pass validator address as before.
-        pluginSettingsData = buildDelegationInstallData(body.membership?.validatorAddress);
     }
 
     return pluginTransactionUtils.buildPrepareInstallationData(

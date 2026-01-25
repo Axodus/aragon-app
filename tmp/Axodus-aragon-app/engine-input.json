@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-01-24T13:21:53.090Z",
+  "generatedAt": "2026-01-25T19:32:59.170Z",
   "owner": "Axodus",
   "project": {
     "url": "https://github.com/orgs/Axodus/projects/23",
@@ -22,24 +22,25 @@
         {
           "path": "docs/plans/PLAN.md",
           "absPath": "/mnt/d/Rede/Github/mzfshark/aragon-app/docs/plans/PLAN.md",
-          "sha1": "7db461c9410c675f03cf2490d1e24b25b0e8497e"
+          "sha1": "71c357dc256a1cf1239d38894809b80d1ee313ca"
         },
         {
           "path": "docs/plans/PLAN_subtasks.md",
           "absPath": "/mnt/d/Rede/Github/mzfshark/aragon-app/docs/plans/PLAN_subtasks.md",
-          "sha1": "28ace540f0365b6b6eebb415b0db02ff623c68e5"
+          "sha1": "e17e3bbc5f2ede64f3778f089162fa6e4080c294"
         },
         {
           "path": "docs/plans/ISSUES_TO_CREATE.md",
           "absPath": "/mnt/d/Rede/Github/mzfshark/aragon-app/docs/plans/ISSUES_TO_CREATE.md",
-          "sha1": "4fe426c8341032a06484f574725188b40c1d0548"
+          "sha1": "93ee73b2ae13106fc04111cdc4b1a1a8b6e15fc8"
         }
       ],
-      "planFingerprint": "ea6f7c3263b73a4787465066b407446b8a9ecc76",
+      "planFingerprint": "98be9a45bec739f5c2e7b34ad89fbaf8d3affb71",
       "enableProjectSync": true,
       "tasks": [
         {
-          "stableId": "1fa58e6b4558ed278b27d316ab4de336cbc7d027",
+          "stableId": "c912c6eb52b5f11817dc18194c0e49e19481bfb7",
+          "canonicalKey": "01KFRBVBMA607DDS5DR2GFJ2VM",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 1,
@@ -58,7 +59,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "438b338ead626688de01eb47523159879ef727d8",
+          "stableId": "d51bd60a92dfca659fd273d5f51361883ae267d6",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3K",
           "explicitId": "FEATURE-001",
           "file": "docs/plans/PLAN.md",
           "line": 49,
@@ -77,7 +79,8 @@
           "estimateHours": 20
         },
         {
-          "stableId": "b203c03572179be7aad8ce26760cfd9dcf6051a1",
+          "stableId": "b589dfb269e619cc6b0fa023692f91890aac3415",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3S",
           "explicitId": "FEATURE-002",
           "file": "docs/plans/PLAN.md",
           "line": 58,
@@ -96,7 +99,8 @@
           "estimateHours": 20
         },
         {
-          "stableId": "73c4956f992fc09af7aad691a2356b56377e15ae",
+          "stableId": "36acefcb3dbb016c386247db1af63b5f6b26c235",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3Y",
           "explicitId": "FEATURE-003",
           "file": "docs/plans/PLAN.md",
           "line": 66,
@@ -115,7 +119,8 @@
           "estimateHours": 24
         },
         {
-          "stableId": "128de4943c810012c1ec965ffc0be59a3622624a",
+          "stableId": "6ea1b3cedea3d6c0145edee9471717e1fcf05083",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKG",
           "explicitId": "FEATURE-004",
           "file": "docs/plans/PLAN.md",
           "line": 76,
@@ -134,7 +139,8 @@
           "estimateHours": 20
         },
         {
-          "stableId": "3e0613d1feccf3e5abb639b78243c66fa569df66",
+          "stableId": "2f0483c7b4a9f1c91aba74f3558302dc567a3ec2",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKN",
           "explicitId": "FEATURE-005",
           "file": "docs/plans/PLAN.md",
           "line": 84,
@@ -153,7 +159,8 @@
           "estimateHours": 18
         },
         {
-          "stableId": "7826997c2290cfabfff7bef4d3652fd1da03a467",
+          "stableId": "c6a5016bc9dcac31990f4c359878d13ab57743ec",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKT",
           "explicitId": "FEATURE-006",
           "file": "docs/plans/PLAN.md",
           "line": 92,
@@ -172,7 +179,8 @@
           "estimateHours": 28
         },
         {
-          "stableId": "f31be2156d1a2b895b6c86bcf83b2a374fcd652e",
+          "stableId": "2330bd055c829ff6f089b537b92163fa8fa6cf03",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM1",
           "explicitId": "TASK-001",
           "file": "docs/plans/PLAN.md",
           "line": 102,
@@ -191,7 +199,8 @@
           "estimateHours": 4
         },
         {
-          "stableId": "eaf9a107da74411e3056e2308bd803f5fb7adbec",
+          "stableId": "0e6fb6f85490da47593c0d249f63210d5ab87155",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM3",
           "explicitId": "TASK-002",
           "file": "docs/plans/PLAN.md",
           "line": 107,
@@ -210,7 +219,8 @@
           "estimateHours": 2.5
         },
         {
-          "stableId": "43b6cb2a7649133cc4b01fa42f954e806e1d36df",
+          "stableId": "5202193e4f03de7da5b4bc9f1e265f0a9f41f529",
+          "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195G",
           "explicitId": null,
           "file": "docs/plans/PLAN_subtasks.md",
           "line": 6,
@@ -229,7 +239,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "947e476d925d8db079e8a40622578ab4962780a9",
+          "stableId": "5fd5adbec2036404d42b2b63be4385dc53c8a521",
+          "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195H",
           "explicitId": null,
           "file": "docs/plans/PLAN_subtasks.md",
           "line": 9,
@@ -248,7 +259,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "b6841f279a78f7ef83c560dba60dd3e31b51f212",
+          "stableId": "cc80274b897676c912b4142104d8dc765ecf798c",
+          "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195J",
           "explicitId": null,
           "file": "docs/plans/PLAN_subtasks.md",
           "line": 12,
@@ -267,7 +279,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "8b09625609a18324000050f54f66a0060de30571",
+          "stableId": "0a32b8bde5edeaa1b53b3df051df15bec96edcdd",
+          "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195K",
           "explicitId": null,
           "file": "docs/plans/PLAN_subtasks.md",
           "line": 17,
@@ -286,7 +299,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "06a50abe263d7d8ba0a43fa187dfa8daffe38206",
+          "stableId": "726399b9ef0bfdd57cf211b37aa39df3498edf9e",
+          "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195M",
           "explicitId": null,
           "file": "docs/plans/PLAN_subtasks.md",
           "line": 20,
@@ -305,7 +319,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "70592a1dca45a32f65f6ac7881f5c93b0afe9bb9",
+          "stableId": "cb7034e087a81f115ed95a808977601a05a88adc",
+          "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195N",
           "explicitId": null,
           "file": "docs/plans/PLAN_subtasks.md",
           "line": 25,
@@ -324,7 +339,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "585f3b755936e50f353538ad5baecfdb512abafb",
+          "stableId": "9122939f5475dfb23d5566ec1743d2e7a504f660",
+          "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195P",
           "explicitId": null,
           "file": "docs/plans/PLAN_subtasks.md",
           "line": 28,
@@ -343,7 +359,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "ae1b05b669e18c5b09634c31b02c0bc84ee197de",
+          "stableId": "4055f087d8e5841834c3dc55d8ce91a4feea8391",
+          "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195Q",
           "explicitId": null,
           "file": "docs/plans/PLAN_subtasks.md",
           "line": 33,
@@ -362,7 +379,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "db60ff7a35e5b34c6bb4365ec0c02454fee08dea",
+          "stableId": "821223d42538338aeccf7654061cad660edb9e36",
+          "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195R",
           "explicitId": null,
           "file": "docs/plans/PLAN_subtasks.md",
           "line": 36,
@@ -381,7 +399,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "9852901300af131b1fdc6d452a479e9648ee04e4",
+          "stableId": "379ee98d822bed19f3187d7ff7793e4e7e011e6e",
+          "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195S",
           "explicitId": null,
           "file": "docs/plans/PLAN_subtasks.md",
           "line": 41,
@@ -400,7 +419,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "f37fd573b2a1d5157f9db89f1129ede0d9b286d0",
+          "stableId": "99a01efcfb874111d3dfd27110f43d53dd379f6a",
+          "canonicalKey": "01KFRBVBP845DGPFY326RQQ2S8",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 14,
@@ -421,7 +441,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "74318670821010aefbcab5fdf0465785761bcf64",
+          "stableId": "1edd1ba82302ba9c31389c7ab110442de0e8a1c5",
+          "canonicalKey": "01KFRBVBP845DGPFY326RQQ2S9",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 18,
@@ -442,7 +463,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "1bf398226c878a7c8f6cb708b82e8db39753b61c",
+          "stableId": "7797b7f32ff1c91cc5b8d6de285211520d95b379",
+          "canonicalKey": "01KFRBVBP845DGPFY326RQQ2SA",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 22,
@@ -463,7 +485,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "d9249094a010bd09640842b601bfd96228660561",
+          "stableId": "5d48b49df43d08c5dc7c2fddf3a55905355410c2",
+          "canonicalKey": "01KFRBVBP845DGPFY326RQQ2SB",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 26,
@@ -484,7 +507,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "b054ab8635b0add449ef4147509a2375d93d86bc",
+          "stableId": "6ac226279656f42ed28985b1b9b7aabd2ef0bc06",
+          "canonicalKey": "01KFRBVBP845DGPFY326RQQ2SC",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 30,
@@ -506,7 +530,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "45462de99fa443e9a888f9ff60b305a52622e559",
+          "stableId": "b262267a7900e5052d093b59ce6f6e9c9081ca5a",
+          "canonicalKey": "01KFRBVBP845DGPFY326RQQ2SD",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 34,
@@ -527,7 +552,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "b8f32806d1726d37456a2b4140b54c15d8cd0d1a",
+          "stableId": "125110ca16f26cfd4d71b8918213f0751fca9297",
+          "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YE",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 38,
@@ -548,7 +574,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "67e45cc81432b50101c0c6b0cad2ef16cb6506f9",
+          "stableId": "8e5db4fa4b8ab19a70b95111dda6c3f55e5d8bb0",
+          "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YF",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 42,
@@ -569,7 +596,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "d656cd95e9eb5dfb751ea406ff9b4f43682e96fa",
+          "stableId": "f98be8d0b96f85c8ee608d32dacf262b0ea12a66",
+          "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YG",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 46,
@@ -590,7 +618,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "3e7438495d25b44ca6555ceb204c6479eeba31da",
+          "stableId": "2c44aec4c280c679766d81af5693429cf52215d3",
+          "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YH",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 50,
@@ -611,7 +640,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "0ab4eea5dd835310bb89f2369b511a106ec74919",
+          "stableId": "8c1b2f403fb804df235be6a01d67b7f30b223e15",
+          "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YJ",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 54,
@@ -632,7 +662,8 @@
           "estimateHours": 0
         },
         {
-          "stableId": "cbf3412406e764deedcd97c92a2c5324a1cdc111",
+          "stableId": "c7d591d6a202f9ca22c8118024e7ab7a8d19a791",
+          "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YK",
           "explicitId": null,
           "file": "docs/plans/ISSUES_TO_CREATE.md",
           "line": 58,
@@ -655,7 +686,8 @@
       ],
       "subtasks": [
         {
-          "stableId": "5d532620dfbf64c27cbe83bfdda0c76b97cd1bd6",
+          "stableId": "0a797ae7177baf2b91b425820c0b0e9cd5d37fdd",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3M",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 52,
@@ -674,10 +706,11 @@
           "startDate": "2026-01-13",
           "endDate": "2026-01-14",
           "estimateHours": 4,
-          "parentStableId": "438b338ead626688de01eb47523159879ef727d8"
+          "parentStableId": "d51bd60a92dfca659fd273d5f51361883ae267d6"
         },
         {
-          "stableId": "5bd4ecd40fd21143f0f35627390844d28862df49",
+          "stableId": "bd077ccb8f300812d9d957d829658a282278ea68",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3N",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 53,
@@ -696,10 +729,11 @@
           "startDate": "2026-01-14",
           "endDate": "2026-01-15",
           "estimateHours": 3,
-          "parentStableId": "438b338ead626688de01eb47523159879ef727d8"
+          "parentStableId": "d51bd60a92dfca659fd273d5f51361883ae267d6"
         },
         {
-          "stableId": "6637d10aa95ecbae23bbdb1b90cc7230a4ab3ea8",
+          "stableId": "8f0c4fa6d20b7bb97ea083d9f37cc8abccf248a6",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3P",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 54,
@@ -718,10 +752,11 @@
           "startDate": "2026-01-15",
           "endDate": "2026-01-15",
           "estimateHours": 2,
-          "parentStableId": "438b338ead626688de01eb47523159879ef727d8"
+          "parentStableId": "d51bd60a92dfca659fd273d5f51361883ae267d6"
         },
         {
-          "stableId": "ee65d30b16abefc783082643ec82bb7395c9c94d",
+          "stableId": "0f2d583abd590112246a97024c91eeb799ddc871",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3Q",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 55,
@@ -740,10 +775,11 @@
           "startDate": "2026-01-16",
           "endDate": "2026-01-18",
           "estimateHours": 6,
-          "parentStableId": "438b338ead626688de01eb47523159879ef727d8"
+          "parentStableId": "d51bd60a92dfca659fd273d5f51361883ae267d6"
         },
         {
-          "stableId": "dab3b20cca503c217d4c637afcf351938fc1ffd0",
+          "stableId": "b2eb1df5742cc1b606ee97a80e52d2e3d7730313",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3R",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 56,
@@ -762,10 +798,11 @@
           "startDate": "2026-01-18",
           "endDate": "2026-01-23",
           "estimateHours": 5,
-          "parentStableId": "438b338ead626688de01eb47523159879ef727d8"
+          "parentStableId": "d51bd60a92dfca659fd273d5f51361883ae267d6"
         },
         {
-          "stableId": "327e29e6d35ee83381ec7fda1cc51a5f58f06e59",
+          "stableId": "a9ed8ee81e067a682e5fda7d45d877b3d527acf3",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3T",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 61,
@@ -784,10 +821,11 @@
           "startDate": "2026-01-20",
           "endDate": "2026-01-21",
           "estimateHours": 4,
-          "parentStableId": "b203c03572179be7aad8ce26760cfd9dcf6051a1"
+          "parentStableId": "b589dfb269e619cc6b0fa023692f91890aac3415"
         },
         {
-          "stableId": "91a78e77ba4349cdc9219b1f48b5bf32e51b0d42",
+          "stableId": "e750330b737a36035ac5bfe0955606377508fd7d",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3V",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 62,
@@ -806,10 +844,11 @@
           "startDate": "2026-01-22",
           "endDate": "2026-01-24",
           "estimateHours": 6,
-          "parentStableId": "b203c03572179be7aad8ce26760cfd9dcf6051a1"
+          "parentStableId": "b589dfb269e619cc6b0fa023692f91890aac3415"
         },
         {
-          "stableId": "cbacaa3b3aebf8a0cc6d90f3d93a911115323762",
+          "stableId": "95fa57720c57054f24de7217323f5346cd6235fc",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3W",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 63,
@@ -828,10 +867,11 @@
           "startDate": "2026-01-25",
           "endDate": "2026-01-27",
           "estimateHours": 4,
-          "parentStableId": "b203c03572179be7aad8ce26760cfd9dcf6051a1"
+          "parentStableId": "b589dfb269e619cc6b0fa023692f91890aac3415"
         },
         {
-          "stableId": "a048f12771d09304329abe8646e57c89e45041d9",
+          "stableId": "b41fb40320b1e4dabba6391b807d5e2808c738c9",
+          "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3X",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 64,
@@ -850,10 +890,11 @@
           "startDate": "2026-01-28",
           "endDate": "2026-02-04",
           "estimateHours": 6,
-          "parentStableId": "b203c03572179be7aad8ce26760cfd9dcf6051a1"
+          "parentStableId": "b589dfb269e619cc6b0fa023692f91890aac3415"
         },
         {
-          "stableId": "b37b8e40d2559bf43cc6ef929b7f1360b97a2d4d",
+          "stableId": "53974f05cc9bf5f2e9f90d2fe715a0c571619166",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKA",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 69,
@@ -873,10 +914,11 @@
           "startDate": "2026-01-22",
           "endDate": "2026-01-22",
           "estimateHours": 4,
-          "parentStableId": "73c4956f992fc09af7aad691a2356b56377e15ae"
+          "parentStableId": "36acefcb3dbb016c386247db1af63b5f6b26c235"
         },
         {
-          "stableId": "5af824048f0b934c318e2a70fd55ab950f297c5c",
+          "stableId": "0adc5dd3d36c370f2c2cf34565d13fc69289c5f8",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKB",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 70,
@@ -895,10 +937,11 @@
           "startDate": "2026-01-22",
           "endDate": "2026-01-23",
           "estimateHours": 6,
-          "parentStableId": "73c4956f992fc09af7aad691a2356b56377e15ae"
+          "parentStableId": "36acefcb3dbb016c386247db1af63b5f6b26c235"
         },
         {
-          "stableId": "9a2221522561f1803eaec6fbf0235f5150128878",
+          "stableId": "31c0c56558e2a7b697a7d5d6138b9997aa026463",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKC",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 71,
@@ -917,10 +960,11 @@
           "startDate": "2026-01-23",
           "endDate": "2026-01-23",
           "estimateHours": 3,
-          "parentStableId": "73c4956f992fc09af7aad691a2356b56377e15ae"
+          "parentStableId": "36acefcb3dbb016c386247db1af63b5f6b26c235"
         },
         {
-          "stableId": "20a2a3cbe7bfa2cb1d3b58e83d7e44887d4f292d",
+          "stableId": "77fbd619606d2a42b54b658a0aa05bbf9c354321",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKD",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 72,
@@ -939,10 +983,11 @@
           "startDate": "2026-01-23",
           "endDate": "2026-01-23",
           "estimateHours": 3,
-          "parentStableId": "73c4956f992fc09af7aad691a2356b56377e15ae"
+          "parentStableId": "36acefcb3dbb016c386247db1af63b5f6b26c235"
         },
         {
-          "stableId": "384b30447fc844ec09e1cfcfecb3a1365b4605fa",
+          "stableId": "b786ed0929b8c76ab6a0f89dc89054224dd89336",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKE",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 73,
@@ -961,10 +1006,11 @@
           "startDate": "2026-01-24",
           "endDate": "2026-01-24",
           "estimateHours": 3,
-          "parentStableId": "73c4956f992fc09af7aad691a2356b56377e15ae"
+          "parentStableId": "36acefcb3dbb016c386247db1af63b5f6b26c235"
         },
         {
-          "stableId": "1af1317f692df5e0278df0975410511be90e363c",
+          "stableId": "80c5108cf5314fbfb0c78c08c7fef10757dbd5d6",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKF",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 74,
@@ -983,10 +1029,11 @@
           "startDate": "2026-02-05",
           "endDate": "2026-02-11",
           "estimateHours": 5,
-          "parentStableId": "73c4956f992fc09af7aad691a2356b56377e15ae"
+          "parentStableId": "36acefcb3dbb016c386247db1af63b5f6b26c235"
         },
         {
-          "stableId": "42660ba6b837362a6f3f19f9ae685f5aa954fcd3",
+          "stableId": "882e738c81e61279dc0caf1b57935831a2162952",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKH",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 79,
@@ -1005,10 +1052,11 @@
           "startDate": "2026-02-05",
           "endDate": "2026-02-07",
           "estimateHours": 6,
-          "parentStableId": "128de4943c810012c1ec965ffc0be59a3622624a"
+          "parentStableId": "6ea1b3cedea3d6c0145edee9471717e1fcf05083"
         },
         {
-          "stableId": "a7a524bf60496d514d5f3db74a9737d86ef26a4b",
+          "stableId": "26249470c134512c2e66fd88bf8c7a939ddd26f9",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKJ",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 80,
@@ -1027,10 +1075,11 @@
           "startDate": "2026-02-08",
           "endDate": "2026-02-10",
           "estimateHours": 4,
-          "parentStableId": "128de4943c810012c1ec965ffc0be59a3622624a"
+          "parentStableId": "6ea1b3cedea3d6c0145edee9471717e1fcf05083"
         },
         {
-          "stableId": "bbafcc30396f48947369ba57fc7ae1caced38955",
+          "stableId": "353303685bea38a40f8215fffe5df32e7c389d02",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKK",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 81,
@@ -1050,10 +1099,11 @@
           "startDate": "2026-02-11",
           "endDate": "2026-02-14",
           "estimateHours": 4,
-          "parentStableId": "128de4943c810012c1ec965ffc0be59a3622624a"
+          "parentStableId": "6ea1b3cedea3d6c0145edee9471717e1fcf05083"
         },
         {
-          "stableId": "8b85368714f65df86111476ef0d3304cb3936487",
+          "stableId": "e6057423d08b40a00d6e157f1c37731a5818e679",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKM",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 82,
@@ -1072,10 +1122,11 @@
           "startDate": "2026-02-15",
           "endDate": "2026-02-18",
           "estimateHours": 6,
-          "parentStableId": "128de4943c810012c1ec965ffc0be59a3622624a"
+          "parentStableId": "6ea1b3cedea3d6c0145edee9471717e1fcf05083"
         },
         {
-          "stableId": "516195c5bd15f627776197eea80e64f9447b60e4",
+          "stableId": "cfdce7ceb131f5ca06c9e8a6282cbffdd6fbbf49",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKP",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 87,
@@ -1094,10 +1145,11 @@
           "startDate": "2026-02-03",
           "endDate": "2026-02-05",
           "estimateHours": 6,
-          "parentStableId": "3e0613d1feccf3e5abb639b78243c66fa569df66"
+          "parentStableId": "2f0483c7b4a9f1c91aba74f3558302dc567a3ec2"
         },
         {
-          "stableId": "fbc695c4c45c5f59d5ba5b8a2f48583f6c36c85c",
+          "stableId": "8ccb557d6a38b197af4f9b8b94bd1e926efe0b4c",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKQ",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 88,
@@ -1116,10 +1168,11 @@
           "startDate": "2026-02-06",
           "endDate": "2026-02-08",
           "estimateHours": 4,
-          "parentStableId": "3e0613d1feccf3e5abb639b78243c66fa569df66"
+          "parentStableId": "2f0483c7b4a9f1c91aba74f3558302dc567a3ec2"
         },
         {
-          "stableId": "caea0514b2de9e1f31b8d51335dfa2523780d5b7",
+          "stableId": "1223ff7d4d4cfd3d778d7324d010c43e23fdb37c",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKR",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 89,
@@ -1138,10 +1191,11 @@
           "startDate": "2026-02-09",
           "endDate": "2026-02-12",
           "estimateHours": 4,
-          "parentStableId": "3e0613d1feccf3e5abb639b78243c66fa569df66"
+          "parentStableId": "2f0483c7b4a9f1c91aba74f3558302dc567a3ec2"
         },
         {
-          "stableId": "9e341ff5ca4a973cb534858b22d8837ce81a837e",
+          "stableId": "e32c00eceb1439a524bc05f0562f008a43c99f3a",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKS",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 90,
@@ -1160,10 +1214,11 @@
           "startDate": "2026-02-13",
           "endDate": "2026-02-16",
           "estimateHours": 4,
-          "parentStableId": "3e0613d1feccf3e5abb639b78243c66fa569df66"
+          "parentStableId": "2f0483c7b4a9f1c91aba74f3558302dc567a3ec2"
         },
         {
-          "stableId": "f5a48a76bcd3acbd8a7cca3a0e230e28c3ec48d7",
+          "stableId": "a908ae6d1e879c08e2e1fdd96b3bfea561acb59f",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKV",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 95,
@@ -1182,10 +1237,11 @@
           "startDate": "2026-02-19",
           "endDate": "2026-02-21",
           "estimateHours": 8,
-          "parentStableId": "7826997c2290cfabfff7bef4d3652fd1da03a467"
+          "parentStableId": "c6a5016bc9dcac31990f4c359878d13ab57743ec"
         },
         {
-          "stableId": "5d6699d810db9f3fc461d277ceb4248ba7663ee4",
+          "stableId": "0da3d4d25de20d4663929a59a503ea5d5d128814",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKW",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 96,
@@ -1204,10 +1260,11 @@
           "startDate": "2026-02-22",
           "endDate": "2026-02-22",
           "estimateHours": 4,
-          "parentStableId": "7826997c2290cfabfff7bef4d3652fd1da03a467"
+          "parentStableId": "c6a5016bc9dcac31990f4c359878d13ab57743ec"
         },
         {
-          "stableId": "010df411cf3cea0ce6cb2ed4546ebbd954f94954",
+          "stableId": "907d593fb0f0c8636dac90b6e36679c57a01e25d",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKX",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 97,
@@ -1226,10 +1283,11 @@
           "startDate": "2026-02-23",
           "endDate": "2026-02-23",
           "estimateHours": 4,
-          "parentStableId": "7826997c2290cfabfff7bef4d3652fd1da03a467"
+          "parentStableId": "c6a5016bc9dcac31990f4c359878d13ab57743ec"
         },
         {
-          "stableId": "ba713085e9446e3d30554718db6ffa38234246e4",
+          "stableId": "5dfbe0177157a9d5641135afaed18df918394a3a",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKY",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 98,
@@ -1248,10 +1306,11 @@
           "startDate": "2026-02-24",
           "endDate": "2026-02-24",
           "estimateHours": 4,
-          "parentStableId": "7826997c2290cfabfff7bef4d3652fd1da03a467"
+          "parentStableId": "c6a5016bc9dcac31990f4c359878d13ab57743ec"
         },
         {
-          "stableId": "2440f827a6bfc1fcf567488fa35cf7ab04c925c9",
+          "stableId": "f27303bd1c52d6beef396bacd089aa918bee6aa3",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKZ",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 99,
@@ -1270,10 +1329,11 @@
           "startDate": "2026-02-25",
           "endDate": "2026-02-26",
           "estimateHours": 4,
-          "parentStableId": "7826997c2290cfabfff7bef4d3652fd1da03a467"
+          "parentStableId": "c6a5016bc9dcac31990f4c359878d13ab57743ec"
         },
         {
-          "stableId": "b5ee404dd30385ad9b029ac8296b034a250cf41f",
+          "stableId": "9d15e16ce923e6f975ea37febdbb2bf30ff9e174",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM0",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 100,
@@ -1293,10 +1353,11 @@
           "startDate": "2026-02-27",
           "endDate": "2026-02-28",
           "estimateHours": 4,
-          "parentStableId": "7826997c2290cfabfff7bef4d3652fd1da03a467"
+          "parentStableId": "c6a5016bc9dcac31990f4c359878d13ab57743ec"
         },
         {
-          "stableId": "8178e1e249b0e7fe9890001194b7ecf5a7d994f2",
+          "stableId": "77c949e6b594a8c0b3716d5af8ff88e79a972d19",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM2",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 105,
@@ -1315,10 +1376,11 @@
           "startDate": "2026-01-20",
           "endDate": "2026-01-20",
           "estimateHours": 4,
-          "parentStableId": "f31be2156d1a2b895b6c86bcf83b2a374fcd652e"
+          "parentStableId": "2330bd055c829ff6f089b537b92163fa8fa6cf03"
         },
         {
-          "stableId": "1ead63a0ce62d637fc11fe15daf40f6601a90026",
+          "stableId": "fdb572ba167c3d2dfd8c3c039716246161c4c71c",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM4",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 110,
@@ -1337,10 +1399,11 @@
           "startDate": "2026-01-19",
           "endDate": "2026-01-19",
           "estimateHours": 0.5,
-          "parentStableId": "eaf9a107da74411e3056e2308bd803f5fb7adbec"
+          "parentStableId": "0e6fb6f85490da47593c0d249f63210d5ab87155"
         },
         {
-          "stableId": "d2439351fb78dc43e94017927bf91cf2788d8994",
+          "stableId": "3cbb6ce6c8ce8b39f9d79f19c207bac898c0028f",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM5",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 111,
@@ -1359,10 +1422,11 @@
           "startDate": "2026-01-19",
           "endDate": "2026-01-19",
           "estimateHours": 0.5,
-          "parentStableId": "eaf9a107da74411e3056e2308bd803f5fb7adbec"
+          "parentStableId": "0e6fb6f85490da47593c0d249f63210d5ab87155"
         },
         {
-          "stableId": "ddf9bf886201f8b636f87722860954e420d2fe5f",
+          "stableId": "752d832bd141b7b537da8bc718daffcf414a42e3",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM6",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 112,
@@ -1381,10 +1445,11 @@
           "startDate": "2026-01-19",
           "endDate": "2026-01-19",
           "estimateHours": 0.5,
-          "parentStableId": "eaf9a107da74411e3056e2308bd803f5fb7adbec"
+          "parentStableId": "0e6fb6f85490da47593c0d249f63210d5ab87155"
         },
         {
-          "stableId": "43889dc50c4f1cdf8c983566cbd841daf6ad726d",
+          "stableId": "9b916f6a99dae5d98495bfefa969a465667bc08d",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM7",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 113,
@@ -1403,10 +1468,11 @@
           "startDate": "2026-01-19",
           "endDate": "2026-01-19",
           "estimateHours": 0.5,
-          "parentStableId": "eaf9a107da74411e3056e2308bd803f5fb7adbec"
+          "parentStableId": "0e6fb6f85490da47593c0d249f63210d5ab87155"
         },
         {
-          "stableId": "1ec2db6386584b7410566d8b234882a3c3ae651d",
+          "stableId": "e90880a5b9ad6df32444ce4d93ad8985afe9a464",
+          "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM8",
           "explicitId": null,
           "file": "docs/plans/PLAN.md",
           "line": 114,
@@ -1425,7 +1491,7 @@
           "startDate": "2026-01-19",
           "endDate": "2026-01-19",
           "estimateHours": 0.5,
-          "parentStableId": "eaf9a107da74411e3056e2308bd803f5fb7adbec"
+          "parentStableId": "0e6fb6f85490da47593c0d249f63210d5ab87155"
         }
       ]
     }

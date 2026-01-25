@@ -1,6 +1,7 @@
 [
   {
-    "stableId": "1fa58e6b4558ed278b27d316ab4de336cbc7d027",
+    "stableId": "c912c6eb52b5f11817dc18194c0e49e19481bfb7",
+    "canonicalKey": "01KFRBVBMA607DDS5DR2GFJ2VM",
     "explicitId": null,
     "file": "docs/plans/PLAN.md",
     "line": 1,
@@ -19,7 +20,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "438b338ead626688de01eb47523159879ef727d8",
+    "stableId": "d51bd60a92dfca659fd273d5f51361883ae267d6",
+    "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3K",
     "explicitId": "FEATURE-001",
     "file": "docs/plans/PLAN.md",
     "line": 49,
@@ -38,7 +40,8 @@
     "estimateHours": 20
   },
   {
-    "stableId": "b203c03572179be7aad8ce26760cfd9dcf6051a1",
+    "stableId": "b589dfb269e619cc6b0fa023692f91890aac3415",
+    "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3S",
     "explicitId": "FEATURE-002",
     "file": "docs/plans/PLAN.md",
     "line": 58,
@@ -57,7 +60,8 @@
     "estimateHours": 20
   },
   {
-    "stableId": "73c4956f992fc09af7aad691a2356b56377e15ae",
+    "stableId": "36acefcb3dbb016c386247db1af63b5f6b26c235",
+    "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3Y",
     "explicitId": "FEATURE-003",
     "file": "docs/plans/PLAN.md",
     "line": 66,
@@ -76,7 +80,8 @@
     "estimateHours": 24
   },
   {
-    "stableId": "128de4943c810012c1ec965ffc0be59a3622624a",
+    "stableId": "6ea1b3cedea3d6c0145edee9471717e1fcf05083",
+    "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKG",
     "explicitId": "FEATURE-004",
     "file": "docs/plans/PLAN.md",
     "line": 76,
@@ -95,7 +100,8 @@
     "estimateHours": 20
   },
   {
-    "stableId": "3e0613d1feccf3e5abb639b78243c66fa569df66",
+    "stableId": "2f0483c7b4a9f1c91aba74f3558302dc567a3ec2",
+    "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKN",
     "explicitId": "FEATURE-005",
     "file": "docs/plans/PLAN.md",
     "line": 84,
@@ -114,7 +120,8 @@
     "estimateHours": 18
   },
   {
-    "stableId": "7826997c2290cfabfff7bef4d3652fd1da03a467",
+    "stableId": "c6a5016bc9dcac31990f4c359878d13ab57743ec",
+    "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKT",
     "explicitId": "FEATURE-006",
     "file": "docs/plans/PLAN.md",
     "line": 92,
@@ -133,7 +140,8 @@
     "estimateHours": 28
   },
   {
-    "stableId": "f31be2156d1a2b895b6c86bcf83b2a374fcd652e",
+    "stableId": "2330bd055c829ff6f089b537b92163fa8fa6cf03",
+    "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM1",
     "explicitId": "TASK-001",
     "file": "docs/plans/PLAN.md",
     "line": 102,
@@ -152,7 +160,8 @@
     "estimateHours": 4
   },
   {
-    "stableId": "eaf9a107da74411e3056e2308bd803f5fb7adbec",
+    "stableId": "0e6fb6f85490da47593c0d249f63210d5ab87155",
+    "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM3",
     "explicitId": "TASK-002",
     "file": "docs/plans/PLAN.md",
     "line": 107,
@@ -171,7 +180,8 @@
     "estimateHours": 2.5
   },
   {
-    "stableId": "43b6cb2a7649133cc4b01fa42f954e806e1d36df",
+    "stableId": "5202193e4f03de7da5b4bc9f1e265f0a9f41f529",
+    "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195G",
     "explicitId": null,
     "file": "docs/plans/PLAN_subtasks.md",
     "line": 6,
@@ -190,7 +200,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "947e476d925d8db079e8a40622578ab4962780a9",
+    "stableId": "5fd5adbec2036404d42b2b63be4385dc53c8a521",
+    "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195H",
     "explicitId": null,
     "file": "docs/plans/PLAN_subtasks.md",
     "line": 9,
@@ -209,7 +220,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "b6841f279a78f7ef83c560dba60dd3e31b51f212",
+    "stableId": "cc80274b897676c912b4142104d8dc765ecf798c",
+    "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195J",
     "explicitId": null,
     "file": "docs/plans/PLAN_subtasks.md",
     "line": 12,
@@ -228,7 +240,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "8b09625609a18324000050f54f66a0060de30571",
+    "stableId": "0a32b8bde5edeaa1b53b3df051df15bec96edcdd",
+    "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195K",
     "explicitId": null,
     "file": "docs/plans/PLAN_subtasks.md",
     "line": 17,
@@ -247,7 +260,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "06a50abe263d7d8ba0a43fa187dfa8daffe38206",
+    "stableId": "726399b9ef0bfdd57cf211b37aa39df3498edf9e",
+    "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195M",
     "explicitId": null,
     "file": "docs/plans/PLAN_subtasks.md",
     "line": 20,
@@ -266,7 +280,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "70592a1dca45a32f65f6ac7881f5c93b0afe9bb9",
+    "stableId": "cb7034e087a81f115ed95a808977601a05a88adc",
+    "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195N",
     "explicitId": null,
     "file": "docs/plans/PLAN_subtasks.md",
     "line": 25,
@@ -285,7 +300,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "585f3b755936e50f353538ad5baecfdb512abafb",
+    "stableId": "9122939f5475dfb23d5566ec1743d2e7a504f660",
+    "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195P",
     "explicitId": null,
     "file": "docs/plans/PLAN_subtasks.md",
     "line": 28,
@@ -304,7 +320,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "ae1b05b669e18c5b09634c31b02c0bc84ee197de",
+    "stableId": "4055f087d8e5841834c3dc55d8ce91a4feea8391",
+    "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195Q",
     "explicitId": null,
     "file": "docs/plans/PLAN_subtasks.md",
     "line": 33,
@@ -323,7 +340,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "db60ff7a35e5b34c6bb4365ec0c02454fee08dea",
+    "stableId": "821223d42538338aeccf7654061cad660edb9e36",
+    "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195R",
     "explicitId": null,
     "file": "docs/plans/PLAN_subtasks.md",
     "line": 36,
@@ -342,7 +360,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "9852901300af131b1fdc6d452a479e9648ee04e4",
+    "stableId": "379ee98d822bed19f3187d7ff7793e4e7e011e6e",
+    "canonicalKey": "01KFRBVBNPNVY45RGBRPA0195S",
     "explicitId": null,
     "file": "docs/plans/PLAN_subtasks.md",
     "line": 41,
@@ -361,7 +380,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "f37fd573b2a1d5157f9db89f1129ede0d9b286d0",
+    "stableId": "99a01efcfb874111d3dfd27110f43d53dd379f6a",
+    "canonicalKey": "01KFRBVBP845DGPFY326RQQ2S8",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 14,
@@ -382,7 +402,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "74318670821010aefbcab5fdf0465785761bcf64",
+    "stableId": "1edd1ba82302ba9c31389c7ab110442de0e8a1c5",
+    "canonicalKey": "01KFRBVBP845DGPFY326RQQ2S9",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 18,
@@ -403,7 +424,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "1bf398226c878a7c8f6cb708b82e8db39753b61c",
+    "stableId": "7797b7f32ff1c91cc5b8d6de285211520d95b379",
+    "canonicalKey": "01KFRBVBP845DGPFY326RQQ2SA",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 22,
@@ -424,7 +446,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "d9249094a010bd09640842b601bfd96228660561",
+    "stableId": "5d48b49df43d08c5dc7c2fddf3a55905355410c2",
+    "canonicalKey": "01KFRBVBP845DGPFY326RQQ2SB",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 26,
@@ -445,7 +468,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "b054ab8635b0add449ef4147509a2375d93d86bc",
+    "stableId": "6ac226279656f42ed28985b1b9b7aabd2ef0bc06",
+    "canonicalKey": "01KFRBVBP845DGPFY326RQQ2SC",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 30,
@@ -467,7 +491,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "45462de99fa443e9a888f9ff60b305a52622e559",
+    "stableId": "b262267a7900e5052d093b59ce6f6e9c9081ca5a",
+    "canonicalKey": "01KFRBVBP845DGPFY326RQQ2SD",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 34,
@@ -488,7 +513,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "b8f32806d1726d37456a2b4140b54c15d8cd0d1a",
+    "stableId": "125110ca16f26cfd4d71b8918213f0751fca9297",
+    "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YE",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 38,
@@ -509,7 +535,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "67e45cc81432b50101c0c6b0cad2ef16cb6506f9",
+    "stableId": "8e5db4fa4b8ab19a70b95111dda6c3f55e5d8bb0",
+    "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YF",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 42,
@@ -530,7 +557,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "d656cd95e9eb5dfb751ea406ff9b4f43682e96fa",
+    "stableId": "f98be8d0b96f85c8ee608d32dacf262b0ea12a66",
+    "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YG",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 46,
@@ -551,7 +579,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "3e7438495d25b44ca6555ceb204c6479eeba31da",
+    "stableId": "2c44aec4c280c679766d81af5693429cf52215d3",
+    "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YH",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 50,
@@ -572,7 +601,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "0ab4eea5dd835310bb89f2369b511a106ec74919",
+    "stableId": "8c1b2f403fb804df235be6a01d67b7f30b223e15",
+    "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YJ",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 54,
@@ -593,7 +623,8 @@
     "estimateHours": 0
   },
   {
-    "stableId": "cbf3412406e764deedcd97c92a2c5324a1cdc111",
+    "stableId": "c7d591d6a202f9ca22c8118024e7ab7a8d19a791",
+    "canonicalKey": "01KFRBVBPAHYZF315FNV0PV7YK",
     "explicitId": null,
     "file": "docs/plans/ISSUES_TO_CREATE.md",
     "line": 58,

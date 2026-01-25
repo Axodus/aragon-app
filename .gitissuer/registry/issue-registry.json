@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "repo": "Axodus/aragon-app",
-  "updatedAt": "2026-01-25T13:07:37.495Z",
+  "updatedAt": "2026-01-25T19:36:15.352Z",
   "planFingerprint": "98be9a45bec739f5c2e7b34ad89fbaf8d3affb71",
   "planFiles": [
     {
@@ -31,7 +31,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 1
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.342Z"
     },
     {
       "stableId": "d51bd60a92dfca659fd273d5f51361883ae267d6",
@@ -46,7 +46,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 49
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.342Z"
     },
     {
       "stableId": "b589dfb269e619cc6b0fa023692f91890aac3415",
@@ -61,7 +61,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 58
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.342Z"
     },
     {
       "stableId": "36acefcb3dbb016c386247db1af63b5f6b26c235",
@@ -76,7 +76,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 66
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.342Z"
     },
     {
       "stableId": "6ea1b3cedea3d6c0145edee9471717e1fcf05083",
@@ -91,7 +91,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 76
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.342Z"
     },
     {
       "stableId": "2f0483c7b4a9f1c91aba74f3558302dc567a3ec2",
@@ -106,7 +106,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 84
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.342Z"
     },
     {
       "stableId": "c6a5016bc9dcac31990f4c359878d13ab57743ec",
@@ -121,7 +121,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 92
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "2330bd055c829ff6f089b537b92163fa8fa6cf03",
@@ -136,7 +136,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 102
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "0e6fb6f85490da47593c0d249f63210d5ab87155",
@@ -151,7 +151,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 107
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "5202193e4f03de7da5b4bc9f1e265f0a9f41f529",
@@ -166,7 +166,7 @@
         "file": "docs/plans/PLAN_subtasks.md",
         "line": 6
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "5fd5adbec2036404d42b2b63be4385dc53c8a521",
@@ -181,7 +181,7 @@
         "file": "docs/plans/PLAN_subtasks.md",
         "line": 9
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "cc80274b897676c912b4142104d8dc765ecf798c",
@@ -196,7 +196,7 @@
         "file": "docs/plans/PLAN_subtasks.md",
         "line": 12
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "0a32b8bde5edeaa1b53b3df051df15bec96edcdd",
@@ -211,7 +211,7 @@
         "file": "docs/plans/PLAN_subtasks.md",
         "line": 17
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "726399b9ef0bfdd57cf211b37aa39df3498edf9e",
@@ -226,7 +226,7 @@
         "file": "docs/plans/PLAN_subtasks.md",
         "line": 20
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "cb7034e087a81f115ed95a808977601a05a88adc",
@@ -241,7 +241,7 @@
         "file": "docs/plans/PLAN_subtasks.md",
         "line": 25
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "9122939f5475dfb23d5566ec1743d2e7a504f660",
@@ -256,7 +256,7 @@
         "file": "docs/plans/PLAN_subtasks.md",
         "line": 28
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "4055f087d8e5841834c3dc55d8ce91a4feea8391",
@@ -271,7 +271,7 @@
         "file": "docs/plans/PLAN_subtasks.md",
         "line": 33
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "821223d42538338aeccf7654061cad660edb9e36",
@@ -286,7 +286,7 @@
         "file": "docs/plans/PLAN_subtasks.md",
         "line": 36
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "379ee98d822bed19f3187d7ff7793e4e7e011e6e",
@@ -301,7 +301,7 @@
         "file": "docs/plans/PLAN_subtasks.md",
         "line": 41
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "99a01efcfb874111d3dfd27110f43d53dd379f6a",
@@ -316,7 +316,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 14
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "1edd1ba82302ba9c31389c7ab110442de0e8a1c5",
@@ -331,7 +331,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 18
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "7797b7f32ff1c91cc5b8d6de285211520d95b379",
@@ -346,7 +346,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 22
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "5d48b49df43d08c5dc7c2fddf3a55905355410c2",
@@ -361,7 +361,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 26
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "6ac226279656f42ed28985b1b9b7aabd2ef0bc06",
@@ -376,7 +376,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 30
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "b262267a7900e5052d093b59ce6f6e9c9081ca5a",
@@ -391,7 +391,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 34
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "125110ca16f26cfd4d71b8918213f0751fca9297",
@@ -406,7 +406,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 38
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "8e5db4fa4b8ab19a70b95111dda6c3f55e5d8bb0",
@@ -421,7 +421,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 42
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "f98be8d0b96f85c8ee608d32dacf262b0ea12a66",
@@ -436,7 +436,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 46
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "2c44aec4c280c679766d81af5693429cf52215d3",
@@ -451,7 +451,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 50
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "8c1b2f403fb804df235be6a01d67b7f30b223e15",
@@ -466,7 +466,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 54
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "c7d591d6a202f9ca22c8118024e7ab7a8d19a791",
@@ -481,7 +481,7 @@
         "file": "docs/plans/ISSUES_TO_CREATE.md",
         "line": 58
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "0a797ae7177baf2b91b425820c0b0e9cd5d37fdd",
@@ -496,7 +496,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 52
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "bd077ccb8f300812d9d957d829658a282278ea68",
@@ -511,7 +511,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 53
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "8f0c4fa6d20b7bb97ea083d9f37cc8abccf248a6",
@@ -526,7 +526,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 54
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "0f2d583abd590112246a97024c91eeb799ddc871",
@@ -541,7 +541,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 55
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "b2eb1df5742cc1b606ee97a80e52d2e3d7730313",
@@ -556,7 +556,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 56
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "a9ed8ee81e067a682e5fda7d45d877b3d527acf3",
@@ -571,7 +571,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 61
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "e750330b737a36035ac5bfe0955606377508fd7d",
@@ -586,7 +586,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 62
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "95fa57720c57054f24de7217323f5346cd6235fc",
@@ -601,7 +601,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 63
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "b41fb40320b1e4dabba6391b807d5e2808c738c9",
@@ -616,7 +616,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 64
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "53974f05cc9bf5f2e9f90d2fe715a0c571619166",
@@ -631,7 +631,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 69
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "0adc5dd3d36c370f2c2cf34565d13fc69289c5f8",
@@ -646,7 +646,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 70
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "31c0c56558e2a7b697a7d5d6138b9997aa026463",
@@ -661,7 +661,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 71
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "77fbd619606d2a42b54b658a0aa05bbf9c354321",
@@ -676,7 +676,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 72
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "b786ed0929b8c76ab6a0f89dc89054224dd89336",
@@ -691,7 +691,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 73
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "80c5108cf5314fbfb0c78c08c7fef10757dbd5d6",
@@ -706,7 +706,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 74
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "882e738c81e61279dc0caf1b57935831a2162952",
@@ -721,7 +721,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 79
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "26249470c134512c2e66fd88bf8c7a939ddd26f9",
@@ -736,7 +736,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 80
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "353303685bea38a40f8215fffe5df32e7c389d02",
@@ -751,7 +751,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 81
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "e6057423d08b40a00d6e157f1c37731a5818e679",
@@ -766,7 +766,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 82
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "cfdce7ceb131f5ca06c9e8a6282cbffdd6fbbf49",
@@ -781,7 +781,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 87
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "8ccb557d6a38b197af4f9b8b94bd1e926efe0b4c",
@@ -796,7 +796,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 88
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "1223ff7d4d4cfd3d778d7324d010c43e23fdb37c",
@@ -811,7 +811,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 89
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "e32c00eceb1439a524bc05f0562f008a43c99f3a",
@@ -826,7 +826,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 90
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "a908ae6d1e879c08e2e1fdd96b3bfea561acb59f",
@@ -841,7 +841,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 95
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "0da3d4d25de20d4663929a59a503ea5d5d128814",
@@ -856,7 +856,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 96
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "907d593fb0f0c8636dac90b6e36679c57a01e25d",
@@ -871,7 +871,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 97
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "5dfbe0177157a9d5641135afaed18df918394a3a",
@@ -886,7 +886,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 98
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.481Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "f27303bd1c52d6beef396bacd089aa918bee6aa3",
@@ -901,7 +901,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 99
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.482Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "9d15e16ce923e6f975ea37febdbb2bf30ff9e174",
@@ -916,7 +916,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 100
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.482Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "77c949e6b594a8c0b3716d5af8ff88e79a972d19",
@@ -931,7 +931,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 105
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.482Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "fdb572ba167c3d2dfd8c3c039716246161c4c71c",
@@ -946,7 +946,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 110
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.482Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "3cbb6ce6c8ce8b39f9d79f19c207bac898c0028f",
@@ -961,7 +961,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 111
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.482Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "752d832bd141b7b537da8bc718daffcf414a42e3",
@@ -976,7 +976,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 112
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.482Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "9b916f6a99dae5d98495bfefa969a465667bc08d",
@@ -991,7 +991,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 113
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.482Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     },
     {
       "stableId": "e90880a5b9ad6df32444ce4d93ad8985afe9a464",
@@ -1006,7 +1006,7 @@
         "file": "docs/plans/PLAN.md",
         "line": 114
       },
-      "lastSyncedAt": "2026-01-25T13:07:37.482Z"
+      "lastSyncedAt": "2026-01-25T19:36:15.343Z"
     }
   ]
 }
