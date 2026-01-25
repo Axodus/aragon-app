@@ -1,4 +1,4 @@
-#  #PLAN-002 - HarmonyVoting Frontend UI & UX Production Release
+# #PLAN-002 - HarmonyVoting Frontend UI & UX Production Release [key:01KFRBVBMA607DDS5DR2GFJ2VM]
 
 **Repository:** aragon-app (Axodus/aragon-app)  
 **End Date Goal:** 2026-02-28  
@@ -46,72 +46,72 @@ Complete HarmonyVoting frontend implementation with resilient UI/UX, graceful de
 
 ## Subtasks (Linked)
 
-### FEATURE-001: Plugin Setup & Forms ✅ SPRINT #1 COMPLETE
+### FEATURE-001: Plugin Setup & Forms ✅ SPRINT #1 COMPLETE [key:01KFRBVBMB1DFPXVV283V27E3K]
 [labels:type:feature, area:frontend] [status:DONE] [priority:HIGH] [estimate:20h] [start:2026-01-13] [end:2026-01-23]
 
-- [x] Add validator address input to setup form [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-13] [end:2026-01-14]
-- [x] Encode validator address into installation params [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:3h] [start:2026-01-14] [end:2026-01-15]
-- [x] Normalize addresses to lowercase [labels:type:task, area:frontend] [status:DONE] [priority:MEDIUM] [estimate:2h] [start:2026-01-15] [end:2026-01-15]
-- [x] Add proposal settings (dates, snapshot block) [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:6h] [start:2026-01-16] [end:2026-01-18]
-- [x] Register proposal/vote builders [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:5h] [start:2026-01-18] [end:2026-01-23]
+- [x] Add validator address input to setup form [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-13] [end:2026-01-14] [key:01KFRBVBMB1DFPXVV283V27E3M]
+- [x] Encode validator address into installation params [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:3h] [start:2026-01-14] [end:2026-01-15] [key:01KFRBVBMB1DFPXVV283V27E3N]
+- [x] Normalize addresses to lowercase [labels:type:task, area:frontend] [status:DONE] [priority:MEDIUM] [estimate:2h] [start:2026-01-15] [end:2026-01-15] [key:01KFRBVBMB1DFPXVV283V27E3P]
+- [x] Add proposal settings (dates, snapshot block) [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:6h] [start:2026-01-16] [end:2026-01-18] [key:01KFRBVBMB1DFPXVV283V27E3Q]
+- [x] Register proposal/vote builders [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:5h] [start:2026-01-18] [end:2026-01-23] [key:01KFRBVBMB1DFPXVV283V27E3R]
 
-### FEATURE-002: Install & Prepare Flows
+### FEATURE-002: Install & Prepare Flows [key:01KFRBVBMB1DFPXVV283V27E3S]
 [labels:type:feature, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:20h] [start:2026-01-20] [end:2026-02-04]
 
-- [x] Implement setup form + validator input [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-20] [end:2026-01-21]
-- [ ] Verify prepare installation with validator address [labels:type:task, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:6h] [start:2026-01-22] [end:2026-01-24]
-- [ ] Display prepare errors clearly to user [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-01-25] [end:2026-01-27]
-- [ ] Test form submission + state recovery [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h] [start:2026-01-28] [end:2026-02-04]
+- [x] Implement setup form + validator input [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-20] [end:2026-01-21] [key:01KFRBVBMB1DFPXVV283V27E3T]
+- [ ] Verify prepare installation with validator address [labels:type:task, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:6h] [start:2026-01-22] [end:2026-01-24] [key:01KFRBVBMB1DFPXVV283V27E3V]
+- [ ] Display prepare errors clearly to user [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-01-25] [end:2026-01-27] [key:01KFRBVBMB1DFPXVV283V27E3W]
+- [ ] Test form submission + state recovery [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h] [start:2026-01-28] [end:2026-02-04] [key:01KFRBVBMB1DFPXVV283V27E3X]
 
-### FEATURE-003: UI Resilience & Fallbacks
+### FEATURE-003: UI Resilience & Fallbacks [key:01KFRBVBMB1DFPXVV283V27E3Y]
 [labels:type:feature, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:24h] [start:2026-01-22] [end:2026-02-11]
 
-- [ ] Render proposals without metadata (placeholder fallback) [labels:type:feature, area:frontend, area:indexing] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-01-22] [end:2026-01-22]
-- [ ] Handle backend unavailability gracefully [labels:type:feature, area:frontend] [status:TODO] [priority:HIGH] [estimate:6h] [start:2026-01-22] [end:2026-01-23]
-- [ ] User-friendly and actionable error messages [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:3h] [start:2026-01-23] [end:2026-01-23]
-- [ ] Clear loading states for backend-driven operations [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:3h] [start:2026-01-23] [end:2026-01-23]
-- [ ] Network switch reloads plugin configuration correctly [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:3h] [start:2026-01-24] [end:2026-01-24]
-- [ ] Implement fallback metadata fetching [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:5h] [start:2026-02-05] [end:2026-02-11]
+- [ ] Render proposals without metadata (placeholder fallback) [labels:type:feature, area:frontend, area:indexing] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-01-22] [end:2026-01-22] [key:01KFRBVBMC54B57ANM4J893ZKA]
+- [ ] Handle backend unavailability gracefully [labels:type:feature, area:frontend] [status:TODO] [priority:HIGH] [estimate:6h] [start:2026-01-22] [end:2026-01-23] [key:01KFRBVBMC54B57ANM4J893ZKB]
+- [ ] User-friendly and actionable error messages [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:3h] [start:2026-01-23] [end:2026-01-23] [key:01KFRBVBMC54B57ANM4J893ZKC]
+- [ ] Clear loading states for backend-driven operations [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:3h] [start:2026-01-23] [end:2026-01-23] [key:01KFRBVBMC54B57ANM4J893ZKD]
+- [ ] Network switch reloads plugin configuration correctly [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:3h] [start:2026-01-24] [end:2026-01-24] [key:01KFRBVBMC54B57ANM4J893ZKE]
+- [ ] Implement fallback metadata fetching [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:5h] [start:2026-02-05] [end:2026-02-11] [key:01KFRBVBMC54B57ANM4J893ZKF]
 
-### FEATURE-004: Plugin Uninstall UX
+### FEATURE-004: Plugin Uninstall UX [key:01KFRBVBMC54B57ANM4J893ZKG]
 [labels:type:feature, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:20h] [start:2026-02-05] [end:2026-02-18]
 
-- [ ] Uninstall confirmation dialog with clear warnings [labels:type:feature, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h] [start:2026-02-05] [end:2026-02-07]
-- [ ] Handle post-uninstall state (plugin removed message) [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-08] [end:2026-02-10]
-- [ ] Plugin removal cleans UI (no stale entries) [labels:type:task, area:frontend, area:indexing] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-11] [end:2026-02-14]
-- [ ] Enable re-install after uninstall [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:6h] [start:2026-02-15] [end:2026-02-18]
+- [ ] Uninstall confirmation dialog with clear warnings [labels:type:feature, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h] [start:2026-02-05] [end:2026-02-07] [key:01KFRBVBMC54B57ANM4J893ZKH]
+- [ ] Handle post-uninstall state (plugin removed message) [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-08] [end:2026-02-10] [key:01KFRBVBMC54B57ANM4J893ZKJ]
+- [ ] Plugin removal cleans UI (no stale entries) [labels:type:task, area:frontend, area:indexing] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-11] [end:2026-02-14] [key:01KFRBVBMC54B57ANM4J893ZKK]
+- [ ] Enable re-install after uninstall [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:6h] [start:2026-02-15] [end:2026-02-18] [key:01KFRBVBMC54B57ANM4J893ZKM]
 
-### FEATURE-005: Native-Token Execution UX
+### FEATURE-005: Native-Token Execution UX [key:01KFRBVBMC54B57ANM4J893ZKN]
 [labels:type:feature, area:frontend] [status:IN_PROGRESS] [priority:MEDIUM] [estimate:18h] [start:2026-01-28] [end:2026-02-16]
 
-- [ ] Display native-token value in execution review [labels:type:feature, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h] [start:2026-02-03] [end:2026-02-05]
-- [ ] Show fee breakdown for transactions [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-06] [end:2026-02-08]
-- [ ] Confirm receipt after execution [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-09] [end:2026-02-12]
-- [ ] Handle native-token rejection gracefully [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-13] [end:2026-02-16]
+- [ ] Display native-token value in execution review [labels:type:feature, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h] [start:2026-02-03] [end:2026-02-05] [key:01KFRBVBMC54B57ANM4J893ZKP]
+- [ ] Show fee breakdown for transactions [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-06] [end:2026-02-08] [key:01KFRBVBMC54B57ANM4J893ZKQ]
+- [ ] Confirm receipt after execution [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-09] [end:2026-02-12] [key:01KFRBVBMC54B57ANM4J893ZKR]
+- [ ] Handle native-token rejection gracefully [labels:type:task, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-13] [end:2026-02-16] [key:01KFRBVBMC54B57ANM4J893ZKS]
 
-### FEATURE-006: E2E Testing & Release
+### FEATURE-006: E2E Testing & Release [key:01KFRBVBMC54B57ANM4J893ZKT]
 [labels:type:feature, area:qa, area:testing] [status:TODO] [priority:CRITICAL] [estimate:28h] [start:2026-02-19] [end:2026-02-28]
 
-- [ ] E2E flow tests (Playwright/Cypress) [labels:type:test, area:frontend] [status:TODO] [priority:HIGH] [estimate:8h] [start:2026-02-19] [end:2026-02-21]
-- [ ] Cross-browser testing (Chrome, Firefox, Safari) [labels:type:qa, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-22] [end:2026-02-22]
-- [ ] Mobile responsiveness testing [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-23] [end:2026-02-23]
-- [ ] Accessibility audit (WCAG 2.1 AA) [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-24] [end:2026-02-24]
-- [ ] Performance benchmarks (UI latency, bundle size) [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-25] [end:2026-02-26]
-- [ ] Verify proposals appear in UI after creation [labels:type:qa, area:frontend, area:indexing] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-27] [end:2026-02-28]
+- [ ] E2E flow tests (Playwright/Cypress) [labels:type:test, area:frontend] [status:TODO] [priority:HIGH] [estimate:8h] [start:2026-02-19] [end:2026-02-21] [key:01KFRBVBMC54B57ANM4J893ZKV]
+- [ ] Cross-browser testing (Chrome, Firefox, Safari) [labels:type:qa, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-22] [end:2026-02-22] [key:01KFRBVBMC54B57ANM4J893ZKW]
+- [ ] Mobile responsiveness testing [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-23] [end:2026-02-23] [key:01KFRBVBMC54B57ANM4J893ZKX]
+- [ ] Accessibility audit (WCAG 2.1 AA) [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-24] [end:2026-02-24] [key:01KFRBVBMC54B57ANM4J893ZKY]
+- [ ] Performance benchmarks (UI latency, bundle size) [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:4h] [start:2026-02-25] [end:2026-02-26] [key:01KFRBVBMC54B57ANM4J893ZKZ]
+- [ ] Verify proposals appear in UI after creation [labels:type:qa, area:frontend, area:indexing] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-02-27] [end:2026-02-28] [key:01KFRBVBMC54B57ANM4J893ZM0]
 
-### TASK-001: Cross-Repo Admin Grant
+### TASK-001: Cross-Repo Admin Grant [key:01KFRBVBMC54B57ANM4J893ZM1]
 [labels:type:maintenance, area:infra, cross-repo] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-20] [end:2026-01-20]
 
-- [x] Admin grant completed on AragonOSX repo [labels:type:task, area:contracts] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-20] [end:2026-01-20]
+- [x] Admin grant completed on AragonOSX repo [labels:type:task, area:contracts] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-20] [end:2026-01-20] [key:01KFRBVBMC54B57ANM4J893ZM2]
 
-### TASK-002: ProjectV2 Schema & Sync
+### TASK-002: ProjectV2 Schema & Sync [key:01KFRBVBMC54B57ANM4J893ZM3]
 [labels:type:task, area:planning] [status:TODO] [priority:LOW] [estimate:4h] [start:2026-01-19] [end:2026-01-19]
 
-- [ ] Verify .gitissue/metadata.config.json at repo root [labels:type:chore, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
-- [ ] Capture org project schema to tmp/<org>-project-schema.json [labels:type:task, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
-- [ ] Generate .gitissue/metadata.generated.json from PLAN.md [labels:type:task, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
-- [ ] Prepare gh issue create/edit commands for project sync [labels:type:docs, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
-- [ ] Document PARENT_ISSUE limitation workaround [labels:type:docs, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19]
+- [ ] Verify .gitissue/metadata.config.json at repo root [labels:type:chore, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19] [key:01KFRBVBMC54B57ANM4J893ZM4]
+- [ ] Capture org project schema to tmp/<org>-project-schema.json [labels:type:task, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19] [key:01KFRBVBMC54B57ANM4J893ZM5]
+- [ ] Generate .gitissue/metadata.generated.json from PLAN.md [labels:type:task, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19] [key:01KFRBVBMC54B57ANM4J893ZM6]
+- [ ] Prepare gh issue create/edit commands for project sync [labels:type:docs, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19] [key:01KFRBVBMC54B57ANM4J893ZM7]
+- [ ] Document PARENT_ISSUE limitation workaround [labels:type:docs, area:planning] [status:TODO] [priority:LOW] [estimate:0.5h] [start:2026-01-19] [end:2026-01-19] [key:01KFRBVBMC54B57ANM4J893ZM8]
 
 ---
 

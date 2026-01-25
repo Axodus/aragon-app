@@ -1,0 +1,616 @@
+[
+  {
+    "stableId": "1fa58e6b4558ed278b27d316ab4de336cbc7d027",
+    "explicitId": null,
+    "file": "docs/plans/PLAN.md",
+    "line": 1,
+    "text": "#PLAN-002 - HarmonyVoting Frontend UI & UX Production Release",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "438b338ead626688de01eb47523159879ef727d8",
+    "explicitId": "FEATURE-001",
+    "file": "docs/plans/PLAN.md",
+    "line": 49,
+    "text": "FEATURE-001: Plugin Setup & Forms ✅ SPRINT #1 COMPLETE",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 20
+  },
+  {
+    "stableId": "b203c03572179be7aad8ce26760cfd9dcf6051a1",
+    "explicitId": "FEATURE-002",
+    "file": "docs/plans/PLAN.md",
+    "line": 58,
+    "text": "FEATURE-002: Install & Prepare Flows",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 20
+  },
+  {
+    "stableId": "73c4956f992fc09af7aad691a2356b56377e15ae",
+    "explicitId": "FEATURE-003",
+    "file": "docs/plans/PLAN.md",
+    "line": 66,
+    "text": "FEATURE-003: UI Resilience & Fallbacks",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 24
+  },
+  {
+    "stableId": "128de4943c810012c1ec965ffc0be59a3622624a",
+    "explicitId": "FEATURE-004",
+    "file": "docs/plans/PLAN.md",
+    "line": 76,
+    "text": "FEATURE-004: Plugin Uninstall UX",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 20
+  },
+  {
+    "stableId": "3e0613d1feccf3e5abb639b78243c66fa569df66",
+    "explicitId": "FEATURE-005",
+    "file": "docs/plans/PLAN.md",
+    "line": 84,
+    "text": "FEATURE-005: Native-Token Execution UX",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 18
+  },
+  {
+    "stableId": "7826997c2290cfabfff7bef4d3652fd1da03a467",
+    "explicitId": "FEATURE-006",
+    "file": "docs/plans/PLAN.md",
+    "line": 92,
+    "text": "FEATURE-006: E2E Testing & Release",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 28
+  },
+  {
+    "stableId": "f31be2156d1a2b895b6c86bcf83b2a374fcd652e",
+    "explicitId": "TASK-001",
+    "file": "docs/plans/PLAN.md",
+    "line": 102,
+    "text": "TASK-001: Cross-Repo Admin Grant",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 4
+  },
+  {
+    "stableId": "eaf9a107da74411e3056e2308bd803f5fb7adbec",
+    "explicitId": "TASK-002",
+    "file": "docs/plans/PLAN.md",
+    "line": 107,
+    "text": "TASK-002: ProjectV2 Schema & Sync",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 2.5
+  },
+  {
+    "stableId": "43b6cb2a7649133cc4b01fa42f954e806e1d36df",
+    "explicitId": null,
+    "file": "docs/plans/PLAN_subtasks.md",
+    "line": 6,
+    "text": "Reproduzir fluxo de prepare/install com endereço de validator (local dev)",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "947e476d925d8db079e8a40622578ab4962780a9",
+    "explicitId": null,
+    "file": "docs/plans/PLAN_subtasks.md",
+    "line": 9,
+    "text": "Corrigir encoding/normalização (lowercase) do address se necessário",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "b6841f279a78f7ef83c560dba60dd3e31b51f212",
+    "explicitId": null,
+    "file": "docs/plans/PLAN_subtasks.md",
+    "line": 12,
+    "text": "Adicionar testes unitários para o builder de instalação",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "8b09625609a18324000050f54f66a0060de30571",
+    "explicitId": null,
+    "file": "docs/plans/PLAN_subtasks.md",
+    "line": 17,
+    "text": "Implementar placeholder UI quando metadata estiver ausente",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "06a50abe263d7d8ba0a43fa187dfa8daffe38206",
+    "explicitId": null,
+    "file": "docs/plans/PLAN_subtasks.md",
+    "line": 20,
+    "text": "Definir ordem de fallback no frontend (substituir por backend quando disponível)",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "70592a1dca45a32f65f6ac7881f5c93b0afe9bb9",
+    "explicitId": null,
+    "file": "docs/plans/PLAN_subtasks.md",
+    "line": 25,
+    "text": "Garantir que chamadas falhas não quebrem a UI (toasts / banners)",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "585f3b755936e50f353538ad5baecfdb512abafb",
+    "explicitId": null,
+    "file": "docs/plans/PLAN_subtasks.md",
+    "line": 28,
+    "text": "Definir loading states claros para operações dependentes do backend",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "ae1b05b669e18c5b09634c31b02c0bc84ee197de",
+    "explicitId": null,
+    "file": "docs/plans/PLAN_subtasks.md",
+    "line": 33,
+    "text": "Implementar fluxo de confirmação com avisos claros e consequências",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "db60ff7a35e5b34c6bb4365ec0c02454fee08dea",
+    "explicitId": null,
+    "file": "docs/plans/PLAN_subtasks.md",
+    "line": 36,
+    "text": "Remover/ocultar dados de plugins desinstalados no frontend",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "9852901300af131b1fdc6d452a479e9648ee04e4",
+    "explicitId": null,
+    "file": "docs/plans/PLAN_subtasks.md",
+    "line": 41,
+    "text": "Documentar passos de teste manual e critérios (install → propose → vote → execute → uninstall)",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "TODO",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "f37fd573b2a1d5157f9db89f1129ede0d9b286d0",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 14,
+    "text": "Verificar `prepare/install` inclui `validator_address` no payload",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:frontend",
+      "type:qa"
+    ],
+    "priority": "high",
+    "status": "TODO",
+    "startDate": "2026-01-20",
+    "endDate": "2026-01-20",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "74318670821010aefbcab5fdf0465785761bcf64",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 18,
+    "text": "Normalizar e validar validator address (lowercase)",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:frontend",
+      "type:bug"
+    ],
+    "priority": "high",
+    "status": "TODO",
+    "startDate": "2026-01-20",
+    "endDate": "2026-01-20",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "1bf398226c878a7c8f6cb708b82e8db39753b61c",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 22,
+    "text": "Adicionar testes unitários para o builder de instalação",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:frontend",
+      "type:test"
+    ],
+    "priority": "medium",
+    "status": "TODO",
+    "startDate": "2026-01-20",
+    "endDate": "2026-01-20",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "d9249094a010bd09640842b601bfd96228660561",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 26,
+    "text": "Implementar placeholder UI quando metadata ausente",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:frontend",
+      "type:feature"
+    ],
+    "priority": "high",
+    "status": "TODO",
+    "startDate": "2026-01-22",
+    "endDate": "2026-01-22",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "b054ab8635b0add449ef4147509a2375d93d86bc",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 30,
+    "text": "Definir ordem de fallback de metadata (subgraph → backend cache → placeholder)",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:indexing",
+      "area:frontend",
+      "type:feature"
+    ],
+    "priority": "medium",
+    "status": "TODO",
+    "startDate": "2026-01-22",
+    "endDate": "2026-01-22",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "45462de99fa443e9a888f9ff60b305a52622e559",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 34,
+    "text": "Graceful handling quando backend indisponível (banners/toasts + retry)",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:frontend",
+      "type:feature"
+    ],
+    "priority": "high",
+    "status": "TODO",
+    "startDate": "2026-01-22",
+    "endDate": "2026-01-22",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "b8f32806d1726d37456a2b4140b54c15d8cd0d1a",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 38,
+    "text": "Loading states claros para operações dependentes do backend",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:frontend",
+      "type:task"
+    ],
+    "priority": "medium",
+    "status": "TODO",
+    "startDate": "2026-01-23",
+    "endDate": "2026-01-23",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "67e45cc81432b50101c0c6b0cad2ef16cb6506f9",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 42,
+    "text": "Implementar fluxo de confirmação de uninstall com avisos claros",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:frontend",
+      "type:feature"
+    ],
+    "priority": "medium",
+    "status": "TODO",
+    "startDate": "2026-01-28",
+    "endDate": "2026-01-28",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "d656cd95e9eb5dfb751ea406ff9b4f43682e96fa",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 46,
+    "text": "Remover/ocultar dados de plugins desinstalados no frontend",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:frontend",
+      "type:bug"
+    ],
+    "priority": "high",
+    "status": "TODO",
+    "startDate": "2026-01-29",
+    "endDate": "2026-01-29",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "3e7438495d25b44ca6555ceb204c6479eeba31da",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 50,
+    "text": "Documentar E2E manual checklist (install → propose → vote → execute → uninstall)",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "type:docs",
+      "area:testing"
+    ],
+    "priority": "low",
+    "status": "TODO",
+    "startDate": "2026-01-20",
+    "endDate": "2026-01-20",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "0ab4eea5dd835310bb89f2369b511a106ec74919",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 54,
+    "text": "Verificar propostas aparecem no UI após criação (monitoring/indexing)",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:indexing",
+      "type:qa"
+    ],
+    "priority": "high",
+    "status": "TODO",
+    "startDate": "2026-01-27",
+    "endDate": "2026-01-27",
+    "estimateHours": 0
+  },
+  {
+    "stableId": "cbf3412406e764deedcd97c92a2c5324a1cdc111",
+    "explicitId": null,
+    "file": "docs/plans/ISSUES_TO_CREATE.md",
+    "line": 58,
+    "text": "Native-token UX: mostrar fee/value corretamente no review/execution",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "area:frontend",
+      "type:feature"
+    ],
+    "priority": "medium",
+    "status": "TODO",
+    "startDate": "2026-02-03",
+    "endDate": "2026-02-03",
+    "estimateHours": 0
+  }
+]
