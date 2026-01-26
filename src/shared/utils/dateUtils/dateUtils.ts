@@ -71,19 +71,22 @@ class DateUtils {
                 return 0;
             }
 
-            const numericValue = typeof input === 'string' ? Number(input) : input;
+            const numericValue =
+                typeof input === 'string' ? Number(input.replace(/[^\d.-]/g, '')) : input;
             return Number.isFinite(numericValue) ? numericValue : 0;
         };
 
         const valueObject =
             typeof value === 'number'
                 ? { seconds: value }
-                : {
-                      days: normalizeValue(value.days),
-                      hours: normalizeValue(value.hours),
-                      minutes: normalizeValue(value.minutes),
-                      seconds: normalizeValue((value as { seconds?: number | string }).seconds),
-                  };
+                : typeof value === 'string'
+                  ? { seconds: normalizeValue(value) }
+                  : {
+                        days: normalizeValue(value.days),
+                        hours: normalizeValue(value.hours),
+                        minutes: normalizeValue(value.minutes),
+                        seconds: normalizeValue((value as { seconds?: number | string }).seconds),
+                    };
         const valueMs = Duration.fromObject(valueObject).as('milliseconds');
         const minMs = Duration.fromObject(minDuration).as('milliseconds');
         const isValid = valueMs >= minMs;

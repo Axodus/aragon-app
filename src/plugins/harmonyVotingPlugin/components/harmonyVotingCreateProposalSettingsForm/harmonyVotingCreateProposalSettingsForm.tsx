@@ -20,7 +20,7 @@ export interface IHarmonyVotingCreateProposalSettingsForm extends ICreateProposa
 export const HarmonyVotingCreateProposalSettingsForm: React.FC = () => {
     const { t } = useTranslations();
     const containerId = useId();
-    const recommendedMinDays = 1;
+    const recommendedMinDays = 3;
 
     const startTimeFixed = useWatch<ICreateProposalEndDateForm, 'startTimeFixed'>({ name: 'startTimeFixed' });
     const minEndTime = startTimeFixed ? dateUtils.parseFixedDate(startTimeFixed) : DateTime.now();
