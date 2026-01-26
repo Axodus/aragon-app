@@ -56,29 +56,20 @@ export const buildPrepareHarmonyVotingInstallData = (
 
     const repositoryAddress = plugin.repositoryAddresses[dao.network];
 
-    // When the plugin is installed as a processor (basic governance) the
-    // `metadata` parameter contains the processor metadata (including the
-    // `processKey` provided by the UI). In that case we must forward the
-    // metadata hex directly to the plugin setup so the on-chain setup uses
-    // the supplied `processKey` instead of falling back to a plugin-default
-    // value (e.g. HARMONYDELEGATIONVOTING).
+    // Harmony Voting plugins have strict install params expectations:
+    // - HIP voting: no installation params are supported (must be empty bytes)
+    // - Delegation voting: expects `abi.encode(address validatorAddress)`
     //
-    // For advanced governance (stageVotingPeriod set) the plugin is a
-    // sub-plugin and the setup expects its specific settings (validator
-    // address for delegation voting), so we keep the existing behaviour.
+    // Passing metadata here would revert (e.g. HIP: `INSTALL_PARAMS_NOT_SUPPORTED`).
+    void metadata;
+    void stageVotingPeriod;
+
     let pluginSettingsData: Hex = '0x' as Hex;
 
     const isDelegation = plugin.id === PluginInterfaceType.HARMONY_DELEGATION_VOTING;
 
     if (isDelegation) {
-        // Delegation voting always requires a validator address in install params.
         pluginSettingsData = buildDelegationInstallData(body.membership?.validatorAddress);
-    } else if (stageVotingPeriod == null) {
-        // Installed as processor (basic): forward metadata (CID hex) so the
-        // on-chain setup can read `processKey` and other processor fields.
-        if (metadata != null && metadata.length > 0) {
-            pluginSettingsData = metadata as Hex;
-        }
     }
 
     return pluginTransactionUtils.buildPrepareInstallationData(

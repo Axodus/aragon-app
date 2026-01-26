@@ -50,4 +50,30 @@ describe('harmonyVotingTransactionUtils', () => {
 
     expect(result).toBe('0xdeadbeef');
   });
+
+  test('buildPrepareHarmonyVotingInstallData: uses empty install params for HIP voting (even with metadata)', () => {
+    const plugin: any = {
+      id: PluginInterfaceType.HARMONY_HIP_VOTING,
+      repositoryAddresses: { '1': '0xfeedfeed00000000000000000000000000000000' },
+      installVersion: 5,
+    };
+
+    const params: any = {
+      dao: { network: '1', address: '0xda0da0da0da0da0da0da0da0da0da0da0da0da0' },
+      body: { membership: {} },
+      metadata: '0xabc123',
+      stageVotingPeriod: null,
+    };
+
+    const result = buildPrepareHarmonyVotingInstallData(plugin, params);
+
+    expect(pluginTransactionUtils.buildPrepareInstallationData).toHaveBeenCalledWith(
+      '0xfeedfeed00000000000000000000000000000000',
+      5,
+      '0x',
+      '0xda0da0da0da0da0da0da0da0da0da0da0da0da0',
+    );
+
+    expect(result).toBe('0xdeadbeef');
+  });
 });
