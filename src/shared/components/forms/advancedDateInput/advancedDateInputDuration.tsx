@@ -74,11 +74,19 @@ export const AdvancedDateInputDuration: React.FC<IAdvancedDateInputDurationProps
     };
 
     const handleDurationChange = (type: string) => (value: string) => {
-        const parsedValue = parseInt(value, 10);
-        const numericValue = isNaN(parsedValue) ? 0 : parsedValue;
+        // InputNumber values may be formatted (e.g. include suffixes). Extract digits to avoid parsing issues.
+        const digitsOnly = value.replace(/[^\d]/g, '');
+        const parsedValue = digitsOnly.length > 0 ? Number(digitsOnly) : 0;
+        const numericValue = Number.isNaN(parsedValue) ? 0 : parsedValue;
         const newValue = { ...getCurrentDurationObject(), [type]: numericValue };
         const processedNewValue = useSecondsFormat ? dateUtils.durationToSeconds(newValue) : newValue;
         setValue(field, processedNewValue, { shouldValidate: validateMinDuration === true });
+
+        // Some RHF configurations may not reliably re-run validation for nested object updates
+        // when using `setValue` alone; explicitly triggering keeps the alert state in sync.
+        if (validateMinDuration === true) {
+            void trigger(field);
+        }
     };
 
     const handleInputBlur = () => trigger(field);

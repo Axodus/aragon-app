@@ -66,7 +66,24 @@ class DateUtils {
             return true;
         }
 
-        const valueObject = typeof value === 'number' ? { seconds: value } : value;
+        const normalizeValue = (input?: number | string) => {
+            if (input == null) {
+                return 0;
+            }
+
+            const numericValue = typeof input === 'string' ? Number(input) : input;
+            return Number.isFinite(numericValue) ? numericValue : 0;
+        };
+
+        const valueObject =
+            typeof value === 'number'
+                ? { seconds: value }
+                : {
+                      days: normalizeValue(value.days),
+                      hours: normalizeValue(value.hours),
+                      minutes: normalizeValue(value.minutes),
+                      seconds: normalizeValue((value as { seconds?: number | string }).seconds),
+                  };
         const valueMs = Duration.fromObject(valueObject).as('milliseconds');
         const minMs = Duration.fromObject(minDuration).as('milliseconds');
         const isValid = valueMs >= minMs;
