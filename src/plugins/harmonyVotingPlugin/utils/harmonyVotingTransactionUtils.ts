@@ -3,6 +3,7 @@ import { PluginInterfaceType } from '@/shared/api/daoService';
 import { pluginTransactionUtils } from '@/shared/utils/pluginTransactionUtils';
 import { addressUtils, type ICompositeAddress } from '@aragon/gov-ui-kit';
 import { encodeAbiParameters, encodeFunctionData, keccak256, type Hex } from 'viem';
+import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
 import type { IPluginInfo } from '@/shared/types';
 import type { IHarmonyVotingSetupGovernanceForm } from '../components/harmonyVotingSetupGovernance';
 import type { IHarmonyVotingSetupMembershipForm } from '../components/harmonyVotingSetupMembership';
@@ -128,13 +129,12 @@ export const buildDelegationInstallData = (validatorAddress?: string): Hex => {
     if (validatorAddress == null || validatorAddress.trim().length === 0) {
         throw new Error('Validator address is required for Harmony Delegation voting.');
     }
+    const trimmed = validatorAddress.trim();
+    const res = evmAddressUtils.validate(trimmed);
 
-    // Normalize address to lowercase to ensure consistent on-chain encoding
-    const normalized = validatorAddress.trim().toLowerCase();
-
-    if (!addressUtils.isAddress(normalized)) {
+    if (!res.ok) {
         throw new Error('Validator address must be a valid address.');
     }
 
-    return encodeAbiParameters([{ name: 'validatorAddress', type: 'address' }], [normalized as Hex]);
+    return encodeAbiParameters([{ name: 'validatorAddress', type: 'address' }], [res.address as Hex]);
 };

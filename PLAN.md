@@ -11,6 +11,9 @@
 
 ## Task Breakdown (Checklist)
 - [ ] TASK-001: Install Flow — wizard UI, validator address validation, param encoding. (Issue #40)
+	- [x] Encode installation params matching contract expectations (HIP uses empty bytes; Delegation encodes validator address)
+	- [ ] Parameter validation (format, length, checksum) with user-visible errors
+	- [ ] Confirm install wizard UX end-to-end on Harmony
 - [ ] TASK-002: Prepare Flow — gas estimation, chain mismatch checks. (Issue #41)
 - [ ] TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42)
 - [ ] TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43)

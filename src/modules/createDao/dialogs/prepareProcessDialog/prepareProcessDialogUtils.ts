@@ -10,6 +10,7 @@ import {
     type IBuildApplyPluginsInstallationActionsParams,
 } from '@/shared/utils/pluginTransactionUtils';
 import { transactionUtils, type ITransactionRequest } from '@/shared/utils/transactionUtils';
+import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
 import { addressUtils } from '@aragon/gov-ui-kit';
 import { encodeFunctionData, parseEventLogs, type Hex, type TransactionReceipt } from 'viem';
 import {
@@ -244,7 +245,8 @@ class PrepareProcessDialogUtils {
                 throw new Error('Validator address is required for Harmony Delegation voting.');
             }
 
-            if (!addressUtils.isAddress(validatorAddress)) {
+            const res = evmAddressUtils.validate(validatorAddress);
+            if (!res.ok) {
                 throw new Error('Validator address must be a valid address.');
             }
         });

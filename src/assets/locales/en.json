@@ -2058,7 +2058,14 @@
           "validatorAddress": {
             "label": "Validator address",
             "placeholder": "0x…",
-            "helpText": "Provide the validator address whose delegators can vote."
+            "helpText": "Provide the validator address whose delegators can vote.",
+            "error": {
+              "required": "Validator address is required.",
+              "prefix": "Address must start with 0x.",
+              "length": "Address must be 42 characters long.",
+              "format": "Address must be a valid hex string.",
+              "checksum": "Address checksum is invalid."
+            }
           }
         }
       },
