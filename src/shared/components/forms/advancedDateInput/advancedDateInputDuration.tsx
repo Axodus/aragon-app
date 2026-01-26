@@ -70,7 +70,7 @@ export const AdvancedDateInputDuration: React.FC<IAdvancedDateInputDurationProps
         const numericValue = isNaN(parsedValue) ? 0 : parsedValue;
         const newValue = { ...currentDurationObject, [type]: numericValue };
         const processedNewValue = useSecondsFormat ? dateUtils.durationToSeconds(newValue) : newValue;
-        setValue(field, processedNewValue, { shouldValidate: false });
+        setValue(field, processedNewValue, { shouldValidate: validateMinDuration === true });
     };
 
     const handleInputBlur = () => trigger(field);
