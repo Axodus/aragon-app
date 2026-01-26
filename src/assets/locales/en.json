@@ -3099,6 +3099,11 @@
             "idle": "Sign transaction",
             "pending": "Awaiting signature"
           },
+          "switchNetwork": {
+            "error": "Retry network switch",
+            "idle": "Switch network",
+            "pending": "Switching network"
+          },
           "cancel": "Cancel",
           "proceedAnyway": "Continue in background",
           "retry": "Retry"

@@ -5,7 +5,7 @@ import { useDaoChain } from '@/shared/hooks/useDaoChain';
 import { ChainEntityType, Dialog, IconType } from '@aragon/gov-ui-kit';
 import { useMutation } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useAccount, useSendTransaction, useSwitchChain, useWaitForTransactionReceipt } from 'wagmi';
+import { useAccount, usePublicClient, useSendTransaction, useSwitchChain, useWaitForTransactionReceipt } from 'wagmi';
 import {
     TransactionStatus,
     type ITransactionStatusStepMetaAddon,
@@ -51,6 +51,8 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
     const { chainId, address } = useAccount();
     const { chainId: requiredChainId, buildEntityUrl } = useDaoChain({ network });
 
+    const publicClient = usePublicClient({ chainId: requiredChainId });
+
     const handleTransactionError = useCallback(
         (stepId?: string) => (error: unknown, context?: Record<string, unknown>) =>
             transactionDialogUtils.monitorTransactionError(error, { stepId, from: address, ...context }),
@@ -64,7 +66,30 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
         status: prepareTransactionStatus,
         data: transaction,
     } = useMutation({
-        mutationFn: prepareTransaction,
+        mutationFn: async () => {
+            const tx = await prepareTransaction();
+
+            if (tx.gas != null || publicClient == null || address == null) {
+                return tx;
+            }
+
+            try {
+                const estimate = await publicClient.estimateGas({
+                    account: address,
+                    to: tx.to,
+                    data: tx.data,
+                    value: tx.value,
+                });
+
+                // Apply a small buffer to reduce false OOG on providers with slightly optimistic estimation.
+                const gasWithBuffer = (estimate * 12n) / 10n;
+                return { ...tx, gas: gasWithBuffer };
+            } catch (error: unknown) {
+                // Gas estimation is best-effort; if it fails we rely on wallet/provider defaults.
+                handleTransactionError(TransactionDialogStep.PREPARE)(error, { stage: 'estimateGas' });
+                return tx;
+            }
+        },
         onMutate: () => setPrepareErrorMessage(undefined),
         onSuccess: nextStep,
         onError: (error) => {
@@ -90,6 +115,8 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
     });
 
     const isIndexing = activeStep === TransactionDialogStep.INDEXING;
+
+    const isChainMismatch = requiredChainId != null && chainId != null && requiredChainId !== chainId;
 
     // Using the `!` operator here as this hook is only enabled when the transactionHash and transactionType are defined
     const indexingUrlParams = { network, transactionHash: transactionHash! };
@@ -258,6 +285,7 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
                 onError={handleTransactionError(activeStepInfo?.id)}
                 onCancelClick={onCancelClick}
                 transactionType={transactionType}
+                isChainMismatch={isChainMismatch}
                 proposalSlug={transactionStatus?.slug}
                 indexingFallbackUrl={indexingFallbackUrl}
             />

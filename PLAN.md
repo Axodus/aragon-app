@@ -19,6 +19,7 @@
 	- [ ] Confirm install wizard UX end-to-end on Harmony (broad smoke to be run) [key:01KFX03B4FPKZMKSMX79FG361Q]
 - [ ] TASK-002: Prepare Flow — gas estimation, chain mismatch checks. (Issue #41) [key:01KFX03B4FPKZMKSMX79FG361R]
 - [ ] TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42) [key:01KFX03B4FPKZMKSMX79FG361S]
+	- [x] WalletConnect type drift hardening (structural session typing + metadata narrowing) [key:06DZMG9RB8CM6TRY36171PG1BA]
 - [ ] TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) [key:01KFX03B4FPKZMKSMX79FG361T]
 	- [x] Add missing i18n keys for new Settings dialogs + Admin entrypoint [key:01KFX03B4FPKZMKSMX79FG361V]
 - [ ] TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44) [key:01KFX03B4FPKZMKSMX79FG361W]
