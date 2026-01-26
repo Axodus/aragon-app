@@ -5,7 +5,7 @@ import { useTranslations } from '@/shared/components/translationsProvider';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { useFormField } from '@/shared/hooks/useFormField';
 import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
-import { AddressInput, addressUtils, type IAddressInputResolvedValue } from '@aragon/gov-ui-kit';
+import { AddressInput, type IAddressInputResolvedValue } from '@aragon/gov-ui-kit';
 import { useEffect, useState } from 'react';
 import { useWatch } from 'react-hook-form';
 import type { IHarmonyVotingSetupMembershipForm, IHarmonyVotingSetupMembershipProps } from './harmonyVotingSetupMembership.api';

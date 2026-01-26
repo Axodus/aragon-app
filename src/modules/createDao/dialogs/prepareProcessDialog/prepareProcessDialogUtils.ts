@@ -11,7 +11,6 @@ import {
 } from '@/shared/utils/pluginTransactionUtils';
 import { transactionUtils, type ITransactionRequest } from '@/shared/utils/transactionUtils';
 import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
-import { addressUtils } from '@aragon/gov-ui-kit';
 import { encodeFunctionData, parseEventLogs, type Hex, type TransactionReceipt } from 'viem';
 import {
     createProcessFormUtils,
@@ -53,7 +52,7 @@ class PrepareProcessDialogUtils {
         return { pluginsMetadata, processorMetadata };
     };
 
-    buildPrepareProcessTransaction = (params: IBuildTransactionParams): Promise<ITransactionRequest> => {
+    buildPrepareProcessTransaction = async (params: IBuildTransactionParams): Promise<ITransactionRequest> => {
         const { values, processMetadata, dao } = params;
         const { permissionSelectors } = values;
 
@@ -94,7 +93,7 @@ class PrepareProcessDialogUtils {
             dao.network,
         );
 
-        return Promise.resolve(encodedTransaction);
+        return encodedTransaction;
     };
 
     buildPublishProcessProposalActions = (params: IBuildProcessProposalActionsParams): ITransactionRequest[] => {

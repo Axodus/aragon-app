@@ -4,7 +4,7 @@ import { generateDao, generatePluginInstallationSetupData } from '@/shared/testU
 import { pluginRegistryUtils } from '@/shared/utils/pluginRegistryUtils';
 import { pluginTransactionUtils } from '@/shared/utils/pluginTransactionUtils';
 import { type ITransactionRequest, transactionUtils } from '@/shared/utils/transactionUtils';
-import { addressUtils } from '@aragon/gov-ui-kit';
+import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
 import { type Hex } from 'viem';
 import {
     generateCreateProcessFormData,
@@ -108,7 +108,7 @@ describe('prepareProcessDialog utils', () => {
             buildDeployExecuteSelectorConditionDataSpy.mockRestore();
         });
 
-        const validatorAddressSpy = jest.spyOn(addressUtils, 'isAddress');
+        const validatorAddressSpy = jest.spyOn(evmAddressUtils, 'validate');
 
         afterEach(() => {
             validatorAddressSpy.mockReset();
@@ -164,7 +164,6 @@ describe('prepareProcessDialog utils', () => {
         });
 
         it('throws when validator address is missing for delegation voting', async () => {
-            validatorAddressSpy.mockReturnValue(true);
             const dao = generateDao();
             const delegationBody = generateSetupBodyFormNew({
                 plugin: PluginInterfaceType.HARMONY_DELEGATION_VOTING,
@@ -179,7 +178,7 @@ describe('prepareProcessDialog utils', () => {
         });
 
         it('throws when validator address is invalid for delegation voting', async () => {
-            validatorAddressSpy.mockReturnValue(false);
+            validatorAddressSpy.mockReturnValue({ ok: false, error: 'format' });
             const dao = generateDao();
             const delegationBody = generateSetupBodyFormNew({
                 plugin: PluginInterfaceType.HARMONY_DELEGATION_VOTING,
