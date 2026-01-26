@@ -26,6 +26,8 @@
 	- [x] WalletConnect type drift hardening (structural session typing + metadata narrowing) [key:06DZMG9RB8CM6TRY36171PG1BA]
 - [ ] TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) [key:01KFX03B4FPKZMKSMX79FG361T]
 	- [x] Add missing i18n keys for new Settings dialogs + Admin entrypoint [key:01KFX03B4FPKZMKSMX79FG361V]
+	- [x] Add monitoring events for HarmonyVoting install/prepare dialogs [key:01KFX03B4FPKZMKSMX79FG361T_A]
+	- [x] Add registry integration test for HarmonyVoting slots/builders [key:01KFX03B4FPKZMKSMX79FG361T_B]
 - [ ] TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44) [key:01KFX03B4FPKZMKSMX79FG361W]
 
 ## Implementation Steps & Guidelines

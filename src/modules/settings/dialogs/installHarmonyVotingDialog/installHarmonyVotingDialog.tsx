@@ -8,8 +8,9 @@ import { useTranslations } from '@/shared/components/translationsProvider';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
 import { daoUtils } from '@/shared/utils/daoUtils';
+import { monitoringUtils } from '@/shared/utils/monitoringUtils';
 import { AddressInput, AlertInline, Dialog, RadioCard, RadioGroup, invariant } from '@aragon/gov-ui-kit';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { harmonyDelegationVotingPlugin, harmonyHipVotingPlugin } from '@/plugins/harmonyVotingPlugin/constants/harmonyVotingPlugins';
 import { SettingsDialogId } from '../../constants/settingsDialogId';
 import type { IPrepareHarmonyVotingInstallationDialogParams } from '../prepareHarmonyVotingInstallationDialog';
@@ -45,6 +46,18 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
             ? harmonyDelegationVotingPlugin
             : harmonyHipVotingPlugin;
     }, [installType]);
+
+    useEffect(() => {
+        monitoringUtils.logMessage('HarmonyVoting: Install dialog opened', {
+            context: { daoId },
+        });
+    }, [daoId]);
+
+    useEffect(() => {
+        monitoringUtils.logMessage('HarmonyVoting: Install type selected', {
+            context: { daoId, installType },
+        });
+    }, [daoId, installType]);
 
     const selectedRepoAddress = useMemo(() => {
         if (dao == null) return undefined;
@@ -95,6 +108,10 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
     };
 
     const handleSelectProposalPluginClick = () => {
+        monitoringUtils.logMessage('HarmonyVoting: Select proposal process clicked', {
+            context: { daoId, installType },
+        });
+
         const params: ISelectPluginDialogParams = {
             daoId,
             onPluginSelected: handleProposalPluginSelected,
@@ -107,6 +124,15 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
     const handleContinueClick = () => {
         invariant(dao != null, 'InstallHarmonyVotingDialog: DAO must be loaded.');
         invariant(proposalPlugin != null, 'InstallHarmonyVotingDialog: proposal plugin must be selected.');
+
+        monitoringUtils.logMessage('HarmonyVoting: Continue to prepare installation', {
+            context: {
+                daoId,
+                installType,
+                proposalPluginSlug: proposalPlugin.slug,
+                proposalPluginAddress: proposalPlugin.address,
+            },
+        });
 
         const params: IPrepareHarmonyVotingInstallationDialogParams = {
             daoId,

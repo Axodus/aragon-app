@@ -53,6 +53,12 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
 
     const publicClient = usePublicClient({ chainId: requiredChainId });
 
+    const ensureOnline = useCallback(() => {
+        if (typeof navigator !== 'undefined' && !navigator.onLine) {
+            throw new Error('You appear to be offline. Please reconnect and try again.');
+        }
+    }, []);
+
     const handleTransactionError = useCallback(
         (stepId?: string) => (error: unknown, context?: Record<string, unknown>) =>
             transactionDialogUtils.monitorTransactionError(error, { stepId, from: address, ...context }),
@@ -67,6 +73,7 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
         data: transaction,
     } = useMutation({
         mutationFn: async () => {
+            ensureOnline();
             const tx = await prepareTransaction();
 
             if (tx.gas != null || publicClient == null || address == null) {
@@ -129,6 +136,13 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
     const handleSendTransaction = useCallback((params: { onError: (error: unknown) => void }) => {
         const errorHandler = params.onError;
 
+        try {
+            ensureOnline();
+        } catch (error: unknown) {
+            errorHandler(error);
+            return;
+        }
+
         if (transaction == null) {
             errorHandler(new Error('TransactionDialog: transaction must be defined.'));
         } else {
@@ -141,10 +155,17 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
 
             sendTransaction(transactionWithGasOverride, { onError: errorHandler });
         }
-    }, [transaction, sendTransaction, network, transactionType]);
+    }, [ensureOnline, transaction, sendTransaction, network, transactionType]);
 
     const handleSwitchNetwork = useCallback(
-        (params: { onError: (error: unknown) => void }) =>
+        (params: { onError: (error: unknown) => void }) => {
+            try {
+                ensureOnline();
+            } catch (error: unknown) {
+                params.onError(error);
+                return;
+            }
+
             switchChain(
                 { chainId: requiredChainId! },
                 {
@@ -152,8 +173,9 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
                     // the primary action will become the wallet signature step.
                     onError: params.onError,
                 },
-            ),
-        [switchChain, requiredChainId],
+            );
+        },
+        [ensureOnline, switchChain, requiredChainId],
     );
 
     const handleRetryTransaction = useCallback((params: { onError: (error: unknown) => void }) => {

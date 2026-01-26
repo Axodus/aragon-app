@@ -11,9 +11,10 @@ import { useTranslations } from '@/shared/components/translationsProvider';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { useDaoChain } from '@/shared/hooks/useDaoChain';
 import { useStepper } from '@/shared/hooks/useStepper';
+import { monitoringUtils } from '@/shared/utils/monitoringUtils';
 import { pluginTransactionUtils } from '@/shared/utils/pluginTransactionUtils';
 import { invariant } from '@aragon/gov-ui-kit';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Hex, TransactionReceipt } from 'viem';
 import { useAccount, usePublicClient } from 'wagmi';
 import { harmonyDelegationVotingPlugin, harmonyHipVotingPlugin } from '@/plugins/harmonyVotingPlugin/constants/harmonyVotingPlugins';
@@ -58,8 +59,27 @@ export const PrepareHarmonyVotingInstallationDialog: React.FC<IPrepareHarmonyVot
             : harmonyHipVotingPlugin;
     }, [installType]);
 
+    useEffect(() => {
+        monitoringUtils.logMessage('HarmonyVoting: Prepare installation dialog opened', {
+            context: {
+                daoId,
+                installType,
+                installPluginId: installPlugin.id,
+                proposalPluginSlug: proposalPlugin.slug,
+            },
+        });
+    }, [daoId, installType, installPlugin.id, proposalPlugin.slug]);
+
     const handlePrepareTransaction = async () => {
         invariant(dao != null, 'PrepareHarmonyVotingInstallationDialog: DAO not found.');
+
+        monitoringUtils.logMessage('HarmonyVoting: Prepare installation transaction requested', {
+            context: {
+                daoId,
+                installType,
+                installPluginId: installPlugin.id,
+            },
+        });
 
         if (chainId != null && requiredChainId != null && chainId !== requiredChainId) {
             const requiredNetworkName = networkDefinitions[dao.network]?.name ?? 'the correct network';
@@ -103,6 +123,15 @@ export const PrepareHarmonyVotingInstallationDialog: React.FC<IPrepareHarmonyVot
         (setupData: ReturnType<typeof pluginTransactionUtils.getPluginInstallationSetupData>, pluginSetupProcessorAddress: Hex) => {
             invariant(dao != null, 'PrepareHarmonyVotingInstallationDialog: DAO not found.');
 
+            monitoringUtils.logMessage('HarmonyVoting: Opening publish proposal dialog (apply install)', {
+                context: {
+                    daoId,
+                    installType,
+                    installPluginId: installPlugin.id,
+                    proposalPluginSlug: proposalPlugin.slug,
+                },
+            });
+
             const proposalActions = pluginTransactionUtils.buildApplyPluginsInstallationActions({
                 dao,
                 setupData,
@@ -127,7 +156,7 @@ export const PrepareHarmonyVotingInstallationDialog: React.FC<IPrepareHarmonyVot
             open(GovernanceDialogId.PUBLISH_PROPOSAL, { params });
             hasProposalDialogBeenOpened.current = true;
         },
-        [dao, daoId, installType, open, proposalPlugin, t],
+        [dao, daoId, installType, installPlugin.id, open, proposalPlugin.slug, proposalPlugin, t],
     );
 
     const handlePrepareInstallationSuccess = (txReceipt: TransactionReceipt) => {
