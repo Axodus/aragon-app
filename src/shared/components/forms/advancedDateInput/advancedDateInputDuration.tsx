@@ -36,7 +36,7 @@ export const AdvancedDateInputDuration: React.FC<IAdvancedDateInputDurationProps
         ...otherProps
     } = props;
     const { t } = useTranslations();
-    const { setValue, trigger } = useFormContext();
+    const { setValue, trigger, getValues } = useFormContext();
 
     const validateDuration = (value: IDateDuration | number) => {
         const isValid = dateUtils.validateDuration({ value, minDuration });
@@ -65,10 +65,18 @@ export const AdvancedDateInputDuration: React.FC<IAdvancedDateInputDurationProps
             ? durationField.value
             : dateUtils.secondsToDuration(durationField.value);
 
+    const getCurrentDurationObject = () => {
+        const currentValue = getValues(field) as unknown;
+
+        return typeof currentValue === 'object'
+            ? (currentValue as IDateDuration)
+            : dateUtils.secondsToDuration(currentValue as number);
+    };
+
     const handleDurationChange = (type: string) => (value: string) => {
         const parsedValue = parseInt(value, 10);
         const numericValue = isNaN(parsedValue) ? 0 : parsedValue;
-        const newValue = { ...currentDurationObject, [type]: numericValue };
+        const newValue = { ...getCurrentDurationObject(), [type]: numericValue };
         const processedNewValue = useSecondsFormat ? dateUtils.durationToSeconds(newValue) : newValue;
         setValue(field, processedNewValue, { shouldValidate: validateMinDuration === true });
     };
