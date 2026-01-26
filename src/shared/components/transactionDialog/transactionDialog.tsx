@@ -126,8 +126,8 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
         refetchInterval: ({ state }) => (!state.data?.isProcessed ? indexingStepInterval : false),
     });
 
-    const handleSendTransaction = useCallback(() => {
-        const errorHandler = handleTransactionError(TransactionDialogStep.APPROVE);
+    const handleSendTransaction = useCallback((params: { onError: (error: unknown) => void }) => {
+        const errorHandler = params.onError;
 
         if (transaction == null) {
             errorHandler(new Error('TransactionDialog: transaction must be defined.'));
@@ -141,22 +141,31 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
 
             sendTransaction(transactionWithGasOverride, { onError: errorHandler });
         }
-    }, [transaction, sendTransaction, handleTransactionError]);
+    }, [transaction, sendTransaction, network, transactionType]);
 
     const handleSwitchNetwork = useCallback(
-        () => switchChain({ chainId: requiredChainId! }, { onSuccess: handleSendTransaction }),
-        [switchChain, requiredChainId, handleSendTransaction],
+        (params: { onError: (error: unknown) => void }) =>
+            switchChain(
+                { chainId: requiredChainId! },
+                {
+                    // Switching network should not auto-send the transaction; once chainId updates,
+                    // the primary action will become the wallet signature step.
+                    onError: params.onError,
+                },
+            ),
+        [switchChain, requiredChainId],
     );
 
-    const handleRetryTransaction = useCallback(() => {
+    const handleRetryTransaction = useCallback((params: { onError: (error: unknown) => void }) => {
         updateActiveStep(TransactionDialogStep.APPROVE);
-        handleSendTransaction();
+        handleSendTransaction(params);
     }, [updateActiveStep, handleSendTransaction]);
 
     const approveStepAction = requiredChainId === chainId ? handleSendTransaction : handleSwitchNetwork;
-    const transactionStepActions: Record<TransactionDialogStep, () => void> = useMemo(
+    const transactionStepActions: Record<TransactionDialogStep, (params: { onError: (error: unknown) => void }) => void> =
+        useMemo(
         () => ({
-            [TransactionDialogStep.PREPARE]: prepareTransactionMutate,
+            [TransactionDialogStep.PREPARE]: () => prepareTransactionMutate(),
             [TransactionDialogStep.APPROVE]: approveStepAction,
             [TransactionDialogStep.CONFIRM]: handleRetryTransaction,
             [TransactionDialogStep.INDEXING]: () => {

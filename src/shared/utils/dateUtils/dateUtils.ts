@@ -67,7 +67,9 @@ class DateUtils {
         }
 
         const valueObject = typeof value === 'number' ? { seconds: value } : value;
-        const isValid = Duration.fromObject(valueObject) >= Duration.fromObject(minDuration);
+        const valueMs = Duration.fromObject(valueObject).as('milliseconds');
+        const minMs = Duration.fromObject(minDuration).as('milliseconds');
+        const isValid = valueMs >= minMs;
 
         return isValid;
     };
@@ -82,8 +84,12 @@ class DateUtils {
         }
 
         const parsedValue = this.parseFixedDate(value);
-        const isMinTimeValid = parsedValue >= minTime;
-        const isMinDurationValid = minDuration == null || parsedValue >= minTime.plus(minDuration);
+        const parsedMs = parsedValue.toMillis();
+        const minTimeMs = minTime.toMillis();
+        const minDurationMs = minDuration == null ? undefined : minTime.plus(minDuration).toMillis();
+
+        const isMinTimeValid = parsedMs >= minTimeMs;
+        const isMinDurationValid = minDurationMs == null || parsedMs >= minDurationMs;
 
         return isMinTimeValid && isMinDurationValid;
     };

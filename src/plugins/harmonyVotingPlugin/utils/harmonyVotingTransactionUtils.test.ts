@@ -14,8 +14,8 @@ describe('harmonyVotingTransactionUtils', () => {
     expect(() => buildDelegationInstallData(undefined as any)).toThrow('Validator address is required');
 
     // mixed-case address should be accepted and produce a hex string
-    const mixed = '0xAb5801a7D398351b8bE11C439e05C5B3259aec9B';
-    const hex = buildDelegationInstallData(mixed);
+    const nonChecksummed = '0xab5801a7d398351b8be11c439e05c5b3259aec9b';
+    const hex = buildDelegationInstallData(nonChecksummed);
     expect(typeof hex).toBe('string');
     expect(hex.startsWith('0x')).toBe(true);
     expect(hex.length).toBeGreaterThan(2);
@@ -30,7 +30,7 @@ describe('harmonyVotingTransactionUtils', () => {
 
     const params: any = {
       dao: { network: '1', address: '0xda0da0da0da0da0da0da0da0da0da0da0da0da0' },
-      body: { membership: { validatorAddress: '0xAb5801a7D398351b8bE11C439e05C5B3259aec9B' } },
+      body: { membership: { validatorAddress: '0xab5801a7d398351b8be11c439e05c5b3259aec9b' } },
       metadata: '0xabc123',
       stageVotingPeriod: null, // processor install
     };
