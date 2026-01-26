@@ -4,7 +4,8 @@ import { Network } from '@/shared/api/daoService';
 import { useTranslations } from '@/shared/components/translationsProvider';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { useFormField } from '@/shared/hooks/useFormField';
-import { AddressInput, addressUtils, type IAddressInputResolvedValue } from '@aragon/gov-ui-kit';
+import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
+import { AddressInput, type IAddressInputResolvedValue } from '@aragon/gov-ui-kit';
 import { useEffect, useState } from 'react';
 import { useWatch } from 'react-hook-form';
 import type { IHarmonyVotingSetupMembershipForm, IHarmonyVotingSetupMembershipProps } from './harmonyVotingSetupMembership.api';
@@ -23,8 +24,15 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
     } = useFormField<IHarmonyVotingSetupMembershipForm, 'validatorAddress'>('validatorAddress', {
         label: t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.label'),
         rules: {
-            required: true,
-            validate: (value?: string) => (value ? addressUtils.isAddress(value) : false),
+            required: {
+                value: true,
+                message: 'app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.required',
+            },
+            validate: (value?: string) => {
+                const res = evmAddressUtils.validate(value);
+                if (res.ok) return true;
+                return `app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.${res.error}`;
+            },
         },
         fieldPrefix: formPrefix,
         sanitizeOnBlur: false,
@@ -39,13 +47,15 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
     const handleAddressChange = (value?: string) => {
         setAddressInput(value);
         const nextValue = value ?? '';
-        if (nextValue.trim().length === 0 || addressUtils.isAddress(nextValue)) {
-            onValidatorChange(nextValue.toLowerCase());
-        }
+
+        // Keep form state in sync with user input so validation errors can be surfaced.
+        onValidatorChange(nextValue);
     };
 
     const handleAddressAccept = (value?: IAddressInputResolvedValue) => {
-        onValidatorChange((value?.address ?? '').toLowerCase());
+        const resolvedAddress = value?.address ?? '';
+        const res = evmAddressUtils.validate(resolvedAddress);
+        onValidatorChange(res.ok ? res.address : resolvedAddress);
     };
 
     return (

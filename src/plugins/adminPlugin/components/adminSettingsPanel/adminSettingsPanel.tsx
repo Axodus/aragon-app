@@ -4,6 +4,7 @@ import { Page } from '@/shared/components/page';
 import { useTranslations } from '@/shared/components/translationsProvider';
 import { Card, IconType } from '@aragon/gov-ui-kit';
 import { AdminGovernanceInfo } from '../adminGovernanceInfo';
+import { AdminInstallHarmonyVoting } from './components/adminInstallHarmonyVoting';
 import { AdminManageMembers } from './components/adminManageMembers';
 import { AdminUninstallPlugin } from './components/adminUninstallPlugin';
 
@@ -23,8 +24,9 @@ export const AdminSettingsPanel: React.FC<IAdminSettingsPanelProps> = (props) =>
         <Page.MainSection title={t('app.plugins.admin.adminSettingsPanel.title')} icon={IconType.WARNING}>
             <Card className="flex flex-col gap-4 p-6">
                 <AdminGovernanceInfo />
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                     <AdminManageMembers daoId={daoId} />
+                    <AdminInstallHarmonyVoting daoId={daoId} />
                     <AdminUninstallPlugin daoId={daoId} />
                 </div>
             </Card>

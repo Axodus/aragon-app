@@ -1,0 +1,417 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-01-26T20:31:52.901Z",
+  "owner": "Axodus",
+  "project": {
+    "url": "https://github.com/orgs/Axodus/projects/23",
+    "number": 23,
+    "fieldIds": {
+      "statusFieldId": "",
+      "priorityFieldId": "",
+      "estimateHoursFieldId": "251668000",
+      "startDateFieldId": "",
+      "endDateFieldId": ""
+    },
+    "projectNodeId": "PVT_kwDOBfRHZM4BM-PB"
+  },
+  "targets": [
+    {
+      "repo": "Axodus/aragon-app",
+      "localPath": "../aragon-app",
+      "planFiles": [
+        {
+          "path": "PLAN.md",
+          "absPath": "/mnt/d/Rede/Github/mzfshark/aragon-app/PLAN.md",
+          "sha1": "099db46abd29cf27bf3e17eaf0b171a66e52034e"
+        }
+      ],
+      "planFingerprint": "7653592ac275efb807b1742d051ca82c94b64ca4",
+      "enableProjectSync": true,
+      "tasks": [
+        {
+          "stableId": "53f77a3f274c68516120fa249eb15c64b200222c",
+          "canonicalKey": null,
+          "explicitId": "PLAN",
+          "file": "PLAN.md",
+          "line": 1,
+          "text": "Sprint #2 Plan — Install Flows & UI Resilience",
+          "body": "# Sprint #2 Plan — Install Flows & UI Resilience\r\n\r\n## Goals\r\n- Deliver HarmonyVoting install and prepare flows with validation and safety checks.\r\n- Improve UI resilience for RPC failures and offline scenarios.\r\n- Ship tests and documentation to support release readiness.\r\n\r\n## Non-Goals\r\n- No contract changes or on-chain permission updates in this sprint.\r\n- No new plugin types beyond HarmonyVoting install/prepare.\r\n\r\n## Task Breakdown (Checklist)\r\n- [x] TASK-001: Install Flow — wizard UI, validator address validation, param encoding. (Issue #40) [key:01KFX03B4D8ZZY5AFC06XP78XA] **Status: DONE (90% E2E validation pending)**\r\n\t- [x] Encode installation params matching contract expectations (HIP uses empty bytes; Delegation encodes validator address) [key:01KFX03B4E169ZA7CWJVWST67F]\r\n\t- [x] Parameter validation (format, length, checksum) with user-visible errors [key:01KFX03B4FPKZMKSMX79FG361K]\r\n\t- [x] Settings install wizard + prepare flow dialogs (Install → Prepare tx → Publish proposal) [key:01KFX03B4FPKZMKSMX79FG361M]\r\n\t- [x] Legacy PSP variance support (use PSP address from prepare receipt when building apply actions) [key:01KFX03B4FPKZMKSMX79FG361N]\r\n\t- [x] Admin Settings entrypoint button (Harmony-only, hidden if already installed) [key:01KFX03B4FPKZMKSMX79FG361P]\r\n\t- [ ] Confirm install wizard UX end-to-end on Harmony (broad smoke to be run) [key:01KFX03B4FPKZMKSMX79FG361Q]\r\n- [x] TASK-002: Prepare Flow — gas estimation, chain mismatch checks. (Issue #41) [key:01KFX03B4FPKZMKSMX79FG361R] **Status: IN REVIEW (1 test failure - BUG_duration_validation_test)**\r\n\t- [x] Gas estimation using tx gas.limit * 1.2 buffer (BigInt safe calculation) [key:01KFX03B4FPKZMKSMX79FG361R_A]\r\n\t- [x] Chain mismatch detection with switchNetwork action (separate from approve) [key:01KFX03B4FPKZMKSMX79FG361R_B]\r\n\t- [x] switchNetwork i18n keys + UX flow (idle/pending/error states) [key:01KFX03B4FPKZMKSMX79FG361R_C]\r\n\t- [ ] Fix advancedDateInputDuration test validation state clearing (BUG filed) [key:01KFX03B4FPKZMKSMX79FG361R_D]\r\n- [ ] TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42) [key:01KFX03B4FPKZMKSMX79FG361S]\r\n\t- [x] WalletConnect type drift hardening (structural session typing + metadata narrowing) [key:06DZMG9RB8CM6TRY36171PG1BA]\r\n- [ ] TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) [key:01KFX03B4FPKZMKSMX79FG361T]\r\n\t- [x] Add missing i18n keys for new Settings dialogs + Admin entrypoint [key:01KFX03B4FPKZMKSMX79FG361V]\r\n- [ ] TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44) [key:01KFX03B4FPKZMKSMX79FG361W]\r\n\r\n## Implementation Steps & Guidelines\r\n1. Scope UI flows and validation rules from existing HarmonyVoting install requirements.\r\n2. Implement install wizard and parameter encoding with unit tests.\r\n3. Implement pre-flight checks for gas and chain mismatch.\r\n4. Add UI resilience and retry UX for RPC failures.\r\n5. Integrate analytics, builders, and i18n keys.\r\n6. Add tests, update documentation, validate acceptance criteria.\r\n\r\n## Dependencies & Integration Points\r\n- Aragon Governance UI Kit components\r\n- wagmi/viem + AppKit wallet connection\r\n- HarmonyVoting plugin install parameters\r\n- Existing error handling and analytics utilities\r\n\r\n## Acceptance Criteria\r\n- Users can complete install flow with correct parameter encoding.\r\n- Prepare flow blocks invalid installs and shows gas estimates.\r\n- UI retries and error messages are clear for RPC failures.\r\n- Analytics, builder registration, and i18n keys are complete.\r\n- Unit coverage >= 90% on modified modules and E2E smoke passes locally.\r\n\r\n## Rollout / Validation\r\n- Validate flows locally with test wallet + mock RPC failure.\r\n- Confirm E2E smoke passes before merging.\r\n\r\n## References\r\n- PR #39: Sprint #2 - Install Flows & UI Resilience\r\n- PLAN_SPRINT_2.md: docs/plans/PLAN_SPRINT_2.md\r\n",
+          "checked": false,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui",
+            "plan-parent"
+          ],
+          "priority": "NORMAL",
+          "status": "TODO",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 5,
+          "isParentPlan": true,
+          "assignee": "Axodus"
+        }
+      ],
+      "subtasks": [
+        {
+          "stableId": "a5310e28abce658cf319dadae7b248ab16a45b5f",
+          "canonicalKey": "01KFX03B4D8ZZY5AFC06XP78XA",
+          "explicitId": "TASK-001",
+          "file": "PLAN.md",
+          "line": 13,
+          "text": "TASK-001: Install Flow — wizard UI, validator address validation, param encoding. (Issue #40) **Status: DONE (90% E2E validation pending)**",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+        },
+        {
+          "stableId": "441a28ed294ea5d5a134a96ae0fe5134921ebf80",
+          "canonicalKey": "01KFX03B4E169ZA7CWJVWST67F",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 14,
+          "text": "Encode installation params matching contract expectations (HIP uses empty bytes; Delegation encodes validator address)",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
+        },
+        {
+          "stableId": "9b2cd91a9c6d06a920ff946b7bcd062374920781",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361K",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 15,
+          "text": "Parameter validation (format, length, checksum) with user-visible errors",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
+        },
+        {
+          "stableId": "b1cb6771d52e1effc133e83bb61371a884c9f6b9",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361M",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 16,
+          "text": "Settings install wizard + prepare flow dialogs (Install → Prepare tx → Publish proposal)",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
+        },
+        {
+          "stableId": "d26ee66017d84386635caab3e06ef4625340cb61",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361N",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 17,
+          "text": "Legacy PSP variance support (use PSP address from prepare receipt when building apply actions)",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
+        },
+        {
+          "stableId": "19d04eeba7da4fba812b425ff931d92a8880b7e1",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361P",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 18,
+          "text": "Admin Settings entrypoint button (Harmony-only, hidden if already installed)",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
+        },
+        {
+          "stableId": "160cdae8fe951aa88b6eac9d708dce400a5210df",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361Q",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 19,
+          "text": "Confirm install wizard UX end-to-end on Harmony (broad smoke to be run)",
+          "checked": false,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "TODO",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
+        },
+        {
+          "stableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R",
+          "explicitId": "TASK-002",
+          "file": "PLAN.md",
+          "line": 20,
+          "text": "TASK-002: Prepare Flow — gas estimation, chain mismatch checks. (Issue #41) **Status: IN REVIEW (1 test failure - BUG_duration_validation_test)**",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+        },
+        {
+          "stableId": "c8817ce06f7ccf1d89ff03a083cdc0a9d54a6309",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R_A",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 21,
+          "text": "Gas estimation using tx gas.limit * 1.2 buffer (BigInt safe calculation)",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427"
+        },
+        {
+          "stableId": "31dee143145647c4b0c1cdf9e21527a3a6bbbc35",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R_B",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 22,
+          "text": "Chain mismatch detection with switchNetwork action (separate from approve)",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427"
+        },
+        {
+          "stableId": "8677f498d696329651ed487785f54b6698348947",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R_C",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 23,
+          "text": "switchNetwork i18n keys + UX flow (idle/pending/error states)",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427"
+        },
+        {
+          "stableId": "604ba26eadc569828423f2a1f260505faee73fcb",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R_D",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 24,
+          "text": "Fix advancedDateInputDuration test validation state clearing (BUG filed)",
+          "checked": false,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "TODO",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427"
+        },
+        {
+          "stableId": "e42b8777df96c558e2a01455e0bf0b9b252217ea",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361S",
+          "explicitId": "TASK-003",
+          "file": "PLAN.md",
+          "line": 25,
+          "text": "TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42)",
+          "checked": false,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "TODO",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+        },
+        {
+          "stableId": "342dcec6ea24093a427ebd039b9b91e17a607d79",
+          "canonicalKey": "06DZMG9RB8CM6TRY36171PG1BA",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 26,
+          "text": "WalletConnect type drift hardening (structural session typing + metadata narrowing)",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "e42b8777df96c558e2a01455e0bf0b9b252217ea"
+        },
+        {
+          "stableId": "4ea7862be3060411a13e3ab05db319e4da4fa343",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361T",
+          "explicitId": "TASK-004",
+          "file": "PLAN.md",
+          "line": 27,
+          "text": "TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43)",
+          "checked": false,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "TODO",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+        },
+        {
+          "stableId": "f63e66df965f1a0cb9946707a3f8ee7409d44c5d",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361V",
+          "explicitId": null,
+          "file": "PLAN.md",
+          "line": 28,
+          "text": "Add missing i18n keys for new Settings dialogs + Admin entrypoint",
+          "checked": true,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "DONE",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
+        },
+        {
+          "stableId": "8636888ca6c495dcc1992e0a978d789968b5d188",
+          "canonicalKey": "01KFX03B4FPKZMKSMX79FG361W",
+          "explicitId": "TASK-005",
+          "file": "PLAN.md",
+          "line": 29,
+          "text": "TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44)",
+          "checked": false,
+          "labels": [
+            "harmony",
+            "frontend",
+            "governance",
+            "ui"
+          ],
+          "priority": "NORMAL",
+          "status": "TODO",
+          "startDate": "TBD",
+          "endDate": "TBD",
+          "estimateHours": 1,
+          "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+        }
+      ]
+    }
+  ]
+}

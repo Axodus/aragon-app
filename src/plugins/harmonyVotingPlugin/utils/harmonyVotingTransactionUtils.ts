@@ -3,6 +3,7 @@ import { PluginInterfaceType } from '@/shared/api/daoService';
 import { pluginTransactionUtils } from '@/shared/utils/pluginTransactionUtils';
 import { addressUtils, type ICompositeAddress } from '@aragon/gov-ui-kit';
 import { encodeAbiParameters, encodeFunctionData, keccak256, type Hex } from 'viem';
+import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
 import type { IPluginInfo } from '@/shared/types';
 import type { IHarmonyVotingSetupGovernanceForm } from '../components/harmonyVotingSetupGovernance';
 import type { IHarmonyVotingSetupMembershipForm } from '../components/harmonyVotingSetupMembership';
@@ -56,28 +57,19 @@ export const buildPrepareHarmonyVotingInstallData = (
 
     const repositoryAddress = plugin.repositoryAddresses[dao.network];
 
-    // When the plugin is installed as a processor (basic governance) the
-    // `metadata` parameter contains the processor metadata (including the
-    // `processKey` provided by the UI). In that case we must forward the
-    // metadata hex directly to the plugin setup so the on-chain setup uses
-    // the supplied `processKey` instead of falling back to a plugin-default
-    // value (e.g. HARMONYDELEGATIONVOTING).
+    // Harmony Voting plugins have strict install params expectations:
+    // - HIP voting: no installation params are supported (must be empty bytes)
+    // - Delegation voting: expects `abi.encode(address validatorAddress)`
     //
-    // For advanced governance (stageVotingPeriod set) the plugin is a
-    // sub-plugin and the setup expects its specific settings (validator
-    // address for delegation voting), so we keep the existing behaviour.
+    // Passing metadata here would revert (e.g. HIP: `INSTALL_PARAMS_NOT_SUPPORTED`).
+    void metadata;
+    void stageVotingPeriod;
+
     let pluginSettingsData: Hex = '0x' as Hex;
 
     const isDelegation = plugin.id === PluginInterfaceType.HARMONY_DELEGATION_VOTING;
 
-    if (stageVotingPeriod == null) {
-        // Installed as processor (basic): forward metadata (CID hex) so the
-        // on-chain setup can read `processKey` and other processor fields.
-        if (metadata != null && metadata.length > 0) {
-            pluginSettingsData = metadata as Hex;
-        }
-    } else if (isDelegation) {
-        // Advanced governance / sub-plugin: pass validator address as before.
+    if (isDelegation) {
         pluginSettingsData = buildDelegationInstallData(body.membership?.validatorAddress);
     }
 
@@ -137,13 +129,12 @@ export const buildDelegationInstallData = (validatorAddress?: string): Hex => {
     if (validatorAddress == null || validatorAddress.trim().length === 0) {
         throw new Error('Validator address is required for Harmony Delegation voting.');
     }
+    const trimmed = validatorAddress.trim();
+    const res = evmAddressUtils.validate(trimmed);
 
-    // Normalize address to lowercase to ensure consistent on-chain encoding
-    const normalized = validatorAddress.trim().toLowerCase();
-
-    if (!addressUtils.isAddress(normalized)) {
+    if (!res.ok) {
         throw new Error('Validator address must be a valid address.');
     }
 
-    return encodeAbiParameters([{ name: 'validatorAddress', type: 'address' }], [normalized as Hex]);
+    return encodeAbiParameters([{ name: 'validatorAddress', type: 'address' }], [res.address as Hex]);
 };
