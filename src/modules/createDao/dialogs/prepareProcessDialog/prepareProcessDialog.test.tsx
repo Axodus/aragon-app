@@ -75,6 +75,7 @@ describe('<PrepareProcessDialog />', () => {
         return (
             <PrepareProcessDialog
                 location={{
+                    id: 'test',
                     params: {
                         daoId: 'dao-id',
                         pluginAddress: '0x0000000000000000000000000000000000000002',
@@ -127,7 +128,7 @@ describe('<PrepareProcessDialog />', () => {
         } as any);
 
         usePublicClientSpy.mockReturnValue({
-            estimateGas: jest.fn().mockResolvedValue(123n),
+            estimateGas: jest.fn().mockResolvedValue(BigInt(123)),
         } as any);
 
         preparePluginsMetadataSpy.mockReturnValue({
@@ -138,7 +139,7 @@ describe('<PrepareProcessDialog />', () => {
         buildPrepareProcessTransactionSpy.mockResolvedValue({
             to: '0x0000000000000000000000000000000000000003',
             data: '0x',
-            value: 0n,
+            value: BigInt(0),
         } as any);
     });
 
@@ -179,7 +180,7 @@ describe('<PrepareProcessDialog />', () => {
     it('sets and clears the gas estimate details based on estimateGas success/failure', async () => {
         const estimateGas = jest
             .fn()
-            .mockResolvedValueOnce(123n)
+            .mockResolvedValueOnce(BigInt(123))
             .mockRejectedValueOnce(new Error('boom'));
         usePublicClientSpy.mockReturnValue({ estimateGas } as any);
 

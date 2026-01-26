@@ -8,12 +8,14 @@ import {
     TransactionDialogStep,
 } from '@/shared/components/transactionDialog';
 import { useTranslations } from '@/shared/components/translationsProvider';
+import { networkDefinitions } from '@/shared/constants/networkDefinitions';
+import { useDaoChain } from '@/shared/hooks/useDaoChain';
 import { useStepper } from '@/shared/hooks/useStepper';
 import { pluginTransactionUtils } from '@/shared/utils/pluginTransactionUtils';
 import { invariant } from '@aragon/gov-ui-kit';
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import type { Hex, TransactionReceipt } from 'viem';
-import { useAccount } from 'wagmi';
+import { useAccount, usePublicClient } from 'wagmi';
 import { harmonyDelegationVotingPlugin, harmonyHipVotingPlugin } from '@/plugins/harmonyVotingPlugin/constants/harmonyVotingPlugins';
 import { prepareHarmonyVotingInstallationDialogUtils } from './prepareHarmonyVotingInstallationDialogUtils';
 
@@ -33,7 +35,7 @@ export const PrepareHarmonyVotingInstallationDialog: React.FC<IPrepareHarmonyVot
     invariant(location.params != null, 'PrepareHarmonyVotingInstallationDialog: required parameters must be set.');
     const { daoId, proposalPlugin, installType, validatorAddress } = location.params;
 
-    const { address } = useAccount();
+    const { address, chainId } = useAccount();
     invariant(address != null, 'PrepareHarmonyVotingInstallationDialog: user must be connected.');
 
     const { t } = useTranslations();
@@ -41,6 +43,11 @@ export const PrepareHarmonyVotingInstallationDialog: React.FC<IPrepareHarmonyVot
     const hasProposalDialogBeenOpened = useRef(false);
 
     const { data: dao } = useDao({ urlParams: { id: daoId } });
+
+    const { chainId: requiredChainId } = useDaoChain({ network: dao?.network });
+    const publicClient = usePublicClient({ chainId: requiredChainId });
+
+    const [gasEstimate, setGasEstimate] = useState<bigint | undefined>();
 
     const initialStep = TransactionDialogStep.PREPARE;
     const stepper = useStepper<ITransactionDialogStepMeta, TransactionDialogStep>({ initialActiveStep: initialStep });
@@ -54,14 +61,43 @@ export const PrepareHarmonyVotingInstallationDialog: React.FC<IPrepareHarmonyVot
     const handlePrepareTransaction = async () => {
         invariant(dao != null, 'PrepareHarmonyVotingInstallationDialog: DAO not found.');
 
+        if (chainId != null && requiredChainId != null && chainId !== requiredChainId) {
+            const requiredNetworkName = networkDefinitions[dao.network]?.name ?? 'the correct network';
+            throw new Error(`Please switch your wallet to ${requiredNetworkName} before preparing the installation.`);
+        }
+
         const { tx } = await prepareHarmonyVotingInstallationDialogUtils.buildPrepareInstallationTransaction(
             dao,
             installPlugin,
             validatorAddress,
         );
 
+        if (publicClient != null && address != null) {
+            try {
+                const estimatedGas = await publicClient.estimateGas({
+                    account: address,
+                    to: tx.to,
+                    data: tx.data,
+                    value: tx.value,
+                });
+                setGasEstimate(estimatedGas);
+            } catch {
+                setGasEstimate(undefined);
+            }
+        }
+
         return tx;
     };
+
+    const transactionInfo = useMemo(
+        () => ({
+            title: t('app.settings.prepareHarmonyVotingInstallationDialog.transactionInfoTitle'),
+            current: 1,
+            total: 2,
+            details: gasEstimate ? `Estimated gas: ${gasEstimate.toString()}` : undefined,
+        }),
+        [t, gasEstimate],
+    );
 
     const openProposalPublishDialog = useCallback(
         (setupData: ReturnType<typeof pluginTransactionUtils.getPluginInstallationSetupData>, pluginSetupProcessorAddress: Hex) => {
@@ -115,11 +151,7 @@ export const PrepareHarmonyVotingInstallationDialog: React.FC<IPrepareHarmonyVot
             description={t('app.settings.prepareHarmonyVotingInstallationDialog.description')}
             submitLabel={t('app.settings.prepareHarmonyVotingInstallationDialog.button.submit')}
             onSuccess={handlePrepareInstallationSuccess}
-            transactionInfo={{
-                title: t('app.settings.prepareHarmonyVotingInstallationDialog.transactionInfoTitle'),
-                current: 1,
-                total: 2,
-            }}
+            transactionInfo={transactionInfo}
             stepper={stepper}
             prepareTransaction={handlePrepareTransaction}
             network={dao?.network}

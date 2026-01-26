@@ -143,22 +143,33 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
             <Dialog.Content>
                 <div className="flex flex-col gap-6 pb-6">
                     {!isHarmonyDao && (
-                        <AlertInline variant="critical">
-                            {t('app.settings.installHarmonyVotingDialog.error.unsupportedNetwork')}
-                        </AlertInline>
+                        <AlertInline
+                            variant="critical"
+                            message={t('app.settings.installHarmonyVotingDialog.error.unsupportedNetwork')}
+                        />
                     )}
 
                     {dao != null && isHarmonyDao && !isRepoConfigured && (
-                        <AlertInline variant="critical">
-                            {t('app.settings.installHarmonyVotingDialog.error.repoNotConfigured')}
-                        </AlertInline>
+                        <AlertInline
+                            variant="critical"
+                            message={t('app.settings.installHarmonyVotingDialog.error.repoNotConfigured')}
+                        />
                     )}
 
                     <div className="flex flex-col gap-3">
                         <div className="text-sm font-semibold text-neutral-800">
                             {t('app.settings.installHarmonyVotingDialog.field.processToInstall')}
                         </div>
-                        <RadioGroup value={String(installType)} onValueChange={(v) => setInstallType(Number(v) as HarmonyVotingInstallType)}>
+                        <RadioGroup
+                            value={String(installType)}
+                            onValueChange={(value) =>
+                                setInstallType(
+                                    value === String(PluginInterfaceType.HARMONY_DELEGATION_VOTING)
+                                        ? PluginInterfaceType.HARMONY_DELEGATION_VOTING
+                                        : PluginInterfaceType.HARMONY_HIP_VOTING,
+                                )
+                            }
+                        >
                             <RadioCard
                                 className="w-full"
                                 value={String(PluginInterfaceType.HARMONY_HIP_VOTING)}
@@ -184,9 +195,9 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
                                 onChange={handleValidatorChange}
                                 onAccept={handleValidatorAccept}
                                 chainId={chainId}
-                                errorMessage={validatorErrorKey ? t(validatorErrorKey) : undefined}
-                                state={validatorErrorKey ? 'error' : 'default'}
                             />
+
+                            {validatorErrorKey && <AlertInline variant="critical" message={t(validatorErrorKey)} />}
                         </div>
                     )}
 
