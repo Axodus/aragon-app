@@ -3,5 +3,8 @@
 // versions are present in the dependency graph.
 export type ISession = {
 	topic: string;
+	peer: {
+		metadata: unknown;
+	};
 	[key: string]: unknown;
 };
