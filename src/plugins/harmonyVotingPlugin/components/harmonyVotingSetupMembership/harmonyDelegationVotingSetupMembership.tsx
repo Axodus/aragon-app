@@ -38,24 +38,28 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
         sanitizeOnBlur: false,
     });
 
-    const [addressInput, setAddressInput] = useState<string | undefined>(validatorAddress);
+    const [addressInput, setAddressInput] = useState<string>(validatorAddress ?? '');
 
     useEffect(() => {
-        setAddressInput(validatorAddress);
+        setAddressInput(validatorAddress ?? '');
     }, [validatorAddress]);
 
     const handleAddressChange = (value?: string) => {
-        setAddressInput(value);
-        const nextValue = value ?? '';
+        // Some AddressInput implementations may emit `undefined` for intermediate/invalid values.
+        // Ignore it so we don't clear the user's in-progress input.
+        if (value === undefined) {
+            return;
+        }
 
-        // Keep form state in sync with user input so validation errors can be surfaced.
-        onValidatorChange(nextValue);
+        // Keep a local input state while user types. Commit to form state only on accept.
+        setAddressInput(value);
     };
 
     const handleAddressAccept = (value?: IAddressInputResolvedValue) => {
         const resolvedAddress = value?.address ?? '';
         const res = evmAddressUtils.validate(resolvedAddress);
         onValidatorChange(res.ok ? res.address : resolvedAddress);
+        setAddressInput(res.ok ? res.address : resolvedAddress);
     };
 
     return (
