@@ -1,182 +1,26 @@
 [
   {
-    "stableId": "c912c6eb52b5f11817dc18194c0e49e19481bfb7",
-    "canonicalKey": "01KFRBVBMA607DDS5DR2GFJ2VM",
-    "explicitId": null,
-    "file": "../../../../../../opt/aragon-app/docs/plans/PLAN.md",
+    "stableId": "53f77a3f274c68516120fa249eb15c64b200222c",
+    "canonicalKey": null,
+    "explicitId": "PLAN",
+    "file": "PLAN.md",
     "line": 1,
-    "text": "#PLAN-002 - HarmonyVoting Frontend UI & UX Production Release",
+    "text": "Sprint #2 Plan — Install Flows & UI Resilience",
+    "body": "# Sprint #2 Plan — Install Flows & UI Resilience\r\n\r\n## Goals\r\n- Deliver HarmonyVoting install and prepare flows with validation and safety checks.\r\n- Improve UI resilience for RPC failures and offline scenarios.\r\n- Ship tests and documentation to support release readiness.\r\n\r\n## Non-Goals\r\n- No contract changes or on-chain permission updates in this sprint.\r\n- No new plugin types beyond HarmonyVoting install/prepare.\r\n\r\n## Task Breakdown (Checklist)\r\n- [x] TASK-001: Install Flow — wizard UI, validator address validation, param encoding. (Issue #40) [key:01KFX03B4D8ZZY5AFC06XP78XA] **Status: DONE (90% E2E validation pending)**\r\n\t- [x] Encode installation params matching contract expectations (HIP uses empty bytes; Delegation encodes validator address) [key:01KFX03B4E169ZA7CWJVWST67F]\r\n\t- [x] Parameter validation (format, length, checksum) with user-visible errors [key:01KFX03B4FPKZMKSMX79FG361K]\r\n\t- [x] Settings install wizard + prepare flow dialogs (Install → Prepare tx → Publish proposal) [key:01KFX03B4FPKZMKSMX79FG361M]\r\n\t- [x] Legacy PSP variance support (use PSP address from prepare receipt when building apply actions) [key:01KFX03B4FPKZMKSMX79FG361N]\r\n\t- [x] Admin Settings entrypoint button (Harmony-only, hidden if already installed) [key:01KFX03B4FPKZMKSMX79FG361P]\r\n\t- [ ] Confirm install wizard UX end-to-end on Harmony (broad smoke to be run) [key:01KFX03B4FPKZMKSMX79FG361Q]\r\n- [x] TASK-002: Prepare Flow — gas estimation, chain mismatch checks. (Issue #41) [key:01KFX03B4FPKZMKSMX79FG361R] **Status: IN REVIEW (1 test failure - BUG_duration_validation_test)**\r\n\t- [x] Gas estimation using tx gas.limit * 1.2 buffer (BigInt safe calculation) [key:01KFX03B4FPKZMKSMX79FG361R_A]\r\n\t- [x] Chain mismatch detection with switchNetwork action (separate from approve) [key:01KFX03B4FPKZMKSMX79FG361R_B]\r\n\t- [x] switchNetwork i18n keys + UX flow (idle/pending/error states) [key:01KFX03B4FPKZMKSMX79FG361R_C]\r\n\t- [ ] Fix advancedDateInputDuration test validation state clearing (BUG filed) [key:01KFX03B4FPKZMKSMX79FG361R_D]\r\n- [ ] TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42) [key:01KFX03B4FPKZMKSMX79FG361S]\r\n\t- [x] WalletConnect type drift hardening (structural session typing + metadata narrowing) [key:06DZMG9RB8CM6TRY36171PG1BA]\r\n- [ ] TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) [key:01KFX03B4FPKZMKSMX79FG361T]\r\n\t- [x] Add missing i18n keys for new Settings dialogs + Admin entrypoint [key:01KFX03B4FPKZMKSMX79FG361V]\r\n- [ ] TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44) [key:01KFX03B4FPKZMKSMX79FG361W]\r\n\r\n## Implementation Steps & Guidelines\r\n1. Scope UI flows and validation rules from existing HarmonyVoting install requirements.\r\n2. Implement install wizard and parameter encoding with unit tests.\r\n3. Implement pre-flight checks for gas and chain mismatch.\r\n4. Add UI resilience and retry UX for RPC failures.\r\n5. Integrate analytics, builders, and i18n keys.\r\n6. Add tests, update documentation, validate acceptance criteria.\r\n\r\n## Dependencies & Integration Points\r\n- Aragon Governance UI Kit components\r\n- wagmi/viem + AppKit wallet connection\r\n- HarmonyVoting plugin install parameters\r\n- Existing error handling and analytics utilities\r\n\r\n## Acceptance Criteria\r\n- Users can complete install flow with correct parameter encoding.\r\n- Prepare flow blocks invalid installs and shows gas estimates.\r\n- UI retries and error messages are clear for RPC failures.\r\n- Analytics, builder registration, and i18n keys are complete.\r\n- Unit coverage >= 90% on modified modules and E2E smoke passes locally.\r\n\r\n## Rollout / Validation\r\n- Validate flows locally with test wallet + mock RPC failure.\r\n- Confirm E2E smoke passes before merging.\r\n\r\n## References\r\n- PR #39: Sprint #2 - Install Flows & UI Resilience\r\n- PLAN_SPRINT_2.md: docs/plans/PLAN_SPRINT_2.md\r\n",
     "checked": false,
     "labels": [
       "harmony",
       "frontend",
       "governance",
-      "ui"
+      "ui",
+      "plan-parent"
     ],
     "priority": "NORMAL",
     "status": "TODO",
     "startDate": "TBD",
     "endDate": "TBD",
-    "estimateHours": 0
-  },
-  {
-    "stableId": "d51bd60a92dfca659fd273d5f51361883ae267d6",
-    "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3K",
-    "explicitId": "FEATURE-001",
-    "file": "../../../../../../opt/aragon-app/docs/plans/PLAN.md",
-    "line": 49,
-    "text": "FEATURE-001: Plugin Setup & Forms ✅ SPRINT #1 COMPLETE",
-    "checked": false,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "TODO",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 20
-  },
-  {
-    "stableId": "b589dfb269e619cc6b0fa023692f91890aac3415",
-    "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3S",
-    "explicitId": "FEATURE-002",
-    "file": "../../../../../../opt/aragon-app/docs/plans/PLAN.md",
-    "line": 58,
-    "text": "FEATURE-002: Install & Prepare Flows",
-    "checked": false,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "TODO",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 20
-  },
-  {
-    "stableId": "36acefcb3dbb016c386247db1af63b5f6b26c235",
-    "canonicalKey": "01KFRBVBMB1DFPXVV283V27E3Y",
-    "explicitId": "FEATURE-003",
-    "file": "../../../../../../opt/aragon-app/docs/plans/PLAN.md",
-    "line": 66,
-    "text": "FEATURE-003: UI Resilience & Fallbacks",
-    "checked": false,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "TODO",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 24
-  },
-  {
-    "stableId": "6ea1b3cedea3d6c0145edee9471717e1fcf05083",
-    "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKG",
-    "explicitId": "FEATURE-004",
-    "file": "../../../../../../opt/aragon-app/docs/plans/PLAN.md",
-    "line": 76,
-    "text": "FEATURE-004: Plugin Uninstall UX",
-    "checked": false,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "TODO",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 20
-  },
-  {
-    "stableId": "2f0483c7b4a9f1c91aba74f3558302dc567a3ec2",
-    "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKN",
-    "explicitId": "FEATURE-005",
-    "file": "../../../../../../opt/aragon-app/docs/plans/PLAN.md",
-    "line": 84,
-    "text": "FEATURE-005: Native-Token Execution UX",
-    "checked": false,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "TODO",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 18
-  },
-  {
-    "stableId": "c6a5016bc9dcac31990f4c359878d13ab57743ec",
-    "canonicalKey": "01KFRBVBMC54B57ANM4J893ZKT",
-    "explicitId": "FEATURE-006",
-    "file": "../../../../../../opt/aragon-app/docs/plans/PLAN.md",
-    "line": 92,
-    "text": "FEATURE-006: E2E Testing & Release",
-    "checked": false,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "TODO",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 28
-  },
-  {
-    "stableId": "2330bd055c829ff6f089b537b92163fa8fa6cf03",
-    "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM1",
-    "explicitId": "TASK-001",
-    "file": "../../../../../../opt/aragon-app/docs/plans/PLAN.md",
-    "line": 102,
-    "text": "TASK-001: Cross-Repo Admin Grant",
-    "checked": false,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "TODO",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 4
-  },
-  {
-    "stableId": "0e6fb6f85490da47593c0d249f63210d5ab87155",
-    "canonicalKey": "01KFRBVBMC54B57ANM4J893ZM3",
-    "explicitId": "TASK-002",
-    "file": "../../../../../../opt/aragon-app/docs/plans/PLAN.md",
-    "line": 107,
-    "text": "TASK-002: ProjectV2 Schema & Sync",
-    "checked": false,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "TODO",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 2.5
+    "estimateHours": 5,
+    "isParentPlan": true,
+    "assignee": "Axodus"
   }
 ]
