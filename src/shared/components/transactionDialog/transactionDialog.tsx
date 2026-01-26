@@ -82,7 +82,7 @@ export const TransactionDialog = <TCustomStepId extends string>(props: ITransact
                 });
 
                 // Apply a small buffer to reduce false OOG on providers with slightly optimistic estimation.
-                const gasWithBuffer = (estimate * 12n) / 10n;
+                const gasWithBuffer = (estimate * BigInt(12)) / BigInt(10);
                 return { ...tx, gas: gasWithBuffer };
             } catch (error: unknown) {
                 // Gas estimation is best-effort; if it fails we rely on wallet/provider defaults.
