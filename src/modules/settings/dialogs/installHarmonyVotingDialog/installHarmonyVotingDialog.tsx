@@ -11,6 +11,7 @@ import { daoUtils } from '@/shared/utils/daoUtils';
 import { monitoringUtils } from '@/shared/utils/monitoringUtils';
 import { AddressInput, AlertInline, Dialog, RadioCard, RadioGroup, invariant } from '@aragon/gov-ui-kit';
 import { useEffect, useMemo, useState } from 'react';
+import { createPublicClient, http } from 'viem';
 import { harmonyDelegationVotingPlugin, harmonyHipVotingPlugin } from '@/plugins/harmonyVotingPlugin/constants/harmonyVotingPlugins';
 import { SettingsDialogId } from '../../constants/settingsDialogId';
 import type { IPrepareHarmonyVotingInstallationDialogParams } from '../prepareHarmonyVotingInstallationDialog';
@@ -40,6 +41,7 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
     const [validatorAddress, setValidatorAddress] = useState<string>('');
     const [validatorAcceptedOnce, setValidatorAcceptedOnce] = useState<boolean>(false);
     const [addressInput, setAddressInput] = useState<string | undefined>('');
+    const [validatorCustomError, setValidatorCustomError] = useState<string | undefined>(undefined);
     const [proposalPlugin, setProposalPlugin] = useState<IDaoPlugin | undefined>(undefined);
 
     const selectedPluginInfo = useMemo(() => {
@@ -82,13 +84,10 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
         return res.ok ? res.address : undefined;
     }, [installType, validatorAddress]);
 
-    const chainId = useMemo(() => {
-        if (dao == null) return undefined;
-        return networkDefinitions[dao.network].id;
-    }, [dao]);
-
     // Force mainnet for the input so ENS (*.eth) is supported even when installing on Harmony.
     const validatorInputChainId = networkDefinitions[Network.ETHEREUM_MAINNET].id;
+
+    const isEnsLike = (value: string): boolean => /^(?:[a-z0-9-]+\.)*[a-z0-9-]+\.eth$/i.test(value.trim());
 
     const isRepoConfigured = selectedRepoAddress != null && selectedRepoAddress !== '0x0000000000000000000000000000000000000000';
 
@@ -149,20 +148,75 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
     };
 
     const handleValidatorChange = (value?: string) => {
-        // Keep local input state while user types (including ENS).
-        // AddressInput may emit `undefined` for intermediate/invalid values; don't wipe user's text.
-        if (value === undefined) return;
-        setAddressInput(value);
+        // Keep a best-effort copy of what the user typed.
+        // We intentionally do NOT control the AddressInput via `value`, because it may emit
+        // `undefined` for intermediate/invalid values (e.g. while typing or when entering ENS).
+        if (value != null) setAddressInput(value);
+        setValidatorCustomError(undefined);
     };
 
-    const handleValidatorAccept = (value?: { address?: string }) => {
-        const resolved = value?.address ?? '';
-        const res = evmAddressUtils.validate(resolved);
+    const handleValidatorAccept = (value?: { address?: string } | Record<string, unknown>) => {
+        const resolved = value as unknown as Record<string, unknown> | undefined;
 
-        const next = res.ok ? res.address : resolved;
-        setValidatorAddress(next);
-        setAddressInput(next);
+        const resolvedAddress = typeof resolved?.address === 'string' ? (resolved.address as string) : undefined;
+        const rawFromAccept =
+            (typeof resolved?.value === 'string' ? (resolved.value as string) : undefined) ??
+            (typeof resolved?.inputValue === 'string' ? (resolved.inputValue as string) : undefined) ??
+            (typeof resolved?.name === 'string' ? (resolved.name as string) : undefined);
+
+        const currentInput = ((rawFromAccept ?? addressInput) ?? '').trim();
+
         setValidatorAcceptedOnce(true);
+
+        // If the component resolved a 0x address already, prefer it.
+        if (resolvedAddress) {
+            const res = evmAddressUtils.validate(resolvedAddress);
+            if (res.ok) {
+                setValidatorAddress(res.address);
+                setAddressInput(res.address);
+                setValidatorCustomError(undefined);
+                return;
+            }
+        }
+
+        // If user entered an ENS-like name, try resolving it here.
+        if (currentInput.length > 0 && isEnsLike(currentInput)) {
+            void (async () => {
+                try {
+                    const ethMainnet = networkDefinitions[Network.ETHEREUM_MAINNET];
+                    const rpcUrl = ethMainnet.rpcUrls.default.http[0];
+                    const publicClient = createPublicClient({ chain: ethMainnet, transport: http(rpcUrl) });
+                    const ens = currentInput.toLowerCase();
+                    const address = await publicClient.getEnsAddress({ name: ens });
+
+                    const validated = evmAddressUtils.validate(address ?? undefined);
+                    if (!validated.ok) {
+                        setValidatorCustomError(t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'));
+                        return;
+                    }
+
+                    setValidatorAddress(validated.address);
+                    setAddressInput(validated.address);
+                    setValidatorCustomError(undefined);
+                } catch {
+                    setValidatorCustomError(t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'));
+                }
+            })();
+
+            return;
+        }
+
+        // Fallback: try validating whatever is currently typed.
+        const res = evmAddressUtils.validate(currentInput);
+        if (res.ok) {
+            setValidatorAddress(res.address);
+            setAddressInput(res.address);
+            setValidatorCustomError(undefined);
+        } else {
+            setValidatorAddress(currentInput);
+            setAddressInput(currentInput);
+            setValidatorCustomError(undefined);
+        }
     };
 
     return (
@@ -223,14 +277,16 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
                                 label={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.label')}
                                 placeholder={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.placeholder')}
                                 helpText={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText')}
-                                value={addressInput}
                                 onChange={handleValidatorChange}
                                 onAccept={handleValidatorAccept}
                                 chainId={validatorInputChainId}
                             />
 
-                            {validatorAcceptedOnce && validatorErrorKey && (
-                                <AlertInline variant="critical" message={t(validatorErrorKey)} />
+                            {validatorAcceptedOnce && (validatorCustomError || validatorErrorKey) && (
+                                <AlertInline
+                                    variant="critical"
+                                    message={validatorCustomError ?? (validatorErrorKey ? t(validatorErrorKey) : '')}
+                                />
                             )}
                         </div>
                     )}
