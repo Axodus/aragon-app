@@ -1,329 +1,269 @@
 {
   "version": "1.0",
   "repo": "Axodus/aragon-app",
-  "updatedAt": "2026-01-27T11:33:51.286Z",
-  "planFingerprint": "d267b42d51ca675b791652fdc0e237808ee35a4b",
+  "updatedAt": "2026-01-27T11:59:57.779Z",
+  "planFingerprint": "f627d25da60d42eeb091364b1abfbf5794a4f3b4",
   "planFiles": [
     {
-      "path": "PLAN.md",
-      "sha1": "869896f9be36c07aa18bb618677eb2c1e20639a1"
+      "path": "docs/plans/FEATURE_003_allowlist_ux.md",
+      "sha1": "ee1f7c7fee2153fabf6a7e3f29127d7170c1a949"
     }
   ],
   "items": [
     {
-      "stableId": "6d6d85cb917fa803df277671491a869711774527",
-      "explicitId": "PLAN",
+      "stableId": "2fe46ae5dd74e3f05e22e591d5b59831cce2d1ef",
+      "explicitId": "FEATURE-003-ALLOWLIST-UX",
       "kind": "task",
       "issueNumber": null,
       "issueNodeId": null,
       "issueUrl": null,
       "projectItemId": null,
-      "title": "Sprint #2 Plan — Install Flows & UI Resilience",
+      "title": "FEATURE-003 - HIP Plugin Allowlist UX & Admin Button Removal",
       "source": {
-        "file": "PLAN.md",
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
         "line": 1
       },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
+      "lastSyncedAt": "2026-01-27T11:59:57.770Z"
     },
     {
-      "stableId": "a5310e28abce658cf319dadae7b248ab16a45b5f",
-      "explicitId": "TASK-001",
+      "stableId": "932fdf3ca4dac84b27a11d005e6424361e10905f",
+      "explicitId": "FEATURE-003",
       "kind": "subtask",
-      "issueNumber": 405,
-      "issueNodeId": "I_kwDOQla7Ys7lzrMW",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/405",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtWE",
-      "title": "TASK-001: Install Flow — wizard UI, validator address validation, param encoding. (Issue #40) **Status: DONE (90% E2E validation pending)**",
+      "issueNumber": 428,
+      "issueNodeId": "I_kwDOQla7Ys7mFpIy",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/428",
+      "projectItemId": null,
+      "title": "FEATURE-003 - HIP Plugin Allowlist UX & Admin Button Removal",
       "source": {
-        "file": "PLAN.md",
-        "line": 13
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 1
       },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
     },
     {
-      "stableId": "441a28ed294ea5d5a134a96ae0fe5134921ebf80",
+      "stableId": "8bc5d2046573f4c5a6a2d777f532565b295a0192",
+      "explicitId": "FEATURE-003",
+      "kind": "subtask",
+      "issueNumber": 429,
+      "issueNodeId": "I_kwDOQla7Ys7mFpO1",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/429",
+      "projectItemId": null,
+      "title": "FEATURE-003 | TASK-001: Remove AdminInstallHarmonyVoting from Admin Plugin",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 39
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "13c083763a11cd327a56ade80139ea3b5d18f5a2",
+      "explicitId": "FEATURE-003",
+      "kind": "subtask",
+      "issueNumber": 430,
+      "issueNodeId": "I_kwDOQla7Ys7mFpSU",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/430",
+      "projectItemId": null,
+      "title": "FEATURE-003 | TASK-002: Add \"By Request\" Badge for Allowlist Plugins",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 57
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "ad0f202a1eb4a79890925238dfd90037358571ad",
+      "explicitId": "FEATURE-003",
+      "kind": "subtask",
+      "issueNumber": 431,
+      "issueNodeId": "I_kwDOQla7Ys7mFrgo",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/431",
+      "projectItemId": null,
+      "title": "FEATURE-003 | TASK-003: (Optional) Real-time Allowlist Validation",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 102
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "bcfa46411eee442e8102448da831d8386afe2fa8",
+      "explicitId": "FEATURE-003",
+      "kind": "subtask",
+      "issueNumber": 432,
+      "issueNodeId": "I_kwDOQla7Ys7mFrn5",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/432",
+      "projectItemId": null,
+      "title": "FEATURE-003 | TASK-004: Documentation - Allowlist Procedure",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 114
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "fcd4712a05b7d8f815cac22c73ae3f448734530f",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 410,
-      "issueNodeId": "I_kwDOQla7Ys7lzrZl",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/410",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtaM",
-      "title": "Encode installation params matching contract expectations (HIP uses empty bytes; Delegation encodes validator address)",
+      "issueNumber": 433,
+      "issueNodeId": "I_kwDOQla7Ys7mFrpa",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/433",
+      "projectItemId": null,
+      "title": "`requiresAllowlist: true` flag on HIP plugin definition",
       "source": {
-        "file": "PLAN.md",
-        "line": 14
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "9b2cd91a9c6d06a920ff946b7bcd062374920781",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 411,
-      "issueNodeId": "I_kwDOQla7Ys7lzrcn",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/411",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPta0",
-      "title": "Parameter validation (format, length, checksum) with user-visible errors",
-      "source": {
-        "file": "PLAN.md",
-        "line": 15
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "b1cb6771d52e1effc133e83bb61371a884c9f6b9",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 412,
-      "issueNodeId": "I_kwDOQla7Ys7lzrg7",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/412",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtbc",
-      "title": "Settings install wizard + prepare flow dialogs (Install → Prepare tx → Publish proposal)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 16
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "d26ee66017d84386635caab3e06ef4625340cb61",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 413,
-      "issueNodeId": "I_kwDOQla7Ys7lzri3",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/413",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtb8",
-      "title": "Legacy PSP variance support (use PSP address from prepare receipt when building apply actions)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 17
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "19d04eeba7da4fba812b425ff931d92a8880b7e1",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 414,
-      "issueNodeId": "I_kwDOQla7Ys7lzrlk",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/414",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtcg",
-      "title": "Admin Settings entrypoint button (Harmony-only, hidden if already installed)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 18
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "160cdae8fe951aa88b6eac9d708dce400a5210df",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 415,
-      "issueNodeId": "I_kwDOQla7Ys7lzrnq",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/415",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtds",
-      "title": "Confirm install wizard UX end-to-end on Harmony (broad smoke to be run)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 19
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
-      "explicitId": "TASK-002",
-      "kind": "subtask",
-      "issueNumber": 406,
-      "issueNodeId": "I_kwDOQla7Ys7lzrOn",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/406",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtXA",
-      "title": "TASK-002: Prepare Flow — gas estimation, chain mismatch checks. (Issue #41) **Status: IN REVIEW (1 test failure - BUG_duration_validation_test)**",
-      "source": {
-        "file": "PLAN.md",
-        "line": 20
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "c8817ce06f7ccf1d89ff03a083cdc0a9d54a6309",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 418,
-      "issueNodeId": "I_kwDOQla7Ys7l7ZIp",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/418",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2oA",
-      "title": "Gas estimation using tx gas.limit * 1.2 buffer (BigInt safe calculation)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 21
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "31dee143145647c4b0c1cdf9e21527a3a6bbbc35",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 419,
-      "issueNodeId": "I_kwDOQla7Ys7l7ZLq",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/419",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2pg",
-      "title": "Chain mismatch detection with switchNetwork action (separate from approve)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 22
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "8677f498d696329651ed487785f54b6698348947",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 420,
-      "issueNodeId": "I_kwDOQla7Ys7l7ZON",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/420",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2qE",
-      "title": "switchNetwork i18n keys + UX flow (idle/pending/error states)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 23
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "604ba26eadc569828423f2a1f260505faee73fcb",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 421,
-      "issueNodeId": "I_kwDOQla7Ys7l7ZQb",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/421",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2qk",
-      "title": "Fix advancedDateInputDuration test validation state clearing (BUG filed)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 24
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "e42b8777df96c558e2a01455e0bf0b9b252217ea",
-      "explicitId": "TASK-003",
-      "kind": "subtask",
-      "issueNumber": 407,
-      "issueNodeId": "I_kwDOQla7Ys7lzrR_",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/407",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtXw",
-      "title": "TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 25
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "342dcec6ea24093a427ebd039b9b91e17a607d79",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 422,
-      "issueNodeId": "I_kwDOQla7Ys7l7ZUO",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/422",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2r8",
-      "title": "WalletConnect type drift hardening (structural session typing + metadata narrowing)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 26
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "4ea7862be3060411a13e3ab05db319e4da4fa343",
-      "explicitId": "TASK-004",
-      "kind": "subtask",
-      "issueNumber": 408,
-      "issueNodeId": "I_kwDOQla7Ys7lzrTj",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/408",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtYI",
-      "title": "TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) **Status: DONE**",
-      "source": {
-        "file": "PLAN.md",
-        "line": 27
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "f63e66df965f1a0cb9946707a3f8ee7409d44c5d",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 416,
-      "issueNodeId": "I_kwDOQla7Ys7lzrp7",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/416",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPteA",
-      "title": "Add missing i18n keys for new Settings dialogs + Admin entrypoint",
-      "source": {
-        "file": "PLAN.md",
-        "line": 28
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "59582fca08b5c27b728179972c0952831fa7e9d8",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 423,
-      "issueNodeId": "I_kwDOQla7Ys7mCuT1",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/423",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkT7Zo",
-      "title": "Add monitoring events for HarmonyVoting install/prepare dialogs",
-      "source": {
-        "file": "PLAN.md",
-        "line": 29
-      },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
-    },
-    {
-      "stableId": "9a485b2851b0f2241f8c2f846d8a375bdde3405d",
-      "explicitId": null,
-      "kind": "subtask",
-      "issueNumber": 424,
-      "issueNodeId": "I_kwDOQla7Ys7mCuXC",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/424",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkT7bE",
-      "title": "Add registry integration test for HarmonyVoting slots/builders",
-      "source": {
-        "file": "PLAN.md",
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
         "line": 30
       },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
     },
     {
-      "stableId": "8e759f1166cf9b0d4746e2d3f9f3becbcf6d4e69",
+      "stableId": "beda6b07c840a2e7850367e7afc4eb2c46a14022",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 425,
-      "issueNodeId": "I_kwDOQla7Ys7mCuZ6",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/425",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkT7ck",
-      "title": "Fix AddressInput validator clearing bug in install dialog + membership setup",
+      "issueNumber": 434,
+      "issueNodeId": "I_kwDOQla7Ys7mFrrx",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/434",
+      "projectItemId": null,
+      "title": "`useWhitelistValidation` hook disables plugins with `requiresAllowlist`",
       "source": {
-        "file": "PLAN.md",
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
         "line": 31
       },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
     },
     {
-      "stableId": "8636888ca6c495dcc1992e0a978d789968b5d188",
-      "explicitId": "TASK-005",
+      "stableId": "73299442206a2ed855e7ff44584367360f53c4b5",
+      "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 409,
-      "issueNodeId": "I_kwDOQla7Ys7lzrVL",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/409",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtYg",
-      "title": "TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44)",
+      "issueNumber": 435,
+      "issueNodeId": "I_kwDOQla7Ys7mFruN",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/435",
+      "projectItemId": null,
+      "title": "Generic disabled tag in `SetupBodyDialogSelect`",
       "source": {
-        "file": "PLAN.md",
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
         "line": 32
       },
-      "lastSyncedAt": "2026-01-27T11:33:51.278Z"
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "2f4d39e80e46de3db742dfcca7a2a5f2133e2a7c",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 436,
+      "issueNodeId": "I_kwDOQla7Ys7mFrwn",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/436",
+      "projectItemId": null,
+      "title": "`HIPPluginAllowlist` contract deployed",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 33
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "2712a34fd48f744b2bc1b66413dc3c772fbb105f",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 437,
+      "issueNodeId": "I_kwDOQla7Ys7mFrzw",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/437",
+      "projectItemId": null,
+      "title": "Delete `adminInstallHarmonyVoting.tsx` component",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 41
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "c9eb1b8c69bd328f2465c4de5c8d22f1f4b735fb",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 438,
+      "issueNodeId": "I_kwDOQla7Ys7mFr2G",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/438",
+      "projectItemId": null,
+      "title": "Update `index.ts` to remove export",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 42
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "535bc86141e395121cccb97d7eb3ff85fcbf09b3",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 439,
+      "issueNodeId": "I_kwDOQla7Ys7mFr4p",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/439",
+      "projectItemId": null,
+      "title": "Remove `<AdminInstallHarmonyVoting>` from `adminSettingsPanel.tsx`",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 43
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "cc4ba19960eac362c6e6779c94176e4345680d02",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 440,
+      "issueNodeId": "I_kwDOQla7Ys7mFr6s",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/440",
+      "projectItemId": null,
+      "title": "Update `setupBodyDialogSelect.tsx` to differentiate `requiresAllowlist` plugins",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 59
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "4a245e462005a20db8da48731053652b3336822d",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 441,
+      "issueNodeId": "I_kwDOQla7Ys7mFr81",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/441",
+      "projectItemId": null,
+      "title": "Add i18n keys for \"By Request\" label and description",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 60
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "04a8c3fb46b1705fa0c60ac68df7d48d535ddd8d",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 442,
+      "issueNodeId": "I_kwDOQla7Ys7mFsAt",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/442",
+      "projectItemId": null,
+      "title": "Add on-chain `isDAOAllowed` check in `useWhitelistValidation`",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 104
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
+    },
+    {
+      "stableId": "af0fe5479ea2a902024876965c8a3247c21c245c",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 443,
+      "issueNodeId": "I_kwDOQla7Ys7mFsDf",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/443",
+      "projectItemId": null,
+      "title": "Create `docs/ALLOWLIST_PROCEDURE.md` with request flow",
+      "source": {
+        "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+        "line": 116
+      },
+      "lastSyncedAt": "2026-01-27T11:59:57.771Z"
     }
   ]
 }

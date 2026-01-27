@@ -1,137 +1,11 @@
 [
   {
-    "stableId": "a5310e28abce658cf319dadae7b248ab16a45b5f",
-    "canonicalKey": "01KFX03B4D8ZZY5AFC06XP78XA",
-    "explicitId": "TASK-001",
-    "file": "PLAN.md",
-    "line": 13,
-    "text": "TASK-001: Install Flow — wizard UI, validator address validation, param encoding. (Issue #40) **Status: DONE (90% E2E validation pending)**",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
-  },
-  {
-    "stableId": "441a28ed294ea5d5a134a96ae0fe5134921ebf80",
-    "canonicalKey": "01KFX03B4E169ZA7CWJVWST67F",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 14,
-    "text": "Encode installation params matching contract expectations (HIP uses empty bytes; Delegation encodes validator address)",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
-  },
-  {
-    "stableId": "9b2cd91a9c6d06a920ff946b7bcd062374920781",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361K",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 15,
-    "text": "Parameter validation (format, length, checksum) with user-visible errors",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
-  },
-  {
-    "stableId": "b1cb6771d52e1effc133e83bb61371a884c9f6b9",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361M",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 16,
-    "text": "Settings install wizard + prepare flow dialogs (Install → Prepare tx → Publish proposal)",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
-  },
-  {
-    "stableId": "d26ee66017d84386635caab3e06ef4625340cb61",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361N",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 17,
-    "text": "Legacy PSP variance support (use PSP address from prepare receipt when building apply actions)",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
-  },
-  {
-    "stableId": "19d04eeba7da4fba812b425ff931d92a8880b7e1",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361P",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 18,
-    "text": "Admin Settings entrypoint button (Harmony-only, hidden if already installed)",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
-  },
-  {
-    "stableId": "160cdae8fe951aa88b6eac9d708dce400a5210df",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361Q",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 19,
-    "text": "Confirm install wizard UX end-to-end on Harmony (broad smoke to be run)",
+    "stableId": "932fdf3ca4dac84b27a11d005e6424361e10905f",
+    "canonicalKey": null,
+    "explicitId": "FEATURE-003",
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 1,
+    "text": "FEATURE-003 - HIP Plugin Allowlist UX & Admin Button Removal",
     "checked": false,
     "labels": [
       "harmony",
@@ -144,99 +18,15 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "a5310e28abce658cf319dadae7b248ab16a45b5f"
+    "parentStableId": "2fe46ae5dd74e3f05e22e591d5b59831cce2d1ef"
   },
   {
-    "stableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R",
-    "explicitId": "TASK-002",
-    "file": "PLAN.md",
-    "line": 20,
-    "text": "TASK-002: Prepare Flow — gas estimation, chain mismatch checks. (Issue #41) **Status: IN REVIEW (1 test failure - BUG_duration_validation_test)**",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
-  },
-  {
-    "stableId": "c8817ce06f7ccf1d89ff03a083cdc0a9d54a6309",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R_A",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 21,
-    "text": "Gas estimation using tx gas.limit * 1.2 buffer (BigInt safe calculation)",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427"
-  },
-  {
-    "stableId": "31dee143145647c4b0c1cdf9e21527a3a6bbbc35",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R_B",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 22,
-    "text": "Chain mismatch detection with switchNetwork action (separate from approve)",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427"
-  },
-  {
-    "stableId": "8677f498d696329651ed487785f54b6698348947",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R_C",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 23,
-    "text": "switchNetwork i18n keys + UX flow (idle/pending/error states)",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427"
-  },
-  {
-    "stableId": "604ba26eadc569828423f2a1f260505faee73fcb",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R_D",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 24,
-    "text": "Fix advancedDateInputDuration test validation state clearing (BUG filed)",
+    "stableId": "8bc5d2046573f4c5a6a2d777f532565b295a0192",
+    "canonicalKey": "01KFZJVNG75HBXTR9QCBEQT8KH",
+    "explicitId": "FEATURE-003",
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 39,
+    "text": "FEATURE-003 | TASK-001: Remove AdminInstallHarmonyVoting from Admin Plugin",
     "checked": false,
     "labels": [
       "harmony",
@@ -249,15 +39,15 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427"
+    "parentStableId": "2fe46ae5dd74e3f05e22e591d5b59831cce2d1ef"
   },
   {
-    "stableId": "e42b8777df96c558e2a01455e0bf0b9b252217ea",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361S",
-    "explicitId": "TASK-003",
-    "file": "PLAN.md",
-    "line": 25,
-    "text": "TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42)",
+    "stableId": "13c083763a11cd327a56ade80139ea3b5d18f5a2",
+    "canonicalKey": "01KFZJVNG82V747S3AK29WN3XJ",
+    "explicitId": "FEATURE-003",
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 57,
+    "text": "FEATURE-003 | TASK-002: Add \"By Request\" Badge for Allowlist Plugins",
     "checked": false,
     "labels": [
       "harmony",
@@ -270,16 +60,16 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
+    "parentStableId": "2fe46ae5dd74e3f05e22e591d5b59831cce2d1ef"
   },
   {
-    "stableId": "342dcec6ea24093a427ebd039b9b91e17a607d79",
-    "canonicalKey": "06DZMG9RB8CM6TRY36171PG1BA",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 26,
-    "text": "WalletConnect type drift hardening (structural session typing + metadata narrowing)",
-    "checked": true,
+    "stableId": "ad0f202a1eb4a79890925238dfd90037358571ad",
+    "canonicalKey": "01KFZJVNG98PXQYMZ38JYH9A7E",
+    "explicitId": "FEATURE-003",
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 102,
+    "text": "FEATURE-003 | TASK-003: (Optional) Real-time Allowlist Validation",
+    "checked": false,
     "labels": [
       "harmony",
       "frontend",
@@ -287,20 +77,20 @@
       "ui"
     ],
     "priority": "NORMAL",
-    "status": "DONE",
+    "status": "TODO",
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "e42b8777df96c558e2a01455e0bf0b9b252217ea"
+    "parentStableId": "2fe46ae5dd74e3f05e22e591d5b59831cce2d1ef"
   },
   {
-    "stableId": "4ea7862be3060411a13e3ab05db319e4da4fa343",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361T",
-    "explicitId": "TASK-004",
-    "file": "PLAN.md",
-    "line": 27,
-    "text": "TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) **Status: DONE**",
-    "checked": true,
+    "stableId": "bcfa46411eee442e8102448da831d8386afe2fa8",
+    "canonicalKey": "01KFZJVNGAG4NW5MJFS8AKG5E5",
+    "explicitId": "FEATURE-003",
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 114,
+    "text": "FEATURE-003 | TASK-004: Documentation - Allowlist Procedure",
+    "checked": false,
     "labels": [
       "harmony",
       "frontend",
@@ -308,61 +98,19 @@
       "ui"
     ],
     "priority": "NORMAL",
-    "status": "DONE",
+    "status": "TODO",
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
+    "parentStableId": "2fe46ae5dd74e3f05e22e591d5b59831cce2d1ef"
   },
   {
-    "stableId": "f63e66df965f1a0cb9946707a3f8ee7409d44c5d",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361V",
+    "stableId": "fcd4712a05b7d8f815cac22c73ae3f448734530f",
+    "canonicalKey": null,
     "explicitId": null,
-    "file": "PLAN.md",
-    "line": 28,
-    "text": "Add missing i18n keys for new Settings dialogs + Admin entrypoint",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
-  },
-  {
-    "stableId": "59582fca08b5c27b728179972c0952831fa7e9d8",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361T_A",
-    "explicitId": null,
-    "file": "PLAN.md",
-    "line": 29,
-    "text": "Add monitoring events for HarmonyVoting install/prepare dialogs",
-    "checked": true,
-    "labels": [
-      "harmony",
-      "frontend",
-      "governance",
-      "ui"
-    ],
-    "priority": "NORMAL",
-    "status": "DONE",
-    "startDate": "TBD",
-    "endDate": "TBD",
-    "estimateHours": 1,
-    "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
-  },
-  {
-    "stableId": "9a485b2851b0f2241f8c2f846d8a375bdde3405d",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361T_B",
-    "explicitId": null,
-    "file": "PLAN.md",
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
     "line": 30,
-    "text": "Add registry integration test for HarmonyVoting slots/builders",
+    "text": "`requiresAllowlist: true` flag on HIP plugin definition",
     "checked": true,
     "labels": [
       "harmony",
@@ -375,15 +123,15 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
+    "parentStableId": "2fe46ae5dd74e3f05e22e591d5b59831cce2d1ef"
   },
   {
-    "stableId": "8e759f1166cf9b0d4746e2d3f9f3becbcf6d4e69",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361T_C",
+    "stableId": "beda6b07c840a2e7850367e7afc4eb2c46a14022",
+    "canonicalKey": null,
     "explicitId": null,
-    "file": "PLAN.md",
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
     "line": 31,
-    "text": "Fix AddressInput validator clearing bug in install dialog + membership setup",
+    "text": "`useWhitelistValidation` hook disables plugins with `requiresAllowlist`",
     "checked": true,
     "labels": [
       "harmony",
@@ -396,27 +144,209 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
+    "parentStableId": "2fe46ae5dd74e3f05e22e591d5b59831cce2d1ef"
   },
   {
-    "stableId": "8636888ca6c495dcc1992e0a978d789968b5d188",
-    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361W",
-    "explicitId": "TASK-005",
-    "file": "PLAN.md",
+    "stableId": "73299442206a2ed855e7ff44584367360f53c4b5",
+    "canonicalKey": null,
+    "explicitId": null,
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
     "line": 32,
-    "text": "TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44)",
+    "text": "Generic disabled tag in `SetupBodyDialogSelect`",
+    "checked": true,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "DONE",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 1,
+    "parentStableId": "2fe46ae5dd74e3f05e22e591d5b59831cce2d1ef"
+  },
+  {
+    "stableId": "2f4d39e80e46de3db742dfcca7a2a5f2133e2a7c",
+    "canonicalKey": null,
+    "explicitId": null,
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 33,
+    "text": "`HIPPluginAllowlist` contract deployed",
+    "checked": true,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "DONE",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 1,
+    "parentStableId": "2fe46ae5dd74e3f05e22e591d5b59831cce2d1ef"
+  },
+  {
+    "stableId": "2712a34fd48f744b2bc1b66413dc3c772fbb105f",
+    "canonicalKey": null,
+    "explicitId": null,
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 41,
+    "text": "Delete `adminInstallHarmonyVoting.tsx` component",
     "checked": false,
     "labels": [
       "harmony",
       "frontend",
       "governance",
-      "ui"
+      "ui",
+      "type:task",
+      "area:ui"
     ],
-    "priority": "NORMAL",
+    "priority": "HIGH",
     "status": "TODO",
+    "startDate": "2026-01-27",
+    "endDate": "2026-01-27",
+    "estimateHours": 1,
+    "parentStableId": "8bc5d2046573f4c5a6a2d777f532565b295a0192"
+  },
+  {
+    "stableId": "c9eb1b8c69bd328f2465c4de5c8d22f1f4b735fb",
+    "canonicalKey": null,
+    "explicitId": null,
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 42,
+    "text": "Update `index.ts` to remove export",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "type:task",
+      "area:ui"
+    ],
+    "priority": "HIGH",
+    "status": "TODO",
+    "startDate": "2026-01-27",
+    "endDate": "2026-01-27",
+    "estimateHours": 1,
+    "parentStableId": "8bc5d2046573f4c5a6a2d777f532565b295a0192"
+  },
+  {
+    "stableId": "535bc86141e395121cccb97d7eb3ff85fcbf09b3",
+    "canonicalKey": null,
+    "explicitId": null,
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 43,
+    "text": "Remove `<AdminInstallHarmonyVoting>` from `adminSettingsPanel.tsx`",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "type:task",
+      "area:ui"
+    ],
+    "priority": "HIGH",
+    "status": "TODO",
+    "startDate": "2026-01-27",
+    "endDate": "2026-01-27",
+    "estimateHours": 1,
+    "parentStableId": "8bc5d2046573f4c5a6a2d777f532565b295a0192"
+  },
+  {
+    "stableId": "cc4ba19960eac362c6e6779c94176e4345680d02",
+    "canonicalKey": null,
+    "explicitId": null,
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 59,
+    "text": "Update `setupBodyDialogSelect.tsx` to differentiate `requiresAllowlist` plugins",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "type:task",
+      "area:ui"
+    ],
+    "priority": "HIGH",
+    "status": "TODO",
+    "startDate": "2026-01-27",
+    "endDate": "2026-01-28",
+    "estimateHours": 1,
+    "parentStableId": "13c083763a11cd327a56ade80139ea3b5d18f5a2"
+  },
+  {
+    "stableId": "4a245e462005a20db8da48731053652b3336822d",
+    "canonicalKey": null,
+    "explicitId": null,
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 60,
+    "text": "Add i18n keys for \"By Request\" label and description",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "type:task",
+      "area:i18n"
+    ],
+    "priority": "MEDIUM",
+    "status": "TODO",
+    "startDate": "2026-01-28",
+    "endDate": "2026-01-28",
+    "estimateHours": 1,
+    "parentStableId": "13c083763a11cd327a56ade80139ea3b5d18f5a2"
+  },
+  {
+    "stableId": "04a8c3fb46b1705fa0c60ac68df7d48d535ddd8d",
+    "canonicalKey": null,
+    "explicitId": null,
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 104,
+    "text": "Add on-chain `isDAOAllowed` check in `useWhitelistValidation`",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "type:feature",
+      "area:hooks"
+    ],
+    "priority": "LOW",
+    "status": "BACKLOG",
     "startDate": "TBD",
     "endDate": "TBD",
+    "estimateHours": 4,
+    "parentStableId": "ad0f202a1eb4a79890925238dfd90037358571ad"
+  },
+  {
+    "stableId": "af0fe5479ea2a902024876965c8a3247c21c245c",
+    "canonicalKey": null,
+    "explicitId": null,
+    "file": "docs/plans/FEATURE_003_allowlist_ux.md",
+    "line": 116,
+    "text": "Create `docs/ALLOWLIST_PROCEDURE.md` with request flow",
+    "checked": false,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui",
+      "type:docs",
+      "area:governance"
+    ],
+    "priority": "MEDIUM",
+    "status": "TODO",
+    "startDate": "2026-01-28",
+    "endDate": "2026-01-28",
     "estimateHours": 1,
-    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
+    "parentStableId": "bcfa46411eee442e8102448da831d8386afe2fa8"
   }
 ]
