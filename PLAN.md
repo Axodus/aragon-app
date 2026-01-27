@@ -1,4 +1,4 @@
-# Sprint #2 Plan — Install Flows & UI Resilience
+# Sprint #2 Plan — Install Flows & UI Resilience [key:01KFZK687WPNTRWNYVBDJWGK96]
 
 ## Goals
 - Deliver HarmonyVoting install and prepare flows with validation and safety checks.

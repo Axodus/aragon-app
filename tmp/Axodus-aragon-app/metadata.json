@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-01-27T08:43:34.640Z",
+  "generatedAt": "2026-01-27T11:31:46.401Z",
   "repo": "Axodus/aragon-app",
   "planFiles": [
     {
       "path": "PLAN.md",
       "absPath": "/mnt/d/Rede/Github/mzfshark/aragon-app/PLAN.md",
-      "sha1": "b9de22be6a18f8162fe14edcfb0608f809e441bf"
+      "sha1": "869896f9be36c07aa18bb618677eb2c1e20639a1"
     }
   ],
   "labels": {
@@ -49,8 +49,8 @@
   },
   "tasks": [
     {
-      "stableId": "53f77a3f274c68516120fa249eb15c64b200222c",
-      "canonicalKey": null,
+      "stableId": "6d6d85cb917fa803df277671491a869711774527",
+      "canonicalKey": "01KFZK687WPNTRWNYVBDJWGK96",
       "explicitId": "PLAN",
       "file": "PLAN.md",
       "line": 1,
@@ -75,7 +75,7 @@
       "stableId": "a5310e28abce658cf319dadae7b248ab16a45b5f",
       "canonicalKey": "01KFX03B4D8ZZY5AFC06XP78XA",
       "explicitId": "TASK-001",
-      "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c",
+      "parentStableId": "6d6d85cb917fa803df277671491a869711774527",
       "file": "PLAN.md",
       "line": 13,
       "text": "TASK-001: Install Flow — wizard UI, validator address validation, param encoding. (Issue #40) **Status: DONE (90% E2E validation pending)**",
@@ -222,7 +222,7 @@
       "stableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
       "canonicalKey": "01KFX03B4FPKZMKSMX79FG361R",
       "explicitId": "TASK-002",
-      "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c",
+      "parentStableId": "6d6d85cb917fa803df277671491a869711774527",
       "file": "PLAN.md",
       "line": 20,
       "text": "TASK-002: Prepare Flow — gas estimation, chain mismatch checks. (Issue #41) **Status: IN REVIEW (1 test failure - BUG_duration_validation_test)**",
@@ -327,7 +327,7 @@
       "stableId": "e42b8777df96c558e2a01455e0bf0b9b252217ea",
       "canonicalKey": "01KFX03B4FPKZMKSMX79FG361S",
       "explicitId": "TASK-003",
-      "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c",
+      "parentStableId": "6d6d85cb917fa803df277671491a869711774527",
       "file": "PLAN.md",
       "line": 25,
       "text": "TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42)",
@@ -369,7 +369,7 @@
       "stableId": "4ea7862be3060411a13e3ab05db319e4da4fa343",
       "canonicalKey": "01KFX03B4FPKZMKSMX79FG361T",
       "explicitId": "TASK-004",
-      "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c",
+      "parentStableId": "6d6d85cb917fa803df277671491a869711774527",
       "file": "PLAN.md",
       "line": 27,
       "text": "TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) **Status: DONE**",
@@ -474,7 +474,7 @@
       "stableId": "8636888ca6c495dcc1992e0a978d789968b5d188",
       "canonicalKey": "01KFX03B4FPKZMKSMX79FG361W",
       "explicitId": "TASK-005",
-      "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c",
+      "parentStableId": "6d6d85cb917fa803df277671491a869711774527",
       "file": "PLAN.md",
       "line": 32,
       "text": "TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44)",

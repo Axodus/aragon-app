@@ -18,7 +18,7 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
   },
   {
     "stableId": "441a28ed294ea5d5a134a96ae0fe5134921ebf80",
@@ -165,7 +165,7 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
   },
   {
     "stableId": "c8817ce06f7ccf1d89ff03a083cdc0a9d54a6309",
@@ -270,7 +270,7 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
   },
   {
     "stableId": "342dcec6ea24093a427ebd039b9b91e17a607d79",
@@ -312,7 +312,7 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
   },
   {
     "stableId": "f63e66df965f1a0cb9946707a3f8ee7409d44c5d",
@@ -417,6 +417,6 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
   }
 ]

@@ -862,6 +862,10 @@
           "plugin": {
             "helpText": "This determines the governance the body uses to make decisions.",
             "label": "Governance type"
+          },
+          "requiresAllowlist": {
+            "label": "By Request",
+            "description": "This plugin requires prior authorization. Contact the Management DAO to request access."
           }
         },
         "submit": "Save",
