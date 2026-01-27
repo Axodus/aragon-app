@@ -7,8 +7,9 @@ import { useFormField } from '@/shared/hooks/useFormField';
 import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
 import { AddressInput, type IAddressInputResolvedValue } from '@aragon/gov-ui-kit';
 import { useCallback, useEffect, useState } from 'react';
-import { createPublicClient, http } from 'viem';
 import type { IHarmonyVotingSetupMembershipForm, IHarmonyVotingSetupMembershipProps } from './harmonyVotingSetupMembership.api';
+
+const isEnsLike = (value: string): boolean => /^(?:[a-z0-9-]+\.)*[a-z0-9-]+\.eth$/i.test(value.trim());
 
 export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetupMembershipProps) => {
     const { formPrefix } = props;
@@ -28,6 +29,8 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
                 message: 'app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.required',
             },
             validate: (value?: string) => {
+                if (value == null || value.length === 0) return true;
+                if (isEnsLike(value)) return true;
                 const res = evmAddressUtils.validate(value);
                 if (res.ok) return true;
                 return `app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.${res.error}`;
@@ -43,69 +46,34 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
         setAddressInput(validatorAddress ?? '');
     }, [validatorAddress]);
 
-    const handleAddressChange = useCallback(
-        (value?: string) => {
-            // Keep a best-effort copy of what the user typed.
-            // We intentionally do NOT control the AddressInput via `value`, because it may emit
-            // `undefined` for intermediate/invalid values (e.g. while typing or when entering ENS).
-            if (value != null) setAddressInput(value);
-            setEnsResolutionError(undefined);
-        },
-        [],
-    );
+    const handleAddressChange = useCallback((value?: string) => {
+        // Keep a best-effort copy of what the user typed.
+        setAddressInput(value ?? '');
+        setEnsResolutionError(undefined);
+    }, []);
 
     const handleAddressAccept = useCallback(
         (value?: IAddressInputResolvedValue) => {
-            const resolved = value as unknown as Record<string, unknown> | undefined;
-
-            const resolvedAddress = typeof resolved?.address === 'string' ? (resolved.address as string) : undefined;
-
-            const rawFromAccept =
-                (typeof resolved?.value === 'string' ? (resolved.value as string) : undefined) ??
-                (typeof resolved?.inputValue === 'string' ? (resolved.inputValue as string) : undefined) ??
-                (typeof resolved?.name === 'string' ? (resolved.name as string) : undefined);
-
-            const currentInput = ((rawFromAccept ?? addressInput) ?? '').trim();
+            const resolvedAddress = value?.address;
+            const resolvedName = value?.name;
+            const currentInput = (addressInput ?? '').trim();
 
             // If the component already resolved to a 0x address, accept it.
             if (resolvedAddress) {
                 const res = evmAddressUtils.validate(resolvedAddress);
                 if (res.ok) {
                     onValidatorChange(res.address);
-                    setAddressInput(res.address);
+                    setAddressInput(resolvedName ?? res.address);
                     setEnsResolutionError(undefined);
                     return;
                 }
             }
 
-            // Try resolving ENS-like names to 0x.
-            if (/^(?:[a-z0-9-]+\.)*[a-z0-9-]+\.eth$/i.test(currentInput)) {
-                void (async () => {
-                    try {
-                        const ethMainnet = networkDefinitions[Network.ETHEREUM_MAINNET];
-                        const rpcUrl = ethMainnet.rpcUrls.default.http[0];
-                        const publicClient = createPublicClient({ chain: ethMainnet, transport: http(rpcUrl) });
-                        const ens = currentInput.toLowerCase();
-                        const address = await publicClient.getEnsAddress({ name: ens });
-
-                        const validated = evmAddressUtils.validate(address ?? undefined);
-                        if (!validated.ok) {
-                            setEnsResolutionError(
-                                t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'),
-                            );
-                            return;
-                        }
-
-                        onValidatorChange(validated.address);
-                        setAddressInput(validated.address);
-                        setEnsResolutionError(undefined);
-                    } catch {
-                        setEnsResolutionError(
-                            t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'),
-                        );
-                    }
-                })();
-
+            // ENS-like input that could not be resolved by the component.
+            if (currentInput.length > 0 && isEnsLike(currentInput)) {
+                setEnsResolutionError(
+                    t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'),
+                );
                 return;
             }
 
@@ -114,6 +82,7 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
             if (res.ok) {
                 onValidatorChange(res.address);
                 setAddressInput(res.address);
+                setEnsResolutionError(undefined);
             }
         },
         [addressInput, onValidatorChange, t],
@@ -132,6 +101,7 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
                 {...validatorFieldRest}
                 placeholder={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.placeholder')}
                 helpText={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText')}
+                value={addressInput}
                 onChange={handleAddressChange}
                 onAccept={handleAddressAccept}
                 chainId={validatorInputChainId}

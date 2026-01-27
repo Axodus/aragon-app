@@ -11,7 +11,6 @@ import { daoUtils } from '@/shared/utils/daoUtils';
 import { monitoringUtils } from '@/shared/utils/monitoringUtils';
 import { AddressInput, AlertInline, Dialog, RadioCard, RadioGroup, invariant } from '@aragon/gov-ui-kit';
 import { useEffect, useMemo, useState } from 'react';
-import { createPublicClient, http } from 'viem';
 import { harmonyDelegationVotingPlugin, harmonyHipVotingPlugin } from '@/plugins/harmonyVotingPlugin/constants/harmonyVotingPlugins';
 import { SettingsDialogId } from '../../constants/settingsDialogId';
 import type { IPrepareHarmonyVotingInstallationDialogParams } from '../prepareHarmonyVotingInstallationDialog';
@@ -149,22 +148,14 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
 
     const handleValidatorChange = (value?: string) => {
         // Keep a best-effort copy of what the user typed.
-        // We intentionally do NOT control the AddressInput via `value`, because it may emit
-        // `undefined` for intermediate/invalid values (e.g. while typing or when entering ENS).
-        if (value != null) setAddressInput(value);
+        setAddressInput(value ?? '');
         setValidatorCustomError(undefined);
     };
 
-    const handleValidatorAccept = (value?: { address?: string } | Record<string, unknown>) => {
-        const resolved = value as unknown as Record<string, unknown> | undefined;
-
-        const resolvedAddress = typeof resolved?.address === 'string' ? (resolved.address as string) : undefined;
-        const rawFromAccept =
-            (typeof resolved?.value === 'string' ? (resolved.value as string) : undefined) ??
-            (typeof resolved?.inputValue === 'string' ? (resolved.inputValue as string) : undefined) ??
-            (typeof resolved?.name === 'string' ? (resolved.name as string) : undefined);
-
-        const currentInput = ((rawFromAccept ?? addressInput) ?? '').trim();
+    const handleValidatorAccept = (value?: { address?: string; name?: string }) => {
+        const currentInput = (addressInput ?? '').trim();
+        const resolvedAddress = value?.address;
+        const resolvedName = value?.name;
 
         setValidatorAcceptedOnce(true);
 
@@ -173,36 +164,17 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
             const res = evmAddressUtils.validate(resolvedAddress);
             if (res.ok) {
                 setValidatorAddress(res.address);
-                setAddressInput(res.address);
+                setAddressInput(resolvedName ?? res.address);
                 setValidatorCustomError(undefined);
                 return;
             }
         }
 
-        // If user entered an ENS-like name, try resolving it here.
+        // ENS-like input that could not be resolved by the component.
         if (currentInput.length > 0 && isEnsLike(currentInput)) {
-            void (async () => {
-                try {
-                    const ethMainnet = networkDefinitions[Network.ETHEREUM_MAINNET];
-                    const rpcUrl = ethMainnet.rpcUrls.default.http[0];
-                    const publicClient = createPublicClient({ chain: ethMainnet, transport: http(rpcUrl) });
-                    const ens = currentInput.toLowerCase();
-                    const address = await publicClient.getEnsAddress({ name: ens });
-
-                    const validated = evmAddressUtils.validate(address ?? undefined);
-                    if (!validated.ok) {
-                        setValidatorCustomError(t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'));
-                        return;
-                    }
-
-                    setValidatorAddress(validated.address);
-                    setAddressInput(validated.address);
-                    setValidatorCustomError(undefined);
-                } catch {
-                    setValidatorCustomError(t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'));
-                }
-            })();
-
+            setValidatorCustomError(
+                t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'),
+            );
             return;
         }
 
@@ -277,6 +249,7 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
                                 label={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.label')}
                                 placeholder={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.placeholder')}
                                 helpText={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText')}
+                                value={addressInput}
                                 onChange={handleValidatorChange}
                                 onAccept={handleValidatorAccept}
                                 chainId={validatorInputChainId}

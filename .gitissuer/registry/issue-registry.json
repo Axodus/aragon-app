@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "repo": "Axodus/aragon-app",
-  "updatedAt": "2026-01-27T00:28:15.317Z",
+  "updatedAt": "2026-01-27T08:41:57.420Z",
   "planFingerprint": "2cfc6dae645294cf145ef61bfe3236e64715a461",
   "planFiles": [
     {
@@ -23,7 +23,7 @@
         "file": "PLAN.md",
         "line": 1
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.303Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.403Z"
     },
     {
       "stableId": "a5310e28abce658cf319dadae7b248ab16a45b5f",
@@ -38,7 +38,7 @@
         "file": "PLAN.md",
         "line": 13
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.305Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.404Z"
     },
     {
       "stableId": "441a28ed294ea5d5a134a96ae0fe5134921ebf80",
@@ -53,7 +53,7 @@
         "file": "PLAN.md",
         "line": 14
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.305Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.404Z"
     },
     {
       "stableId": "9b2cd91a9c6d06a920ff946b7bcd062374920781",
@@ -68,7 +68,7 @@
         "file": "PLAN.md",
         "line": 15
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.305Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.404Z"
     },
     {
       "stableId": "b1cb6771d52e1effc133e83bb61371a884c9f6b9",
@@ -83,7 +83,7 @@
         "file": "PLAN.md",
         "line": 16
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.404Z"
     },
     {
       "stableId": "d26ee66017d84386635caab3e06ef4625340cb61",
@@ -98,7 +98,7 @@
         "file": "PLAN.md",
         "line": 17
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.404Z"
     },
     {
       "stableId": "19d04eeba7da4fba812b425ff931d92a8880b7e1",
@@ -113,7 +113,7 @@
         "file": "PLAN.md",
         "line": 18
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.404Z"
     },
     {
       "stableId": "160cdae8fe951aa88b6eac9d708dce400a5210df",
@@ -128,7 +128,7 @@
         "file": "PLAN.md",
         "line": 19
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.404Z"
     },
     {
       "stableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
@@ -143,7 +143,7 @@
         "file": "PLAN.md",
         "line": 20
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "c8817ce06f7ccf1d89ff03a083cdc0a9d54a6309",
@@ -158,7 +158,7 @@
         "file": "PLAN.md",
         "line": 21
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "31dee143145647c4b0c1cdf9e21527a3a6bbbc35",
@@ -173,7 +173,7 @@
         "file": "PLAN.md",
         "line": 22
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "8677f498d696329651ed487785f54b6698348947",
@@ -188,7 +188,7 @@
         "file": "PLAN.md",
         "line": 23
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "604ba26eadc569828423f2a1f260505faee73fcb",
@@ -203,7 +203,7 @@
         "file": "PLAN.md",
         "line": 24
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "e42b8777df96c558e2a01455e0bf0b9b252217ea",
@@ -218,7 +218,7 @@
         "file": "PLAN.md",
         "line": 25
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "342dcec6ea24093a427ebd039b9b91e17a607d79",
@@ -233,7 +233,7 @@
         "file": "PLAN.md",
         "line": 26
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "4ea7862be3060411a13e3ab05db319e4da4fa343",
@@ -248,7 +248,7 @@
         "file": "PLAN.md",
         "line": 27
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "f63e66df965f1a0cb9946707a3f8ee7409d44c5d",
@@ -263,52 +263,52 @@
         "file": "PLAN.md",
         "line": 28
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "59582fca08b5c27b728179972c0952831fa7e9d8",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": null,
-      "issueNodeId": null,
-      "issueUrl": null,
-      "projectItemId": null,
+      "issueNumber": 423,
+      "issueNodeId": "I_kwDOQla7Ys7mCuT1",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/423",
+      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkT7Zo",
       "title": "Add monitoring events for HarmonyVoting install/prepare dialogs",
       "source": {
         "file": "PLAN.md",
         "line": 29
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "9a485b2851b0f2241f8c2f846d8a375bdde3405d",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": null,
-      "issueNodeId": null,
-      "issueUrl": null,
-      "projectItemId": null,
+      "issueNumber": 424,
+      "issueNodeId": "I_kwDOQla7Ys7mCuXC",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/424",
+      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkT7bE",
       "title": "Add registry integration test for HarmonyVoting slots/builders",
       "source": {
         "file": "PLAN.md",
         "line": 30
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "8e759f1166cf9b0d4746e2d3f9f3becbcf6d4e69",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": null,
-      "issueNodeId": null,
-      "issueUrl": null,
-      "projectItemId": null,
+      "issueNumber": 425,
+      "issueNodeId": "I_kwDOQla7Ys7mCuZ6",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/425",
+      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkT7ck",
       "title": "Fix AddressInput validator clearing bug in install dialog + membership setup",
       "source": {
         "file": "PLAN.md",
         "line": 31
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     },
     {
       "stableId": "8636888ca6c495dcc1992e0a978d789968b5d188",
@@ -323,7 +323,7 @@
         "file": "PLAN.md",
         "line": 32
       },
-      "lastSyncedAt": "2026-01-27T00:28:15.306Z"
+      "lastSyncedAt": "2026-01-27T08:41:57.405Z"
     }
   ]
 }
