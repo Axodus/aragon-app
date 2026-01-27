@@ -46,6 +46,8 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
 
     const handleAddressChange = useCallback(
         (value?: string) => {
+            // AddressInput may emit `undefined` for intermediate/invalid values; don't wipe user's text.
+            if (value === undefined) return;
             setAddressInput(value);
         },
         [],

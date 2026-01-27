@@ -150,6 +150,8 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
 
     const handleValidatorChange = (value?: string) => {
         // Keep local input state while user types (including ENS).
+        // AddressInput may emit `undefined` for intermediate/invalid values; don't wipe user's text.
+        if (value === undefined) return;
         setAddressInput(value);
     };
 
