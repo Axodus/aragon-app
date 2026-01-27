@@ -4,7 +4,7 @@
 **End Date Goal:** 2026-02-03  
 **Priority:** HIGH  
 **Estimative Hours:** 8h  
-**Status:** TODO
+**Status:** DONE
 
 ---
 
@@ -38,9 +38,9 @@ Remove direct HIP Voting plugin installation via Admin Settings Panel to enforce
 
 ### FEATURE-003 | TASK-001: Remove AdminInstallHarmonyVoting from Admin Plugin [key:01KFZJVNG75HBXTR9QCBEQT8KH]
 
-- [ ] Delete `adminInstallHarmonyVoting.tsx` component [labels:type:task, area:ui] [status:TODO] [priority:HIGH] [estimate:30m] [start:2026-01-27] [end:2026-01-27]
-- [ ] Update `index.ts` to remove export [labels:type:task, area:ui] [status:TODO] [priority:HIGH] [estimate:10m] [start:2026-01-27] [end:2026-01-27]
-- [ ] Remove `<AdminInstallHarmonyVoting>` from `adminSettingsPanel.tsx` [labels:type:task, area:ui] [status:TODO] [priority:HIGH] [estimate:20m] [start:2026-01-27] [end:2026-01-27]
+- [x] Delete `adminInstallHarmonyVoting.tsx` component [labels:type:task, area:ui] [status:DONE] [priority:HIGH] [estimate:30m] [start:2026-01-27] [end:2026-01-27]
+- [x] Update `index.ts` to remove export [labels:type:task, area:ui] [status:DONE] [priority:HIGH] [estimate:10m] [start:2026-01-27] [end:2026-01-27]
+- [x] Remove `<AdminInstallHarmonyVoting>` from `adminSettingsPanel.tsx` [labels:type:task, area:ui] [status:DONE] [priority:HIGH] [estimate:20m] [start:2026-01-27] [end:2026-01-27]
 
 **Files:**
 - `src/plugins/adminPlugin/components/adminSettingsPanel/components/adminInstallHarmonyVoting/adminInstallHarmonyVoting.tsx` (DELETE)
@@ -56,8 +56,8 @@ Remove direct HIP Voting plugin installation via Admin Settings Panel to enforce
 
 ### FEATURE-003 | TASK-002: Add "By Request" Badge for Allowlist Plugins [key:01KFZJVNG82V747S3AK29WN3XJ]
 
-- [ ] Update `setupBodyDialogSelect.tsx` to differentiate `requiresAllowlist` plugins [labels:type:task, area:ui] [status:TODO] [priority:HIGH] [estimate:1h] [start:2026-01-27] [end:2026-01-28]
-- [ ] Add i18n keys for "By Request" label and description [labels:type:task, area:i18n] [status:TODO] [priority:MEDIUM] [estimate:30m] [start:2026-01-28] [end:2026-01-28]
+- [x] Update `setupBodyDialogSelect.tsx` to differentiate `requiresAllowlist` plugins [labels:type:task, area:ui] [status:DONE] [priority:HIGH] [estimate:1h] [start:2026-01-27] [end:2026-01-27]
+- [x] Add i18n keys for "By Request" label and description [labels:type:task, area:i18n] [status:DONE] [priority:MEDIUM] [estimate:30m] [start:2026-01-27] [end:2026-01-27]
 
 **Files:**
 - `src/modules/createDao/dialogs/setupBodyDialog/setupBodyDialogSelect/setupBodyDialogSelect.tsx`
@@ -113,7 +113,7 @@ Remove direct HIP Voting plugin installation via Admin Settings Panel to enforce
 
 ### FEATURE-003 | TASK-004: Documentation - Allowlist Procedure [key:01KFZJVNGAG4NW5MJFS8AKG5E5]
 
-- [ ] Create `docs/ALLOWLIST_PROCEDURE.md` with request flow [labels:type:docs, area:governance] [status:TODO] [priority:MEDIUM] [estimate:1h] [start:2026-01-28] [end:2026-01-28]
+- [x] Create `docs/ALLOWLIST_PROCEDURE.md` with request flow [labels:type:docs, area:governance] [status:DONE] [priority:MEDIUM] [estimate:1h] [start:2026-01-27] [end:2026-01-27]
 
 **Content:**
 - How to request allowlist access
