@@ -39,6 +39,7 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
     const [installType, setInstallType] = useState<HarmonyVotingInstallType>(PluginInterfaceType.HARMONY_HIP_VOTING);
     const [validatorAddress, setValidatorAddress] = useState<string>('');
     const [validatorAcceptedOnce, setValidatorAcceptedOnce] = useState<boolean>(false);
+    const [addressInput, setAddressInput] = useState<string | undefined>('');
     const [proposalPlugin, setProposalPlugin] = useState<IDaoPlugin | undefined>(undefined);
 
     const selectedPluginInfo = useMemo(() => {
@@ -148,10 +149,8 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
     };
 
     const handleValidatorChange = (value?: string) => {
-        // AddressInput can emit `undefined` for intermediate/invalid values.
-        // Keep the input uncontrolled so typing doesn't get wiped by state.
-        if (value === undefined) return;
-        setValidatorAddress(value);
+        // Keep local input state while user types (including ENS).
+        setAddressInput(value);
     };
 
     const handleValidatorAccept = (value?: { address?: string }) => {
@@ -160,6 +159,7 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
 
         const next = res.ok ? res.address : resolved;
         setValidatorAddress(next);
+        setAddressInput(next);
         setValidatorAcceptedOnce(true);
     };
 
@@ -221,6 +221,7 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
                                 label={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.label')}
                                 placeholder={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.placeholder')}
                                 helpText={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText')}
+                                value={addressInput}
                                 onChange={handleValidatorChange}
                                 onAccept={handleValidatorAccept}
                                 chainId={validatorInputChainId}
