@@ -38,7 +38,7 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
 
     const [installType, setInstallType] = useState<HarmonyVotingInstallType>(PluginInterfaceType.HARMONY_HIP_VOTING);
     const [validatorAddress, setValidatorAddress] = useState<string>('');
-    const [addressInput, setAddressInput] = useState<string>('');
+    const [validatorAcceptedOnce, setValidatorAcceptedOnce] = useState<boolean>(false);
     const [proposalPlugin, setProposalPlugin] = useState<IDaoPlugin | undefined>(undefined);
 
     const selectedPluginInfo = useMemo(() => {
@@ -145,9 +145,10 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
     };
 
     const handleValidatorChange = (value?: string) => {
-        const next = value ?? '';
-        setAddressInput(next);
-        setValidatorAddress(next);
+        // AddressInput can emit `undefined` for intermediate/invalid values.
+        // Keep the input uncontrolled so typing doesn't get wiped by state.
+        if (value === undefined) return;
+        setValidatorAddress(value);
     };
 
     const handleValidatorAccept = (value?: { address?: string }) => {
@@ -155,8 +156,8 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
         const res = evmAddressUtils.validate(resolved);
 
         const next = res.ok ? res.address : resolved;
-        setAddressInput(next);
         setValidatorAddress(next);
+        setValidatorAcceptedOnce(true);
     };
 
     return (
@@ -217,13 +218,14 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
                                 label={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.label')}
                                 placeholder={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.placeholder')}
                                 helpText={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText')}
-                                value={addressInput}
                                 onChange={handleValidatorChange}
                                 onAccept={handleValidatorAccept}
                                 chainId={chainId}
                             />
 
-                            {validatorErrorKey && <AlertInline variant="critical" message={t(validatorErrorKey)} />}
+                            {validatorAcceptedOnce && validatorErrorKey && (
+                                <AlertInline variant="critical" message={t(validatorErrorKey)} />
+                            )}
                         </div>
                     )}
 
