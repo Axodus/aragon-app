@@ -1,17 +1,17 @@
 {
   "version": "1.0",
   "repo": "Axodus/aragon-app",
-  "updatedAt": "2026-01-26T20:32:51.248Z",
-  "planFingerprint": "7653592ac275efb807b1742d051ca82c94b64ca4",
+  "updatedAt": "2026-01-27T12:12:59.224Z",
+  "planFingerprint": "d267b42d51ca675b791652fdc0e237808ee35a4b",
   "planFiles": [
     {
       "path": "PLAN.md",
-      "sha1": "099db46abd29cf27bf3e17eaf0b171a66e52034e"
+      "sha1": "869896f9be36c07aa18bb618677eb2c1e20639a1"
     }
   ],
   "items": [
     {
-      "stableId": "53f77a3f274c68516120fa249eb15c64b200222c",
+      "stableId": "6d6d85cb917fa803df277671491a869711774527",
       "explicitId": "PLAN",
       "kind": "task",
       "issueNumber": null,
@@ -23,7 +23,7 @@
         "file": "PLAN.md",
         "line": 1
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.230Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.213Z"
     },
     {
       "stableId": "a5310e28abce658cf319dadae7b248ab16a45b5f",
@@ -32,13 +32,13 @@
       "issueNumber": 405,
       "issueNodeId": "I_kwDOQla7Ys7lzrMW",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/405",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtWE",
+      "projectItemId": null,
       "title": "TASK-001: Install Flow — wizard UI, validator address validation, param encoding. (Issue #40) **Status: DONE (90% E2E validation pending)**",
       "source": {
         "file": "PLAN.md",
         "line": 13
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "441a28ed294ea5d5a134a96ae0fe5134921ebf80",
@@ -47,13 +47,13 @@
       "issueNumber": 410,
       "issueNodeId": "I_kwDOQla7Ys7lzrZl",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/410",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtaM",
+      "projectItemId": null,
       "title": "Encode installation params matching contract expectations (HIP uses empty bytes; Delegation encodes validator address)",
       "source": {
         "file": "PLAN.md",
         "line": 14
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "9b2cd91a9c6d06a920ff946b7bcd062374920781",
@@ -62,13 +62,13 @@
       "issueNumber": 411,
       "issueNodeId": "I_kwDOQla7Ys7lzrcn",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/411",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPta0",
+      "projectItemId": null,
       "title": "Parameter validation (format, length, checksum) with user-visible errors",
       "source": {
         "file": "PLAN.md",
         "line": 15
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "b1cb6771d52e1effc133e83bb61371a884c9f6b9",
@@ -77,13 +77,13 @@
       "issueNumber": 412,
       "issueNodeId": "I_kwDOQla7Ys7lzrg7",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/412",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtbc",
+      "projectItemId": null,
       "title": "Settings install wizard + prepare flow dialogs (Install → Prepare tx → Publish proposal)",
       "source": {
         "file": "PLAN.md",
         "line": 16
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "d26ee66017d84386635caab3e06ef4625340cb61",
@@ -92,13 +92,13 @@
       "issueNumber": 413,
       "issueNodeId": "I_kwDOQla7Ys7lzri3",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/413",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtb8",
+      "projectItemId": null,
       "title": "Legacy PSP variance support (use PSP address from prepare receipt when building apply actions)",
       "source": {
         "file": "PLAN.md",
         "line": 17
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "19d04eeba7da4fba812b425ff931d92a8880b7e1",
@@ -107,13 +107,13 @@
       "issueNumber": 414,
       "issueNodeId": "I_kwDOQla7Ys7lzrlk",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/414",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtcg",
+      "projectItemId": null,
       "title": "Admin Settings entrypoint button (Harmony-only, hidden if already installed)",
       "source": {
         "file": "PLAN.md",
         "line": 18
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "160cdae8fe951aa88b6eac9d708dce400a5210df",
@@ -122,13 +122,13 @@
       "issueNumber": 415,
       "issueNodeId": "I_kwDOQla7Ys7lzrnq",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/415",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtds",
+      "projectItemId": null,
       "title": "Confirm install wizard UX end-to-end on Harmony (broad smoke to be run)",
       "source": {
         "file": "PLAN.md",
         "line": 19
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
@@ -137,13 +137,13 @@
       "issueNumber": 406,
       "issueNodeId": "I_kwDOQla7Ys7lzrOn",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/406",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtXA",
+      "projectItemId": null,
       "title": "TASK-002: Prepare Flow — gas estimation, chain mismatch checks. (Issue #41) **Status: IN REVIEW (1 test failure - BUG_duration_validation_test)**",
       "source": {
         "file": "PLAN.md",
         "line": 20
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "c8817ce06f7ccf1d89ff03a083cdc0a9d54a6309",
@@ -152,13 +152,13 @@
       "issueNumber": 418,
       "issueNodeId": "I_kwDOQla7Ys7l7ZIp",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/418",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2oA",
+      "projectItemId": null,
       "title": "Gas estimation using tx gas.limit * 1.2 buffer (BigInt safe calculation)",
       "source": {
         "file": "PLAN.md",
         "line": 21
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "31dee143145647c4b0c1cdf9e21527a3a6bbbc35",
@@ -167,13 +167,13 @@
       "issueNumber": 419,
       "issueNodeId": "I_kwDOQla7Ys7l7ZLq",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/419",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2pg",
+      "projectItemId": null,
       "title": "Chain mismatch detection with switchNetwork action (separate from approve)",
       "source": {
         "file": "PLAN.md",
         "line": 22
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "8677f498d696329651ed487785f54b6698348947",
@@ -182,13 +182,13 @@
       "issueNumber": 420,
       "issueNodeId": "I_kwDOQla7Ys7l7ZON",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/420",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2qE",
+      "projectItemId": null,
       "title": "switchNetwork i18n keys + UX flow (idle/pending/error states)",
       "source": {
         "file": "PLAN.md",
         "line": 23
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "604ba26eadc569828423f2a1f260505faee73fcb",
@@ -197,13 +197,13 @@
       "issueNumber": 421,
       "issueNodeId": "I_kwDOQla7Ys7l7ZQb",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/421",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2qk",
+      "projectItemId": null,
       "title": "Fix advancedDateInputDuration test validation state clearing (BUG filed)",
       "source": {
         "file": "PLAN.md",
         "line": 24
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "e42b8777df96c558e2a01455e0bf0b9b252217ea",
@@ -212,13 +212,13 @@
       "issueNumber": 407,
       "issueNodeId": "I_kwDOQla7Ys7lzrR_",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/407",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtXw",
+      "projectItemId": null,
       "title": "TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42)",
       "source": {
         "file": "PLAN.md",
         "line": 25
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "342dcec6ea24093a427ebd039b9b91e17a607d79",
@@ -227,13 +227,13 @@
       "issueNumber": 422,
       "issueNodeId": "I_kwDOQla7Ys7l7ZUO",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/422",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2r8",
+      "projectItemId": null,
       "title": "WalletConnect type drift hardening (structural session typing + metadata narrowing)",
       "source": {
         "file": "PLAN.md",
         "line": 26
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "4ea7862be3060411a13e3ab05db319e4da4fa343",
@@ -242,13 +242,13 @@
       "issueNumber": 408,
       "issueNodeId": "I_kwDOQla7Ys7lzrTj",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/408",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtYI",
-      "title": "TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43)",
+      "projectItemId": null,
+      "title": "TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) **Status: DONE**",
       "source": {
         "file": "PLAN.md",
         "line": 27
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "f63e66df965f1a0cb9946707a3f8ee7409d44c5d",
@@ -257,13 +257,58 @@
       "issueNumber": 416,
       "issueNodeId": "I_kwDOQla7Ys7lzrp7",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/416",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPteA",
+      "projectItemId": null,
       "title": "Add missing i18n keys for new Settings dialogs + Admin entrypoint",
       "source": {
         "file": "PLAN.md",
         "line": 28
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
+    },
+    {
+      "stableId": "59582fca08b5c27b728179972c0952831fa7e9d8",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 423,
+      "issueNodeId": "I_kwDOQla7Ys7mCuT1",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/423",
+      "projectItemId": null,
+      "title": "Add monitoring events for HarmonyVoting install/prepare dialogs",
+      "source": {
+        "file": "PLAN.md",
+        "line": 29
+      },
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
+    },
+    {
+      "stableId": "9a485b2851b0f2241f8c2f846d8a375bdde3405d",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 424,
+      "issueNodeId": "I_kwDOQla7Ys7mCuXC",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/424",
+      "projectItemId": null,
+      "title": "Add registry integration test for HarmonyVoting slots/builders",
+      "source": {
+        "file": "PLAN.md",
+        "line": 30
+      },
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
+    },
+    {
+      "stableId": "8e759f1166cf9b0d4746e2d3f9f3becbcf6d4e69",
+      "explicitId": null,
+      "kind": "subtask",
+      "issueNumber": 425,
+      "issueNodeId": "I_kwDOQla7Ys7mCuZ6",
+      "issueUrl": "https://github.com/Axodus/aragon-app/issues/425",
+      "projectItemId": null,
+      "title": "Fix AddressInput validator clearing bug in install dialog + membership setup",
+      "source": {
+        "file": "PLAN.md",
+        "line": 31
+      },
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     },
     {
       "stableId": "8636888ca6c495dcc1992e0a978d789968b5d188",
@@ -272,13 +317,13 @@
       "issueNumber": 409,
       "issueNodeId": "I_kwDOQla7Ys7lzrVL",
       "issueUrl": "https://github.com/Axodus/aragon-app/issues/409",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtYg",
+      "projectItemId": null,
       "title": "TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44)",
       "source": {
         "file": "PLAN.md",
-        "line": 29
+        "line": 32
       },
-      "lastSyncedAt": "2026-01-26T20:32:51.231Z"
+      "lastSyncedAt": "2026-01-27T12:12:59.214Z"
     }
   ]
 }

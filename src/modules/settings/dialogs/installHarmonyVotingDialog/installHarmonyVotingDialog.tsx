@@ -38,7 +38,9 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
 
     const [installType, setInstallType] = useState<HarmonyVotingInstallType>(PluginInterfaceType.HARMONY_HIP_VOTING);
     const [validatorAddress, setValidatorAddress] = useState<string>('');
-    const [addressInput, setAddressInput] = useState<string>('');
+    const [validatorAcceptedOnce, setValidatorAcceptedOnce] = useState<boolean>(false);
+    const [addressInput, setAddressInput] = useState<string | undefined>('');
+    const [validatorCustomError, setValidatorCustomError] = useState<string | undefined>(undefined);
     const [proposalPlugin, setProposalPlugin] = useState<IDaoPlugin | undefined>(undefined);
 
     const selectedPluginInfo = useMemo(() => {
@@ -81,10 +83,10 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
         return res.ok ? res.address : undefined;
     }, [installType, validatorAddress]);
 
-    const chainId = useMemo(() => {
-        if (dao == null) return undefined;
-        return networkDefinitions[dao.network].id;
-    }, [dao]);
+    // Force mainnet for the input so ENS (*.eth) is supported even when installing on Harmony.
+    const validatorInputChainId = networkDefinitions[Network.ETHEREUM_MAINNET].id;
+
+    const isEnsLike = (value: string): boolean => /^(?:[a-z0-9-]+\.)*[a-z0-9-]+\.eth$/i.test(value.trim());
 
     const isRepoConfigured = selectedRepoAddress != null && selectedRepoAddress !== '0x0000000000000000000000000000000000000000';
 
@@ -145,18 +147,48 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
     };
 
     const handleValidatorChange = (value?: string) => {
-        const next = value ?? '';
-        setAddressInput(next);
-        setValidatorAddress(next);
+        // Keep a best-effort copy of what the user typed.
+        setAddressInput(value ?? '');
+        setValidatorCustomError(undefined);
     };
 
-    const handleValidatorAccept = (value?: { address?: string }) => {
-        const resolved = value?.address ?? '';
-        const res = evmAddressUtils.validate(resolved);
+    const handleValidatorAccept = (value?: { address?: string; name?: string }) => {
+        const currentInput = (addressInput ?? '').trim();
+        const resolvedAddress = value?.address;
+        const resolvedName = value?.name;
 
-        const next = res.ok ? res.address : resolved;
-        setAddressInput(next);
-        setValidatorAddress(next);
+        setValidatorAcceptedOnce(true);
+
+        // If the component resolved a 0x address already, prefer it.
+        if (resolvedAddress) {
+            const res = evmAddressUtils.validate(resolvedAddress);
+            if (res.ok) {
+                setValidatorAddress(res.address);
+                setAddressInput(resolvedName ?? res.address);
+                setValidatorCustomError(undefined);
+                return;
+            }
+        }
+
+        // ENS-like input that could not be resolved by the component.
+        if (currentInput.length > 0 && isEnsLike(currentInput)) {
+            setValidatorCustomError(
+                t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'),
+            );
+            return;
+        }
+
+        // Fallback: try validating whatever is currently typed.
+        const res = evmAddressUtils.validate(currentInput);
+        if (res.ok) {
+            setValidatorAddress(res.address);
+            setAddressInput(res.address);
+            setValidatorCustomError(undefined);
+        } else {
+            setValidatorAddress(currentInput);
+            setAddressInput(currentInput);
+            setValidatorCustomError(undefined);
+        }
     };
 
     return (
@@ -220,10 +252,15 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
                                 value={addressInput}
                                 onChange={handleValidatorChange}
                                 onAccept={handleValidatorAccept}
-                                chainId={chainId}
+                                chainId={validatorInputChainId}
                             />
 
-                            {validatorErrorKey && <AlertInline variant="critical" message={t(validatorErrorKey)} />}
+                            {validatorAcceptedOnce && (validatorCustomError || validatorErrorKey) && (
+                                <AlertInline
+                                    variant="critical"
+                                    message={validatorCustomError ?? (validatorErrorKey ? t(validatorErrorKey) : '')}
+                                />
+                            )}
                         </div>
                     )}
 

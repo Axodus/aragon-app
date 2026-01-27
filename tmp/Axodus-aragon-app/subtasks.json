@@ -18,7 +18,7 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
   },
   {
     "stableId": "441a28ed294ea5d5a134a96ae0fe5134921ebf80",
@@ -165,7 +165,7 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
   },
   {
     "stableId": "c8817ce06f7ccf1d89ff03a083cdc0a9d54a6309",
@@ -270,7 +270,7 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
   },
   {
     "stableId": "342dcec6ea24093a427ebd039b9b91e17a607d79",
@@ -299,8 +299,8 @@
     "explicitId": "TASK-004",
     "file": "PLAN.md",
     "line": 27,
-    "text": "TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43)",
-    "checked": false,
+    "text": "TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) **Status: DONE**",
+    "checked": true,
     "labels": [
       "harmony",
       "frontend",
@@ -308,11 +308,11 @@
       "ui"
     ],
     "priority": "NORMAL",
-    "status": "TODO",
+    "status": "DONE",
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
   },
   {
     "stableId": "f63e66df965f1a0cb9946707a3f8ee7409d44c5d",
@@ -336,11 +336,74 @@
     "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
   },
   {
+    "stableId": "59582fca08b5c27b728179972c0952831fa7e9d8",
+    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361T_A",
+    "explicitId": null,
+    "file": "PLAN.md",
+    "line": 29,
+    "text": "Add monitoring events for HarmonyVoting install/prepare dialogs",
+    "checked": true,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "DONE",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 1,
+    "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
+  },
+  {
+    "stableId": "9a485b2851b0f2241f8c2f846d8a375bdde3405d",
+    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361T_B",
+    "explicitId": null,
+    "file": "PLAN.md",
+    "line": 30,
+    "text": "Add registry integration test for HarmonyVoting slots/builders",
+    "checked": true,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "DONE",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 1,
+    "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
+  },
+  {
+    "stableId": "8e759f1166cf9b0d4746e2d3f9f3becbcf6d4e69",
+    "canonicalKey": "01KFX03B4FPKZMKSMX79FG361T_C",
+    "explicitId": null,
+    "file": "PLAN.md",
+    "line": 31,
+    "text": "Fix AddressInput validator clearing bug in install dialog + membership setup",
+    "checked": true,
+    "labels": [
+      "harmony",
+      "frontend",
+      "governance",
+      "ui"
+    ],
+    "priority": "NORMAL",
+    "status": "DONE",
+    "startDate": "TBD",
+    "endDate": "TBD",
+    "estimateHours": 1,
+    "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
+  },
+  {
     "stableId": "8636888ca6c495dcc1992e0a978d789968b5d188",
     "canonicalKey": "01KFX03B4FPKZMKSMX79FG361W",
     "explicitId": "TASK-005",
     "file": "PLAN.md",
-    "line": 29,
+    "line": 32,
     "text": "TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44)",
     "checked": false,
     "labels": [
@@ -354,6 +417,6 @@
     "startDate": "TBD",
     "endDate": "TBD",
     "estimateHours": 1,
-    "parentStableId": "53f77a3f274c68516120fa249eb15c64b200222c"
+    "parentStableId": "6d6d85cb917fa803df277671491a869711774527"
   }
 ]

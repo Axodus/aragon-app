@@ -1,1 +1,0 @@
-export { AdminInstallHarmonyVoting } from './adminInstallHarmonyVoting';

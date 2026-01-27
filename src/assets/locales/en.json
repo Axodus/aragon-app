@@ -862,6 +862,10 @@
           "plugin": {
             "helpText": "This determines the governance the body uses to make decisions.",
             "label": "Governance type"
+          },
+          "requiresAllowlist": {
+            "label": "By Request",
+            "description": "This plugin requires prior authorization. Contact the Management DAO to request access."
           }
         },
         "submit": "Save",
@@ -2067,7 +2071,8 @@
               "prefix": "Address must start with 0x.",
               "length": "Address must be 42 characters long.",
               "format": "Address must be a valid hex string.",
-              "checksum": "Address checksum is invalid."
+              "checksum": "Address checksum is invalid.",
+              "ensNotResolved": "Could not resolve ENS name to an address."
             }
           }
         }
