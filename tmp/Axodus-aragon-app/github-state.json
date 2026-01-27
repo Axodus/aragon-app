@@ -1,14 +1,114 @@
 {
-  "fetchedAt": "2026-01-26T20:31:55.238Z",
+  "fetchedAt": "2026-01-27T00:27:20.766Z",
   "repo": "Axodus/aragon-app",
   "labelFilter": "sync-md",
   "issues": [
     {
+      "number": 422,
+      "nodeId": "I_kwDOQla7Ys7l7ZUO",
+      "title": "[PLAN / TASK] - WalletConnect type drift hardening (structural session typing + metadata narrowing)",
+      "state": "closed",
+      "updatedAt": "2026-01-26T20:32:43Z",
+      "createdAt": "2026-01-26T20:32:40Z",
+      "labels": [
+        "harmony",
+        "frontend",
+        "ui",
+        "subtask",
+        "sync-md",
+        "governance",
+        "type:task"
+      ],
+      "assignees": [],
+      "stableId": "342dcec6ea24093a427ebd039b9b91e17a607d79",
+      "body": null
+    },
+    {
+      "number": 421,
+      "nodeId": "I_kwDOQla7Ys7l7ZQb",
+      "title": "[PLAN / TASK] - Fix advancedDateInputDuration test validation state clearing (BUG filed)",
+      "state": "open",
+      "updatedAt": "2026-01-26T20:32:34Z",
+      "createdAt": "2026-01-26T20:32:34Z",
+      "labels": [
+        "harmony",
+        "frontend",
+        "ui",
+        "subtask",
+        "sync-md",
+        "governance",
+        "type:bug"
+      ],
+      "assignees": [],
+      "stableId": "604ba26eadc569828423f2a1f260505faee73fcb",
+      "body": null
+    },
+    {
+      "number": 420,
+      "nodeId": "I_kwDOQla7Ys7l7ZON",
+      "title": "[PLAN / TASK] - switchNetwork i18n keys + UX flow (idle/pending/error states)",
+      "state": "closed",
+      "updatedAt": "2026-01-26T20:32:34Z",
+      "createdAt": "2026-01-26T20:32:31Z",
+      "labels": [
+        "harmony",
+        "frontend",
+        "ui",
+        "subtask",
+        "sync-md",
+        "governance",
+        "type:bug"
+      ],
+      "assignees": [],
+      "stableId": "8677f498d696329651ed487785f54b6698348947",
+      "body": null
+    },
+    {
+      "number": 419,
+      "nodeId": "I_kwDOQla7Ys7l7ZLq",
+      "title": "[PLAN / TASK] - Chain mismatch detection with switchNetwork action (separate from approve)",
+      "state": "closed",
+      "updatedAt": "2026-01-26T20:32:30Z",
+      "createdAt": "2026-01-26T20:32:28Z",
+      "labels": [
+        "harmony",
+        "frontend",
+        "ui",
+        "subtask",
+        "sync-md",
+        "governance",
+        "type:task"
+      ],
+      "assignees": [],
+      "stableId": "31dee143145647c4b0c1cdf9e21527a3a6bbbc35",
+      "body": null
+    },
+    {
+      "number": 418,
+      "nodeId": "I_kwDOQla7Ys7l7ZIp",
+      "title": "[PLAN / TASK] - Gas estimation using tx gas.limit * 1.2 buffer (BigInt safe calculation)",
+      "state": "closed",
+      "updatedAt": "2026-01-26T20:32:27Z",
+      "createdAt": "2026-01-26T20:32:24Z",
+      "labels": [
+        "harmony",
+        "frontend",
+        "ui",
+        "subtask",
+        "sync-md",
+        "governance",
+        "type:task"
+      ],
+      "assignees": [],
+      "stableId": "c8817ce06f7ccf1d89ff03a083cdc0a9d54a6309",
+      "body": null
+    },
+    {
       "number": 416,
       "nodeId": "I_kwDOQla7Ys7lzrp7",
-      "title": "[TASK] - Add missing i18n keys for new Settings dialogs + Admin entrypoint",
+      "title": "[PLAN / TASK] - Add missing i18n keys for new Settings dialogs + Admin entrypoint",
       "state": "closed",
-      "updatedAt": "2026-01-26T11:14:33Z",
+      "updatedAt": "2026-01-26T20:32:48Z",
       "createdAt": "2026-01-26T11:14:31Z",
       "labels": [
         "harmony",
@@ -26,9 +126,9 @@
     {
       "number": 415,
       "nodeId": "I_kwDOQla7Ys7lzrnq",
-      "title": "[TASK] - Confirm install wizard UX end-to-end on Harmony (broad smoke to be run)",
+      "title": "[PLAN / TASK] - Confirm install wizard UX end-to-end on Harmony (broad smoke to be run)",
       "state": "open",
-      "updatedAt": "2026-01-26T11:14:28Z",
+      "updatedAt": "2026-01-26T20:32:18Z",
       "createdAt": "2026-01-26T11:14:28Z",
       "labels": [
         "harmony",
@@ -46,9 +146,9 @@
     {
       "number": 414,
       "nodeId": "I_kwDOQla7Ys7lzrlk",
-      "title": "[TASK] - Admin Settings entrypoint button (Harmony-only, hidden if already installed)",
+      "title": "[PLAN / TASK] - Admin Settings entrypoint button (Harmony-only, hidden if already installed)",
       "state": "closed",
-      "updatedAt": "2026-01-26T11:14:28Z",
+      "updatedAt": "2026-01-26T20:32:15Z",
       "createdAt": "2026-01-26T11:14:25Z",
       "labels": [
         "harmony",
@@ -66,9 +166,9 @@
     {
       "number": 413,
       "nodeId": "I_kwDOQla7Ys7lzri3",
-      "title": "[TASK] - Legacy PSP variance support (use PSP address from prepare receipt when building apply actions)",
+      "title": "[PLAN / TASK] - Legacy PSP variance support (use PSP address from prepare receipt when building apply actions)",
       "state": "closed",
-      "updatedAt": "2026-01-26T11:14:25Z",
+      "updatedAt": "2026-01-26T20:32:11Z",
       "createdAt": "2026-01-26T11:14:22Z",
       "labels": [
         "harmony",
@@ -86,9 +186,9 @@
     {
       "number": 412,
       "nodeId": "I_kwDOQla7Ys7lzrg7",
-      "title": "[TASK] - Settings install wizard + prepare flow dialogs (Install → Prepare tx → Publish proposal)",
+      "title": "[PLAN / TASK] - Settings install wizard + prepare flow dialogs (Install → Prepare tx → Publish proposal)",
       "state": "closed",
-      "updatedAt": "2026-01-26T11:14:22Z",
+      "updatedAt": "2026-01-26T20:32:08Z",
       "createdAt": "2026-01-26T11:14:20Z",
       "labels": [
         "harmony",
@@ -106,9 +206,9 @@
     {
       "number": 411,
       "nodeId": "I_kwDOQla7Ys7lzrcn",
-      "title": "[TASK] - Parameter validation (format, length, checksum) with user-visible errors",
+      "title": "[PLAN / TASK] - Parameter validation (format, length, checksum) with user-visible errors",
       "state": "closed",
-      "updatedAt": "2026-01-26T11:14:19Z",
+      "updatedAt": "2026-01-26T20:32:04Z",
       "createdAt": "2026-01-26T11:14:17Z",
       "labels": [
         "harmony",
@@ -126,9 +226,9 @@
     {
       "number": 410,
       "nodeId": "I_kwDOQla7Ys7lzrZl",
-      "title": "[TASK] - Encode installation params matching contract expectations (HIP uses empty bytes; Delegation encodes validato...",
+      "title": "[PLAN / TASK] - Encode installation params matching contract expectations (HIP uses empty bytes; Delegation encodes v...",
       "state": "closed",
-      "updatedAt": "2026-01-26T11:14:16Z",
+      "updatedAt": "2026-01-26T20:32:01Z",
       "createdAt": "2026-01-26T11:14:13Z",
       "labels": [
         "harmony",
@@ -146,17 +246,17 @@
     {
       "number": 409,
       "nodeId": "I_kwDOQla7Ys7lzrVL",
-      "title": "[TASK] - Tests & Docs — unit/E2E smoke, update docs. (Issue #44)",
+      "title": "[PLAN / TASK] - Tests & Docs — unit/E2E smoke, update docs. (Issue #44)",
       "state": "open",
-      "updatedAt": "2026-01-26T11:35:04Z",
+      "updatedAt": "2026-01-26T20:32:51Z",
       "createdAt": "2026-01-26T11:14:10Z",
       "labels": [
         "harmony",
         "frontend",
         "ui",
+        "subtask",
         "sync-md",
         "governance",
-        "NORMAL",
         "type:task"
       ],
       "assignees": [],
@@ -166,17 +266,17 @@
     {
       "number": 408,
       "nodeId": "I_kwDOQla7Ys7lzrTj",
-      "title": "[TASK] - Integrations — builder registration, analytics, i18n. (Issue #43)",
+      "title": "[PLAN / TASK] - Integrations — builder registration, analytics, i18n. (Issue #43)",
       "state": "open",
-      "updatedAt": "2026-01-26T11:14:08Z",
+      "updatedAt": "2026-01-26T20:32:45Z",
       "createdAt": "2026-01-26T11:14:08Z",
       "labels": [
         "harmony",
         "frontend",
         "ui",
+        "subtask",
         "sync-md",
         "governance",
-        "NORMAL",
         "type:task"
       ],
       "assignees": [],
@@ -186,17 +286,17 @@
     {
       "number": 407,
       "nodeId": "I_kwDOQla7Ys7lzrR_",
-      "title": "[TASK] - UI Resilience — retry UX, offline fallback, error messaging. (Issue #42)",
+      "title": "[PLAN / TASK] - UI Resilience — retry UX, offline fallback, error messaging. (Issue #42)",
       "state": "open",
-      "updatedAt": "2026-01-26T11:14:06Z",
+      "updatedAt": "2026-01-26T20:32:37Z",
       "createdAt": "2026-01-26T11:14:06Z",
       "labels": [
         "harmony",
         "frontend",
         "ui",
+        "subtask",
         "sync-md",
         "governance",
-        "NORMAL",
         "type:bug"
       ],
       "assignees": [],
@@ -206,18 +306,18 @@
     {
       "number": 406,
       "nodeId": "I_kwDOQla7Ys7lzrOn",
-      "title": "[TASK] - Prepare Flow — gas estimation, chain mismatch checks. (Issue #41)",
-      "state": "open",
-      "updatedAt": "2026-01-26T11:14:02Z",
+      "title": "[PLAN / TASK] - Prepare Flow — gas estimation, chain mismatch checks. (Issue #41) **Status: IN REVIEW (1 test failure...",
+      "state": "closed",
+      "updatedAt": "2026-01-26T20:32:25Z",
       "createdAt": "2026-01-26T11:14:02Z",
       "labels": [
         "harmony",
         "frontend",
         "ui",
+        "subtask",
         "sync-md",
         "governance",
-        "NORMAL",
-        "type:task"
+        "type:bug"
       ],
       "assignees": [],
       "stableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
@@ -226,17 +326,17 @@
     {
       "number": 405,
       "nodeId": "I_kwDOQla7Ys7lzrMW",
-      "title": "[TASK] - Install Flow — wizard UI, validator address validation, param encoding. (Issue #40)",
-      "state": "open",
-      "updatedAt": "2026-01-26T11:13:59Z",
+      "title": "[PLAN / TASK] - Install Flow — wizard UI, validator address validation, param encoding. (Issue #40) **Status: DONE (9...",
+      "state": "closed",
+      "updatedAt": "2026-01-26T20:32:02Z",
       "createdAt": "2026-01-26T11:13:59Z",
       "labels": [
         "harmony",
         "frontend",
         "ui",
+        "subtask",
         "sync-md",
         "governance",
-        "NORMAL",
         "type:task"
       ],
       "assignees": [],

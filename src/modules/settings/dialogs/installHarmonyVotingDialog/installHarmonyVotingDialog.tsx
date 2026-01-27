@@ -86,6 +86,9 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
         return networkDefinitions[dao.network].id;
     }, [dao]);
 
+    // Force mainnet for the input so ENS (*.eth) is supported even when installing on Harmony.
+    const validatorInputChainId = networkDefinitions[Network.ETHEREUM_MAINNET].id;
+
     const isRepoConfigured = selectedRepoAddress != null && selectedRepoAddress !== '0x0000000000000000000000000000000000000000';
 
     const canContinue =
@@ -220,7 +223,7 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
                                 helpText={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText')}
                                 onChange={handleValidatorChange}
                                 onAccept={handleValidatorAccept}
-                                chainId={chainId}
+                                chainId={validatorInputChainId}
                             />
 
                             {validatorAcceptedOnce && validatorErrorKey && (

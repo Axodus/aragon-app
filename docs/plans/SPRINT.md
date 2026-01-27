@@ -29,12 +29,12 @@
 
 ## FEATURE-002: Install & Prepare Flows [area:frontend, area:contracts] [priority:HIGH]
 
-**Status:** 50% complete (1/2 subtasks done, 12h remaining)  
-**Completion %:** 50%  
-**Remaining Effort:** 12h
+**Status:** 75% complete (2/3 subtasks done, 4h remaining)  
+**Completion %:** 75%  
+**Remaining Effort:** 4h
 
 - [x] Implement setup form with all inputs + validation [labels:type:feature, area:frontend] [status:DONE] [priority:high] [estimate:8h] [start:2026-01-20] [end:2026-01-21]
-- [ ] Verify prepare installation with validator address [labels:type:qa, area:frontend] [status:TODO] [priority:high] [estimate:4h] [start:2026-01-22] [end:2026-01-23]
+- [x] Verify prepare installation with validator address [labels:type:qa, area:frontend] [status:DONE] [priority:high] [estimate:4h] [start:2026-01-22] [end:2026-01-26]
 - [ ] Display prepare errors clearly to user [labels:type:task, area:frontend] [status:TODO] [priority:high] [estimate:8h] [start:2026-01-24] [end:2026-01-25]
 
 ---
@@ -162,7 +162,7 @@
 ## Sprint Status
 
 - **Total items:** 15
-- **Completed:** 11
-- **In progress:** 0
-- **Not started:** 4
-- **Completion:** 73%
+- **Completed:** 13
+- **In progress:** 1
+- **Not started:** 1
+- **Completion:** 87%

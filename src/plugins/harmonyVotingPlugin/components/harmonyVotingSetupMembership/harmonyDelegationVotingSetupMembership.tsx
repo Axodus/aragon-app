@@ -19,6 +19,7 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
 
     const {
         onChange: onValidatorChange,
+        value: validatorAddress,
         ...validatorField
     } = useFormField<IHarmonyVotingSetupMembershipForm, 'validatorAddress'>('validatorAddress', {
         label: t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.label'),
@@ -56,6 +57,9 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
         [onValidatorChange],
     );
 
+    // Force mainnet for the input so ENS (*.eth) is supported even when installing on Harmony.
+    const addressInputChainId = networkDefinitions[Network.ETHEREUM_MAINNET].id;
+
     return (
         <div className="flex w-full flex-col gap-3">
             <AddressInput
@@ -64,7 +68,7 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
                 helpText={t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.helpText')}
                 onChange={handleAddressChange}
                 onAccept={handleAddressAccept}
-                chainId={chainId}
+                chainId={addressInputChainId}
             />
         </div>
     );

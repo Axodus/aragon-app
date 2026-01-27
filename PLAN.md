@@ -24,10 +24,11 @@
 	- [ ] Fix advancedDateInputDuration test validation state clearing (BUG filed) [key:01KFX03B4FPKZMKSMX79FG361R_D]
 - [ ] TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42) [key:01KFX03B4FPKZMKSMX79FG361S]
 	- [x] WalletConnect type drift hardening (structural session typing + metadata narrowing) [key:06DZMG9RB8CM6TRY36171PG1BA]
-- [ ] TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) [key:01KFX03B4FPKZMKSMX79FG361T]
+- [x] TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) [key:01KFX03B4FPKZMKSMX79FG361T] **Status: DONE**
 	- [x] Add missing i18n keys for new Settings dialogs + Admin entrypoint [key:01KFX03B4FPKZMKSMX79FG361V]
 	- [x] Add monitoring events for HarmonyVoting install/prepare dialogs [key:01KFX03B4FPKZMKSMX79FG361T_A]
 	- [x] Add registry integration test for HarmonyVoting slots/builders [key:01KFX03B4FPKZMKSMX79FG361T_B]
+	- [x] Fix AddressInput validator clearing bug in install dialog + membership setup [key:01KFX03B4FPKZMKSMX79FG361T_C]
 - [ ] TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44) [key:01KFX03B4FPKZMKSMX79FG361W]
 
 ## Implementation Steps & Guidelines

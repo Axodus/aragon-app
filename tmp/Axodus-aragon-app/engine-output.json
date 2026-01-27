@@ -1,13 +1,16 @@
 {
-  "generatedAt": "2026-01-26T20:31:55.356Z",
+  "generatedAt": "2026-01-27T00:27:20.901Z",
   "results": [
     {
       "repo": "Axodus/aragon-app",
       "tasks": [
         {
           "stableId": "53f77a3f274c68516120fa249eb15c64b200222c",
-          "error": "Failed to create issue: no issue number returned",
-          "rateLimit": false
+          "issueNumber": null,
+          "issueNodeId": null,
+          "created": false,
+          "skipped": true,
+          "reason": "update-only"
         },
         {
           "stableId": "a5310e28abce658cf319dadae7b248ab16a45b5f",
@@ -93,7 +96,7 @@
           "stableId": "c8817ce06f7ccf1d89ff03a083cdc0a9d54a6309",
           "issueNumber": 418,
           "issueNodeId": "I_kwDOQla7Ys7l7ZIp",
-          "created": true,
+          "created": false,
           "wouldCreate": false,
           "wouldUpdate": false,
           "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
@@ -103,7 +106,7 @@
           "stableId": "31dee143145647c4b0c1cdf9e21527a3a6bbbc35",
           "issueNumber": 419,
           "issueNodeId": "I_kwDOQla7Ys7l7ZLq",
-          "created": true,
+          "created": false,
           "wouldCreate": false,
           "wouldUpdate": false,
           "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
@@ -113,7 +116,7 @@
           "stableId": "8677f498d696329651ed487785f54b6698348947",
           "issueNumber": 420,
           "issueNodeId": "I_kwDOQla7Ys7l7ZON",
-          "created": true,
+          "created": false,
           "wouldCreate": false,
           "wouldUpdate": false,
           "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
@@ -123,7 +126,7 @@
           "stableId": "604ba26eadc569828423f2a1f260505faee73fcb",
           "issueNumber": 421,
           "issueNodeId": "I_kwDOQla7Ys7l7ZQb",
-          "created": true,
+          "created": false,
           "wouldCreate": false,
           "wouldUpdate": false,
           "parentStableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
@@ -143,7 +146,7 @@
           "stableId": "342dcec6ea24093a427ebd039b9b91e17a607d79",
           "issueNumber": 422,
           "issueNodeId": "I_kwDOQla7Ys7l7ZUO",
-          "created": true,
+          "created": false,
           "wouldCreate": false,
           "wouldUpdate": false,
           "parentStableId": "e42b8777df96c558e2a01455e0bf0b9b252217ea",
@@ -168,6 +171,33 @@
           "wouldUpdate": false,
           "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343",
           "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPteA"
+        },
+        {
+          "stableId": "59582fca08b5c27b728179972c0952831fa7e9d8",
+          "issueNumber": null,
+          "issueNodeId": null,
+          "created": false,
+          "skipped": true,
+          "reason": "update-only",
+          "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
+        },
+        {
+          "stableId": "9a485b2851b0f2241f8c2f846d8a375bdde3405d",
+          "issueNumber": null,
+          "issueNodeId": null,
+          "created": false,
+          "skipped": true,
+          "reason": "update-only",
+          "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
+        },
+        {
+          "stableId": "8e759f1166cf9b0d4746e2d3f9f3becbcf6d4e69",
+          "issueNumber": null,
+          "issueNodeId": null,
+          "created": false,
+          "skipped": true,
+          "reason": "update-only",
+          "parentStableId": "4ea7862be3060411a13e3ab05db319e4da4fa343"
         },
         {
           "stableId": "8636888ca6c495dcc1992e0a978d789968b5d188",
