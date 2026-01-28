@@ -1,329 +1,269 @@
 {
   "version": "1.0",
-  "repo": "Axodus/aragon-app",
-  "updatedAt": "2026-01-28T14:10:21.935Z",
-  "planFingerprint": "d267b42d51ca675b791652fdc0e237808ee35a4b",
+  "repo": "mzfshark/aragon-app",
+  "updatedAt": "2026-01-28T23:34:50.622Z",
+  "planFingerprint": "04ee3cc6d403456ef6e9097c20fadfbc401ea489",
   "planFiles": [
     {
-      "path": "PLAN.md",
-      "sha1": "869896f9be36c07aa18bb618677eb2c1e20639a1"
+      "path": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+      "sha1": "1bc50052fbcaf32a1c15d243232c56ba6121ee71"
     }
   ],
   "items": [
     {
-      "stableId": "6d6d85cb917fa803df277671491a869711774527",
-      "explicitId": "PLAN",
+      "stableId": "2d8f3de3adad9811bebbce1b9f6ed7a34ab07f5d",
+      "explicitId": "PLAN-HARMONYVOTING-FRONTEND",
       "kind": "task",
-      "issueNumber": null,
-      "issueNodeId": null,
-      "issueUrl": null,
+      "issueNumber": 48,
+      "issueNodeId": "I_kwDOQla8Es7mit0j",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/48",
       "projectItemId": null,
-      "title": "Sprint #2 Plan — Install Flows & UI Resilience",
+      "title": "[PLAN] HarmonyVoting Frontend Fixes",
       "source": {
-        "file": "PLAN.md",
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
         "line": 1
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.921Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.608Z"
     },
     {
-      "stableId": "a5310e28abce658cf319dadae7b248ab16a45b5f",
-      "explicitId": "TASK-001",
-      "kind": "subtask",
-      "issueNumber": 405,
-      "issueNodeId": "I_kwDOQla7Ys7lzrMW",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/405",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtWE",
-      "title": "TASK-001: Install Flow — wizard UI, validator address validation, param encoding. (Issue #40) **Status: DONE (90% E2E validation pending)**",
-      "source": {
-        "file": "PLAN.md",
-        "line": 13
-      },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
-    },
-    {
-      "stableId": "441a28ed294ea5d5a134a96ae0fe5134921ebf80",
+      "stableId": "0938551d04bd5aed3d8ab26bb15f8028d7b9d322",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 410,
-      "issueNodeId": "I_kwDOQla7Ys7lzrZl",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/410",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtaM",
-      "title": "Encode installation params matching contract expectations (HIP uses empty bytes; Delegation encodes validator address)",
+      "issueNumber": 49,
+      "issueNodeId": "I_kwDOQla8Es7mit1R",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/49",
+      "projectItemId": null,
+      "title": "[PLAN-HarmonyVotingFE | SPRINT-001] Diagnosis & Form Audit",
       "source": {
-        "file": "PLAN.md",
-        "line": 14
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 48
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "9b2cd91a9c6d06a920ff946b7bcd062374920781",
+      "stableId": "467f10be94d379c5f8e4a9a7be5703eaff80ede0",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 411,
-      "issueNodeId": "I_kwDOQla7Ys7lzrcn",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/411",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPta0",
-      "title": "Parameter validation (format, length, checksum) with user-visible errors",
+      "issueNumber": 50,
+      "issueNodeId": "I_kwDOQla8Es7mit1j",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/50",
+      "projectItemId": null,
+      "title": "[PLAN-HarmonyVotingFE | SPRINT-002] Implementation & Testing",
       "source": {
-        "file": "PLAN.md",
-        "line": 15
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 54
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "b1cb6771d52e1effc133e83bb61371a884c9f6b9",
+      "stableId": "1e704135e2f3ffacbde510f01cc6325058f9f7a3",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 412,
-      "issueNodeId": "I_kwDOQla7Ys7lzrg7",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/412",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtbc",
-      "title": "Settings install wizard + prepare flow dialogs (Install → Prepare tx → Publish proposal)",
+      "issueNumber": 51,
+      "issueNodeId": "I_kwDOQla8Es7mit11",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/51",
+      "projectItemId": null,
+      "title": "[PLAN-HarmonyVotingFE | SPRINT-001 | TASK-001] Trace processKey form submission flow",
       "source": {
-        "file": "PLAN.md",
-        "line": 16
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 50
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "d26ee66017d84386635caab3e06ef4625340cb61",
+      "stableId": "d5a08a283f0c28d3eed285fe6e0649592c5a9459",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 413,
-      "issueNodeId": "I_kwDOQla7Ys7lzri3",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/413",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtb8",
-      "title": "Legacy PSP variance support (use PSP address from prepare receipt when building apply actions)",
+      "issueNumber": 52,
+      "issueNodeId": "I_kwDOQla8Es7mit2T",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/52",
+      "projectItemId": null,
+      "title": "[PLAN-HarmonyVotingFE | SPRINT-001 | TASK-002] Audit networkDefinitions addresses",
       "source": {
-        "file": "PLAN.md",
-        "line": 17
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 51
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "19d04eeba7da4fba812b425ff931d92a8880b7e1",
+      "stableId": "48febc89b0b4ea076d75f99e05ec2fca8c3c73b3",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 414,
-      "issueNodeId": "I_kwDOQla7Ys7lzrlk",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/414",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtcg",
-      "title": "Admin Settings entrypoint button (Harmony-only, hidden if already installed)",
+      "issueNumber": 53,
+      "issueNodeId": "I_kwDOQla8Es7mit2m",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/53",
+      "projectItemId": null,
+      "title": "[PLAN-HarmonyVotingFE | SPRINT-001 | TASK-003] Identify proposal query endpoints",
       "source": {
-        "file": "PLAN.md",
-        "line": 18
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 52
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "160cdae8fe951aa88b6eac9d708dce400a5210df",
+      "stableId": "d83d61a18e597bd4acdb6a96b7bd924e94d167b5",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 415,
-      "issueNodeId": "I_kwDOQla7Ys7lzrnq",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/415",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtds",
-      "title": "Confirm install wizard UX end-to-end on Harmony (broad smoke to be run)",
+      "issueNumber": 54,
+      "issueNodeId": "I_kwDOQla8Es7mit3C",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/54",
+      "projectItemId": null,
+      "title": "[PLAN-HarmonyVotingFE | SPRINT-002 | BUG-001] Fix processKey form submission",
       "source": {
-        "file": "PLAN.md",
-        "line": 19
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 56
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "d68babd4b0cb6b66b13f1e096d71ed6ce919c427",
-      "explicitId": "TASK-002",
-      "kind": "subtask",
-      "issueNumber": 406,
-      "issueNodeId": "I_kwDOQla7Ys7lzrOn",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/406",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtXA",
-      "title": "TASK-002: Prepare Flow — gas estimation, chain mismatch checks. (Issue #41) **Status: IN REVIEW (1 test failure - BUG_duration_validation_test)**",
-      "source": {
-        "file": "PLAN.md",
-        "line": 20
-      },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
-    },
-    {
-      "stableId": "c8817ce06f7ccf1d89ff03a083cdc0a9d54a6309",
+      "stableId": "de9098ac011d6c65077355af2aada30eea1f020e",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 418,
-      "issueNodeId": "I_kwDOQla7Ys7l7ZIp",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/418",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2oA",
-      "title": "Gas estimation using tx gas.limit * 1.2 buffer (BigInt safe calculation)",
+      "issueNumber": 55,
+      "issueNodeId": "I_kwDOQla8Es7mit3k",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/55",
+      "projectItemId": null,
+      "title": "[PLAN-HarmonyVotingFE | SPRINT-002 | BUG-002] Add plugin metadata mappings",
       "source": {
-        "file": "PLAN.md",
-        "line": 21
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 57
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "31dee143145647c4b0c1cdf9e21527a3a6bbbc35",
+      "stableId": "dae959670d4563dc7c1cc18afc1dd7b5764f7e75",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 419,
-      "issueNodeId": "I_kwDOQla7Ys7l7ZLq",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/419",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2pg",
-      "title": "Chain mismatch detection with switchNetwork action (separate from approve)",
+      "issueNumber": 56,
+      "issueNodeId": "I_kwDOQla8Es7mit3_",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/56",
+      "projectItemId": null,
+      "title": "[PLAN-HarmonyVotingFE | SPRINT-002 | TASK-001] Add validator display component",
       "source": {
-        "file": "PLAN.md",
-        "line": 22
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 58
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "8677f498d696329651ed487785f54b6698348947",
+      "stableId": "ae6071e1abdea3de1865a718e40dd01ad181a421",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 420,
-      "issueNodeId": "I_kwDOQla7Ys7l7ZON",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/420",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2qE",
-      "title": "switchNetwork i18n keys + UX flow (idle/pending/error states)",
+      "issueNumber": 57,
+      "issueNodeId": "I_kwDOQla8Es7mit4W",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/57",
+      "projectItemId": null,
+      "title": "[PLAN-HarmonyVotingFE | SPRINT-002 | TASK-002] Fix proposal list query",
       "source": {
-        "file": "PLAN.md",
-        "line": 23
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 59
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "604ba26eadc569828423f2a1f260505faee73fcb",
+      "stableId": "dffe69dd262543574114edac15cafb7b4fb0ffa9",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 421,
-      "issueNodeId": "I_kwDOQla7Ys7l7ZQb",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/421",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2qk",
-      "title": "Fix advancedDateInputDuration test validation state clearing (BUG filed)",
+      "issueNumber": 58,
+      "issueNodeId": "I_kwDOQla8Es7mit40",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/58",
+      "projectItemId": null,
+      "title": "[PLAN-HarmonyVotingFE | SPRINT-002 | TASK-003] E2E validation tests",
       "source": {
-        "file": "PLAN.md",
-        "line": 24
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 60
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "e42b8777df96c558e2a01455e0bf0b9b252217ea",
-      "explicitId": "TASK-003",
-      "kind": "subtask",
-      "issueNumber": 407,
-      "issueNodeId": "I_kwDOQla7Ys7lzrR_",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/407",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtXw",
-      "title": "TASK-003: UI Resilience — retry UX, offline fallback, error messaging. (Issue #42)",
-      "source": {
-        "file": "PLAN.md",
-        "line": 25
-      },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
-    },
-    {
-      "stableId": "342dcec6ea24093a427ebd039b9b91e17a607d79",
+      "stableId": "7fc6f0cf8b76084323fbfe60e171ccd80849f72e",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 422,
-      "issueNodeId": "I_kwDOQla7Ys7l7ZUO",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/422",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkR2r8",
-      "title": "WalletConnect type drift hardening (structural session typing + metadata narrowing)",
+      "issueNumber": 59,
+      "issueNodeId": "I_kwDOQla8Es7mit5F",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/59",
+      "projectItemId": null,
+      "title": "processKey from form is transmitted and stored on-chain",
       "source": {
-        "file": "PLAN.md",
-        "line": 26
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 175
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "4ea7862be3060411a13e3ab05db319e4da4fa343",
-      "explicitId": "TASK-004",
-      "kind": "subtask",
-      "issueNumber": 408,
-      "issueNodeId": "I_kwDOQla7Ys7lzrTj",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/408",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtYI",
-      "title": "TASK-004: Integrations — builder registration, analytics, i18n. (Issue #43) **Status: DONE**",
-      "source": {
-        "file": "PLAN.md",
-        "line": 27
-      },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
-    },
-    {
-      "stableId": "f63e66df965f1a0cb9946707a3f8ee7409d44c5d",
+      "stableId": "ee86d198ebdf38bb4248e3e61b08fdd2d291dce3",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 416,
-      "issueNodeId": "I_kwDOQla7Ys7lzrp7",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/416",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPteA",
-      "title": "Add missing i18n keys for new Settings dialogs + Admin entrypoint",
+      "issueNumber": 60,
+      "issueNodeId": "I_kwDOQla8Es7mit5Z",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/60",
+      "projectItemId": null,
+      "title": "Plugin names display correctly (not UNKNOWN)",
       "source": {
-        "file": "PLAN.md",
-        "line": 28
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 176
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "59582fca08b5c27b728179972c0952831fa7e9d8",
+      "stableId": "cd1a64cc1404fbc6a0bd1f758b6ddfa3abe2d989",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 423,
-      "issueNodeId": "I_kwDOQla7Ys7mCuT1",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/423",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkT7Zo",
-      "title": "Add monitoring events for HarmonyVoting install/prepare dialogs",
+      "issueNumber": 61,
+      "issueNodeId": "I_kwDOQla8Es7mit50",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/61",
+      "projectItemId": null,
+      "title": "Validator address shown in plugin details",
       "source": {
-        "file": "PLAN.md",
-        "line": 29
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 177
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "9a485b2851b0f2241f8c2f846d8a375bdde3405d",
+      "stableId": "2bc4d9ba8fd177b5880032e5cdddf260ef44265a",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 424,
-      "issueNodeId": "I_kwDOQla7Ys7mCuXC",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/424",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkT7bE",
-      "title": "Add registry integration test for HarmonyVoting slots/builders",
+      "issueNumber": 62,
+      "issueNodeId": "I_kwDOQla8Es7mit8O",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/62",
+      "projectItemId": null,
+      "title": "Proposals listed after creation",
       "source": {
-        "file": "PLAN.md",
-        "line": 30
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 178
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "8e759f1166cf9b0d4746e2d3f9f3becbcf6d4e69",
+      "stableId": "d5f563e62b5a8909b90581649c6d1fd7ca4bf70c",
       "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 425,
-      "issueNodeId": "I_kwDOQla7Ys7mCuZ6",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/425",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkT7ck",
-      "title": "Fix AddressInput validator clearing bug in install dialog + membership setup",
+      "issueNumber": 63,
+      "issueNodeId": "I_kwDOQla8Es7mit8_",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/63",
+      "projectItemId": null,
+      "title": "All type checks pass",
       "source": {
-        "file": "PLAN.md",
-        "line": 31
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 179
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     },
     {
-      "stableId": "8636888ca6c495dcc1992e0a978d789968b5d188",
-      "explicitId": "TASK-005",
+      "stableId": "26e4636e51496067ae7c05480844a1755babd3e0",
+      "explicitId": null,
       "kind": "subtask",
-      "issueNumber": 409,
-      "issueNodeId": "I_kwDOQla7Ys7lzrVL",
-      "issueUrl": "https://github.com/Axodus/aragon-app/issues/409",
-      "projectItemId": "PVTI_lADOBfRHZM4BM-PBzgkPtYg",
-      "title": "TASK-005: Tests & Docs — unit/E2E smoke, update docs. (Issue #44)",
+      "issueNumber": 64,
+      "issueNodeId": "I_kwDOQla8Es7mit9V",
+      "issueUrl": "https://github.com/mzfshark/aragon-app/issues/64",
+      "projectItemId": null,
+      "title": "E2E tests pass",
       "source": {
-        "file": "PLAN.md",
-        "line": 32
+        "file": "docs/plans/PLAN_HARMONYVOTING_FRONTEND.md",
+        "line": 180
       },
-      "lastSyncedAt": "2026-01-28T14:10:21.922Z"
+      "lastSyncedAt": "2026-01-28T23:34:50.609Z"
     }
   ]
 }
