@@ -47,3 +47,4 @@ next-env.d.ts
 .gitissuer
 .gitissuer/state.json
 tmp
+docs/plans/archive

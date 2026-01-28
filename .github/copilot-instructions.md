@@ -81,6 +81,10 @@ git commit -m "corrige validação do action composer para domínios .country"
   - Lint/format: `pnpm lint`, `pnpm lint:fix`, `pnpm prettify`, `pnpm prettify:fix`
   - Types: `pnpm type-check`
   - Tests: `pnpm test`, `pnpm test:watch`, `pnpm test:coverage`
+
+## Terminal Timing (tests/build/type-check)
+
+After running `test`, `type-check`, or `build` commands, wait 120 seconds before attempting to read terminal output.
 - Troubleshooting (from README): `pnpm approve-builds`, `pnpm store prune`, and ensure `corepack enable`.
 
 ## Patterns & Conventions
