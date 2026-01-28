@@ -48,6 +48,19 @@ Deliver production-ready HarmonyVoting frontend with resilient UI/UX, graceful d
 
 ---
 
+## Progress Update (2026-01-28)
+
+- Completed:
+	- `Plugin setup form with validator address` — DONE
+	- `Implement setup form` — DONE
+	- `Break-glass feature: FEATURE-004` was created in `aragon-app/docs/plans/FEATURE_break-glass_plugin_disable.md`
+
+- In progress:
+	- `Verify prepare installation` — IN_PROGRESS
+
+Notes: I recorded the active todo list for this epic in the workspace task tracker (plugin setup and initial form implementation marked completed). See `docs/plans/FEATURE_break-glass_plugin_disable.md` for the new break-glass feature details.
+
+
 ## Acceptance Criteria
 
 - [x] Plugin setup form with validator address (DONE)

@@ -59,3 +59,4 @@
 ## References
 - PR #39: Sprint #2 - Install Flows & UI Resilience
 - PLAN_SPRINT_2.md: docs/plans/PLAN_SPRINT_2.md
+- Admin grant closeout (AragonOSX): tx `0xec054a414b37e912909ed3b571be9d7fd11a320fcdb3004ae39bc4acf346fc47` — runbook in AragonOSX/docs/RUNBOOK_HARMONY_ADMIN_GRANT.md

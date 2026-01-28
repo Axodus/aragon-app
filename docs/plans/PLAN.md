@@ -55,11 +55,29 @@ Complete HarmonyVoting frontend implementation with resilient UI/UX, graceful de
 - [x] Add proposal settings (dates, snapshot block) [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:6h] [start:2026-01-16] [end:2026-01-18] [key:01KFRBVBMB1DFPXVV283V27E3Q]
 - [x] Register proposal/vote builders [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:5h] [start:2026-01-18] [end:2026-01-23] [key:01KFRBVBMB1DFPXVV283V27E3R]
 
+## Progress Update (2026-01-28)
+
+- Sprint #1 (Validator Address Setup) — COMPLETED (2026-01-23)
+- Completed items (FEATURE-001):
+	- `Add validator address input to setup form` — DONE
+	- `Encode validator address into installation params` — DONE
+	- `Normalize addresses to lowercase` — DONE
+	- `Add proposal settings (dates, snapshot block)` — DONE
+	- `Register proposal/vote builders` — DONE
+
+- Completed items (FEATURE-002):
+	- `Verify prepare installation with validator address` — DONE
+
+- New work created:
+	- `FEATURE-004: Break-glass: disable bricked plugin via permission revoke` — created and tracked in `docs/plans/FEATURE_break-glass_plugin_disable.md`
+
+Notes: Current completion for the plan is 50% (Sprint #1 finished). Ongoing work focuses on Install & Prepare flows and UI resilience.
+
 ### FEATURE-002: Install & Prepare Flows [key:01KFRBVBMB1DFPXVV283V27E3S]
 [labels:type:feature, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:20h] [start:2026-01-20] [end:2026-02-04]
 
 - [x] Implement setup form + validator input [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:4h] [start:2026-01-20] [end:2026-01-21] [key:01KFRBVBMB1DFPXVV283V27E3T]
-- [ ] Verify prepare installation with validator address [labels:type:task, area:frontend] [status:IN_PROGRESS] [priority:HIGH] [estimate:6h] [start:2026-01-22] [end:2026-01-24] [key:01KFRBVBMB1DFPXVV283V27E3V]
+- [x] Verify prepare installation with validator address [labels:type:task, area:frontend] [status:DONE] [priority:HIGH] [estimate:6h] [start:2026-01-22] [end:2026-01-24] [key:01KFRBVBMB1DFPXVV283V27E3V]
 - [ ] Display prepare errors clearly to user [labels:type:task, area:frontend] [status:TODO] [priority:HIGH] [estimate:4h] [start:2026-01-25] [end:2026-01-27] [key:01KFRBVBMB1DFPXVV283V27E3W]
 - [ ] Test form submission + state recovery [labels:type:qa, area:frontend] [status:TODO] [priority:MEDIUM] [estimate:6h] [start:2026-01-28] [end:2026-02-04] [key:01KFRBVBMB1DFPXVV283V27E3X]
 
@@ -143,6 +161,6 @@ Complete HarmonyVoting frontend implementation with resilient UI/UX, graceful de
 ---
 
 **Version:** 2.1  
-**Last Updated:** 2026-01-23  
+**Last Updated:** 2026-01-28  
 **Sprint #1 Status:** ✅ COMPLETE (5/5 tasks, 0 bugs, ready for Phase 2)
 **Template:** [PLAN.md](https://gist.github.com/mzfshark/2ab8856d6c0efc0dfa9d1f98d2a23fdf)

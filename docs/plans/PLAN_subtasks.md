@@ -3,15 +3,26 @@
 Este arquivo contém subtarefas acionáveis e critérios de aceite para orientar o agente encarregado da execução durante a sprint de retomada.
 
 ## 1) Preparar / Verificar Install (validator address)
-- [ ] Reproduzir fluxo de prepare/install com endereço de validator (local dev) [key:01KFRBVBNPNVY45RGBRPA0195G]
+- [x] Reproduzir fluxo de prepare/install com endereço de validator (local dev) [key:01KFRBVBNPNVY45RGBRPA0195G]
   - Acceptance: prepare retorna params corretos incluindo validator address
   - Estimate: 2h
-- [ ] Corrigir encoding/normalização (lowercase) do address se necessário [key:01KFRBVBNPNVY45RGBRPA0195H]
+- [x] Corrigir encoding/normalização (lowercase) do address se necessário [key:01KFRBVBNPNVY45RGBRPA0195H]
   - Acceptance: endereços salvos/mostrados em lowercase; validação ativa
   - Estimate: 1h
 - [ ] Adicionar testes unitários para o builder de instalação [key:01KFRBVBNPNVY45RGBRPA0195J]
   - Acceptance: cobertura mínima para casos happypath e invalid address
   - Estimate: 2h
+
+## Progress Update (2026-01-28)
+
+- Completed:
+  - [x] Reproduzir fluxo de prepare/install com endereço de validator (local dev) [key:01KFRBVBNPNVY45RGBRPA0195G]
+  - [x] Corrigir encoding/normalização (lowercase) do address se necessário [key:01KFRBVBNPNVY45RGBRPA0195H]
+
+- In progress:
+  - `Verify prepare installation` (wider epic task) — IN_PROGRESS
+
+Notes: The UI/prepare flow was exercised and basic prepare params validated. A frontend "break-glass" feature to disable bricked plugins was created as `FEATURE-004`.
 
 ## 2) Metadata fallbacks & placeholders
 - [ ] Implementar placeholder UI quando metadata estiver ausente [key:01KFRBVBNPNVY45RGBRPA0195K]
