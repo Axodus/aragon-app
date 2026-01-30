@@ -2,7 +2,7 @@ import type { IBuildPreparePluginInstallDataParams } from '@/modules/createDao/t
 import { PluginInterfaceType } from '@/shared/api/daoService';
 import { pluginTransactionUtils } from '@/shared/utils/pluginTransactionUtils';
 import { addressUtils, type ICompositeAddress } from '@aragon/gov-ui-kit';
-import { encodeAbiParameters, encodeFunctionData, keccak256, type Hex } from 'viem';
+import { encodeAbiParameters, encodeFunctionData, keccak256, stringToHex, type Hex } from 'viem';
 import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
 import type { IPluginInfo } from '@/shared/types';
 import type { IHarmonyVotingSetupGovernanceForm } from '../components/harmonyVotingSetupGovernance';
@@ -59,7 +59,7 @@ export const buildPrepareHarmonyVotingInstallData = (
 
     // Harmony Voting plugins have strict install params expectations:
     // - HIP voting: no installation params are supported (must be empty bytes)
-    // - Delegation voting: expects `abi.encode(address validatorAddress)`
+    // - Delegation voting: expects `abi.encode(address validatorAddress, bytes32 processKey)`
     //
     // Passing metadata here would revert (e.g. HIP: `INSTALL_PARAMS_NOT_SUPPORTED`).
     void metadata;
@@ -125,7 +125,7 @@ export const buildHarmonyVotingVoteData = (params: IBuildVoteDataParams): Hex =>
     });
 };
 
-export const buildDelegationInstallData = (validatorAddress?: string): Hex => {
+export const buildDelegationInstallData = (validatorAddress?: string, processKey?: Hex): Hex => {
     if (validatorAddress == null || validatorAddress.trim().length === 0) {
         throw new Error('Validator address is required for Harmony Delegation voting.');
     }
@@ -136,5 +136,14 @@ export const buildDelegationInstallData = (validatorAddress?: string): Hex => {
         throw new Error('Validator address must be a valid address.');
     }
 
-    return encodeAbiParameters([{ name: 'validatorAddress', type: 'address' }], [res.address as Hex]);
+    const normalizedProcessKey =
+        processKey ?? (stringToHex('delegation', { size: 32 }) as Hex);
+
+    return encodeAbiParameters(
+        [
+            { name: 'validatorAddress', type: 'address' },
+            { name: 'processKey', type: 'bytes32' },
+        ],
+        [res.address as Hex, normalizedProcessKey],
+    );
 };

@@ -19,6 +19,20 @@ describe('harmonyVotingTransactionUtils', () => {
     expect(typeof hex).toBe('string');
     expect(hex.startsWith('0x')).toBe(true);
     expect(hex.length).toBeGreaterThan(2);
+
+    // address + bytes32 processKey = 64 bytes ABI encoded
+    expect(hex.length).toBe(2 + 64 * 2);
+  });
+
+  test('buildDelegationInstallData: encodes custom processKey when provided', () => {
+    const addr = '0xab5801a7d398351b8be11c439e05c5b3259aec9b';
+    const customProcessKey =
+      '0x1111111111111111111111111111111111111111111111111111111111111111';
+
+    const encoded = buildDelegationInstallData(addr, customProcessKey as any);
+
+    // Last 32 bytes should equal the processKey
+    expect(encoded.endsWith(customProcessKey.slice(2))).toBe(true);
   });
 
   test('buildPrepareHarmonyVotingInstallData: encodes validator address for delegation installs', () => {

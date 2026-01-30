@@ -21,7 +21,7 @@ These notes make AI agents productive in this repo fast. Focus on conventions, c
 2. **Sync with GitHub Project**: Using GitHub CLI (`gh` - already authenticated as mzfshark):
    ```bash
    # Create issue from PLAN.md
-   gh issue create --title "[Plan] <descriptive-title>" --body-file PLAN.md --project "https://github.com/users/mzfshark/projects/5"
+   gh issue create --title "[Plan] <descriptive-title>" --body-file PLAN.md --project "https://github.com/users/mzfshark/projects/15"
    ```
 
 3. **Update Plan Progress**: As tasks complete, update checkboxes in `PLAN.md` and sync with issue:
@@ -106,3 +106,7 @@ After running `test`, `type-check`, or `build` commands, wait 120 seconds before
 ## CI/Deploy Notes
 - Env-driven deployments (Preview/Develop/Staging/Prod) per README; local is `.env.local`.
 - `vercel.json` config is present; ensure build uses `next build --no-lint` as per scripts.
+
+## wsl Notes
+- do not use wsl paths in any configuration or script.
+- never try to run commands wsl terminal that interact with codacy cli.
