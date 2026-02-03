@@ -822,7 +822,6 @@
           "transactionInfoTitle": "Propose process"
         }
       },
-
       "setupBodyDialog": {
         "a11y": {
           "description": "Create a new voting body for your DAO"
@@ -1038,8 +1037,7 @@
         }
       },
       "exploreDaosPage": {
-        
-       "doItYourself": {
+        "doItYourself": {
           "actionLabel": "Developer portal",
           "subtitle": "Build your own custom Harmony OSx DAO or your own web application using our Governance UI Kit and App Template.",
           "title": "Do it yourself"
@@ -1058,7 +1056,6 @@
           "subtitle": "Easily deploy a new DAO on Harmony OSx in minutes with our simple, no-code deployment wizard.",
           "title": "No-code setup"
         },
-
         "section": {
           "cta": "Getting started",
           "daos": "Explore",
@@ -2321,7 +2318,7 @@
         },
         "setupGovernance": {
           "minDuration": {
-            "alertInfo": "Minimum duration: {{value}}",
+            "alertInfo": "Minimum duration: {{days}} days, {{hours}} hours, and {{minutes}} minutes",
             "helpText": "Minimum time a proposal stays open for voting.",
             "label": "Proposal duration"
           },
