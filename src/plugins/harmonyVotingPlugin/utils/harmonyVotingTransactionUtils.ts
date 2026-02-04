@@ -70,7 +70,7 @@ export const buildPrepareHarmonyVotingInstallData = (
     const isDelegation = plugin.id === PluginInterfaceType.HARMONY_DELEGATION_VOTING;
 
     if (isDelegation) {
-        pluginSettingsData = buildDelegationInstallData(body.membership?.validatorAddress);
+        pluginSettingsData = buildDelegationInstallData(body.membership?.validatorAddress, body.membership?.processKey);
     }
 
     return pluginTransactionUtils.buildPrepareInstallationData(
@@ -125,7 +125,7 @@ export const buildHarmonyVotingVoteData = (params: IBuildVoteDataParams): Hex =>
     });
 };
 
-export const buildDelegationInstallData = (validatorAddress?: string, processKey?: Hex): Hex => {
+export const buildDelegationInstallData = (validatorAddress?: string, processKey?: string | Hex): Hex => {
     if (validatorAddress == null || validatorAddress.trim().length === 0) {
         throw new Error('Validator address is required for Harmony Delegation voting.');
     }
@@ -136,8 +136,27 @@ export const buildDelegationInstallData = (validatorAddress?: string, processKey
         throw new Error('Validator address must be a valid address.');
     }
 
-    const normalizedProcessKey =
-        processKey ?? (stringToHex('delegation', { size: 32 }) as Hex);
+    const normalizedProcessKey = (() => {
+        if (processKey == null) {
+            return stringToHex('delegation', { size: 32 }) as Hex;
+        }
+
+        // Accept raw bytes32 hex.
+        if (typeof processKey === 'string' && processKey.startsWith('0x')) {
+            return processKey as Hex;
+        }
+
+        const trimmedKey = String(processKey).trim();
+        if (trimmedKey.length === 0) {
+            return stringToHex('delegation', { size: 32 }) as Hex;
+        }
+
+        try {
+            return stringToHex(trimmedKey, { size: 32 }) as Hex;
+        } catch {
+            throw new Error('Process key must be a valid short string (fits into bytes32).');
+        }
+    })();
 
     return encodeAbiParameters(
         [

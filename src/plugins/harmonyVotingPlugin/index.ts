@@ -1,9 +1,10 @@
 import { CreateDaoSlotId } from '@/modules/createDao/constants/moduleSlots';
 import { GovernanceSlotId } from '@/modules/governance/constants/moduleSlots';
+import { SettingsSlotId } from '@/modules/settings/constants/moduleSlots';
 import { pluginRegistryUtils } from '@/shared/utils/pluginRegistryUtils';
 import { HarmonyVotingCreateProposalSettingsForm } from './components/harmonyVotingCreateProposalSettingsForm';
 import { HarmonyVotingSetupGovernance } from './components/harmonyVotingSetupGovernance';
-import { HarmonyDelegationVotingSetupMembership, HarmonyVotingSetupMembership } from './components/harmonyVotingSetupMembership';
+import { HarmonyDelegationMemberInfo, HarmonyDelegationVotingSetupMembership, HarmonyVotingSetupMembership } from './components/harmonyVotingSetupMembership';
 import { harmonyDelegationVotingPlugin, harmonyHipVotingPlugin } from './constants/harmonyVotingPlugins';
 import {
     buildCreateHarmonyVotingProposalData,
@@ -78,5 +79,12 @@ export const initialiseHarmonyVotingPlugin = () => {
             slotId: GovernanceSlotId.GOVERNANCE_BUILD_VOTE_DATA,
             pluginId: harmonyDelegationVotingPlugin.id,
             function: buildHarmonyVotingVoteData,
+        })
+
+        // Settings module slots
+        .registerSlotComponent({
+            slotId: SettingsSlotId.SETTINGS_MEMBERS_INFO,
+            pluginId: harmonyDelegationVotingPlugin.id,
+            component: HarmonyDelegationMemberInfo,
         });
 };

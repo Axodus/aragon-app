@@ -57,6 +57,7 @@ class PrepareHarmonyVotingInstallationDialogUtils {
         dao: IDao,
         installPlugin: IPluginInfo,
         validatorAddress?: string,
+        processKey?: string,
     ): Promise<{ tx: ITransactionRequest; pluginSetupProcessor: Hex }> => {
         const pluginSetupProcessor = await this.resolvePluginSetupProcessorAddress(dao);
 
@@ -69,7 +70,7 @@ class PrepareHarmonyVotingInstallationDialogUtils {
             description: undefined,
             resources: [],
             governance: {},
-            membership: { members: [], validatorAddress },
+            membership: { members: [], validatorAddress, processKey },
         };
 
         const data = buildPrepareHarmonyVotingInstallData(installPlugin, {

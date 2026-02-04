@@ -35,6 +35,14 @@ describe('harmonyVotingTransactionUtils', () => {
     expect(encoded.endsWith(customProcessKey.slice(2))).toBe(true);
   });
 
+  test('buildDelegationInstallData: encodes string processKey as bytes32', () => {
+    const addr = '0xab5801a7d398351b8be11c439e05c5b3259aec9b';
+    const encoded = buildDelegationInstallData(addr, 'KEY');
+
+    // ABI: last 32 bytes should start with ASCII for 'KEY' (0x4b4559) and be right-padded.
+    expect(encoded.endsWith('4b4559' + '00'.repeat(29))).toBe(true);
+  });
+
   test('buildPrepareHarmonyVotingInstallData: encodes validator address for delegation installs', () => {
     const plugin: any = {
       id: PluginInterfaceType.HARMONY_DELEGATION_VOTING,
@@ -44,12 +52,15 @@ describe('harmonyVotingTransactionUtils', () => {
 
     const params: any = {
       dao: { network: '1', address: '0xda0da0da0da0da0da0da0da0da0da0da0da0da0' },
-      body: { membership: { validatorAddress: '0xab5801a7d398351b8be11c439e05c5b3259aec9b' } },
+      body: { membership: { validatorAddress: '0xab5801a7d398351b8be11c439e05c5b3259aec9b', processKey: 'KEY' } },
       metadata: '0xabc123',
       stageVotingPeriod: null, // processor install
     };
 
-    const expectedInstallData = buildDelegationInstallData(params.body.membership.validatorAddress);
+    const expectedInstallData = buildDelegationInstallData(
+      params.body.membership.validatorAddress,
+      params.body.membership.processKey,
+    );
 
     // Call the function; the mocked pluginTransactionUtils should be used
     const result = buildPrepareHarmonyVotingInstallData(plugin, params);

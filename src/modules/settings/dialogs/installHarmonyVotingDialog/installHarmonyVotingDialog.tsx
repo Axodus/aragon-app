@@ -9,11 +9,12 @@ import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
 import { daoUtils } from '@/shared/utils/daoUtils';
 import { monitoringUtils } from '@/shared/utils/monitoringUtils';
-import { AddressInput, AlertInline, Dialog, RadioCard, RadioGroup, invariant } from '@aragon/gov-ui-kit';
+import { AddressInput, AlertInline, Dialog, InputText, RadioCard, RadioGroup, invariant } from '@aragon/gov-ui-kit';
 import { useEffect, useMemo, useState } from 'react';
 import { harmonyDelegationVotingPlugin, harmonyHipVotingPlugin } from '@/plugins/harmonyVotingPlugin/constants/harmonyVotingPlugins';
 import { SettingsDialogId } from '../../constants/settingsDialogId';
 import type { IPrepareHarmonyVotingInstallationDialogParams } from '../prepareHarmonyVotingInstallationDialog';
+import { sanitizePlainText } from '@/shared/security';
 
 export type HarmonyVotingInstallType =
     | PluginInterfaceType.HARMONY_HIP_VOTING
@@ -38,10 +39,15 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
 
     const [installType, setInstallType] = useState<HarmonyVotingInstallType>(PluginInterfaceType.HARMONY_HIP_VOTING);
     const [validatorAddress, setValidatorAddress] = useState<string>('');
+    const [processKey, setProcessKey] = useState<string>('');
+    const [processKeyTouched, setProcessKeyTouched] = useState<boolean>(false);
     const [validatorAcceptedOnce, setValidatorAcceptedOnce] = useState<boolean>(false);
     const [addressInput, setAddressInput] = useState<string | undefined>('');
     const [validatorCustomError, setValidatorCustomError] = useState<string | undefined>(undefined);
     const [proposalPlugin, setProposalPlugin] = useState<IDaoPlugin | undefined>(undefined);
+
+    const processKeyMaxLength = 5;
+    const processKeyPattern = /^[A-Z]+$/;
 
     const selectedPluginInfo = useMemo(() => {
         return installType === PluginInterfaceType.HARMONY_DELEGATION_VOTING
@@ -83,6 +89,17 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
         return res.ok ? res.address : undefined;
     }, [installType, validatorAddress]);
 
+    const normalizedProcessKey = useMemo(() => {
+        if (installType !== PluginInterfaceType.HARMONY_DELEGATION_VOTING) return undefined;
+
+        const key = processKey.trim();
+        if (key.length === 0) return undefined;
+        if (key.length > processKeyMaxLength) return undefined;
+        if (!processKeyPattern.test(key)) return undefined;
+
+        return key;
+    }, [installType, processKey]);
+
     // Force mainnet for the input so ENS (*.eth) is supported even when installing on Harmony.
     const validatorInputChainId = networkDefinitions[Network.ETHEREUM_MAINNET].id;
 
@@ -95,7 +112,8 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
         isHarmonyDao &&
         proposalPlugin != null &&
         isRepoConfigured &&
-        (installType !== PluginInterfaceType.HARMONY_DELEGATION_VOTING || normalizedValidator != null);
+        (installType !== PluginInterfaceType.HARMONY_DELEGATION_VOTING ||
+            (normalizedValidator != null && normalizedProcessKey != null));
 
     const { check: createProposalGuard } = usePermissionCheckGuard({
         permissionNamespace: 'proposal',
@@ -141,14 +159,57 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
             proposalPlugin,
             installType,
             validatorAddress: normalizedValidator,
+            processKey: normalizedProcessKey,
         };
 
         open(SettingsDialogId.PREPARE_HARMONY_VOTING_INSTALLATION, { params });
     };
 
+    const handleProcessKeyChange = (value: string) => {
+        setProcessKeyTouched(true);
+        setProcessKey(sanitizePlainText(value).toUpperCase());
+    };
+
     const handleValidatorChange = (value?: string) => {
         // Keep a best-effort copy of what the user typed.
         setAddressInput(value ?? '');
+        setValidatorCustomError(undefined);
+    };
+
+    const applyResolvedValidatorAddress = (resolvedAddress?: string, resolvedName?: string) => {
+        if (!resolvedAddress) {
+            return false;
+        }
+
+        const res = evmAddressUtils.validate(resolvedAddress);
+        if (!res.ok) {
+            return false;
+        }
+
+        setValidatorAddress(res.address);
+        setAddressInput(resolvedName ?? res.address);
+        setValidatorCustomError(undefined);
+        return true;
+    };
+
+    const applyEnsNotResolvedError = (input: string) => {
+        if (input.length === 0 || !isEnsLike(input)) {
+            return false;
+        }
+
+        setValidatorCustomError(t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'));
+        return true;
+    };
+
+    const applyTypedValidatorValue = (input: string) => {
+        const res = evmAddressUtils.validate(input);
+        if (res.ok) {
+            setValidatorAddress(res.address);
+            setAddressInput(res.address);
+        } else {
+            setValidatorAddress(input);
+            setAddressInput(input);
+        }
         setValidatorCustomError(undefined);
     };
 
@@ -159,36 +220,15 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
 
         setValidatorAcceptedOnce(true);
 
-        // If the component resolved a 0x address already, prefer it.
-        if (resolvedAddress) {
-            const res = evmAddressUtils.validate(resolvedAddress);
-            if (res.ok) {
-                setValidatorAddress(res.address);
-                setAddressInput(resolvedName ?? res.address);
-                setValidatorCustomError(undefined);
-                return;
-            }
-        }
-
-        // ENS-like input that could not be resolved by the component.
-        if (currentInput.length > 0 && isEnsLike(currentInput)) {
-            setValidatorCustomError(
-                t('app.plugins.harmonyDelegationVoting.setupMembership.validatorAddress.error.ensNotResolved'),
-            );
+        if (applyResolvedValidatorAddress(resolvedAddress, resolvedName)) {
             return;
         }
 
-        // Fallback: try validating whatever is currently typed.
-        const res = evmAddressUtils.validate(currentInput);
-        if (res.ok) {
-            setValidatorAddress(res.address);
-            setAddressInput(res.address);
-            setValidatorCustomError(undefined);
-        } else {
-            setValidatorAddress(currentInput);
-            setAddressInput(currentInput);
-            setValidatorCustomError(undefined);
+        if (applyEnsNotResolvedError(currentInput)) {
+            return;
         }
+
+        applyTypedValidatorValue(currentInput);
     };
 
     return (
@@ -261,6 +301,25 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
                                     message={validatorCustomError ?? (validatorErrorKey ? t(validatorErrorKey) : '')}
                                 />
                             )}
+
+                            <InputText
+                                label={t('app.createDao.createProcessForm.metadata.processKey.label')}
+                                helpText={t('app.createDao.createProcessForm.metadata.processKey.helpText')}
+                                placeholder={t('app.createDao.createProcessForm.metadata.processKey.label')}
+                                maxLength={processKeyMaxLength}
+                                value={processKey}
+                                onChange={(event) => handleProcessKeyChange(event.target.value)}
+                                onBlur={() => setProcessKeyTouched(true)}
+                                variant={processKeyTouched && normalizedProcessKey == null ? 'critical' : 'default'}
+                                alert={
+                                    processKeyTouched && normalizedProcessKey == null
+                                        ? {
+                                              variant: 'critical',
+                                              message: 'Process key must be 1-5 uppercase letters (A-Z).',
+                                          }
+                                        : undefined
+                                }
+                            />
                         </div>
                     )}
 

@@ -25,6 +25,7 @@ export interface IPrepareHarmonyVotingInstallationDialogParams {
     proposalPlugin: IDaoPlugin;
     installType: PluginInterfaceType.HARMONY_HIP_VOTING | PluginInterfaceType.HARMONY_DELEGATION_VOTING;
     validatorAddress?: string;
+    processKey?: string;
 }
 
 export interface IPrepareHarmonyVotingInstallationDialogProps
@@ -34,7 +35,7 @@ export const PrepareHarmonyVotingInstallationDialog: React.FC<IPrepareHarmonyVot
     const { location } = props;
 
     invariant(location.params != null, 'PrepareHarmonyVotingInstallationDialog: required parameters must be set.');
-    const { daoId, proposalPlugin, installType, validatorAddress } = location.params;
+    const { daoId, proposalPlugin, installType, validatorAddress, processKey } = location.params;
 
     const { address, chainId } = useAccount();
     invariant(address != null, 'PrepareHarmonyVotingInstallationDialog: user must be connected.');
@@ -90,6 +91,7 @@ export const PrepareHarmonyVotingInstallationDialog: React.FC<IPrepareHarmonyVot
             dao,
             installPlugin,
             validatorAddress,
+            processKey,
         );
 
         if (publicClient != null && address != null) {
