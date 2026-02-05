@@ -6,7 +6,7 @@
 **End Date Goal:** 2026-02-15  
 **Priority:** HIGH  
 **Estimative Hours:** 28h  
-**Status:** TODO
+**Status:** COMPLETED
 
 ---
 
@@ -47,17 +47,17 @@ This plan addresses frontend-specific issues affecting the HarmonyVoting plugins
 
 ### [PLAN-HarmonyVotingFE | SPRINT-001] Diagnosis & Form Audit
 
-- [ ] [PLAN-HarmonyVotingFE | SPRINT-001 | TASK-001] Trace processKey form submission flow [key:01JK8FE00001] [status:TODO] [priority:HIGH] [estimate:4h]
-- [ ] [PLAN-HarmonyVotingFE | SPRINT-001 | TASK-002] Audit networkDefinitions addresses [key:01JK8FE00002] [status:TODO] [priority:HIGH] [estimate:2h]
-- [ ] [PLAN-HarmonyVotingFE | SPRINT-001 | TASK-003] Identify proposal query endpoints [key:01JK8FE00003] [status:TODO] [priority:HIGH] [estimate:3h]
+- [x] [PLAN-HarmonyVotingFE | SPRINT-001 | TASK-001] Trace processKey form submission flow [key:01JK8FE00001] [status:COMPLETED] [priority:HIGH] [estimate:4h]
+- [x] [PLAN-HarmonyVotingFE | SPRINT-001 | TASK-002] Audit networkDefinitions addresses [key:01JK8FE00002] [status:COMPLETED] [priority:HIGH] [estimate:2h]
+- [x] [PLAN-HarmonyVotingFE | SPRINT-001 | TASK-003] Identify proposal query endpoints [key:01JK8FE00003] [status:COMPLETED] [priority:HIGH] [estimate:3h]
 
 ### [PLAN-HarmonyVotingFE | SPRINT-002] Implementation & Testing
 
-- [ ] [PLAN-HarmonyVotingFE | SPRINT-002 | BUG-001] Fix processKey form submission [key:01JK8FE00004] [status:TODO] [priority:HIGH] [estimate:6h]
-- [ ] [PLAN-HarmonyVotingFE | SPRINT-002 | BUG-002] Add plugin metadata mappings [key:01JK8FE00005] [status:TODO] [priority:HIGH] [estimate:4h]
-- [ ] [PLAN-HarmonyVotingFE | SPRINT-002 | TASK-001] Add validator display component [key:01JK8FE00006] [status:TODO] [priority:MEDIUM] [estimate:4h]
-- [ ] [PLAN-HarmonyVotingFE | SPRINT-002 | TASK-002] Fix proposal list query [key:01JK8FE00007] [status:TODO] [priority:URGENT] [estimate:4h]
-- [ ] [PLAN-HarmonyVotingFE | SPRINT-002 | TASK-003] E2E validation tests [key:01JK8FE00008] [status:TODO] [priority:HIGH] [estimate:4h]
+- [x] [PLAN-HarmonyVotingFE | SPRINT-002 | BUG-001] Fix processKey form submission [key:01JK8FE00004] [status:COMPLETED] [priority:HIGH] [estimate:6h]
+- [x] [PLAN-HarmonyVotingFE | SPRINT-002 | BUG-002] Add plugin metadata mappings [key:01JK8FE00005] [status:COMPLETED] [priority:HIGH] [estimate:4h]
+- [x] [PLAN-HarmonyVotingFE | SPRINT-002 | TASK-001] Add validator display component [key:01JK8FE00006] [status:COMPLETED] [priority:MEDIUM] [estimate:4h]
+- [x] [PLAN-HarmonyVotingFE | SPRINT-002 | TASK-002] Fix proposal list query [key:01JK8FE00007] [status:COMPLETED] [priority:URGENT] [estimate:4h]
+- [x] [PLAN-HarmonyVotingFE | SPRINT-002 | TASK-003] E2E validation tests [key:01JK8FE00008] [status:COMPLETED] [priority:HIGH] [estimate:4h]
 
 ---
 
@@ -172,9 +172,11 @@ rm -rf .next && pnpm build
 
 ## Definition of Done
 
-- [ ] processKey from form is transmitted and stored on-chain
-- [ ] Plugin names display correctly (not UNKNOWN)
-- [ ] Validator address shown in plugin details
-- [ ] Proposals listed after creation
-- [ ] All type checks pass
-- [ ] E2E tests pass
+- [x] processKey from form is transmitted and stored on-chain
+- [x] Plugin names display correctly (not UNKNOWN)
+- [x] Validator address shown in plugin details
+- [x] Proposals listed after creation
+- [x] All type checks pass
+- [x] E2E tests pass
+
+**Notes:** Evidence collected (backend logs, frontend start logs, and E2E artifacts). See repository `tmp/evidence/` for saved logs and screenshots when available.
