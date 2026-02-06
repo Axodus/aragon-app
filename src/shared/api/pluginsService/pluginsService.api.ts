@@ -37,3 +37,46 @@ export interface IHarmonyValidatorConfig {
 }
 
 export interface IGetHarmonyValidatorConfigParams extends IRequestUrlParams<IGetHarmonyValidatorConfigUrlParams> {}
+
+export interface IGetHarmonyValidatorInfoUrlParams {
+    /**
+     * Network of the DAO.
+     */
+    network: Network;
+    /**
+     * Validator address (bech32 or 0x).
+     */
+    validatorAddress: string;
+}
+
+export interface IHarmonyValidatorInfo {
+    address: string;
+    name: string;
+    rate: string;
+    totalDelegation: string;
+    activeStatus: string;
+    currentlyInCommittee: boolean;
+}
+
+export interface IGetHarmonyValidatorInfoParams extends IRequestUrlParams<IGetHarmonyValidatorInfoUrlParams> {}
+
+export interface IGetHarmonyDelegationsByValidatorUrlParams {
+    /**
+     * Network of the DAO.
+     */
+    network: Network;
+    /**
+     * Validator address (bech32 or 0x).
+     */
+    validatorAddress: string;
+}
+
+export interface IHarmonyDelegation {
+    validatorAddress: string;
+    delegatorAddress: string;
+    amount: string;
+    reward: string;
+}
+
+export interface IGetHarmonyDelegationsByValidatorParams
+    extends IRequestUrlParams<IGetHarmonyDelegationsByValidatorUrlParams> {}
