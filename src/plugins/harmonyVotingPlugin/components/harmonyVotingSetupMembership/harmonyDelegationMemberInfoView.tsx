@@ -98,14 +98,15 @@ const safeBigInt = (value?: string | null) => {
 const formatPercentOfTotal = (amountRaw?: string | null, totalRaw?: string | null) => {
     const amount = safeBigInt(amountRaw);
     const total = safeBigInt(totalRaw);
-    if (amount == null || total == null || total <= 0n || amount < 0n) {
+    const zero = BigInt(0);
+    if (amount == null || total == null || total <= zero || amount < zero) {
         return '—';
     }
 
     // basis points (2 decimals)
-    const bps = (amount * 10_000n) / total;
-    const integer = bps / 100n;
-    const fraction = bps % 100n;
+    const bps = (amount * BigInt(10_000)) / total;
+    const integer = bps / BigInt(100);
+    const fraction = bps % BigInt(100);
     const fractionStr = fraction.toString().padStart(2, '0');
     return `${integer.toString()}.${fractionStr}%`;
 };
@@ -159,11 +160,12 @@ const getDisplayAddresses = (addr: string, format: AddressFormat) => {
 const delegationStakeBps = (amountRaw?: string | null, totalRaw?: string | null) => {
     const amount = safeBigInt(amountRaw);
     const total = safeBigInt(totalRaw);
-    if (amount == null || total == null || total <= 0n || amount < 0n) {
+    const zero = BigInt(0);
+    if (amount == null || total == null || total <= zero || amount < zero) {
         return null;
     }
 
-    return (amount * 10_000n) / total;
+    return (amount * BigInt(10_000)) / total;
 };
 
 export interface IHarmonyDelegationMemberInfoProps {
@@ -282,8 +284,8 @@ export const HarmonyDelegationMemberInfo = (props: IHarmonyDelegationMemberInfoP
         }
 
         list.sort((a, b) => {
-            const aBps = delegationStakeBps(a.amount, total) ?? -1n;
-            const bBps = delegationStakeBps(b.amount, total) ?? -1n;
+            const aBps = delegationStakeBps(a.amount, total) ?? BigInt(-1);
+            const bBps = delegationStakeBps(b.amount, total) ?? BigInt(-1);
             if (aBps === bBps) {
                 const aPrimary = getDisplayAddresses(a.delegatorAddress ?? '', addressFormat).primaryFull.toLowerCase();
                 const bPrimary = getDisplayAddresses(b.delegatorAddress ?? '', addressFormat).primaryFull.toLowerCase();
