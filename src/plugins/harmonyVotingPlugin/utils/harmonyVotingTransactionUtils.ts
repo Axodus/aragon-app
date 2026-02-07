@@ -138,7 +138,7 @@ export const buildDelegationInstallData = (validatorAddress?: string, processKey
 
     const normalizedProcessKey = (() => {
         if (processKey == null) {
-            return stringToHex('delegation', { size: 32 }) as Hex;
+            return stringToHex('DELEGATION', { size: 32 }) as Hex;
         }
 
         // Accept raw bytes32 hex.
@@ -148,11 +148,11 @@ export const buildDelegationInstallData = (validatorAddress?: string, processKey
 
         const trimmedKey = String(processKey).trim();
         if (trimmedKey.length === 0) {
-            return stringToHex('delegation', { size: 32 }) as Hex;
+            return stringToHex('DELEGATION', { size: 32 }) as Hex;
         }
 
         try {
-            return stringToHex(trimmedKey, { size: 32 }) as Hex;
+            return stringToHex(trimmedKey.toUpperCase(), { size: 32 }) as Hex;
         } catch {
             throw new Error('Process key must be a valid short string (fits into bytes32).');
         }

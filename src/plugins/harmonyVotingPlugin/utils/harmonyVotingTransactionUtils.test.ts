@@ -35,9 +35,21 @@ describe('harmonyVotingTransactionUtils', () => {
     expect(encoded.endsWith(customProcessKey.slice(2))).toBe(true);
   });
 
+  test('buildDelegationInstallData: uses DELEGATION when processKey is missing/empty', () => {
+    const addr = '0xab5801a7d398351b8be11c439e05c5b3259aec9b';
+
+    const encodedMissing = buildDelegationInstallData(addr, undefined);
+    const encodedEmpty = buildDelegationInstallData(addr, '   ');
+
+    // 'DELEGATION' = 10 bytes (0x44454c45474154494f4e), padded to 32 bytes.
+    const expectedTail = '44454c45474154494f4e' + '00'.repeat(22);
+    expect(encodedMissing.endsWith(expectedTail)).toBe(true);
+    expect(encodedEmpty.endsWith(expectedTail)).toBe(true);
+  });
+
   test('buildDelegationInstallData: encodes string processKey as bytes32', () => {
     const addr = '0xab5801a7d398351b8be11c439e05c5b3259aec9b';
-    const encoded = buildDelegationInstallData(addr, 'KEY');
+    const encoded = buildDelegationInstallData(addr, 'kEy');
 
     // ABI: last 32 bytes should start with ASCII for 'KEY' (0x4b4559) and be right-padded.
     expect(encoded.endsWith('4b4559' + '00'.repeat(29))).toBe(true);
