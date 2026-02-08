@@ -9,6 +9,8 @@ import { InputContainer, InputNumber } from '@aragon/gov-ui-kit';
 import { DateTime } from 'luxon';
 import { useId } from 'react';
 import { useWatch } from 'react-hook-form';
+import { useEffect } from 'react';
+import { useBlockNumber, usePublicClient } from 'wagmi';
 
 export interface IHarmonyVotingCreateProposalSettingsForm extends ICreateProposalEndDateForm {
     /**
@@ -37,6 +39,48 @@ export const HarmonyVotingCreateProposalSettingsForm: React.FC = () => {
             validate: (value?: number) => value != null && Number.isFinite(value) && value >= 1,
         },
     });
+
+    const publicClient = usePublicClient();
+    const { data: latestBlockNumber } = useBlockNumber({ watch: true });
+
+    const snapshotConfirmations = 30n;
+
+    useEffect(() => {
+        if (snapshotBlock != null) {
+            return;
+        }
+
+        let cancelled = false;
+
+        const setDefaultSnapshotBlock = async () => {
+            // Prefer 'safe' block tag when supported by the RPC.
+            if (publicClient) {
+                try {
+                    const safeBlock = await publicClient.getBlockNumber({ blockTag: 'safe' });
+                    if (!cancelled && safeBlock > 0n) {
+                        onSnapshotBlockChange(Number(safeBlock));
+                        return;
+                    }
+                } catch {
+                    // Ignore and fall back to latest - confirmations.
+                }
+            }
+
+            if (latestBlockNumber != null) {
+                const latest = BigInt(latestBlockNumber);
+                const fallback = latest > snapshotConfirmations ? latest - snapshotConfirmations : latest;
+                if (!cancelled) {
+                    onSnapshotBlockChange(Number(fallback));
+                }
+            }
+        };
+
+        void setDefaultSnapshotBlock();
+
+        return () => {
+            cancelled = true;
+        };
+    }, [snapshotBlock, latestBlockNumber, onSnapshotBlockChange, publicClient]);
 
     return (
         <div className="flex flex-col gap-6 md:gap-12">

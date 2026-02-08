@@ -90,8 +90,14 @@ export const buildCreateHarmonyVotingProposalData = (
         throw new Error('Harmony voting proposals do not support onchain actions. Remove all actions and try again.');
     }
 
-    const startDate = createProposalUtils.parseStartDate(proposal);
+    let startDate = createProposalUtils.parseStartDate(proposal);
     let endDate = createProposalUtils.parseEndDate(proposal);
+
+    // Unlike other governance plugins, HarmonyVoting does not support using `0` to let the
+    // contract fill startDate at execution time.
+    if (startDate === 0) {
+        startDate = Math.floor(Date.now() / 1000) + 60;
+    }
 
     if (endDate === 0) {
         endDate = createProposalUtils.createDefaultEndDate();

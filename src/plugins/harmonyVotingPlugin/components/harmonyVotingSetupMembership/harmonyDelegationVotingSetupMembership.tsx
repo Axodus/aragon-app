@@ -5,8 +5,9 @@ import { useTranslations } from '@/shared/components/translationsProvider';
 import { networkDefinitions } from '@/shared/constants/networkDefinitions';
 import { useFormField } from '@/shared/hooks/useFormField';
 import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
-import { AddressInput, type IAddressInputResolvedValue } from '@aragon/gov-ui-kit';
-import { useCallback, useEffect, useState } from 'react';
+import { sanitizePlainText } from '@/shared/security';
+import { AddressInput, InputText, type IAddressInputResolvedValue } from '@aragon/gov-ui-kit';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { IHarmonyVotingSetupMembershipForm, IHarmonyVotingSetupMembershipProps } from './harmonyVotingSetupMembership.api';
 
 const isEnsLike = (value: string): boolean => /^(?:[a-z0-9-]+\.)*[a-z0-9-]+\.eth$/i.test(value.trim());
@@ -16,6 +17,9 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
     const { t } = useTranslations();
 
     const [ensResolutionError, setEnsResolutionError] = useState<string | undefined>(undefined);
+
+    const processKeyMaxLength = 5;
+    const processKeyPattern = /^[A-Z]+$/;
 
     const {
         onChange: onValidatorChange,
@@ -41,6 +45,39 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
     });
 
     const [addressInput, setAddressInput] = useState<string | undefined>(validatorAddress ?? '');
+
+    const {
+        onChange: onProcessKeyChange,
+        value: processKey,
+        ...processKeyField
+    } = useFormField<IHarmonyVotingSetupMembershipForm, 'processKey'>('processKey', {
+        label: t('app.createDao.createProcessForm.metadata.processKey.label'),
+        rules: {
+            required: {
+                value: true,
+                message: 'app.shared.formField.error.required',
+            },
+            validate: (value?: string) => {
+                const key = (value ?? '').trim();
+                if (key.length === 0) return false;
+                if (key.length > processKeyMaxLength) return false;
+                if (!processKeyPattern.test(key)) return false;
+                return true;
+            },
+        },
+        fieldPrefix: formPrefix,
+        sanitizeOnBlur: false,
+    });
+
+    const [processKeyTouched, setProcessKeyTouched] = useState<boolean>(false);
+
+    const normalizedProcessKey = useMemo(() => {
+        const key = String(processKey ?? '').trim();
+        if (key.length === 0) return undefined;
+        if (key.length > processKeyMaxLength) return undefined;
+        if (!processKeyPattern.test(key)) return undefined;
+        return key;
+    }, [processKey]);
 
     useEffect(() => {
         setAddressInput(validatorAddress ?? '');
@@ -88,6 +125,14 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
         [addressInput, onValidatorChange, t],
     );
 
+    const handleProcessKeyChange = useCallback(
+        (value: string) => {
+            setProcessKeyTouched(true);
+            onProcessKeyChange(sanitizePlainText(value).toUpperCase());
+        },
+        [onProcessKeyChange],
+    );
+
     // Force mainnet for the input so ENS (*.eth) is supported even when installing on Harmony.
     const validatorInputChainId = networkDefinitions[Network.ETHEREUM_MAINNET].id;
 
@@ -107,6 +152,26 @@ export const HarmonyDelegationVotingSetupMembership = (props: IHarmonyVotingSetu
                 chainId={validatorInputChainId}
                 variant={effectiveVariant}
                 alert={effectiveAlert}
+            />
+
+            <InputText
+                {...processKeyField}
+                label={t('app.createDao.createProcessForm.metadata.processKey.label')}
+                helpText={t('app.createDao.createProcessForm.metadata.processKey.helpText')}
+                placeholder={t('app.createDao.createProcessForm.metadata.processKey.label')}
+                maxLength={processKeyMaxLength}
+                value={processKey ?? ''}
+                onChange={(event) => handleProcessKeyChange(event.target.value)}
+                onBlur={() => setProcessKeyTouched(true)}
+                variant={processKeyTouched && normalizedProcessKey == null ? 'critical' : processKeyField.variant}
+                alert={
+                    processKeyTouched && normalizedProcessKey == null
+                        ? {
+                              variant: 'critical',
+                              message: 'Process key must be 1-5 uppercase letters (A-Z).',
+                          }
+                        : processKeyField.alert
+                }
             />
         </div>
     );
