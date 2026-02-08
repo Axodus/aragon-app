@@ -56,7 +56,7 @@ export const PublishProposalDialog: React.FC<IPublishProposalDialogProps> = (pro
         return networkDefinitions[dao.network as Network]?.id;
     }, [dao?.network]);
 
-    const minProposerBalanceWei = 1_000_000_000_000_000_000n;
+    const minProposerBalanceWei = BigInt('1000000000000000000');
     const { data: proposerBalance, isLoading: isBalanceLoading } = useBalance({
         address,
         chainId: harmonyChainId,

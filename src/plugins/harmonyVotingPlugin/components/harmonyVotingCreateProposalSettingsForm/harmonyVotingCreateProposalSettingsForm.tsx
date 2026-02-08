@@ -43,7 +43,7 @@ export const HarmonyVotingCreateProposalSettingsForm: React.FC = () => {
     const publicClient = usePublicClient();
     const { data: latestBlockNumber } = useBlockNumber({ watch: true });
 
-    const snapshotConfirmations = 30n;
+    const snapshotConfirmations = BigInt(30);
 
     useEffect(() => {
         if (snapshotBlock != null) {
@@ -56,9 +56,11 @@ export const HarmonyVotingCreateProposalSettingsForm: React.FC = () => {
             // Prefer 'safe' block tag when supported by the RPC.
             if (publicClient) {
                 try {
-                    const safeBlock = await publicClient.getBlockNumber({ blockTag: 'safe' });
-                    if (!cancelled && safeBlock > 0n) {
-                        onSnapshotBlockChange(Number(safeBlock));
+                    const safeBlock = await publicClient.getBlock({ blockTag: 'safe' });
+                    const safeBlockNumber = safeBlock.number;
+
+                    if (!cancelled && safeBlockNumber != null && safeBlockNumber > BigInt(0)) {
+                        onSnapshotBlockChange(Number(safeBlockNumber));
                         return;
                     }
                 } catch {
