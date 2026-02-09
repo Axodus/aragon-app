@@ -41,17 +41,11 @@ export const useHarmonyDelegationMemberStats = (params: IUsePluginMemberStatsPar
     }
 
     const formattedVotingPower = formatOneAmount(member.votingPower);
-    const formattedStaked = formatOneAmount(member.tokenBalance ?? member.votingPower);
 
     return [
         {
             label: 'Voting power',
             value: formattedVotingPower,
-            suffix: 'ONE',
-        },
-        {
-            label: 'Staked',
-            value: formattedStaked,
             suffix: 'ONE',
         },
     ];
