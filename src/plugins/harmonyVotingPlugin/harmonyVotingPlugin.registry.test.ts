@@ -75,5 +75,26 @@ describe('harmonyVotingPlugin registry integration', () => {
                 pluginId: harmonyDelegationVotingPlugin.id,
             }),
         );
+
+        expect(pluginRegistryUtils.registerSlotComponent).toHaveBeenCalledWith(
+            expect.objectContaining({
+                slotId: GovernanceSlotId.GOVERNANCE_DAO_MEMBER_LIST,
+                pluginId: harmonyDelegationVotingPlugin.id,
+            }),
+        );
+
+        expect(pluginRegistryUtils.registerSlotComponent).toHaveBeenCalledWith(
+            expect.objectContaining({
+                slotId: GovernanceSlotId.GOVERNANCE_MEMBER_PANEL,
+                pluginId: harmonyDelegationVotingPlugin.id,
+            }),
+        );
+
+        expect(pluginRegistryUtils.registerSlotFunction).toHaveBeenCalledWith(
+            expect.objectContaining({
+                slotId: GovernanceSlotId.GOVERNANCE_MEMBER_STATS,
+                pluginId: harmonyDelegationVotingPlugin.id,
+            }),
+        );
     });
 });

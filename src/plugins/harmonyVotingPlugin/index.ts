@@ -2,10 +2,13 @@ import { CreateDaoSlotId } from '@/modules/createDao/constants/moduleSlots';
 import { GovernanceSlotId } from '@/modules/governance/constants/moduleSlots';
 import { SettingsSlotId } from '@/modules/settings/constants/moduleSlots';
 import { pluginRegistryUtils } from '@/shared/utils/pluginRegistryUtils';
+import { HarmonyDelegationMemberList } from './components/harmonyDelegationMemberList';
+import { HarmonyDelegationMemberPanel } from './components/harmonyDelegationMemberPanel';
 import { HarmonyVotingCreateProposalSettingsForm } from './components/harmonyVotingCreateProposalSettingsForm';
 import { HarmonyVotingSetupGovernance } from './components/harmonyVotingSetupGovernance';
 import { HarmonyDelegationMemberInfo, HarmonyDelegationVotingSetupMembership, HarmonyVotingSetupMembership } from './components/harmonyVotingSetupMembership';
 import { harmonyDelegationVotingPlugin, harmonyHipVotingPlugin } from './constants/harmonyVotingPlugins';
+import { useHarmonyDelegationMemberStats } from './hooks/useHarmonyDelegationMemberStats';
 import {
     buildCreateHarmonyVotingProposalData,
     buildHarmonyVotingVoteData,
@@ -79,6 +82,23 @@ export const initialiseHarmonyVotingPlugin = () => {
             slotId: GovernanceSlotId.GOVERNANCE_BUILD_VOTE_DATA,
             pluginId: harmonyDelegationVotingPlugin.id,
             function: buildHarmonyVotingVoteData,
+        })
+
+        // Governance members UI (Harmony Delegation)
+        .registerSlotComponent({
+            slotId: GovernanceSlotId.GOVERNANCE_DAO_MEMBER_LIST,
+            pluginId: harmonyDelegationVotingPlugin.id,
+            component: HarmonyDelegationMemberList,
+        })
+        .registerSlotComponent({
+            slotId: GovernanceSlotId.GOVERNANCE_MEMBER_PANEL,
+            pluginId: harmonyDelegationVotingPlugin.id,
+            component: HarmonyDelegationMemberPanel,
+        })
+        .registerSlotFunction({
+            slotId: GovernanceSlotId.GOVERNANCE_MEMBER_STATS,
+            pluginId: harmonyDelegationVotingPlugin.id,
+            function: useHarmonyDelegationMemberStats,
         })
 
         // Settings module slots
