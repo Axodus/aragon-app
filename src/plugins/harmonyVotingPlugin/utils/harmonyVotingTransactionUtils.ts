@@ -2,7 +2,7 @@ import type { IBuildPreparePluginInstallDataParams } from '@/modules/createDao/t
 import { PluginInterfaceType } from '@/shared/api/daoService';
 import { pluginTransactionUtils } from '@/shared/utils/pluginTransactionUtils';
 import { addressUtils, type ICompositeAddress } from '@aragon/gov-ui-kit';
-import { encodeAbiParameters, encodeFunctionData, keccak256, stringToHex, type Hex } from 'viem';
+import { encodeAbiParameters, encodeFunctionData, stringToHex, type Hex } from 'viem';
 import { evmAddressUtils } from '@/shared/utils/evmAddressUtils';
 import type { IPluginInfo } from '@/shared/types';
 import type { IHarmonyVotingSetupGovernanceForm } from '../components/harmonyVotingSetupGovernance';
@@ -30,7 +30,7 @@ const harmonyVotingAbi = [
         name: 'createProposal',
         stateMutability: 'nonpayable',
         inputs: [
-            { name: '_metadata', type: 'bytes32' },
+            { name: '_metadata', type: 'bytes' },
             { name: '_startDate', type: 'uint64' },
             { name: '_endDate', type: 'uint64' },
             { name: '_snapshotBlock', type: 'uint64' },
@@ -112,12 +112,10 @@ export const buildCreateHarmonyVotingProposalData = (
         throw new Error('Snapshot block is required for Harmony voting proposals.');
     }
 
-    const metadataHash = keccak256(metadata);
-
     return encodeFunctionData({
         abi: harmonyVotingAbi,
         functionName: 'createProposal',
-        args: [metadataHash, BigInt(startDate), BigInt(endDate), BigInt(snapshotBlock)],
+        args: [metadata, BigInt(startDate), BigInt(endDate), BigInt(snapshotBlock)],
     });
 };
 
