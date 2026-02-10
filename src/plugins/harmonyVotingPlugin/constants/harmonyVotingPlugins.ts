@@ -28,8 +28,6 @@ export const harmonyHipVotingPlugin: IPluginInfo = {
         nameKey: 'app.plugins.harmonyHipVoting.setup.name',
         descriptionKey: 'app.plugins.harmonyHipVoting.setup.description',
     },
-    // HIP plugin requires allowlist authorization
-    requiresAllowlist: true,
 };
 
 export const harmonyDelegationVotingPlugin: IPluginInfo = {

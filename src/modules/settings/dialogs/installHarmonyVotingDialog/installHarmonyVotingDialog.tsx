@@ -273,12 +273,20 @@ export const InstallHarmonyVotingDialog: React.FC<IInstallHarmonyVotingDialogPro
                                 value={String(PluginInterfaceType.HARMONY_HIP_VOTING)}
                                 label={t('app.plugins.harmonyHipVoting.setup.name')}
                                 description={t('app.plugins.harmonyHipVoting.setup.description')}
+                                tag={{
+                                    variant: 'warning',
+                                    label: t('app.createDao.setupBodyDialog.select.requiresAllowlist.label'),
+                                }}
                             />
                             <RadioCard
                                 className="w-full"
                                 value={String(PluginInterfaceType.HARMONY_DELEGATION_VOTING)}
                                 label={t('app.plugins.harmonyDelegationVoting.setup.name')}
                                 description={t('app.plugins.harmonyDelegationVoting.setup.description')}
+                                tag={{
+                                    variant: 'warning',
+                                    label: t('app.createDao.setupBodyDialog.select.requiresAllowlist.label'),
+                                }}
                             />
                         </RadioGroup>
                     </div>
