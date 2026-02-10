@@ -1,6 +1,7 @@
 import { proposalStatusUtils } from '@/shared/utils/proposalStatusUtils';
-import type { ProposalStatus } from '@aragon/gov-ui-kit';
 import type { IHarmonyProposal } from '../types/harmonyProposal';
+
+type ProposalStatus = ReturnType<typeof proposalStatusUtils.getProposalStatus>;
 
 class HarmonyProposalUtils {
     getProposalStatus = (proposal: IHarmonyProposal): ProposalStatus => {

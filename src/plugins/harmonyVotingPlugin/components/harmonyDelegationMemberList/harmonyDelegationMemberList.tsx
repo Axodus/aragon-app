@@ -1,5 +1,7 @@
 'use client';
 
+import { Fragment } from 'react';
+
 import type { IDaoMemberListDefaultProps } from '@/modules/governance/components/daoMemberList';
 import { useMemberListData } from '@/modules/governance/hooks/useMemberListData';
 import * as GovUiKit from '@aragon/gov-ui-kit';
@@ -38,13 +40,14 @@ export const HarmonyDelegationMemberList = (props: IHarmonyDelegationMemberListP
                 emptyState={emptyState}
             >
                 {memberList?.map((member: IHarmonyDelegationMember) => (
-                    <HarmonyDelegationMemberListItem
-                        key={member.address}
-                        member={member}
-                        daoId={daoId}
-                        plugin={plugin}
-                        onMemberClick={onMemberClick}
-                    />
+                    <Fragment key={member.address}>
+                        <HarmonyDelegationMemberListItem
+                            member={member}
+                            daoId={daoId}
+                            plugin={plugin}
+                            onMemberClick={onMemberClick}
+                        />
+                    </Fragment>
                 ))}
             </DataListContainer>
             {!hidePagination && <DataListPagination />}

@@ -2,7 +2,6 @@ import type { IMember } from '@/modules/governance/api/governanceService';
 import { useDao, type IDaoPlugin } from '@/shared/api/daoService';
 import { daoUtils } from '@/shared/utils/daoUtils';
 import * as GovUiKit from '@aragon/gov-ui-kit';
-import type { FC } from 'react';
 
 const MemberDataListItem = (GovUiKit as any).MemberDataListItem as any;
 
@@ -49,7 +48,7 @@ export interface IHarmonyDelegationMemberListItemProps {
     onMemberClick?: (member: IMember) => void;
 }
 
-export const HarmonyDelegationMemberListItem: FC<IHarmonyDelegationMemberListItemProps> = (props) => {
+export const HarmonyDelegationMemberListItem = (props: IHarmonyDelegationMemberListItemProps) => {
     const { member, daoId, onMemberClick } = props;
 
     const { data: dao } = useDao({ urlParams: { id: daoId } });
