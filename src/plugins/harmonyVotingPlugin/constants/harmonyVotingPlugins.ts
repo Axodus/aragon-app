@@ -8,6 +8,7 @@ export const harmonyHipVotingPlugin: IPluginInfo = {
     subdomain: 'harmonyHipVoting',
     name: 'Harmony HIP Voting',
     installVersion: { release: 1, build: 1, releaseNotes: '', description: '' },
+    requiresAllowlist: true,
     repositoryAddresses: {
         [Network.ARBITRUM_MAINNET]: ZERO_ADDRESS,
         [Network.BASE_MAINNET]: ZERO_ADDRESS,
@@ -35,6 +36,7 @@ export const harmonyDelegationVotingPlugin: IPluginInfo = {
     subdomain: 'harmonyDelegationVoting',
     name: 'Harmony Delegation Voting',
     installVersion: { release: 1, build: 1, releaseNotes: '', description: '' },
+    requiresAllowlist: true,
     repositoryAddresses: {
         [Network.ARBITRUM_MAINNET]: ZERO_ADDRESS,
         [Network.BASE_MAINNET]: ZERO_ADDRESS,
