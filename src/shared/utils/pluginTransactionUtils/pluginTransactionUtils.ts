@@ -120,12 +120,10 @@ class PluginTransactionUtils {
     buildApplyPluginsInstallationActions = (
         params: IBuildApplyPluginsInstallationActionsParams,
     ): ITransactionRequest[] => {
-        const { dao, setupData, actions = [], executeConditionAddress, pluginSetupProcessorAddress } = params;
+        const { dao, setupData, actions = [], executeConditionAddress } = params;
         const daoAddress = dao.address as Hex;
 
-        const pluginSetupProcessor =
-            (pluginSetupProcessorAddress as Hex | undefined) ??
-            (networkDefinitions[dao.network].addresses.pluginSetupProcessor as Hex);
+        const { pluginSetupProcessor } = networkDefinitions[dao.network].addresses;
 
         // Temporarily grant the ROOT_PERMISSION to the plugin setup processor contract.
         const [grantRootTx, revokeRootTx] = permissionTransactionUtils.buildGrantRevokePermissionTransactions({
@@ -154,7 +152,7 @@ class PluginTransactionUtils {
         );
 
         const applyInstallationActions = setupData
-            .map((data) => this.setupInstallationDataToAction(data, dao, pluginSetupProcessor))
+            .map((data) => this.setupInstallationDataToAction(data, dao))
             .map((tx) => this.wrapAsDaoExecuteOnHarmony(dao, tx));
 
         const extraActionsWrapped = actions.map((tx) => this.wrapAsDaoExecuteOnHarmony(dao, tx));
@@ -292,16 +290,11 @@ class PluginTransactionUtils {
         return { to: pluginSetupProcessor, data: transactionData, value: BigInt(0) };
     };
 
-    private setupInstallationDataToAction = (
-        setupData: IPluginInstallationSetupData,
-        dao: IDao,
-        pluginSetupProcessor?: Hex,
-    ) => {
+    private setupInstallationDataToAction = (setupData: IPluginInstallationSetupData, dao: IDao) => {
         const { pluginSetupRepo, versionTag, pluginAddress, preparedSetupData } = setupData;
         const { permissions, helpers } = preparedSetupData;
-        const resolvedPluginSetupProcessor =
-            (pluginSetupProcessor as Hex | undefined) ??
-            (networkDefinitions[dao.network].addresses.pluginSetupProcessor as Hex);
+
+        const { pluginSetupProcessor } = networkDefinitions[dao.network].addresses;
         const helpersHash = this.hashHelpers(helpers);
         const pluginSetupRef = { versionTag, pluginSetupRepo };
 
@@ -311,7 +304,7 @@ class PluginTransactionUtils {
             args: [dao.address as Hex, { pluginSetupRef, plugin: pluginAddress, permissions, helpersHash }],
         });
 
-        return { to: resolvedPluginSetupProcessor, data: transactionData, value: BigInt(0) };
+        return { to: pluginSetupProcessor, data: transactionData, value: BigInt(0) };
     };
 
     private hashHelpers = (helpers: readonly Hex[]): Hex =>
